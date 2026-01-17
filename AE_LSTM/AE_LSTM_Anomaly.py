@@ -1,3 +1,4 @@
+import numpy
 import torch
 from torchvision import transforms
 import pandas as pd
@@ -13,6 +14,8 @@ from sklearn.metrics import (
     average_precision_score,
 )
 import time
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 """ Phase 0 """
 ### 0.1: GPU Usage ###
@@ -26,7 +29,7 @@ data_size = 50000
 """ Phase 1 Data Import and Preprocessing """
 ### 1.1: Data Import, Severity Map ###
 
-df = pd.read_csv("datasets/NF-UNSW-NB15-v2_15000.csv")
+df = pd.read_csv("C:/Users/Daniel/PycharmProjects/Final_Proj_Anoseek/datasets/NF-UNSW-NB15-v2_50000.csv")
 # now we'll remove the unwanted features which aren't numerical
 cols_to_drop = [
     "IPV4_SRC_ADDR", "IPV4_DST_ADDR",
@@ -56,7 +59,7 @@ y = torch.tensor(y, dtype=torch.long)
 
 # data split
 X_train, X_test, y_train, y_test = (
-    train_test_split(X, y, test_size=0.2, random_state=42)
+    train_test_split(X, y, test_size=0.4, random_state=42)
 )
 print("y_test positive\n",y_test[y_test[:, 0] == 1])
 # dropping anomalies from training
@@ -73,10 +76,11 @@ X_train_scaled_tensor = torch.from_numpy(X_train_scaled).float()
 ### 1.3: Time Series Windowing ###
 
 X_seq_list = []
-seq_size = 20
-print(f"Poor people's debugger: \n {X_train_scaled_tensor.shape[0]}")
+seq_size = 1
+#print(f"Poor people's debugger: \n {X_train_scaled_tensor.shape[0]}")
 num_sequences = X_train_scaled_tensor.shape[0] # num of sequences
 input_size = X_train_scaled_tensor.shape[1] # num of features
+
 for i in range(num_sequences - seq_size + 1):
     # X
     window = X_train_scaled_tensor[i: i + seq_size, :]
@@ -94,24 +98,33 @@ class AutoencoderLSTM(nn.Module):
     def __init__(self, input_size, latent_size):
         super().__init__()
         self.device = device
+        self.intermediate_size = 16
 
         self.encoder_lstm = nn.LSTM(
             input_size=input_size,
-            hidden_size=latent_size,
-            num_layers=1,
+            hidden_size=self.intermediate_size,
             batch_first=True
         )
 
+        self.encoder_linear = nn.Linear(
+            self.intermediate_size,
+            latent_size
+        )
+
         # Decoder: latent_size → latent_size (we'll map to input_size with a Linear)
+        self.decoder_linear = nn.Linear(
+            latent_size,
+            self.intermediate_size
+        )
+
         self.decoder_lstm = nn.LSTM(
-            input_size=latent_size,
-            hidden_size=latent_size,
-            num_layers=1,
+            input_size=self.intermediate_size,
+            hidden_size=self.intermediate_size,
             batch_first=True
         )
 
         # Map decoder hidden state back to original feature space
-        self.output_layer = nn.Linear(latent_size, input_size)
+        self.output_layer = nn.Linear(self.intermediate_size, input_size)
 
     def forward(self, x):
         # x: [batch, seq_len, input_size]
@@ -123,11 +136,12 @@ class AutoencoderLSTM(nn.Module):
         _, (h_n, c_n) = self.encoder_lstm(x)
 
         # latent: [batch, latent_size]
-        latent = h_n[-1]  # the last LSTM layer for all sequences in the batch
+        latent = torch.relu(self.encoder_linear(h_n[-1]))  # the last LSTM layer for all sequences in the batch
 
         # ---- DECODER INPUT ----
         # repeat latent across seq_len steps: [batch, _ -> 1 -> seq_len, latent_size]
-        latent_seq = latent.unsqueeze(1).repeat(1, seq_len, 1)
+        decoder_input_init = torch.relu(self.decoder_linear(latent))
+        latent_seq = decoder_input_init.unsqueeze(1).repeat(1, seq_len, 1)
 
         # the decoder is now creating a time-dependent reconstruction
         # each time step has its own hidden state
@@ -142,8 +156,8 @@ class AutoencoderLSTM(nn.Module):
 
 ### 3.1: Variables ###
 
-latent_size = 4
-model = AutoencoderLSTM(input_size, 10).to(device)
+latent_size = 3
+model = AutoencoderLSTM(input_size, latent_size).to(device)
 
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-03, weight_decay=1e-05)
@@ -157,13 +171,13 @@ dataset = TensorDataset(X_seq) # unsupervised: inputs only
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 ### 3.2 Training loop ###
-
+epoch_recon_ls = []
 outputs = []
 for epoch in range(num_epochs):
     model.train()
     epoch_loss = 0.0
     num_sequences_epoch = 0
-    for (batch,) in loader: # each batch is a tuple from TensorDatase
+    for (batch,) in loader: # each batch is a tuple from TensorDataset
         # batch: [batch_size, seq_len, input_size]
         batch = batch.to(device)
         # forward
@@ -176,14 +190,15 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         # Accumulate loss
+        epoch_recon_ls.append(recon.detach().cpu())
         batch_size_actual = batch.size(0)
-        epoch_loss += loss.item() * batch_size_actual
+        epoch_loss += loss.item() * batch_size_actual # in order to calculate weighted average
         num_sequences_epoch += batch_size_actual
 
     avg_epoch_loss = epoch_loss / num_sequences_epoch
     print(f'Epoch: {epoch+1} | Loss: {avg_epoch_loss:.6f}')
 
-
+epoch_MSE_np = torch.cat(epoch_recon_ls, dim=0).numpy()
 """ Phase 4: Result and Test """
 
 timer_start = time.perf_counter()
@@ -225,11 +240,28 @@ def compute_reconstruction_errors(model, X_seq, device, batch_size=64):
 # compute MSE per sequence on benign training sequences (X_seq is your training windows)
 train_errors = compute_reconstruction_errors(model, X_seq, device)
 
-# choose threshold = 99th percentile of benign errors
-threshold_percentile = 99
-threshold = np.percentile(train_errors, threshold_percentile)
+# choose threshold = X-th percentile of benign errors
+threshold_critical_percentile_top = 95
+threshold_critical_percentile_bottom = 91
+threshold_high_percentile_top = 98
+threshold_high_percentile_bottom = 95
+threshold_medium_percentile_top = 100
+threshold_medium_percentile_bottom = 98
+threshold_low_percentile_top = 91
+threshold_low_percentile_bottom = 84
+threshold_normal_percentile = 84
 
-print(f"Chosen threshold ({threshold_percentile}th percentile): {threshold:.6f}")
+threshold_normal = np.percentile(train_errors, threshold_normal_percentile)
+threshold_low_top = np.percentile(train_errors, threshold_low_percentile_top)
+threshold_low_bottom = np.percentile(train_errors, threshold_low_percentile_bottom)
+threshold_medium_top = np.percentile(train_errors, threshold_medium_percentile_top)
+threshold_medium_bottom = np.percentile(train_errors, threshold_medium_percentile_bottom)
+threshold_high_top = np.percentile(train_errors, threshold_high_percentile_top)
+threshold_high_bottom = np.percentile(train_errors, threshold_high_percentile_bottom)
+threshold_critical_top = np.percentile(train_errors, threshold_critical_percentile_top)
+threshold_critical_bottom = np.percentile(train_errors, threshold_critical_percentile_bottom)
+
+#print(f"Chosen threshold ({threshold_92_percentile}th percentile): {threshold_92:.6f}")
 
 
 ### 4.3 Build test sequences and labels ###
@@ -246,27 +278,30 @@ def build_sequences_with_labels(X_tensor, y_tensor, seq_len):
     """
     X_windows = []
     y_labels = []
+    y_severity = []
     N = X_tensor.shape[0]
 
     for i in range(N - seq_len + 1):
         # build sequence window
         X_windows.append(X_tensor[i:i+seq_len, :])
 
-        # label of LAST row in the sequence
+        # label of LAST flow in the sequence
         y_labels.append(y_tensor[i + seq_len - 1, 0].item())
+        y_severity.append(y_tensor[i + seq_len - 1, 1].item())
 
     X_seq = torch.stack(X_windows, dim=0)
     y_seq = torch.tensor(y_labels, dtype=torch.long)
-    return X_seq, y_seq
+    y_sev_seq = torch.tensor(y_severity, dtype=torch.long)
+    return X_seq, y_seq, y_sev_seq
 
-### 4.4 Use it on the test set ###
+### 4.4 Usage on the test set ###
 
 # a) scale X_test using SAME scaler as training
 X_test_scaled = scaler.transform(X_test)
 X_test_scaled_tensor = torch.from_numpy(X_test_scaled).float()
 
 # b) build sequences + labels
-X_test_seq, y_test_seq = build_sequences_with_labels(
+X_test_seq, y_test_seq, y_test_seq_sev = build_sequences_with_labels(
     X_test_scaled_tensor, y_test, seq_size
 )
 
@@ -278,9 +313,27 @@ test_errors = compute_reconstruction_errors(model, X_test_seq, device)
 # convert errors -> predictions
 # truth labels (0=benign, 1=attack)
 y_true = y_test_seq.numpy()
-
+print(y_test_seq)
 # predictions: 1 = anomaly (attack), 0 = benign
-y_pred = (test_errors > threshold).astype(int)
+y_pred = (test_errors >= threshold_normal).astype(int)
+print(np.add.reduce(y_pred))
+low_y_pred = ((threshold_low_top > test_errors) & (test_errors >= threshold_low_bottom)).astype(int)
+print(np.add.reduce(low_y_pred))
+medium_y_pred = ((threshold_medium_top > test_errors) & (test_errors >= threshold_medium_bottom)).astype(int)
+print(np.add.reduce(medium_y_pred))
+high_y_pred = ((threshold_high_top > test_errors) & (test_errors >= threshold_high_bottom)).astype(int)
+print(np.add.reduce(high_y_pred))
+critical_y_pred = ((threshold_critical_top >= test_errors) & (test_errors >= threshold_critical_bottom)).astype(int)
+print(np.add.reduce(critical_y_pred))
+
+print("\nConfusion Matrix for Severity 1 - Low:")
+print(confusion_matrix(y_test_seq_sev == 1, low_y_pred))
+print("\nConfusion Matrix for Severity 2 - Medium:")
+print(confusion_matrix(y_test_seq_sev == 2, medium_y_pred))
+print("\nConfusion Matrix for Severity 3 - High:")
+print(confusion_matrix(y_test_seq_sev == 3, high_y_pred))
+print("\nConfusion Matrix for Severity 4 - Critical:")
+print(confusion_matrix(y_test_seq_sev == 4, critical_y_pred))
 
 
 ### 4.5 Compute full anomaly-detection score ###
@@ -293,13 +346,11 @@ print(classification_report(y_true, y_pred, target_names=["Benign", "Attack"]))
 
 # ROC-AUC using continuous errors
 roc_auc = roc_auc_score(y_true, test_errors)
-pr_auc  = average_precision_score(y_true, test_errors)
+pr_auc = average_precision_score(y_true, test_errors)
 
 print(f"ROC-AUC: {roc_auc:.4f}")
 print(f"PR-AUC:  {pr_auc:.4f}")
 
 timer = time.perf_counter() - timer_start
 print(f"Time: {timer:.4f} seconds")
-
-# NOW WE SHOULD DO THE SEPARATION TO ATTACK TYPES!!!
 
