@@ -63,7 +63,7 @@ y = torch.tensor(y, dtype=torch.long)
 
 # data split
 X_train, X_test, y_train_tensor, y_test = (
-    train_test_split(X, y, test_size=0.4, random_state=42)
+    train_test_split(X, y, test_size=0.25, random_state=42)
 )
 print("y_test positive\n",y_test[y_test[:, 0] == 1])
 # dropping anomalies from training
