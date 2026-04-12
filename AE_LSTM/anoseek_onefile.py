@@ -33,6 +33,8 @@ def train_and_save(dataset_csv_path):
     ### 0.2: Data Size ###
     data_size = 50000
 
+    # can be deleted later!
+
     """ Phase 1 Data Import and Preprocessing """
     ### 1.1: Data Import, Severity Map ###
 
