@@ -1,14 +1,16 @@
-import numpy
-import torch
-from sklearn.svm import SVC
-import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
+import pandas as pd
+import joblib
+
+import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
+
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
 from imblearn.over_sampling import SMOTE
-import joblib
 
 
 def _build_sequences(X_scaled_tensor: torch.Tensor, seq_size: int) -> torch.Tensor:
