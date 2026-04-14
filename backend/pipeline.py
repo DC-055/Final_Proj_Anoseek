@@ -59,6 +59,11 @@ from backend.train_and_save import _build_sequences
 import numpy as np
 import torch.nn.functional as F
 import pandas as pd
+
+
+TARGET_LIKE_COLUMNS = {"Label", "Attack"}
+
+
 @torch.no_grad()
 def predict_df(df_new: pd.DataFrame, lstm_model, bundle: dict) -> pd.DataFrame:
     # 1) same drops as training
@@ -66,14 +71,18 @@ def predict_df(df_new: pd.DataFrame, lstm_model, bundle: dict) -> pd.DataFrame:
     df = df_new.drop(columns=cols_to_drop, errors="ignore").copy()
 
     # 2) stable feature selection (NO iloc slicing)
-    feature_cols = bundle["feature_cols"]
-    print(feature_cols)
-    print(feature_cols.shape)
+    feature_cols = [col for col in bundle["feature_cols"] if col not in TARGET_LIKE_COLUMNS]
     missing = [c for c in feature_cols if c not in df.columns]
     if missing:
         raise ValueError(f"Missing required feature columns: {missing}")
 
-    X_df = df[feature_cols]
+    X_df = df[feature_cols].apply(pd.to_numeric, errors="coerce")
+    invalid_columns = X_df.columns[X_df.isna().any()].tolist()
+    if invalid_columns:
+        raise ValueError(
+            "Uploaded CSV contains non-numeric values in required feature columns: "
+            f"{invalid_columns}"
+        )
 
     # 3) scale with trained scaler
     scaler = bundle["scaler"]
@@ -88,7 +97,7 @@ def predict_df(df_new: pd.DataFrame, lstm_model, bundle: dict) -> pd.DataFrame:
     lstm_model.eval()
     X_svm = lstm_model(X_seq, return_hidden=True).cpu().numpy()  # [M, hidden_dim]
 
-    # 6) SVC severity prediction
+    # 6) SVC severity predictioncls
     svc_model = bundle["svc_model"]
     pred = svc_model.predict(X_svm).astype(int)              # [M] values 0..4
 
@@ -105,7 +114,7 @@ def predict_df(df_new: pd.DataFrame, lstm_model, bundle: dict) -> pd.DataFrame:
     out = df_new.copy()
     out["pred_class"] = np.nan
     out["severity"] = None
-    out["is_anomaly"] = np.nan
+    out["is_anomaly"] = None
     out["confidence"] = np.nan
 
     start_idx = seq_size - 1
@@ -116,5 +125,9 @@ def predict_df(df_new: pd.DataFrame, lstm_model, bundle: dict) -> pd.DataFrame:
         out.at[row_idx, "is_anomaly"] = (int(p) != 0)
         out.at[row_idx, "confidence"] = float(conf[i])
 
+<<<<<<< HEAD
 >>>>>>> 9aad3b4 (Bring in Daniel's latest branch contents after force-push)
     return out
+=======
+    return out
+>>>>>>> aa24be6 (updated readme.md file with instructions + minor fixes to train_and_save.py)

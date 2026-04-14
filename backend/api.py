@@ -49,10 +49,14 @@ app.add_middleware(
 from backend.model_def import build_lstm_model
 import torch
 import joblib
+from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException
 import pandas as pd, io
 from backend.pipeline import predict_df
 from fastapi.middleware.cors import CORSMiddleware
+
+BACKEND_DIR = Path(__file__).resolve().parent
+ARTIFACTS_DIR = BACKEND_DIR / "artifacts"
 
 app = FastAPI()
 app.add_middleware(
@@ -259,10 +263,10 @@ async def chat_endpoint(payload: dict):
 def load_artifacts():
     global BUNDLE, LSTM
     print("startup-before BUNDLE load\n")
-    BUNDLE = joblib.load("backend/artifacts/bundle.joblib")
+    BUNDLE = joblib.load(ARTIFACTS_DIR / "bundle.joblib")
     print("startup-before LSTM load\n")
     LSTM = build_lstm_model(BUNDLE["input_size"], BUNDLE["hidden_dim"])
-    LSTM.load_state_dict(torch.load("backend/artifacts/lstm.pt", map_location="cpu"))
+    LSTM.load_state_dict(torch.load(ARTIFACTS_DIR / "lstm.pt", map_location="cpu"))
     LSTM.eval()
     print("startup-LSTM.eval() mode\n")
 
@@ -279,8 +283,14 @@ async def predict_csv(file: UploadFile = File(...)):
     df_new = pd.read_csv(io.BytesIO(raw))
 
     # 4) run your pipeline inference (uses loaded LSTM + bundle)
-    out_df = predict_df(df_new, LSTM, BUNDLE)
+    try:
+        out_df = predict_df(df_new, LSTM, BUNDLE)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     # 5) return JSON
     return out_df.to_dict(orient="records")
+<<<<<<< HEAD
 >>>>>>> 9aad3b4 (Bring in Daniel's latest branch contents after force-push)
+=======
+>>>>>>> aa24be6 (updated readme.md file with instructions + minor fixes to train_and_save.py)

@@ -1,9 +1,14 @@
 .venv/
-<<<<<<< HEAD
 venv/
 .env
 datasets/
 backend/.env
-=======
-venv/
->>>>>>> 9aad3b4 (Bring in Daniel's latest branch contents after force-push)
+
+# Python
+__pycache__/
+*.pyc
+
+# Frontend
+node_modules/
+frontend/node_modules/
+.vite/

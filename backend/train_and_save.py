@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import joblib
+from pathlib import Path
 
 import torch
 import torch.nn as nn
@@ -11,6 +12,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
 from imblearn.over_sampling import SMOTE
+
+
+BACKEND_DIR = Path(__file__).resolve().parent
+ARTIFACTS_DIR = BACKEND_DIR / "artifacts"
 
 
 def _build_sequences(X_scaled_tensor: torch.Tensor, seq_size: int) -> torch.Tensor:
@@ -40,7 +45,13 @@ def train_and_save(dataset_csv_path):
     """ Phase 1 Data Import and Preprocessing """
     ### 1.1: Data Import, Severity Map ###
 
-    df = pd.read_csv("C:/Users/Daniel/PycharmProjects/Final_Proj_Anoseek/datasets/NF-UNSW-NB15-v2_50000.csv")
+    dataset_path = Path(dataset_csv_path)
+    if not dataset_path.is_absolute():
+        dataset_path = (BACKEND_DIR / dataset_path).resolve()
+
+    ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    df = pd.read_csv(dataset_path)
     # now we'll remove the unwanted features which aren't numerical
     cols_to_drop = [
         "IPV4_SRC_ADDR", "IPV4_DST_ADDR",
@@ -59,9 +70,8 @@ def train_and_save(dataset_csv_path):
         'DoS': 3, 'Default_Attack': 3, 'Exploits': 4, 'Shellcode': 4,
         'Worms': 4, 'Backdoor': 4
     }
-    feature_cols = df.columns
-
     df['Attack'] = df['Attack'].map(severity_dict)
+    feature_cols = df.drop(columns=["Attack"], errors="ignore").columns
 
     X = df.iloc[:, :-1].values  # all rows of all features without the label and attack type
     y = df.iloc[:, -1:].values  # all rows of attack type (severity)
@@ -187,10 +197,8 @@ def train_and_save(dataset_csv_path):
     svc_model.fit(X_svm_train, y_svm_train)
 
     # saving models
-    torch.save(lstm_model.state_dict(), "artifacts/lstm.pt")
+    torch.save(lstm_model.state_dict(), ARTIFACTS_DIR / "lstm.pt")
 
-    cols_to_drop.append("Attack")
-    feature_cols = feature_cols.drop("Attack")
     print(feature_cols.shape)
     joblib.dump(
         {
@@ -202,6 +210,7 @@ def train_and_save(dataset_csv_path):
             "hidden_dim": 64,
             "class_names": ["Benign", "Reconnaissance", "Fuzzers/Generic", "DoS/Default", "Exploits/Other"],
             "feature_cols": feature_cols,
-    },"artifacts/bundle.joblib")
+    }, ARTIFACTS_DIR / "bundle.joblib")
 
-#train_and_save("C:/Users/Daniel/PycharmProjects/Final_Proj_Anoseek/datasets/NF-UNSW-NB15-v2_50000.csv")
+if __name__ == "__main__":
+    train_and_save("../datasets/NF-UNSW-NB15-v2_50000.csv")
