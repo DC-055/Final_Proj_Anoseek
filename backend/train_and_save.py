@@ -202,4 +202,4 @@ def train_and_save(dataset_csv_path):
             "feature_cols": feature_cols,
     },"artifacts/bundle.joblib")
 
-#train_and_save("C:/Users/Daniel/PycharmProjects/Final_Proj_Anoseek/datasets/NF-UNSW-NB15-v2_50000.csv")
+train_and_save("C:/Users/Daniel/PycharmProjects/Final_Proj_Anoseek/datasets/NF-UNSW-NB15-v2_50000.csv")

@@ -1,0 +1,1 @@
+# edit · add google-generativeai, python-dotenv

@@ -25,7 +25,7 @@ def load_artifacts():
     BUNDLE = joblib.load("backend/artifacts/bundle.joblib")
     print("startup-before LSTM load\n")
     LSTM = build_lstm_model(BUNDLE["input_size"], BUNDLE["hidden_dim"])
-    LSTM.load_state_dict(torch.load("backend/artifacts/lstm.pt", map_location="cpu"))
+    LSTM.load_state_dict(torch.load("backend/artifacts/embedding_model.pt", map_location="cpu"))
     LSTM.eval()
     print("startup-LSTM.eval() mode\n")
 

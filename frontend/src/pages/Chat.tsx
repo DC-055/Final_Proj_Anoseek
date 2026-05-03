@@ -1,0 +1,1 @@
+# full-page chat (route /chat)

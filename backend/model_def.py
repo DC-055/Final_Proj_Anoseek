@@ -1,16 +1,26 @@
 import torch.nn as nn
 
-class LSTM(nn.Module):
-    def __init__(self, inp_size, hidden_dim):
+class Embeddings(nn.Module):
+    def __init__(self, inp_size, embedding_dim, num_classes):
         super().__init__()
-        self.lstm = nn.LSTM(input_size=inp_size, hidden_size=hidden_dim, batch_first=True)
-        self.classifier = nn.Linear(hidden_dim, 5)
+        self.feature_extractor = nn.Sequential(
+            nn.Linear(inp_size, 15),
+            nn.ReLU(),
+            nn.Linear(15, 7),
+            nn.ReLU(),
+            nn.Linear(7, embedding_dim),
+            nn.ReLU()
+        )
 
-    def forward(self, x, return_hidden=False):
-        _, (h_n, _) = self.lstm(x)
-        if return_hidden:
-            return h_n[-1]  # for the SVM
-        return self.classifier(h_n[-1])  # for CrossEntropy training
+        self.classifier = nn.Linear(
+            embedding_dim,
+            num_classes
+        )
 
-def build_lstm_model(input_size: int, hidden_dim: int):
-    return LSTM(input_size, hidden_dim)
+    def forward(self, x):
+        embedding = self.feature_extractor(x)
+        logits = self.classifier(embedding)
+        return logits
+
+    def extract_embeddings(self, x):
+        return self.feature_extractor(x)
