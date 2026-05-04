@@ -1,5 +1,6 @@
 import numpy
 import torch
+import json
 from sklearn.svm import SVC
 import pandas as pd
 import numpy as np
@@ -30,7 +31,7 @@ def train_and_evaluate(dataset_csv_path):
     print(f"Using {device}")
 
     ### 0.2: Data Size ###
-    data_size = 40000
+    data_size = 30000
 
     """ Phase 1 Data Import and Preprocessing """
     ### 1.1: Data Import, Severity Map ###
@@ -78,28 +79,32 @@ def train_and_evaluate(dataset_csv_path):
     feature_cols = df.columns
     df['Attack'] = df['Attack'].map(severity_dict)
 
-    X = df.iloc[:, :-1]  # all rows of all features without the label and attack type
+    X_df = df.iloc[:, :-1].copy()  # all rows of all features without the label and attack type
     # Replace infinity with NaN
-    X = X.replace([np.inf, -np.inf], np.nan)
-    # Fill NaN values
-    X = X.fillna(X.median(numeric_only=True))
-    lower = X.quantile(0.001, numeric_only=True)
-    upper = X.quantile(0.999, numeric_only=True)
-    X = X.clip(lower=lower, upper=upper, axis=1)
-    X = X.clip(lower=lower, upper=upper, axis=1)
-    X = X.values
+    X_df = X_df.replace([np.inf, -np.inf], np.nan)
+    y_arr = df.iloc[:, -1:].values  # all rows of attack type (severity)
 
-    y = df.iloc[:, -1:].values  # all rows of attack type (severity)
-
-    # convertion to Tensors
-    X = torch.from_numpy(X).float()
-    print(X.shape)
-    y = torch.tensor(y, dtype=torch.long)
-
-    # data split
-    X_train, X_test, y_train_tensor, y_test = (
-        train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    # Split FIRST so test data doesn't leak into our train-time statistics
+    X_train_df, X_test_df, y_train_arr, y_test_arr = train_test_split(
+        X_df, y_arr, test_size=0.2, random_state=42, stratify=y_arr
     )
+
+    # Compute medians and clip bounds on TRAIN ONLY
+    medians = X_train_df.median(numeric_only=True)
+    lower = X_train_df.quantile(0.001, numeric_only=True)
+    upper = X_train_df.quantile(0.999, numeric_only=True)
+
+    # Apply identical preprocessing to both splits
+    X_train_df = X_train_df.fillna(medians).clip(lower=lower, upper=upper, axis=1)
+    X_test_df = X_test_df.fillna(medians).clip(lower=lower, upper=upper, axis=1)
+
+    # Convert to tensors
+    X_train = torch.from_numpy(X_train_df.values).float()
+    X_test = torch.from_numpy(X_test_df.values).float()
+    y_train_tensor = torch.tensor(y_train_arr, dtype=torch.long)
+    y_test = torch.tensor(y_test_arr, dtype=torch.long)
+
+    print(X_train.shape, X_test.shape)
 
     ### 1.2: Feature Scaling ###
     scaler = StandardScaler()
@@ -240,6 +245,9 @@ def train_and_evaluate(dataset_csv_path):
             "embedding_dim": 16,
             "class_names": ["Benign", "Recon / scanning", "Brute force attacks", "DoS / DDoS attacks", "High severity / exploitation attacks"],
             "feature_cols": feature_cols,
+            "medians": medians.to_dict(),
+            "clip_lower": lower.to_dict(),
+            "clip_upper": upper.to_dict(),
     },"artifacts/bundle.joblib")
 
     # ========== EVALUATION ON TEST SET ==========
@@ -259,7 +267,7 @@ def train_and_evaluate(dataset_csv_path):
     y_pred = svc_model.predict(X_svm_test)
     scores = svc_model.decision_function(X_svm_test)
     probs = F.softmax(torch.tensor(scores), dim=1).numpy()
-
+    confidences = probs[np.arange(len(y_pred)), y_pred]
     class_names = ["Benign", "Recon / scanning", "Brute force attacks", "DoS / DDoS attacks", "Exploitation attacks"]
 
     # classification report (precision / recall / F1 per class)
@@ -284,6 +292,29 @@ def train_and_evaluate(dataset_csv_path):
     except ValueError as e:
         print(f"PR-AUC skipped: {e}")
 
+    # Save structured metrics for the Model Insights page
+    metrics = {
+        "report": classification_report(
+            y_test, y_pred, target_names=class_names,
+            digits=4, zero_division=0, output_dict=True
+        ),
+        "confusion_matrix": confusion_matrix(
+            y_test, y_pred, labels=list(range(5))
+        ).tolist(),
+        "class_names": class_names,
+    }
+    try:
+        metrics["roc_auc_macro"] = float(roc_auc)
+    except NameError:
+        pass
+    try:
+        metrics["pr_auc_macro"] = float(pr_auc)
+    except NameError:
+        pass
+
+    with open("artifacts/metrics.json", "w") as f:
+        json.dump(metrics, f, indent=2)
+    print("Saved metrics.json")
     # confusion matrix plot
     plt.figure(figsize=(10, 7))
     sns.heatmap(

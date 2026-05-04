@@ -24,3 +24,7 @@ class Embeddings(nn.Module):
 
     def extract_embeddings(self, x):
         return self.feature_extractor(x)
+
+    def build_embeddings_model(self):
+        embeddings = Embeddings(self, self.inp_size, self.embedding_dim)
+        return embeddings
