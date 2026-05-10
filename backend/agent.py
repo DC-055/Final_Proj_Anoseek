@@ -6,6 +6,14 @@ import logging
 
 logging.basicConfig(filename="policy_agent.log", filemode='a', level=logging.INFO)
 
+"""
+"class_names": ["Benign", 
+                "Recon / scanning", 
+                "Brute force attacks", 
+                "DoS / DDoS attacks",
+                "High severity / exploitation attacks"]
+"""
+
 
 class AgentMode(Enum):
     UNDER_ATTACK = "under_attack"
@@ -24,6 +32,9 @@ class PolicyAnoseekAgent:
         self.events_by_ip: dict[str, list[int]] = defaultdict(list)
         self.flagged_by_ip: dict[str, list[int]] = defaultdict(list)
         self.blocked_by_ip: dict[str, list[int]] = defaultdict(list)
+
+        # Manually blocked IPs (set by SOC via /agent/block-ip)
+        self.manual_blocklist: set[str] = set()
 
         # Recent state transitions for the UI timeline
         self.transitions: deque = deque(maxlen=50)
@@ -50,9 +61,25 @@ class PolicyAnoseekAgent:
     def analyze_and_act(self, flow_result):
         severity = flow_result["predicted_class"]
 
+        # Pre-check: drop flows from manually blocked IPs without state-machine processing
+        src_ip = flow_result.get("src_ip")
+        if src_ip and src_ip in self.manual_blocklist:
+            event_id = self._next_event_id
+            self._next_event_id += 1
+            return {
+                "ok": True,
+                "event_id": event_id,
+                "src_ip": src_ip,
+                "dst_ip": flow_result.get("dst_ip"),
+                "severity": severity,
+                "severity_label": self._label(severity),
+                "action": "block",
+                "note": "Source IP on manual blocklist",
+                "agent_state": self.status.value,
+            }
+
         event_id = self._next_event_id
         self._next_event_id += 1
-
         event = {
             "event_id": event_id,
             "timestamp": datetime.now().isoformat(),
@@ -61,8 +88,9 @@ class PolicyAnoseekAgent:
             "dst_ip": flow_result.get("dst_ip"),
             "severity": severity,
             "severity_label": self._label(severity),
+            "confidence": flow_result.get("confidence"),
             "state_before": self.status.value,
-        }
+            }
         self.event_history[event_id] = event
         if event["src_ip"]:
             self.events_by_ip[event["src_ip"]].append(event_id)
@@ -89,6 +117,7 @@ class PolicyAnoseekAgent:
             "dst_ip": event["dst_ip"],
             "severity": severity,
             "severity_label": event["severity_label"],
+            "confidence": event["confidence"],
             "action": action,
             "note": note,
             "agent_state": self.status.value,
@@ -107,6 +136,20 @@ class PolicyAnoseekAgent:
             "soc_confirm": self.soc_confirm,
             "status": self.status.value,
         }
+
+    def block_ip_manual(self, src_ip: str) -> dict:
+        """Add an IP to the manual blocklist. SOC button."""
+        with self._lock:
+            self.manual_blocklist.add(src_ip)
+        logging.info("Manually blocked IP %s", src_ip)
+        return {"ok": True, "src_ip": src_ip, "blocked": True}
+
+    def unblock_ip_manual(self, src_ip: str) -> dict:
+        """Remove an IP from the manual blocklist. SOC undo."""
+        with self._lock:
+            self.manual_blocklist.discard(src_ip)
+        logging.info("Manually unblocked IP %s", src_ip)
+        return {"ok": True, "src_ip": src_ip, "blocked": False}
 
     def reset(self) -> dict:
         """Demo helper — wipe history and return to IDLE."""
@@ -128,6 +171,7 @@ class PolicyAnoseekAgent:
                     "flagged": len(self.flagged_event_history),
                     "blocked": len(self.blocked_event_history),
                     "blocked_ips": len([ip for ip, ids in self.blocked_by_ip.items() if ids]),
+                    "manual_blocked_ips": len(self.manual_blocklist),
                 },
                 "transitions": list(self.transitions)[-10:],
             }
@@ -150,6 +194,7 @@ class PolicyAnoseekAgent:
             return {
                 "src_ip": src_ip,
                 "blocked": bool(self.blocked_by_ip.get(src_ip)),
+                "manually_blocked": src_ip in self.manual_blocklist,
                 "counts": {
                     "events":  len(event_ids),
                     "flagged": len(self.flagged_by_ip.get(src_ip, [])),

@@ -22,12 +22,13 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, UploadFile, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from agent import PolicyAnoseekAgent
 from inference import AnoseekInference
 from pipeline import predict_df
+from asyncio import sleep
 
 ARTIFACTS = Path("artifacts")
 
@@ -67,23 +68,38 @@ def ping():
 # ---------------------------------------------------------------- prediction
 
 @app.post("/predict-csv")
-async def predict_csv(file: UploadFile = File(...)):
+async def predict_csv(
+    file: UploadFile = File(...),
+    delay_seconds: float = Query(default=1.0, ge=0.0, le=60.0),
+):
     if INFERENCE is None or AGENT is None:
         raise HTTPException(503, "Service not ready")
+
     if not file.filename.lower().endswith(".csv"):
         raise HTTPException(400, "Upload a .csv file")
 
     raw = await file.read()
+
     try:
         df = pd.read_csv(io.BytesIO(raw))
     except Exception as e:
         raise HTTPException(400, f"Could not parse CSV: {e}")
 
-    out = predict_df(df, INFERENCE, AGENT)
+    results = []
 
-    # Replace pandas NaN with None so JSON serialization doesn't blow up
-    return out.where(pd.notnull(out), None).to_dict(orient="records")
+    for _, row in df.iterrows():
+        row_df = pd.DataFrame([row])
 
+        out = predict_df(row_df, INFERENCE, AGENT)
+
+        results.extend(
+            out.where(pd.notnull(out), None).to_dict(orient="records")
+        )
+
+        if delay_seconds:
+            await sleep(delay_seconds)
+
+    return results
 
 # ---------------------------------------------------------------- agent
 
@@ -124,6 +140,19 @@ def agent_reset():
     return AGENT.reset()
 
 
+@app.post("/agent/block-ip/{src_ip}")
+def agent_block_ip(src_ip: str):
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return AGENT.block_ip_manual(src_ip)
+
+
+@app.post("/agent/unblock-ip/{src_ip}")
+def agent_unblock_ip(src_ip: str):
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return AGENT.unblock_ip_manual(src_ip)
+
 # ---------------------------------------------------------------- metrics
 
 @app.get("/metrics")
@@ -132,3 +161,8 @@ def metrics():
     if not path.exists():
         raise HTTPException(404, "metrics.json not found — re-run training")
     return json.loads(path.read_text())
+
+# ---------------------------------------------------------------- metrics
+
+# open connection for stream flow
+"""@app.websocket("/ws/stream/csv)"""
