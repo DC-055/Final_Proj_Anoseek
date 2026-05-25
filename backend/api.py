@@ -33,9 +33,11 @@ from asyncio import sleep
 ARTIFACTS = Path("artifacts")
 
 app = FastAPI(title="Anoseek API")
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://localhost:8001", "http://127.0.0.1:8001/docs"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -100,6 +102,36 @@ async def predict_csv(
             await sleep(delay_seconds)
 
     return results
+
+
+@app.post("/predict")
+async def predict(
+        file: UploadFile = File(...),
+    ):
+    if INFERENCE is None or AGENT is None:
+        raise HTTPException(503, "Service not ready")
+
+    if not file.filename.lower().endswith(".json"):
+        raise HTTPException(400, f"Upload a .json file")
+
+    raw = await file.read()
+    #json_data = json.loads(raw.decode("utf-8"))
+
+    try:
+        df = pd.read_json(io.BytesIO(raw), typ='series').to_frame().T
+    except Exception as e:
+        raise HTTPException(403, f"Could not parse JSON: {e}")
+
+    results = []
+    out = predict_df(df, INFERENCE, AGENT)
+
+    results.extend(
+        out.where(pd.notnull(out), None).to_dict(orient="records")
+    )
+
+    return results
+
+
 
 # ---------------------------------------------------------------- agent
 

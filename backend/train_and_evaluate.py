@@ -31,13 +31,13 @@ def train_and_evaluate(dataset_csv_path):
     print(f"Using {device}")
 
     ### 0.2: Data Size ###
-    data_size = 30000
+    data_size = 100000
 
     """ Phase 1 Data Import and Preprocessing """
     ### 1.1: Data Import, Severity Map ###
     df = pd.read_csv(dataset_csv_path, skiprows=range(1, 90000), nrows=data_size)
-    print(df['Attack'].unique().shape)
     #df = pd.read_csv("C:/Users/Daniel/PycharmProjects/Final_Proj_Anoseek/datasets/NF-UNSW-NB15-v2_50000.csv")
+    print(df['Attack'].unique().shape)
     # now we'll remove the unwanted features which aren't numerical
     cols_to_drop = [
         "IPV4_SRC_ADDR", "IPV4_DST_ADDR",
@@ -49,7 +49,7 @@ def train_and_evaluate(dataset_csv_path):
         "Label",
     ]
     df = df.drop(columns=cols_to_drop, errors='ignore')
-
+    print(df.info())
     # convertion of Attack severity to numbers
     severity_dict = {
         "Benign": 0,
