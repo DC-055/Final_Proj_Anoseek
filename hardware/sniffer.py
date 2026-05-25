@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
 ## DEDICATED CODE TO RUN ON HARDWARE ONLY!
+=======
+
+>>>>>>> 2072cad (added raspberry pi logic)
 import subprocess
 import zmq
 import json
@@ -76,8 +80,13 @@ while True:
         if not json_str:
            print("[INFO] Received empty message")
         else:
+<<<<<<< HEAD
             recv = json.loads(json_str)
             # skipping control / template messages
+=======
+           recv = json.loads(json_str)
+        # skipping control / template messages
+>>>>>>> 2072cad (added raspberry pi logic)
             if isinstance(recv, dict):
                 if "probe" in recv or "PEN" in recv:
                     print("[SKIPPED] nProbe control & PEN dict Template")
@@ -93,5 +102,10 @@ while True:
                 # response = requests.post(BACKEND_URL, json=flow, timeout=3)
                 # print("[MODEL]", response.json())
 
+<<<<<<< HEAD
     except Exception as e:
         print("[ERROR]", e)
+=======
+        except Exception as e:
+            print("[ERROR]", e)
+>>>>>>> 2072cad (added raspberry pi logic)
