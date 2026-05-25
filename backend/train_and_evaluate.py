@@ -1,5 +1,6 @@
 import numpy
 import torch
+from tqdm import tqdm
 import json
 from sklearn.svm import SVC
 import pandas as pd
@@ -31,7 +32,7 @@ def train_and_evaluate(dataset_csv_path):
     print(f"Using {device}")
 
     ### 0.2: Data Size ###
-    data_size = 100000
+    data_size = 500000
 
     """ Phase 1 Data Import and Preprocessing """
     ### 1.1: Data Import, Severity Map ###
@@ -46,6 +47,7 @@ def train_and_evaluate(dataset_csv_path):
         "TCP_FLAGS", "CLIENT_TCP_FLAGS",
         "MAX_TTL", "ICMP_TYPE",
         "RETRANSMITTED_IN_PKTS", "RETRANSMITTED_OUT_PKTS",
+        "DNS_TTL_ANSWER", "FTP_COMMAND_RET_CODE",
         "Label",
     ]
     df = df.drop(columns=cols_to_drop, errors='ignore')
@@ -187,8 +189,16 @@ def train_and_evaluate(dataset_csv_path):
 
     for epoch in range(num_epochs):
         embeddings_model.train()
-        loss = 0.0
-        for (batch, targets) in train_loader:  # each batch is a tuple from TensorDataset
+        running_loss = 0.0
+
+        # Wrap the train_loader with tqdm for a visual progress bar
+        progress_bar = tqdm(
+            train_loader,
+            desc=f"Epoch {epoch + 1}/{num_epochs}",
+            unit="batch"
+        )
+
+        for (batch, targets) in progress_bar:  # each batch is a tuple from TensorDataset
             batch = batch.to(device)
             targets = targets.view(-1).long().to(device)
             # forward
@@ -211,6 +221,10 @@ def train_and_evaluate(dataset_csv_path):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+
+            # Update running statistics for the bar display
+            running_loss += loss.item()
+            progress_bar.set_postfix({"Loss": f"{loss.item():.4f}"})
 
     embeddings_model.eval()
     embeddings = []

@@ -28,6 +28,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from agent import PolicyAnoseekAgent
 from inference import AnoseekInference
 from pipeline import predict_df
+from chat import ask as chat_ask
 from asyncio import sleep
 
 ARTIFACTS = Path("artifacts")
@@ -195,6 +196,22 @@ def metrics():
     return json.loads(path.read_text())
 
 # ---------------------------------------------------------------- metrics
+
+
+@app.post("/chat")
+async def chat_endpoint(payload: dict):
+    """
+    Body: { "question": "..." }
+    Returns: { ok, answer, debug } or { ok: false, error }
+    """
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+
+    question = (payload or {}).get("question", "").strip()
+    if not question:
+        raise HTTPException(400, "Empty 'question' field")
+
+    return chat_ask(AGENT, question)
 
 # open connection for stream flow
 """@app.websocket("/ws/stream/csv)"""

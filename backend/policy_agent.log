@@ -18797,3 +18797,5 @@ INFO:root:Blocking IP None
 INFO:root:SOC alert: event=5 severity=3 — Inspect traffic volume and consider DDoS mitigation.
 INFO:root:Blocking IP None
 INFO:root:SOC alert: event=6 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
