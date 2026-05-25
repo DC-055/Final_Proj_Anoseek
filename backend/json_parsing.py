@@ -2,7 +2,11 @@ import json
 
 # Load MITRE ATT&CK Enterprise file
 
+<<<<<<< HEAD
 with open("../../../Downloads/enterprise-attack.json", "r", encoding="utf-8") as f:
+=======
+with open("enterprise-attack.json", "r", encoding="utf-8") as f:
+>>>>>>> 38dad24 (added parsing for rag implementation)
     d = json.load(f)
 
 # Anoseek mapping
@@ -333,6 +337,10 @@ for obj in d["objects"]:
             "target_ref": obj.get("target_ref")   # attack-pattern
         })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38dad24 (added parsing for rag implementation)
 # ELEMENT FORMAT -->
 # Anoseek wrapper:
 #   anoseek label
@@ -391,7 +399,10 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
         for rel in mitigates_relationships:
             if rel["target_ref"] == attack_stix_id:
 
+<<<<<<< HEAD
                 # fetch the matching source of course-of-action
+=======
+>>>>>>> 38dad24 (added parsing for rag implementation)
                 coa = course_of_action_by_id.get(rel["source_ref"])
 
                 if not coa:
@@ -417,7 +428,11 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
 
                 final_rag_objects.append(new_obj)
 
+<<<<<<< HEAD
         # in cases of no MITRE technique, keeps hardcoded 
+=======
+        # Keep the technique even if MITRE has no direct mitigation relationship for it
+>>>>>>> 38dad24 (added parsing for rag implementation)
         if not found_mitigation:
             new_obj = {
                 "anoseek label": anoseek_label,
@@ -437,9 +452,20 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
 
             final_rag_objects.append(new_obj)
 
+<<<<<<< HEAD
 # final anoseek-based RAG file
+=======
+
+# ============================================================
+# Save final enriched RAG file
+# ============================================================
+>>>>>>> 38dad24 (added parsing for rag implementation)
 
 with open("anoseek_rag_mitre_enriched.json", "w", encoding="utf-8") as f:
     json.dump(final_rag_objects, f, indent=2, ensure_ascii=False)
 
 print(f"Created {len(final_rag_objects)} enriched Anoseek RAG objects")
+<<<<<<< HEAD
+=======
+print("Output file: anoseek_rag_mitre_enriched.json")
+>>>>>>> 38dad24 (added parsing for rag implementation)
