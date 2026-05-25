@@ -5,6 +5,7 @@ import {
   Bell,
   Activity,
   Radio,
+  MessageCircle,
   BarChart3,
   Settings as SettingsIcon,
 } from "lucide-react";
@@ -15,6 +16,7 @@ const links = [
   { to: "/alerts",    label: "Alerts",         icon: Bell },
   { to: "/agent",     label: "Agent state",    icon: Activity },
   { to: "/live",      label: "Live stream",    icon: Radio },
+  { to: "/chat",      label: "Chat",           icon: MessageCircle },
   { to: "/insights",  label: "Model insights", icon: BarChart3 },
   { to: "/settings",  label: "Settings",       icon: SettingsIcon },
 ];

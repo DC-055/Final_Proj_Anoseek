@@ -12,6 +12,7 @@ import Flows from "./pages/Flows";
 import Alerts from "./pages/Alerts";
 import AgentState from "./pages/AgentState";
 import LiveStream from "./pages/LiveStream";
+import Chat from "./pages/Chat";
 import ModelInsights from "./pages/ModelInsights";
 import Settings from "./pages/Settings";
 
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/alerts" element={<Alerts />} />
             <Route path="/agent" element={<AgentState />} />
             <Route path="/live" element={<LiveStream />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/insights" element={<ModelInsights />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
