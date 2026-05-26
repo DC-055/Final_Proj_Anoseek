@@ -338,9 +338,12 @@ for obj in d["objects"]:
         })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 38dad24 (added parsing for rag implementation)
+=======
+>>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
 # ELEMENT FORMAT -->
 # Anoseek wrapper:
 #   anoseek label
@@ -400,9 +403,13 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
             if rel["target_ref"] == attack_stix_id:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 # fetch the matching source of course-of-action
 =======
 >>>>>>> 38dad24 (added parsing for rag implementation)
+=======
+                # fetch the matching source of course-of-action
+>>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
                 coa = course_of_action_by_id.get(rel["source_ref"])
 
                 if not coa:
@@ -429,10 +436,14 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
                 final_rag_objects.append(new_obj)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         # in cases of no MITRE technique, keeps hardcoded 
 =======
         # Keep the technique even if MITRE has no direct mitigation relationship for it
 >>>>>>> 38dad24 (added parsing for rag implementation)
+=======
+        # in cases of no MITRE technique, keeps hardcoded 
+>>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
         if not found_mitigation:
             new_obj = {
                 "anoseek label": anoseek_label,
@@ -453,6 +464,7 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
             final_rag_objects.append(new_obj)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # final anoseek-based RAG file
 =======
 
@@ -460,12 +472,18 @@ for anoseek_label, anoseek_info in anoseek_mapping.items():
 # Save final enriched RAG file
 # ============================================================
 >>>>>>> 38dad24 (added parsing for rag implementation)
+=======
+# final anoseek-based RAG file
+>>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
 
 with open("anoseek_rag_mitre_enriched.json", "w", encoding="utf-8") as f:
     json.dump(final_rag_objects, f, indent=2, ensure_ascii=False)
 
 print(f"Created {len(final_rag_objects)} enriched Anoseek RAG objects")
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 print("Output file: anoseek_rag_mitre_enriched.json")
 >>>>>>> 38dad24 (added parsing for rag implementation)
+=======
+>>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
