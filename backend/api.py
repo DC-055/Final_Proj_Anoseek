@@ -116,7 +116,6 @@ async def predict(
         raise HTTPException(400, f"Upload a .json file")
 
     raw = await file.read()
-    #json_data = json.loads(raw.decode("utf-8"))
 
     try:
         df = pd.read_json(io.BytesIO(raw), typ='series').to_frame().T

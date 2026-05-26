@@ -18799,3 +18799,557 @@ INFO:root:Blocking IP None
 INFO:root:SOC alert: event=6 severity=3 — Inspect traffic volume and consider DDoS mitigation.
 INFO:root:Benign flow passed
 INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 59.166.0.5
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Event 12 flagged
+INFO:root:SOC alert: event=12 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 24 flagged
+INFO:root:SOC alert: event=24 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 29 flagged
+INFO:root:SOC alert: event=29 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 40 flagged
+INFO:root:SOC alert: event=40 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 49 flagged
+INFO:root:SOC alert: event=49 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 56 flagged
+INFO:root:SOC alert: event=56 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 62 flagged
+INFO:root:SOC alert: event=62 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 80 flagged
+INFO:root:SOC alert: event=80 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 59.166.0.0
+INFO:root:State alerted -> under_attack (high severity from suspect IP)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 85 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 86 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 87 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 88 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 89 flagged
+INFO:root:Blocking IP 59.166.0.1
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 91 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 92 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 93 flagged
+INFO:root:Blocking IP 59.166.0.9
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 95 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 96 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 97 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 98 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 99 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 100 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 101 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 102 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 103 flagged
+INFO:root:Blocking IP 59.166.0.9
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 105 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 106 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 107 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 108 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 109 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 110 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 111 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 112 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 113 flagged
+INFO:root:Blocking IP 59.166.0.2
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 115 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 116 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 117 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 118 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 119 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 120 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 121 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 122 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 123 flagged
+INFO:root:Blocking IP 59.166.0.3
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 125 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 126 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 127 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 128 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 129 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 130 flagged
+INFO:root:Blocking IP 59.166.0.3
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 132 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 133 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 134 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 135 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 136 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 137 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 138 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 139 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 140 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 141 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 142 flagged
+INFO:root:Blocking IP 59.166.0.3
+INFO:root:Blocking IP 59.166.0.7
+INFO:root:Blocking IP 59.166.0.0
+INFO:root:Blocking IP 59.166.0.2
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 147 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 148 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 149 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 150 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 151 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 152 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 153 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 154 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 155 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 156 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 157 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 158 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 159 flagged
+INFO:root:Blocking IP 59.166.0.7
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 161 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 162 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 163 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 164 flagged
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 165 flagged
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 166 flagged
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 167 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 168 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 169 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 170 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 171 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 172 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 173 flagged
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 59.166.0.7
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 11 flagged
+INFO:root:SOC alert: event=11 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 31 flagged
+INFO:root:SOC alert: event=31 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 41 flagged
+INFO:root:SOC alert: event=41 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 51 flagged
+INFO:root:SOC alert: event=51 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 61 flagged
+INFO:root:SOC alert: event=61 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 71 flagged
+INFO:root:SOC alert: event=71 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
