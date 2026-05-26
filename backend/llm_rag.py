@@ -6,7 +6,7 @@ from google.genai import types
 import math
 
 ### TO-DO: Store API KEY 
-client = genai.Client(api_key="AIzaSyBQKLFkXS_XxFOBpshl1g8IJUMsyl5DQOA")
+client = genai.Client(api_key="GEMINI_API_KEY")
 
 with open("anoseek_embeddings.json", "r", encoding="utf-8") as f:
     embedded_docs = json.load(f)
