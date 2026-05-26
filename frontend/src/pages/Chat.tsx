@@ -6,7 +6,8 @@
  * 1.2.3.4 blocked?") to focus the context on that IP.
  */
 import { useEffect, useRef, useState } from "react";
-import { useChat, type ChatMessage } from "../hooks/useChat";
+import { type ChatMessage } from "../hooks/useChat";
+import { useChatContext } from "../context/ChatContext";
 
 const SUGGESTIONS = [
   "Summarize the recent activity.",
@@ -16,7 +17,7 @@ const SUGGESTIONS = [
 ];
 
 export default function Chat() {
-  const { messages, loading, send, clear } = useChat();
+  const { messages, loading, send, clear, sessionStartedAt, sessionHistoryLimit } = useChatContext();
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -45,14 +46,13 @@ export default function Chat() {
             sees real agent data — mention an IP to focus the answer.
           </p>
         </div>
-        {messages.length > 0 && (
-          <button
-            onClick={clear}
-            className="text-xs text-slate-500 hover:text-slate-900"
-          >
-            Clear
-          </button>
-        )}
+        <button
+          onClick={clear}
+          disabled={messages.length === 0 && !loading}
+          className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          New Chat
+        </button>
       </header>
 
       {/* ─── Messages ─── */}
@@ -80,6 +80,22 @@ export default function Chat() {
         )}
 
         <div className="space-y-4">
+          {sessionStartedAt && (
+            <div className="flex justify-center">
+              <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-xs text-slate-500">
+                Conversation started at{" "}
+                <span className="font-medium text-slate-700">
+                  {new Date(sessionStartedAt).toLocaleTimeString()}
+                </span>
+                {" — "}context includes the last{" "}
+                <span className="font-medium text-slate-700">
+                  {sessionHistoryLimit}
+                </span>{" "}
+                flows from that moment
+              </div>
+            </div>
+          )}
+
           {messages.map((m, idx) => (
             <Message key={idx} message={m} />
           ))}

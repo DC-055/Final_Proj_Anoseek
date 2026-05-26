@@ -3,10 +3,12 @@ import { useState } from "react";
 import { useAgentState } from "../hooks/useAgentState";
 import { badgeForAgentState, labelForAgentState } from "../lib/severity";
 import { confirmFromSoc, resetAgent } from "../api/client";
+import { useChatContext } from "../context/ChatContext";
 
 export default function Topbar() {
   const { snapshot, error } = useAgentState(3000);
   const [busy, setBusy] = useState(false);
+  const { clear: clearChat } = useChatContext();
 
   async function onConfirm() {
     setBusy(true);
@@ -16,7 +18,10 @@ export default function Topbar() {
   async function onReset() {
     if (!confirm("Reset agent? This wipes all event history.")) return;
     setBusy(true);
-    try { await resetAgent(); } finally { setBusy(false); }
+    try {
+      await resetAgent();
+      clearChat();
+    } finally { setBusy(false); }
   }
 
   const status = snapshot?.status;

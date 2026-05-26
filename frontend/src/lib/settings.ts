@@ -1,4 +1,23 @@
 const STREAM_GAP_KEY = "anoseek.streamGapSeconds";
+const HISTORY_LIMIT_KEY = "anoseek.chatHistoryLimit";
+
+export const DEFAULT_HISTORY_LIMIT = 30;
+export const MIN_HISTORY_LIMIT = 1;
+export const MAX_HISTORY_LIMIT = 30;
+
+export function getHistoryLimit(): number {
+  const raw = window.localStorage.getItem(HISTORY_LIMIT_KEY);
+  if (raw === null) return DEFAULT_HISTORY_LIMIT;
+  const n = Number(raw);
+  if (!Number.isFinite(n)) return DEFAULT_HISTORY_LIMIT;
+  return Math.min(MAX_HISTORY_LIMIT, Math.max(MIN_HISTORY_LIMIT, Math.round(n)));
+}
+
+export function setHistoryLimit(value: number): number {
+  const next = Math.min(MAX_HISTORY_LIMIT, Math.max(MIN_HISTORY_LIMIT, Math.round(value)));
+  window.localStorage.setItem(HISTORY_LIMIT_KEY, String(next));
+  return next;
+}
 
 export const DEFAULT_STREAM_GAP_SECONDS = 1;
 export const MIN_STREAM_GAP_SECONDS = 0;

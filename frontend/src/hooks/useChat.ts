@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { askChat } from "../api/chat";
+import { getHistoryLimit } from "../lib/settings";
 
 export type ChatMessage = {
   role: "user" | "assistant" | "error";
@@ -14,6 +15,8 @@ export type ChatMessage = {
 export function useChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);
+  const [sessionStartedAt, setSessionStartedAt] = useState<string | null>(null);
+  const [sessionHistoryLimit, setSessionHistoryLimit] = useState<number>(30);
 
   function append(msg: ChatMessage) {
     setMessages((prev) => [...prev, msg]);
@@ -23,11 +26,18 @@ export function useChat() {
     const q = question.trim();
     if (!q || loading) return;
 
+    const historyLimit = getHistoryLimit();
+
+    if (messages.length === 0) {
+      setSessionStartedAt(new Date().toISOString());
+      setSessionHistoryLimit(historyLimit);
+    }
+
     append({ role: "user", text: q, timestamp: new Date().toISOString() });
     setLoading(true);
 
     try {
-      const res = await askChat(q);
+      const res = await askChat(q, historyLimit);
       if (res.ok) {
         append({
           role: "assistant",
@@ -54,7 +64,8 @@ export function useChat() {
 
   function clear() {
     setMessages([]);
+    setSessionStartedAt(null);
   }
 
-  return { messages, loading, send, clear };
+  return { messages, loading, send, clear, sessionStartedAt, sessionHistoryLimit };
 }

@@ -7,11 +7,11 @@ export type ChatResponse = {
   debug?: { ip_detected?: string | null; events_included?: number };
 };
 
-export async function askChat(question: string): Promise<ChatResponse> {
+export async function askChat(question: string, historyLimit: number): Promise<ChatResponse> {
   const res = await fetch(`${API_URL}/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question }),
+    body: JSON.stringify({ question, history_limit: historyLimit }),
   });
   // We don't use jsonOrThrow here: even on 200 OK the backend
   // may return { ok: false, error: "..." } and we want that text.
