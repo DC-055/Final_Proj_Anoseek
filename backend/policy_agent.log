@@ -23383,3 +23383,1048 @@ INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/m
 INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
 INFO:google_genai.models:AFC is enabled with max remote calls: 10.
 INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 429 Too Many Requests"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 429 Too Many Requests"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.115.60
+INFO:root:SOC alert: event=26 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Blocking IP 52.14.136.135
+INFO:root:SOC alert: event=27 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:SOC alert: event=47 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:SOC alert: event=49 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:SOC alert: event=54 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=65 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 13.59.126.31
+INFO:root:SOC alert: event=71 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=73 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 77 flagged
+INFO:root:SOC alert: event=77 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 52.14.136.135
+INFO:root:SOC alert: event=10 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=21 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.24.42
+INFO:root:SOC alert: event=29 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=30 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:State alerted -> idle (sustained benign + SOC confirm)
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=84 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.11.51
+INFO:root:SOC alert: event=95 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:SOC alert: event=20 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.218.11.51
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 37 flagged
+INFO:root:SOC alert: event=37 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 47 flagged
+INFO:root:SOC alert: event=47 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..

@@ -6,6 +6,7 @@ import re
 from typing import TYPE_CHECKING
 
 from google import genai
+from google.genai import types
 from llm_rag import cosine_similarity
 
 if TYPE_CHECKING:
@@ -18,15 +19,15 @@ else:
     print("[ips_agent_rag] WARNING: GEMINI_API_KEY not set; embeddings will fail")
 
 _IPS_EMBEDDINGS_FILE = "../ips_agent_embeddings.json"
-if os.path.exists(_IPS_EMBEDDINGS_FILE):
+if os.path.exists(_IPS_EMBEDDINGS_FILE) and os.path.getsize(_IPS_EMBEDDINGS_FILE) > 0:
     with open(_IPS_EMBEDDINGS_FILE, "r", encoding="utf-8") as f:
         embedded_docs = json.load(f)
 else:
-    print("[ips_agent_rag] WARNING: ips_agent_embeddings.json not found — run ips_agent_embedded.py first")
+    print("[ips_agent_rag] WARNING: ips_agent_embeddings.json not found or empty — run ips_agent_embed.py first")
     embedded_docs = []
 
 
-def retrieve_relevant_ips_and_agent(user_query, top_k=5):
+def retrieve_relevant_ips_and_agent(user_query, top_k=2):
     query_result = client.models.embed_content(
         model="gemini-embedding-2",
         contents=user_query,
@@ -50,9 +51,11 @@ def retrieve_relevant_ips_and_agent(user_query, top_k=5):
 
 def build_ips_agent_context_with_rag(user_query):
     top_docs = retrieve_relevant_ips_and_agent(user_query)
-
+    """
     retrieved_context = "\n\n---\n\n".join(
         item["doc"]["text"] for item in top_docs
     )
 
     return retrieved_context
+    """
+    return top_docs

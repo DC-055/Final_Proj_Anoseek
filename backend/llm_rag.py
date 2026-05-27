@@ -3,6 +3,8 @@ import time
 import os
 from google import genai
 from google.genai import types
+
+
 import math
 
 
@@ -25,7 +27,8 @@ def cosine_similarity(a, b):
 
     return dot / (norm_a * norm_b)
 
-def retrieve_relevant_docs(user_query, top_k=5):
+def retrieve_relevant_docs(user_query, top_k=2):
+    
     query_result = client.models.embed_content(
         model="gemini-embedding-2",
         contents=user_query,
@@ -55,12 +58,14 @@ def format_rag(retrieved_context):
 
 def build_context_with_rag(user_query):
     top_docs = retrieve_relevant_docs(user_query)
-
+    """
     retrieved_context = "\n\n---\n\n".join(
         item["doc"]["text"] for item in top_docs
     )
 
     return retrieved_context
+    """
+    return top_docs
 
 """
 question = "I have seen numerous calls from the same IP to several services in a short time-span. What does it mean and what should we do?"
