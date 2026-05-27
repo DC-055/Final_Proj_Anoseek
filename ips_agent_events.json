@@ -1,0 +1,72 @@
+[
+  {
+    "event_id": 59,
+    "timestamp": "2026-05-26T19:15:24.093261",
+    "flow_id": null,
+    "src_ip": "5.101.40.105",
+    "dst_ip": "172.31.64.28",
+    "severity": 0,
+    "severity_label": "Benign",
+    "confidence": 0.65,
+    "state_before": "alerted",
+    "action": "pass",
+    "note": "Benign (5 in a row)",
+    "state_after": "alerted"
+  },
+  {
+    "event_id": 60,
+    "timestamp": "2026-05-26T19:15:25.155259",
+    "flow_id": null,
+    "src_ip": "172.31.64.8",
+    "dst_ip": "172.31.0.2",
+    "severity": 0,
+    "severity_label": "Benign",
+    "confidence": 0.6496,
+    "state_before": "alerted",
+    "action": "pass",
+    "note": "Benign (6 in a row)",
+    "state_after": "alerted"
+  },
+  {
+    "event_id": 61,
+    "timestamp": "2026-05-26T19:15:26.226799",
+    "flow_id": null,
+    "src_ip": "71.6.146.185",
+    "dst_ip": "172.31.65.81",
+    "severity": 0,
+    "severity_label": "Benign",
+    "confidence": 0.6691,
+    "state_before": "alerted",
+    "action": "pass",
+    "note": "Benign (7 in a row)",
+    "state_after": "alerted"
+  },
+  {
+    "event_id": 62,
+    "timestamp": "2026-05-26T19:15:27.310933",
+    "flow_id": null,
+    "src_ip": "172.31.65.118",
+    "dst_ip": "172.31.0.2",
+    "severity": 0,
+    "severity_label": "Benign",
+    "confidence": 0.6492,
+    "state_before": "alerted",
+    "action": "pass",
+    "note": "Benign (8 in a row)",
+    "state_after": "alerted"
+  },
+  {
+    "event_id": 63,
+    "timestamp": "2026-05-26T19:15:28.399069",
+    "flow_id": null,
+    "src_ip": "172.31.68.14",
+    "dst_ip": "65.158.47.99",
+    "severity": 0,
+    "severity_label": "Benign",
+    "confidence": 0.6734,
+    "state_before": "alerted",
+    "action": "pass",
+    "note": "Benign (9 in a row)",
+    "state_after": "alerted"
+  }
+]

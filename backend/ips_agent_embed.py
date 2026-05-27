@@ -1,21 +1,19 @@
 import json
 import os
 from google import genai
-from google.genai import types 
 import time
 
-### TODO -> STORE API-KEY AS ENV VARIABLE
-client = genai.Client(api_key="GEMINI_API_KEY")
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
-#### Creation of anoseek_embeddings.json ####
+#### Creation of ips_agent_embeddings.json ####
 
-INPUT_FILE = "../anoseek_rag_mitre_enriched.json"
-OUTPUT_FILE = "../anoseek_embeddings.json"
+INPUT_FILE = "../ips_agent_events.json"
+OUTPUT_FILE = "../ips_agent_embeddings.json"
 
 def shorten(text, max_chars=800):
     if not text:
         return ""
-    return text[:max_chars]
+    return str(text)[:max_chars]
 
 with open(INPUT_FILE, "r", encoding="utf-8") as f:
     rag_objects = json.load(f)
@@ -33,19 +31,16 @@ for i, obj in enumerate(rag_objects):
         print(f"Skipping {i}, already embedded")
         continue
 
+
     text_to_embed = f"""
-    Anoseek label: {obj.get("anoseek label")}
-    Severity: {obj.get("severity text")} ({obj.get("anoseek severity")})
-
-    MITRE ID: {obj.get("mitre id")}
-    Attack name: {obj.get("attack name")}
-    Attack description: {shorten(obj.get("attack description"), 800)}
-
-    Mitigation: {obj.get("mitigation")}
-    Mitigation description: {shorten(obj.get("mitigation description"), 800)}
-
-    Anoseek indicators: {", ".join(obj.get("anoseek indicators", []))}
-    Anoseek responses: {", ".join(obj.get("anoseek responses", []))}
+    Timestamp: {obj.get("timestamp")}
+    Source IP: {obj.get("src_ip")}
+    Destination IP: {obj.get("dst_ip")}
+    Severity: {obj.get("severity_label")} ({obj.get("severity")})
+    Action taken: {obj.get("action")}
+    Agent state: {obj.get("agent_state")}
+    Confidence: {obj.get("confidence")}
+    Note: {shorten(obj.get("note", ""), 800)}
     """
 
     try:
@@ -62,12 +57,15 @@ for i, obj in enumerate(rag_objects):
             "text": text_to_embed,
             "embedding": embedding,
             "metadata": {
-                "anoseek_label": obj.get("anoseek label"),
-                "severity": obj.get("anoseek severity"),
-                "severity_text": obj.get("severity text"),
-                "mitre_id": obj.get("mitre id"),
-                "attack_name": obj.get("attack name"),
-                "mitigation": obj.get("mitigation")
+                "timestamp": obj.get("timestamp"),
+                "src_ip": obj.get("src_ip"),
+                "dst_ip": obj.get("dst_ip"),
+                "severity": obj.get("severity"),
+                "severity_label": obj.get("severity_label"),
+                "action": obj.get("action"),
+                "agent_state": obj.get("agent_state"),
+                "confidence": obj.get("confidence"),
+                "note": obj.get("note"),
             }
         })
 

@@ -30,10 +30,15 @@ from inference import AnoseekInference
 from pipeline import predict_df
 from chat import ask as chat_ask
 from asyncio import sleep
+import json as _json
 
 ARTIFACTS = Path("artifacts")
 
 app = FastAPI(title="Anoseek API")
+
+# Incremented on every reset; each predict-csv task captures its value at start
+# and checks it on every row — mismatch means reset was called, stop the loop.
+_stream_gen: int = 0
 
 
 app.add_middleware(
@@ -75,6 +80,7 @@ async def predict_csv(
     file: UploadFile = File(...),
     delay_seconds: float = Query(default=1.0, ge=0.0, le=60.0),
 ):
+    global _stream_gen
     if INFERENCE is None or AGENT is None:
         raise HTTPException(503, "Service not ready")
 
@@ -88,9 +94,13 @@ async def predict_csv(
     except Exception as e:
         raise HTTPException(400, f"Could not parse CSV: {e}")
 
+    my_gen = _stream_gen
     results = []
 
     for _, row in df.iterrows():
+        if _stream_gen != my_gen:
+            break  # reset was called — stop feeding old flows into the agent
+
         row_df = pd.DataFrame([row])
 
         out = predict_df(row_df, INFERENCE, AGENT)
@@ -197,10 +207,18 @@ def metrics():
 # ---------------------------------------------------------------- metrics
 
 
+def _export_agent_events(limit: int) -> None:
+    """Snapshot the last `limit` agent events to ips_agent_events.json."""
+    events = AGENT.list_events(kind="all", limit=min(limit, 30))
+    Path("ips_agent_events.json").write_text(
+        _json.dumps(events, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+
+
 @app.post("/chat")
 async def chat_endpoint(payload: dict):
     """
-    Body: { "question": "..." }
+    Body: { "question": "...", "history_limit": 30 }
     Returns: { ok, answer, debug } or { ok: false, error }
     """
     if AGENT is None:
@@ -209,6 +227,9 @@ async def chat_endpoint(payload: dict):
     question = (payload or {}).get("question", "").strip()
     if not question:
         raise HTTPException(400, "Empty 'question' field")
+
+    history_limit = int((payload or {}).get("history_limit", 30))
+    _export_agent_events(history_limit)
 
     return chat_ask(AGENT, question)
 
