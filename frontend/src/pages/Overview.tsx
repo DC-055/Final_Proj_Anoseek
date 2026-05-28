@@ -1,10 +1,3 @@
-/**
- * Overview dashboard.
- *
- * Top:    4 KPI cards (live)
- * Middle: severity-mix bar chart (computed from recent events)
- * Bottom: recent events table
- */
 import { useMemo } from "react";
 import { useAgentState } from "../hooks/useAgentState";
 import { useEvents } from "../hooks/useEvents";
@@ -12,7 +5,6 @@ import KpiCard from "../components/KpiCard";
 import SeverityBadge from "../components/SeverityBadge";
 import { badgeForAction } from "../lib/severity";
 
-// 5 class buckets — match the model's class_names order
 const CLASSES = [
   "Benign",
   "Recon / scanning",
@@ -21,20 +13,18 @@ const CLASSES = [
   "Exploitation attacks",
 ];
 
-// Bar colors per class — kept aligned with the badges
 const BAR_COLORS = [
-  "bg-green-500",   // Benign
-  "bg-yellow-500",  // Recon
-  "bg-orange-500",  // Brute force
-  "bg-red-500",     // DoS / DDoS
-  "bg-purple-500",  // Exploitation
+  "bg-green-500",
+  "bg-yellow-500",
+  "bg-orange-500",
+  "bg-red-500",
+  "bg-purple-500",
 ];
 
 export default function Overview() {
   const { snapshot } = useAgentState(3000);
   const { events }   = useEvents("all", 200, 4000);
 
-  // Compute severity counts client-side from recent events
   const severityCounts = useMemo(() => {
     const counts = [0, 0, 0, 0, 0];
     for (const e of events) {
@@ -47,17 +37,15 @@ export default function Overview() {
   const totalEvents = severityCounts.reduce((a, b) => a + b, 0);
   const maxCount    = Math.max(1, ...severityCounts);
 
-  // KPI numbers — fall back to "—" while loading
   const totals = snapshot?.totals;
-  const flowsAnalyzed = totals ? totals.events  : "—";
+  const flowsAnalyzed = totals ? totals.events      : "—";
   const blockedIps    = totals ? totals.blocked_ips : "—";
-  const openAlerts    = totals ? totals.flagged : "—";
+  const openAlerts    = totals ? totals.flagged      : "—";
   const anomalyRate =
     totals && totals.events > 0
       ? `${(((totals.flagged + totals.blocked) / totals.events) * 100).toFixed(1)}%`
       : "—";
 
-  // Critical events for the bottom table — last few flag/alert/block actions
   const criticalEvents = useMemo(
     () =>
       events
@@ -68,39 +56,38 @@ export default function Overview() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto w-full max-w-none flex-col p-4 md:p-8">
       <header className="mb-6 flex items-baseline justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Overview</h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Real-time SOC dashboard · refreshes every 3–4 seconds
           </p>
         </div>
-        <div className="hidden text-xs text-slate-500 md:block">
+        <div className="hidden text-xs text-slate-500 dark:text-slate-400 md:block">
           {totalEvents > 0 && `Showing data from last ${totalEvents} events`}
         </div>
       </header>
 
-      {/* ───── KPI cards ───── */}
+      {/* KPI cards */}
       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <KpiCard label="Flows analyzed" value={flowsAnalyzed} />
-        <KpiCard label="Anomaly rate"   value={anomalyRate} tone="danger" />
+        <KpiCard label="Anomaly rate"   value={anomalyRate}   tone="danger" />
         <KpiCard label="Blocked IPs"    value={blockedIps} />
-        <KpiCard label="Open alerts"    value={openAlerts} tone="warning" />
+        <KpiCard label="Open alerts"    value={openAlerts}    tone="warning" />
       </div>
 
-      {/* ───── Severity mix + recent activity ───── */}
+      {/* Severity mix + action breakdown */}
       <div className="mb-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
-        {/* Severity mix bar chart */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm lg:col-span-2">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 lg:col-span-2">
           <div className="mb-3 flex items-baseline justify-between">
-            <h2 className="text-sm font-semibold text-slate-900">Severity mix</h2>
-            <span className="text-xs text-slate-500">{totalEvents} events</span>
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Severity mix</h2>
+            <span className="text-xs text-slate-500 dark:text-slate-400">{totalEvents} events</span>
           </div>
 
           {totalEvents === 0 ? (
-            <div className="py-8 text-center text-sm text-slate-500">
-              No events yet — upload a CSV in the Flows page to see data here.
+            <div className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
+              No events yet — upload a CSV in the Modes page to see data here.
             </div>
           ) : (
             <div className="space-y-2.5">
@@ -111,12 +98,12 @@ export default function Overview() {
                 return (
                   <div key={label}>
                     <div className="mb-1 flex justify-between text-xs">
-                      <span className="font-medium text-slate-700">{label}</span>
-                      <span className="text-slate-500">
+                      <span className="font-medium text-slate-700 dark:text-slate-300">{label}</span>
+                      <span className="text-slate-500 dark:text-slate-400">
                         {count.toLocaleString()} · {pct.toFixed(1)}%
                       </span>
                     </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
                       <div
                         className={`h-full rounded-full ${BAR_COLORS[i]}`}
                         style={{ width: `${width}%` }}
@@ -129,11 +116,10 @@ export default function Overview() {
           )}
         </div>
 
-        {/* Action breakdown */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <h2 className="mb-3 text-sm font-semibold text-slate-900">Agent actions</h2>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h2 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Agent actions</h2>
           {totalEvents === 0 ? (
-            <div className="py-8 text-center text-sm text-slate-500">
+            <div className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
               No actions yet.
             </div>
           ) : (
@@ -145,7 +131,7 @@ export default function Overview() {
                     <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${badgeForAction(act)}`}>
                       {act}
                     </span>
-                    <span className="text-sm font-semibold text-slate-900">{n}</span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">{n}</span>
                   </div>
                 );
               })}
@@ -154,21 +140,21 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* ───── Recent critical events ───── */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      {/* Recent critical events */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-sm font-semibold text-slate-900">Recent critical events</h2>
-          <span className="text-xs text-slate-500">flag / alert / block</span>
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Recent critical events</h2>
+          <span className="text-xs text-slate-500 dark:text-slate-400">flag / alert / block</span>
         </div>
 
         {criticalEvents.length === 0 ? (
-          <div className="py-8 text-center text-sm text-slate-500">
+          <div className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
             No critical events yet.
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full text-left text-sm">
-              <thead className="text-xs uppercase tracking-wide text-slate-500">
+              <thead className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 <tr>
                   <th className="px-3 py-2 font-medium">Time</th>
                   <th className="px-3 py-2 font-medium">Source</th>
@@ -178,16 +164,16 @@ export default function Overview() {
                   <th className="px-3 py-2 font-medium">Note</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {criticalEvents.map((e) => (
-                  <tr key={e.event_id} className="hover:bg-slate-50">
-                    <td className="whitespace-nowrap px-3 py-2 font-mono text-xs text-slate-600">
+                  <tr key={e.event_id} className="hover:bg-slate-50 dark:hover:bg-slate-700/40">
+                    <td className="whitespace-nowrap px-3 py-2 font-mono text-xs text-slate-600 dark:text-slate-400">
                       {new Date(e.timestamp).toLocaleTimeString()}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-2 font-mono text-xs">
+                    <td className="whitespace-nowrap px-3 py-2 font-mono text-xs text-slate-700 dark:text-slate-300">
                       {e.src_ip ?? "—"}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-2 font-mono text-xs">
+                    <td className="whitespace-nowrap px-3 py-2 font-mono text-xs text-slate-700 dark:text-slate-300">
                       {e.dst_ip ?? "—"}
                     </td>
                     <td className="px-3 py-2">
@@ -198,7 +184,7 @@ export default function Overview() {
                         {e.action}
                       </span>
                     </td>
-                    <td className="px-3 py-2 text-xs text-slate-600">
+                    <td className="px-3 py-2 text-xs text-slate-600 dark:text-slate-400">
                       {e.note ?? "—"}
                     </td>
                   </tr>

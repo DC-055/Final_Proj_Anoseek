@@ -27,7 +27,7 @@ export default function AgentState() {
         <header className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight">Agent state</h1>
         </header>
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-800">
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-800 dark:border-red-800 dark:bg-red-900/30 dark:text-red-300">
           Backend offline — {error}
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function AgentState() {
         <header className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight">Agent state</h1>
         </header>
-        <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center text-sm text-slate-500">
+        <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
           Loading…
         </div>
       </div>
@@ -52,70 +52,71 @@ export default function AgentState() {
   const elapsedSeconds = Math.max(0, Math.floor((now - enteredAt) / 1000));
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto w-full max-w-none flex-col p-4 md:p-8">
       <header className="mb-6">
         <h1 className="text-2xl font-semibold tracking-tight">Agent state</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Current state, counters, and recent transitions. Refreshes every 2 seconds.
         </p>
       </header>
 
-      {/* ─── State machine diagram ─── */}
-      <div className="mb-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="mb-5 flex items-center gap-3">
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold ${badgeForAgentState(
-              status,
-            )}`}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-current" />
-            {labelForAgentState(status)}
-          </span>
-          <span className="text-xs text-slate-500">
-            since {new Date(snapshot.entered_state_at).toLocaleString()}
-          </span>
+      {/* ─── Diagram + Counters ─── */}
+      <div className="mb-3 flex flex-col gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:flex-row dark:border-slate-700 dark:bg-slate-800">
+        {/* Diagram */}
+        <div className="min-w-0 flex-1 flex items-center justify-center">
+          <StateMachineDiagram status={status} />
         </div>
 
-        <StateMachineDiagram status={status} />
-      </div>
+        {/* Counters sidebar */}
+        <div className="flex shrink-0 flex-col gap-3 md:w-56">
+          <div className="flex flex-col gap-1">
+            <span
+              className={`inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold ${badgeForAgentState(status)}`}
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-current" />
+              {labelForAgentState(status)}
+            </span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">
+              since {new Date(snapshot.entered_state_at).toLocaleString()}
+            </span>
+          </div>
 
-      {/* ─── Counter tiles ─── */}
-      <div className="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <CounterTile
-          label="Benign streak"
-          value={snapshot.benign_sequence}
-          hint={
-            status === "alerted"
-              ? "need >20 + SOC confirm to decay"
-              : status === "under_attack"
-              ? "need >30 + SOC confirm to decay"
-              : "—"
-          }
-        />
-        <CounterTile
-          label="SOC confirm"
-          value={snapshot.soc_confirm ? "yes" : "no"}
-          hint={snapshot.soc_confirm ? "ready to decay" : "click SOC confirm in topbar"}
-          tone={snapshot.soc_confirm ? "success" : "default"}
-        />
-        <CounterTile
-          label="In current state"
-          value={formatElapsed(elapsedSeconds)}
-          hint={`since ${new Date(snapshot.entered_state_at).toLocaleTimeString()}`}
-        />
+          <CounterTile
+            label="Benign streak"
+            value={snapshot.benign_sequence}
+            hint={
+              status === "alerted"
+                ? "need >20 + SOC confirm to decay"
+                : status === "under_attack"
+                ? "need >30 + SOC confirm to decay"
+                : "—"
+            }
+          />
+          <CounterTile
+            label="SOC confirm"
+            value={snapshot.soc_confirm ? "yes" : "no"}
+            hint={snapshot.soc_confirm ? "ready to decay" : "click SOC confirm in topbar"}
+            tone={snapshot.soc_confirm ? "success" : "default"}
+          />
+          <CounterTile
+            label="In current state"
+            value={formatElapsed(elapsedSeconds)}
+            hint={`since ${new Date(snapshot.entered_state_at).toLocaleTimeString()}`}
+          />
+        </div>
       </div>
 
       {/* ─── Transitions timeline ─── */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-sm font-semibold text-slate-900">Recent transitions</h2>
-          <span className="text-xs text-slate-500">
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Recent transitions</h2>
+          <span className="text-xs text-slate-500 dark:text-slate-400">
             {snapshot.transitions.length} recent
           </span>
         </div>
 
         {snapshot.transitions.length === 0 ? (
-          <div className="py-8 text-center text-sm text-slate-500">
+          <div className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
             No transitions yet. Upload an attack-heavy CSV to see state changes.
           </div>
         ) : (
@@ -123,15 +124,15 @@ export default function AgentState() {
             {[...snapshot.transitions].reverse().map((t, idx) => (
               <div
                 key={idx}
-                className="flex flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm"
+                className="flex flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm dark:bg-slate-700/50"
               >
-                <span className="font-mono text-xs text-slate-500">
+                <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
                   {new Date(t.at).toLocaleTimeString()}
                 </span>
                 <StatePill state={t.from} />
-                <span className="text-slate-400">→</span>
+                <span className="text-slate-400 dark:text-slate-500">→</span>
                 <StatePill state={t.to} />
-                <span className="text-xs text-slate-600">{t.reason}</span>
+                <span className="text-xs text-slate-600 dark:text-slate-300">{t.reason}</span>
               </div>
             ))}
           </div>
@@ -177,18 +178,18 @@ function CounterTile({
   tone?: "default" | "success" | "warning" | "danger";
 }) {
   const toneCls = {
-    default: "text-slate-900",
-    success: "text-green-700",
-    warning: "text-amber-700",
-    danger: "text-red-700",
+    default: "text-slate-900 dark:text-slate-100",
+    success: "text-green-700 dark:text-green-400",
+    warning: "text-amber-700 dark:text-amber-400",
+    danger:  "text-red-700 dark:text-red-400",
   }[tone];
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <div className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
         {label}
       </div>
       <div className={`mt-1 text-2xl font-semibold ${toneCls}`}>{value}</div>
-      {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      {hint && <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{hint}</div>}
     </div>
   );
 }
@@ -235,8 +236,7 @@ function StateMachineDiagram({ status }: { status: StateKey }) {
   return (
     <svg
       viewBox="0 0 600 200"
-      className="w-full"
-      style={{ maxHeight: "220px" }}
+      style={{ width: "100%", maxWidth: "1100px", height: "auto", display: "block" }}
     >
       <defs>
         <marker
