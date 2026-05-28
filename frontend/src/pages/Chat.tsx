@@ -14,6 +14,7 @@ export default function Chat() {
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const hasConversation = messages.length > 0 || loading;
 
   // Autoscroll to bottom when new messages arrive
   useEffect(() => {
@@ -51,9 +52,10 @@ export default function Chat() {
 
   return (
     <div className="mx-auto flex h-full min-h-[50vh] max-h-[calc(100vh-10rem)] w-full max-w-none flex-col p-4 md:p-8">
-      <header className="mb-4 flex items-baseline justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Chat</h1>
+      <header className="mb-4 grid grid-cols-[1fr_auto_1fr] items-start gap-4">
+        <div />
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">Ask Anoseek</h1>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Ask about recent events, agent state, or a specific IP. The chatbot
             sees real agent data — mention an IP to focus the answer.
@@ -62,7 +64,7 @@ export default function Chat() {
         <button
           onClick={clear}
           disabled={messages.length === 0 && !loading}
-          className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+          className="justify-self-end rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
         >
           New Chat
         </button>
@@ -71,7 +73,12 @@ export default function Chat() {
       {/* ─── Messages ─── */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+        className={[
+          "overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-[max-height,min-height] duration-300 dark:border-slate-700 dark:bg-slate-800",
+          hasConversation
+            ? "min-h-[24rem] flex-1"
+            : "mx-auto min-h-[13rem] max-h-[15rem] w-full max-w-3xl flex-none",
+        ].join(" ")}
       >
         {messages.length === 0 && !loading && (
           <div className="flex h-full flex-col items-center justify-center gap-4 py-8">
@@ -128,7 +135,13 @@ export default function Chat() {
       </div>
 
       {/* ─── Input ─── */}
-      <form onSubmit={onSubmit} className="mt-3 flex items-end gap-2">
+      <form
+        onSubmit={onSubmit}
+        className={[
+          "mt-3 flex items-end gap-2 transition-[max-width] duration-300",
+          hasConversation ? "w-full max-w-none" : "mx-auto w-full max-w-3xl",
+        ].join(" ")}
+      >
         <textarea
           ref={textareaRef}
           rows={1}
