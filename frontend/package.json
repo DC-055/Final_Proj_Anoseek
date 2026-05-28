@@ -17,15 +17,10 @@
     "vite": "^5.1.0"
   },
   "dependencies": {
-<<<<<<< HEAD
     "lucide-react": "^1.14.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.15.0",
     "recharts": "^3.8.1"
-=======
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
->>>>>>> 9aad3b4 (Bring in Daniel's latest branch contents after force-push)
   }
 }

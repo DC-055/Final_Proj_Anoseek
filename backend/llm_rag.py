@@ -3,7 +3,6 @@ import time
 import os
 from google import genai
 from google.genai import types
-<<<<<<< HEAD
 
 
 import math
@@ -16,14 +15,6 @@ else:
     print("[chat] WARNING: GEMINI_API_KEY not set; chat endpoint will fail")
 
 with open("../anoseek_embeddings.json", "r", encoding="utf-8") as f:
-=======
-import math
-
-### TO-DO: Store API KEY 
-client = genai.Client(api_key="AIzaSyBQKLFkXS_XxFOBpshl1g8IJUMsyl5DQOA")
-
-with open("anoseek_embeddings.json", "r", encoding="utf-8") as f:
->>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
     embedded_docs = json.load(f)
 
 def cosine_similarity(a, b):
@@ -36,12 +27,8 @@ def cosine_similarity(a, b):
 
     return dot / (norm_a * norm_b)
 
-<<<<<<< HEAD
 def retrieve_relevant_docs(user_query, top_k=2):
     
-=======
-def retrieve_relevant_docs(user_query, top_k=3):
->>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
     query_result = client.models.embed_content(
         model="gemini-embedding-2",
         contents=user_query,
@@ -63,7 +50,6 @@ def retrieve_relevant_docs(user_query, top_k=3):
 
     return scored_docs[:top_k]
 
-<<<<<<< HEAD
 def format_rag(retrieved_context):
     return f"""
     Retrieved Anoseek/MITRE context:
@@ -73,67 +59,19 @@ def format_rag(retrieved_context):
 def build_context_with_rag(user_query):
     top_docs = retrieve_relevant_docs(user_query)
     """
-=======
-def answer_with_rag(user_query):
-    top_docs = retrieve_relevant_docs(user_query, top_k=3)
-
->>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
     retrieved_context = "\n\n---\n\n".join(
         item["doc"]["text"] for item in top_docs
     )
 
-<<<<<<< HEAD
     return retrieved_context
     """
     return top_docs
 
 """
-=======
-    system_prompt = """
-    You are Anoseek's cybersecurity assistant.
-
-    Your role:
-    - Explain Anoseek anomaly detections using the retrieved Anoseek/MITRE context.
-    - Connect Anoseek labels to MITRE ATT&CK techniques and mitigations.
-    - Explain why a flow may have been flagged based on Anoseek indicators.
-    - Recommend safe response actions from Anoseek's response list.
-
-    Rules:
-    - Use the retrieved context as your main source.
-    - Do not claim an attack succeeded unless the context confirms it.
-    - Do not claim credentials were stolen, data was leaked, or a service went down unless evidence is provided.
-    - If the retrieved context is insufficient, say what is missing.
-    - Distinguish between MITRE mitigations and Anoseek response actions.
-    -  Keep the answer practical and understandable.
-    """
-
-    contents = f"""
-    User question:
-    {user_query}
-
-    Retrieved Anoseek/MITRE context:
-    {retrieved_context}
-    """
-
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt
-        ),
-        contents=contents
-    )
-
-    return response.text, top_docs
-
->>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
 question = "I have seen numerous calls from the same IP to several services in a short time-span. What does it mean and what should we do?"
 
 answer, docs = answer_with_rag(question)
 
 print(f"query = {question}")
-<<<<<<< HEAD
 print(answer)
 """
-=======
-print(answer)
->>>>>>> c3eb2bb (added rag logic + embeddings (currently supports hardcoded queries))
