@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Final_Proj_Anoseek
 <<<<<<< HEAD
 
@@ -19,3 +20,6 @@ npm run dev
 >> 2. ARCS
 >> 3. CHATBOT -> LLM API
 >>>>>>> c15f403 (test commit)
+=======
+# Final_Proj_Anoseek
+>>>>>>> 9aad3b4 (Bring in Daniel's latest branch contents after force-push)
