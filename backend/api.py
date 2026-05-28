@@ -22,7 +22,8 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from fastapi import FastAPI, File, HTTPException, UploadFile, Query
+import inference
+from fastapi import FastAPI, File, HTTPException, UploadFile, Query, Body
 from fastapi.middleware.cors import CORSMiddleware
 
 from agent import PolicyAnoseekAgent
@@ -80,6 +81,9 @@ async def predict_csv(
     file: UploadFile = File(...),
     delay_seconds: float = Query(default=1.0, ge=0.0, le=60.0),
 ):
+    # setting state to "CSV"
+    inference.INFERENCE_STATE = inference.INFERENCE_ENUM[1]
+
     global _stream_gen
     if INFERENCE is None or AGENT is None:
         raise HTTPException(503, "Service not ready")
@@ -117,18 +121,20 @@ async def predict_csv(
 
 @app.post("/predict")
 async def predict(
-        file: UploadFile = File(...),
+        flow: dict = Body(...),
     ):
+
+    # setting state to "LIVE"
+    inference.INFERENCE_STATE = inference.INFERENCE_ENUM[0]
+
     if INFERENCE is None or AGENT is None:
         raise HTTPException(503, "Service not ready")
-
-    if not file.filename.lower().endswith(".json"):
-        raise HTTPException(400, f"Upload a .json file")
-
-    raw = await file.read()
+    
+    """
+    raw = await flow.read()
 
     try:
-        df = pd.read_json(io.BytesIO(raw), typ='series').to_frame().T
+        df = pd.read_json(io.BytesIO(flow), typ='series').to_frame().T
     except Exception as e:
         raise HTTPException(403, f"Could not parse JSON: {e}")
 
@@ -140,7 +146,19 @@ async def predict(
     )
 
     return results
+    """
 
+    try:
+        df = pd.DataFrame([flow])
+    except Exception as e:
+        raise HTTPException(400, f"Could not convert JSON to DataFrame: {e}")
+
+    try:
+        out = predict_df(df, INFERENCE, AGENT)
+    except Exception as e:
+        raise HTTPException(500, f"Prediction failed: {e}")
+
+    return out.where(pd.notnull(out), None).to_dict(orient="records")
 
 
 # ---------------------------------------------------------------- agent

@@ -11,6 +11,7 @@ export default function Modes() {
   const { streamGapSeconds } = useSettings();
   const navigate = useNavigate();
 
+  // CSV state
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -18,9 +19,11 @@ export default function Modes() {
 
   async function runPredict() {
     if (!file) return;
+
     setLoading(true);
     setError(null);
     setProcessedCount(null);
+
     try {
       const rows = await predictCsv(file, streamGapSeconds);
       setProcessedCount(rows.length);
@@ -67,7 +70,7 @@ export default function Modes() {
           <p className="mb-5 text-sm text-slate-500 dark:text-slate-400">
             Upload a network flow CSV. Each row is replayed through the model and
             policy agent at the configured gap ({streamGapSeconds}s between rows).
-            Results appear in the Alerts page.
+            Detected anomalies appear in the Alerts page.
           </p>
 
           <div className="flex flex-col gap-4">
@@ -124,18 +127,48 @@ export default function Modes() {
             Live monitoring
           </h2>
           <p className="mb-5 text-sm text-slate-500 dark:text-slate-400">
-            The agent continuously processes incoming flows in real time. The Live
-            Stream page shows the time-series breakdown, active IPs, and a live
-            event log — updated every few seconds.
+            Live mode processes one JSON flow at a time through the backend
+            <span className="font-mono"> /predict </span>
+            endpoint. This is the path the Raspberry Pi / sniffer should use for
+            real-time flows.
           </p>
 
-          <button
-            onClick={() => navigate("/live")}
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-500"
-          >
-            <Radio className="h-4 w-4" />
-            Open Live Stream
-          </button>
+          <div className="mb-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/40">
+              <div className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                Live endpoint
+              </div>
+              <div className="mt-1 font-mono text-sm font-semibold text-slate-900 dark:text-white">
+                POST /predict
+              </div>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Receives a single JSON flow and returns the prediction result.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/40">
+              <div className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                Flow source
+              </div>
+              <div className="mt-1 text-sm font-semibold text-slate-900 dark:text-white">
+                Raspberry Pi / nProbe
+              </div>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Connect the Pi to the same endpoint and monitor incoming flows.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => navigate("/live")}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700/60"
+            >
+              <Radio className="h-4 w-4" />
+              Open Live Stream
+            </button>
+          </div>
+
         </div>
       )}
     </div>

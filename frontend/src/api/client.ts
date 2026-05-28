@@ -134,6 +134,23 @@ export async function predictCsv(
   );
 }
 
+export async function predictLive(flow: Record<string, unknown>) {
+  const res = await fetch("http://localhost:8001/predict", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(flow),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || "Live prediction failed");
+  }
+
+  return res.json();
+}
+
 export async function blockIp(srcIp: string) {
   return jsonOrThrow(
     await fetch(`${API_URL}/agent/block-ip/${encodeURIComponent(srcIp)}`, {

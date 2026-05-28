@@ -1,3 +1,5 @@
+
+# Env + Project
 .venv/
 venv/
 .env
@@ -8,16 +10,12 @@ backend/.env
 __pycache__/
 *.pyc
 
-# Python
-__pycache__/
-*.pyc
- 
 # Frontend
 node_modules/
 frontend/node_modules/
 .vite/
 
- # Logs
+# Logs
 *.log
 
 # Pycharm

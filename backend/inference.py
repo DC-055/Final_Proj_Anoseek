@@ -23,6 +23,22 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+INFERENCE_ENUM = ["LIVE", "CSV"]
+INFERENCE_STATE = INFERENCE_ENUM[0]
+
+
+def _parse_numeric_value(value: Any) -> Any:
+    if not isinstance(value, str) or "," not in value:
+        return value
+
+    parts = [part.strip() for part in value.split(",") if part.strip()]
+    if not parts:
+        return np.nan
+
+    try:
+        return sum(float(part) for part in parts)
+    except ValueError:
+        return value
 
 # ---------------------------------------------------------------- model definition
 # Must match train_and_evaluate.py exactly. Any change here -> retrain required.
@@ -84,12 +100,15 @@ class AnoseekInference:
           drop unwanted cols -> reorder -> ±inf -> NaN -> fillna(medians) ->
           clip(lower, upper) -> scaler.transform.
         """
+
         feats = df.drop(columns=self.cols_to_drop, errors="ignore")
         feats = feats.drop(columns=["Attack"], errors="ignore")  # if labelled CSV
 
         # Enforce training column order. Missing cols become NaN -> median-filled.
         feats = feats.reindex(columns=self.feature_cols)
         feats = feats.replace([np.inf, -np.inf], np.nan)
+        feats = feats.map(_parse_numeric_value)
+        feats = feats.apply(pd.to_numeric, errors="coerce") # handling numbers that were received as input strings
 
         if self.medians:
             feats = feats.fillna(pd.Series(self.medians))
@@ -136,6 +155,7 @@ class AnoseekInference:
         out["is_anomaly"]      = preds != 0
         return out
 
+    """
     def predict_one(self, flow: dict) -> dict:
         df = pd.DataFrame([flow])
         out = self.predict_df(df).iloc[0].to_dict()
@@ -148,3 +168,5 @@ class AnoseekInference:
             "confidence":      float(out["confidence"]),
             "is_anomaly":      bool(out["is_anomaly"]),
         }
+
+    """
