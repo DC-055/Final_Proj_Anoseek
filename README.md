@@ -1,4 +1,5 @@
 # Final_Proj_Anoseek
+<<<<<<< HEAD
 
 # activate venv envoirment
 .venv\Scripts\activate
@@ -13,3 +14,8 @@ http://localhost:8001/docs
 # activate frontend
 cd frontend
 npm run dev
+=======
+>> 1. AUTOENCODER_LSTM
+>> 2. ARCS
+>> 3. CHATBOT -> LLM API
+>>>>>>> c15f403 (test commit)
