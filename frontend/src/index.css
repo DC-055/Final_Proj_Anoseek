@@ -4,4 +4,44 @@
 
 /* Small helpful defaults */
 :root { color-scheme: light; }
+.dark { color-scheme: dark; }
 body { @apply bg-slate-50 text-slate-900; }
+
+/* Smooth color transitions for dark/light mode switch */
+*, *::before, *::after {
+  transition:
+    background-color 0.25s ease,
+    border-color     0.25s ease,
+    color            0.15s ease,
+    box-shadow       0.25s ease;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Remove focus outline on recharts SVG surfaces */
+.recharts-wrapper,
+.recharts-wrapper *,
+.recharts-surface {
+  outline: none !important;
+}
+
+/* Custom keyframes */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes indicator-grow {
+  from { transform: translateY(-50%) scaleY(0); }
+  to   { transform: translateY(-50%) scaleY(1); }
+}
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.85); }
+  70%  { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-slide-in-left { animation: slide-in-left 0.18s ease-out both; }
+.animate-pop-in        { animation: pop-in 0.22s ease-out both; }

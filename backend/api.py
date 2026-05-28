@@ -177,8 +177,10 @@ def agent_confirm():
 
 @app.post("/agent/reset")
 def agent_reset():
+    global _stream_gen
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
+    _stream_gen += 1  # signals any running predict-csv loop to stop
     return AGENT.reset()
 
 

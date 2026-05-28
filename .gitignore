@@ -3,3 +3,14 @@ venv/
 .env
 datasets/
 backend/.env
+# Python
+__pycache__/
+*.pyc
+ 
+# Frontend
+node_modules/
+frontend/node_modules/
+.vite/
+ 
+# Pycharm
+.idea/

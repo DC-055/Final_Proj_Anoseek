@@ -24428,3 +24428,1390 @@ INFO:root:Benign flow passed
 INFO:root:Asking confirmation from SOC team..
 INFO:root:Benign flow passed
 INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.218.11.51
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 37 flagged
+INFO:root:SOC alert: event=37 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 47 flagged
+INFO:root:SOC alert: event=47 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 55 flagged
+INFO:root:SOC alert: event=55 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:SOC alert: event=59 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.115.60
+INFO:root:SOC alert: event=76 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Blocking IP 52.14.136.135
+INFO:root:SOC alert: event=77 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:SOC alert: event=97 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:SOC alert: event=99 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:SOC alert: event=104 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=115 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 13.59.126.31
+INFO:root:SOC alert: event=121 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=123 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 127 flagged
+INFO:root:SOC alert: event=127 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=138 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 52.14.136.135
+INFO:root:SOC alert: event=140 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=151 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.24.42
+INFO:root:SOC alert: event=159 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=160 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:State alerted -> idle (sustained benign + SOC confirm)
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=214 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.11.51
+INFO:root:SOC alert: event=225 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:State alerted -> idle (sustained benign + SOC confirm)
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.218.11.51
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 33 flagged
+INFO:root:SOC alert: event=33 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 43 flagged
+INFO:root:SOC alert: event=43 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.211.138
+INFO:root:SOC alert: event=13 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:SOC alert: event=16 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=34 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=35 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=44 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=55 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 64 flagged
+INFO:root:SOC alert: event=64 severity=2 — Check authentication logs and consider temporary rate limiting.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.11.51
+INFO:root:SOC alert: event=66 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=72 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.229.235
+INFO:root:SOC alert: event=78 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 80 flagged
+INFO:root:SOC alert: event=80 severity=2 — Check authentication logs and consider temporary rate limiting.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=87 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=89 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=96 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=105 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=125 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=126 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:SOC alert: event=131 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:SOC alert: event=134 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=138 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.229.235
+INFO:root:SOC alert: event=144 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=151 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:SOC alert: event=168 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.24.42
+INFO:root:SOC alert: event=172 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Blocking IP 172.31.67.13
+INFO:root:SOC alert: event=173 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:SOC alert: event=191 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.32.43
+INFO:root:SOC alert: event=198 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:SOC alert: event=206 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 209 flagged
+INFO:root:SOC alert: event=209 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 213 flagged
+INFO:root:SOC alert: event=213 severity=2 — Check authentication logs and consider temporary rate limiting.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=224 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.216.24.42
+INFO:root:SOC alert: event=233 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.229.235
+INFO:root:SOC alert: event=239 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:State alerted -> idle (sustained benign + SOC confirm)
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=273 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:SOC alert: event=282 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.229.235
+INFO:root:SOC alert: event=285 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 296 flagged
+INFO:root:SOC alert: event=296 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:State alerted -> idle (sustained benign + SOC confirm)
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.211.138
+INFO:root:State idle -> alerted (high-severity event)
+INFO:root:Blocking IP 18.219.211.138
+INFO:root:SOC alert: event=330 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 332 flagged
+INFO:root:SOC alert: event=332 severity=1 — Monitor the source IP for additional suspicious behavior.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 340 flagged
+INFO:root:SOC alert: event=340 severity=2 — Check authentication logs and consider temporary rate limiting.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.55.126
+INFO:root:SOC alert: event=348 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 18.218.229.235
+INFO:root:SOC alert: event=352 severity=4 — Escalate immediately and investigate affected host.
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:SOC alert: event=353 severity=3 — Inspect traffic volume and consider DDoS mitigation.
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Blocking IP 13.58.98.64
+INFO:root:State alerted -> under_attack (repeated flags while alerted)
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 362 flagged
+INFO:root:Blocking IP 18.219.5.43
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 364 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 365 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 366 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 367 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 368 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 369 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 370 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 371 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 372 flagged
+INFO:root:Blocking IP 18.218.115.60
+INFO:root:Blocking IP 18.216.24.42
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 375 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 376 flagged
+INFO:root:Blocking IP 18.216.200.189
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 378 flagged
+INFO:root:Blocking IP 52.14.136.135
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 380 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 381 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 382 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 383 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 384 flagged
+INFO:root:Blocking IP 18.221.219.4
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 386 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 387 flagged
+INFO:root:Blocking IP 18.219.193.20
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 389 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 390 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 391 flagged
+INFO:root:Benign flow passed
+INFO:root:Asking confirmation from SOC team..
+INFO:root:Event 392 flagged
+INFO:root:Agent reset.
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Benign flow passed
+INFO:root:Blocking IP 18.219.9.1
+INFO:root:State idle -> alerted (high-severity event)
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:batchEmbedContents "HTTP/1.1 200 OK"
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
