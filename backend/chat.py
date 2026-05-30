@@ -73,7 +73,8 @@ SYSTEM_PROMPT = """
 IP_RE = re.compile(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b')
 EVENT_KEYWORDS = {"this flow", "this alert", "this event", "this detection",
                   "why was", "why did", "what happened", "source ip", "dst ip",
-                  "src ip", "destination ip", "flagged", "blocked", "alerted"}
+                  "src ip", "destination ip", "flagged", "blocked", "alerted",
+                  "lately", "recently", "latest activity", "recent activity"}
 INFO_PREFIXES = ("what is", "what are", "explain", "how does", "define",
                  "what does mitre", "what mitigation", "in general")
 

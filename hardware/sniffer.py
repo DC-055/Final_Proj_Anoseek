@@ -85,9 +85,17 @@ def should_skip_flow(flow):
     dst_ip = flow.get("IPV4_DST_ADDR")
     src_port = int(flow.get("L4_SRC_PORT") or 0)
     dst_port = int(flow.get("L4_DST_PORT") or 0)
+    endpoints = {src_ip, dst_ip}
+    ports = {src_port, dst_port}
 
-    if BACKEND_HOST in (src_ip, dst_ip) and BACKEND_PORT in (src_port, dst_port):
-        return True
+    if BACKEND_HOST in endpoints and BACKEND_PORT in ports:
+       return True
+    if BACKEND_HOST in endpoints and 22 in ports:
+       return True # skipping SSH
+    if src_ip == "0.0.0.0" and 22 in ports:
+       return True # skipping SSH with unknown placeholders
+    if BACKEND_HOST in endpoints and 5353 in ports:
+       return True # skipping mDNS
 
     return False
 

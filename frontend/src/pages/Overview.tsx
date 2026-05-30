@@ -41,10 +41,11 @@ export default function Overview() {
   const flowsAnalyzed = totals ? totals.events      : "—";
   const blockedIps    = totals ? totals.blocked_ips : "—";
   const openAlerts    = totals ? totals.flagged      : "—";
+  const anomalyCount = totalEvents - severityCounts[0];
   const anomalyRate =
-    totals && totals.events > 0
-      ? `${(((totals.flagged + totals.blocked) / totals.events) * 100).toFixed(1)}%`
-      : "—";
+  totalEvents > 0
+    ? `${((anomalyCount / totalEvents) * 100).toFixed(1)}%`
+    : "—";
 
   const criticalEvents = useMemo(
     () =>
