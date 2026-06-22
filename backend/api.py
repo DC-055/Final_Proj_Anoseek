@@ -25,10 +25,12 @@ import pandas as pd
 import inference
 from fastapi import FastAPI, File, HTTPException, UploadFile, Query, Body
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 
 from agent import PolicyAnoseekAgent
 from inference import AnoseekInference
-from pipeline import predict_df
+from threat_intel import ipsun_l3_import
+from pipeline import ingest_live_flow
 from chat import ask as chat_ask
 from asyncio import sleep
 import json as _json
@@ -62,7 +64,29 @@ def load_artifacts():
         bundle_path=ARTIFACTS / "bundle.joblib",
         model_path=ARTIFACTS / "embedding_model.pt",
     )
-    AGENT = PolicyAnoseekAgent()
+
+    policy_path = Path(ARTIFACTS / "policy_file.json")
+    if not policy_path.exists():
+        raise RuntimeError(f"Policy file not found: {policy_path}")
+    try:
+        policy = json.loads(policy_path.read_text())
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Invalid policy file: {e}")
+
+    if ipsun_l3_import():
+        ipsum_path = Path(ARTIFACTS / "IPsum_L3.txt")
+        if not ipsum_path.exists():
+            raise RuntimeError(f"IPsum file not found: {ipsum_path}")
+        try:
+            with open(ipsum_path, "rb") as file:
+                ipsum = file.read().decode("utf-8")
+        except (UnicodeDecodeError, OSError) as e:
+            raise RuntimeError(f"Invalid IPsum file: {e}")
+    else:
+        raise RuntimeError(f"Download of IPsum_L3 file failed")
+    
+
+    AGENT = PolicyAnoseekAgent(policy, ipsum)
     print(f"[startup] ready — input_size={INFERENCE.input_size}, "
           f"classes={INFERENCE.class_names}")
 
@@ -81,7 +105,6 @@ async def predict_csv(
     file: UploadFile = File(...),
     delay_seconds: float = Query(default=1.0, ge=0.0, le=60.0),
 ):
-    # setting state to "CSV"
     inference.INFERENCE_STATE = inference.INFERENCE_ENUM[1]
 
     global _stream_gen
@@ -99,24 +122,34 @@ async def predict_csv(
         raise HTTPException(400, f"Could not parse CSV: {e}")
 
     my_gen = _stream_gen
-    results = []
+    INFERENCE._live_buffers.clear()
 
-    for _, row in df.iterrows():
-        if _stream_gen != my_gen:
-            break  # reset was called — stop feeding old flows into the agent
+    async def event_stream():
+        for _, row in df.iterrows():
+            if _stream_gen != my_gen:
+                yield "data: {\"aborted\": true}\n\n"
+                return
 
-        row_df = pd.DataFrame([row])
+            try:
+                result = ingest_live_flow(row.to_dict(), INFERENCE, AGENT)
+            except Exception as e:
+                print(f"[predict-csv] row error: {e}")
 
-        out = predict_df(row_df, INFERENCE, AGENT)
+            if result is not None:
+                yield f"data: {json.dumps(result)}\n\n"
 
-        results.extend(
-            out.where(pd.notnull(out), None).to_dict(orient="records")
-        )
+            # Derive inter-flow delay from the actual flow duration (like live ZMQ),
+            # scaled by delay_seconds (1.0 = real-time, 0.1 = 10× faster, 0 = no delay).
+            if delay_seconds:
+                raw_ms = float(row.get("FLOW_DURATION_MILLISECONDS") or 0)
+                natural_s = min(raw_ms / 1000.0, 30.0)   # cap at 30 s
+                wait = natural_s * delay_seconds
+                if wait > 0:
+                    await sleep(wait)
 
-        if delay_seconds:
-            await sleep(delay_seconds)
+        yield "data: {\"done\": true}\n\n"
 
-    return results
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 @app.post("/predict")
@@ -130,35 +163,15 @@ async def predict(
     if INFERENCE is None or AGENT is None:
         raise HTTPException(503, "Service not ready")
     
-    """
-    raw = await flow.read()
-
     try:
-        df = pd.read_json(io.BytesIO(flow), typ='series').to_frame().T
-    except Exception as e:
-        raise HTTPException(403, f"Could not parse JSON: {e}")
-
-    results = []
-    out = predict_df(df, INFERENCE, AGENT)
-
-    results.extend(
-        out.where(pd.notnull(out), None).to_dict(orient="records")
-    )
-
-    return results
-    """
-
-    try:
-        df = pd.DataFrame([flow])
-    except Exception as e:
-        raise HTTPException(400, f"Could not convert JSON to DataFrame: {e}")
-
-    try:
-        out = predict_df(df, INFERENCE, AGENT)
+        result = ingest_live_flow(flow, INFERENCE, AGENT)
     except Exception as e:
         raise HTTPException(500, f"Prediction failed: {e}")
 
-    return out.where(pd.notnull(out), None).to_dict(orient="records")
+    if result is None:
+        return {"buffering": True, "src_ip": flow.get("IPV4_SRC_ADDR")}
+
+    return result
 
 
 # ---------------------------------------------------------------- agent
@@ -179,6 +192,16 @@ def agent_events(kind: str = "all", limit: int = 200):
     return AGENT.list_events(kind=kind, limit=limit)
 
 
+@app.get("/agent/enforcement")
+def agent_enforcement():
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return {
+        "blocked_ips": list(AGENT.blocked_by_ip.keys()),
+        "rate_limited_ips": list(AGENT.rate_limited_by_ip.keys()),
+    }
+
+
 @app.get("/agent/by-ip/{src_ip}")
 def agent_by_ip(src_ip: str):
     if AGENT is None:
@@ -187,10 +210,11 @@ def agent_by_ip(src_ip: str):
 
 
 @app.post("/agent/confirm")
-def agent_confirm():
+def agent_confirm(payload: dict = Body(default={})):
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
-    return AGENT.confirm_from_soc()
+    confirmed = bool(payload.get("confirmed", True))
+    return AGENT.confirm_from_soc(confirmed=confirmed)
 
 
 @app.post("/agent/reset")
@@ -199,6 +223,8 @@ def agent_reset():
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
     _stream_gen += 1  # signals any running predict-csv loop to stop
+    INFERENCE._live_buffers.clear()
+    inference.INFERENCE_STATE = inference.INFERENCE_ENUM[0]  # back to LIVE
     return AGENT.reset()
 
 
@@ -214,6 +240,47 @@ def agent_unblock_ip(src_ip: str):
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
     return AGENT.unblock_ip_manual(src_ip)
+
+
+@app.post("/agent/rate-limit-ip/{src_ip}")
+def agent_rate_limit_ip(src_ip: str):
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return AGENT.rate_limit_ip_manual(src_ip)
+
+
+@app.post("/agent/unrate-limit-ip/{src_ip}")
+def agent_unrate_limit_ip(src_ip: str):
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return AGENT.rate_unlimit_manual(src_ip)
+
+
+@app.get("/agent/policy")
+def get_policy():
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return AGENT.policy
+
+
+@app.post("/agent/policy")
+def update_policy(payload: dict):
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    if "Statement" not in payload or not isinstance(payload["Statement"], list):
+        raise HTTPException(400, "Invalid policy: missing 'Statement' list")
+    policy_path = ARTIFACTS / "policy_file.json"
+    policy_path.write_text(json.dumps(payload, indent=4))
+    AGENT.policy = payload
+    return {"ok": True}
+
+
+@app.get("/agent/alerts")
+def agent_alerts(since: int = 0):
+    if AGENT is None:
+        raise HTTPException(503, "Service not ready")
+    return AGENT.get_alerts(since=since)
+
 
 # ---------------------------------------------------------------- metrics
 

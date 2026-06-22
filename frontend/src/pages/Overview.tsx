@@ -95,7 +95,7 @@ export default function Overview() {
               {CLASSES.map((label, i) => {
                 const count = severityCounts[i];
                 const pct   = totalEvents ? (count / totalEvents) * 100 : 0;
-                const width = (count / maxCount) * 100;
+                const width = pct;
                 return (
                   <div key={label}>
                     <div className="mb-1 flex justify-between text-xs">

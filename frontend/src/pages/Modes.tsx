@@ -22,11 +22,12 @@ export default function Modes() {
 
     setLoading(true);
     setError(null);
-    setProcessedCount(null);
+    setProcessedCount(0);
 
     try {
-      const rows = await predictCsv(file, streamGapSeconds);
-      setProcessedCount(rows.length);
+      await predictCsv(file, streamGapSeconds, () => {
+        setProcessedCount((n) => (n ?? 0) + 1);
+      });
     } catch (e: any) {
       setError(e?.message ?? "Unknown error");
     } finally {
@@ -68,8 +69,8 @@ export default function Modes() {
             Batch CSV analysis
           </h2>
           <p className="mb-5 text-sm text-slate-500 dark:text-slate-400">
-            Upload a network flow CSV. Each row is replayed through the model and
-            policy agent at the configured gap ({streamGapSeconds}s between rows).
+            Upload a network flow CSV. Each row is replayed using its actual
+            flow duration as the inter-row delay, scaled by ×{streamGapSeconds} (set in Settings).
             Detected anomalies appear in the Alerts page.
           </p>
 
