@@ -78,13 +78,13 @@ def load_artifacts():
         if not ipsum_path.exists():
             raise RuntimeError(f"IPsum file not found: {ipsum_path}")
         try:
-            with open(ipsum_path, "rb") as file:
-                ipsum = file.read().decode("utf-8")
+            with open(ipsum_path, "r", encoding="utf-8") as file:
+                ipsum = set(line.strip() for line in file if line.strip())
         except (UnicodeDecodeError, OSError) as e:
             raise RuntimeError(f"Invalid IPsum file: {e}")
     else:
         raise RuntimeError(f"Download of IPsum_L3 file failed")
-    
+
 
     AGENT = PolicyAnoseekAgent(policy, ipsum)
     print(f"[startup] ready — input_size={INFERENCE.input_size}, "
@@ -103,7 +103,7 @@ def ping():
 @app.post("/predict-csv")
 async def predict_csv(
     file: UploadFile = File(...),
-    delay_seconds: float = Query(default=1.0, ge=0.0, le=60.0),
+    delay_seconds: float = Query(default=0.0, ge=0.0, le=60.0),
 ):
     inference.INFERENCE_STATE = inference.INFERENCE_ENUM[1]
 
@@ -130,6 +130,7 @@ async def predict_csv(
                 yield "data: {\"aborted\": true}\n\n"
                 return
 
+            result = None
             try:
                 result = ingest_live_flow(row.to_dict(), INFERENCE, AGENT)
             except Exception as e:
@@ -138,14 +139,23 @@ async def predict_csv(
             if result is not None:
                 yield f"data: {json.dumps(result)}\n\n"
 
-            # Derive inter-flow delay from the actual flow duration (like live ZMQ),
-            # scaled by delay_seconds (1.0 = real-time, 0.1 = 10× faster, 0 = no delay).
             if delay_seconds:
                 raw_ms = float(row.get("FLOW_DURATION_MILLISECONDS") or 0)
-                natural_s = min(raw_ms / 1000.0, 30.0)   # cap at 30 s
+                natural_s = min(raw_ms / 1000.0, 2.0)   # cap at 2 s (was 30 s)
                 wait = natural_s * delay_seconds
                 if wait > 0:
                     await sleep(wait)
+
+        # Flush IPs with incomplete buffers (appeared only once in the CSV)
+        for flow_result in INFERENCE.flush_incomplete_buffers():
+            if _stream_gen != my_gen:
+                break
+            try:
+                decision = AGENT.analyze_and_act(flow_result)
+                if decision.get("ok"):
+                    yield f"data: {json.dumps({**flow_result, 'action': decision.get('action'), 'agent_state': decision.get('agent_state'), 'event_id': decision.get('event_id'), 'note': decision.get('note')})}\n\n"
+            except Exception as e:
+                print(f"[predict-csv] flush error for {flow_result.get('src_ip')}: {e}")
 
         yield "data: {\"done\": true}\n\n"
 

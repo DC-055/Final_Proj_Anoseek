@@ -7,7 +7,6 @@ import os
 import requests
 import signal
 import sys
-import time
 import zlib
 from urllib.parse import urlparse
 import threading
