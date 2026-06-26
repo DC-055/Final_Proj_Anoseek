@@ -7,9 +7,9 @@ import os
 import requests
 import signal
 import sys
-import time
 import zlib
 from urllib.parse import urlparse
+import threading
 
 # destination to anomaly detection port -->
 # REQ: 10.0.0.21 TO BACKEND'S LOCAL IP ADDRESS 
@@ -17,6 +17,7 @@ BACKEND_URL = os.environ.get("ANOSEEK_BACKEND_URL", "http://10.0.0.21:8001/predi
 BACKEND_TARGET = urlparse(BACKEND_URL)
 BACKEND_HOST = BACKEND_TARGET.hostname
 BACKEND_PORT = BACKEND_TARGET.port or 80
+RATE_LIMIT_INTERVAL = 5.0  # seconds between allowed flows per IP
 
 NPROBE_FIELDS = [
         "%IPV4_SRC_ADDR", "%IPV4_DST_ADDR", "%L4_SRC_PORT", "%L4_DST_PORT",
@@ -78,6 +79,23 @@ signal.signal(signal.SIGINT, cleanup)
 
 print("(4) Listening for flows \n")
 
+# blocked_ips: set[str] = set()
+# rate_limited_ips: dict[str, float] = {}  # ip -> last_sent timestamp
+
+def sync_enforcement():
+    global blocked_ips, rate_limited_ips
+    while True:
+        try:
+            r = requests.get(f"http://{BACKEND_HOST}:{BACKEND_PORT}/agent/enforcement", timeout=3)
+            data = r.json()
+            blocked_ips = set(data["blocked_ips"])
+            rate_limited_ips = {ip: rate_limited_ips.get(ip, 0) for ip in data["rate_limited_ips"]}
+        except Exception as e:
+            print("[SYNC ERROR]", e)
+        time.sleep(30)  # sync every 30 seconds
+
+threading.Thread(target=sync_enforcement, daemon=True).start()
+
 
 # removing flows that go in between backend-host to pi hardware
 def should_skip_flow(flow):
@@ -96,15 +114,30 @@ def should_skip_flow(flow):
        return True # skipping SSH with unknown placeholders
     if BACKEND_HOST in endpoints and 5353 in ports:
        return True # skipping mDNS
+    if src_ip in blocked_ips:
+        return True
+    if src_ip in rate_limited_ips:
+        if time.time() - rate_limited_ips[src_ip] < RATE_LIMIT_INTERVAL:
+            return True
+        # interval elapsed — allow through and update timestamp
+        rate_limited_ips[src_ip] = time.time()
 
     return False
 
 # json formatting for backend to retrieve flows
 def send_flow(flow):
+    src_ip = flow.get("IPV4_SRC_ADDR")
     try:
         response = requests.post(BACKEND_URL, json=flow, timeout=3)
         response.raise_for_status()
-        print("[MODEL]", response.json())
+        result = response.json()
+        print("[MODEL]", result)
+
+        action = result[0].get("action") if isinstance(result, list) else result.get("action")
+        if action == "block" and src_ip:
+            blocked_ips.add(src_ip)
+        elif action == "rate_limit" and src_ip:
+            rate_limited_ips[src_ip] = time.time()
     except requests.exceptions.RequestException as e:
         print("[BACKEND ERROR]", e)
     except ValueError:

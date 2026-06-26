@@ -5,9 +5,12 @@
  * Narrow screens (<1024px): drill-down becomes an overlay drawer from the right.
  */
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   blockIp,
   unblockIp,
+  rateLimitIp,
+  unRateLimitIp,
   getAgentByIp,
   type ByIpResult,
   type EventRecord,
@@ -19,10 +22,18 @@ import SeverityBadge from "../components/SeverityBadge";
 type TabKind = "all" | "flagged" | "blocked";
 
 export default function Alerts() {
-  const [tab, setTab] = useState<TabKind>("flagged");
-  const [selectedIp, setSelectedIp] = useState<string | null>(null);
+  const location = useLocation();
+  const [tab, setTab] = useState<TabKind>((location.state as any)?.tab ?? "flagged");
+  const [selectedIp, setSelectedIp] = useState<string | null>((location.state as any)?.selectedIp ?? null);
   const [query, setQuery] = useState("");
   const [onlyAnomalies, setOnlyAnomalies] = useState(false);
+
+  // Re-apply navigation state when navigating to this page while it's already mounted
+  useEffect(() => {
+    const state = location.state as any;
+    if (state?.tab) setTab(state.tab);
+    if (state?.selectedIp !== undefined) setSelectedIp(state.selectedIp);
+  }, [location.state]);
 
   const { events } = useEvents(tab, 200, 4000);
   const allCounts  = useTabCounts();
@@ -284,9 +295,38 @@ function DrillDownPanel({
     }
   }
 
+  async function onRateLimit() {
+    if (!srcIp) return;
+    setBusy(true);
+    try {
+      await rateLimitIp(srcIp);
+      const d = await getAgentByIp(srcIp);
+      setData(d);
+    } catch (e: any) {
+      setError(e?.message ?? "rate limit failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function onUnRateLimit() {
+    if (!srcIp) return;
+    setBusy(true);
+    try {
+      await unRateLimitIp(srcIp);
+      const d = await getAgentByIp(srcIp);
+      setData(d);
+    } catch (e: any) {
+      setError(e?.message ?? "un-rate-limit failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   const events: EventRecord[] = data?.events ?? [];
   const reversed = [...events].reverse();
   const isManuallyBlocked = data?.manually_blocked ?? false;
+  const isManuallyRateLimited = data?.manually_rate_limited ?? false;
 
   const wrapperCls = bare
     ? ""
@@ -326,6 +366,23 @@ function DrillDownPanel({
             Block IP
           </button>
         )}
+        {isManuallyRateLimited ? (
+          <button
+            onClick={onUnRateLimit}
+            disabled={busy}
+            className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+          >
+            Un-rate-limit
+          </button>
+        ) : (
+          <button
+            onClick={onRateLimit}
+            disabled={busy}
+            className="flex-1 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-amber-400 disabled:opacity-50"
+          >
+            Rate Limit
+          </button>
+        )}
         <button
           onClick={onClose}
           className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
@@ -351,6 +408,11 @@ function DrillDownPanel({
       {isManuallyBlocked && (
         <div className="mb-3 rounded-lg bg-red-50 px-2 py-1.5 text-xs font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
           On manual blocklist. New flows from this IP will be dropped.
+        </div>
+      )}
+      {isManuallyRateLimited && (
+        <div className="mb-3 rounded-lg bg-amber-50 px-2 py-1.5 text-xs font-medium text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+          On manual rate-limit list. New flows from this IP will be throttled.
         </div>
       )}
 

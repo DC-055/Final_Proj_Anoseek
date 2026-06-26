@@ -1,0 +1,25 @@
+{
+    "Version": "2026-05-21",
+    "Statement": [
+        {
+            "State": "ALERTED",
+            "Action_Required": "rate_limit",
+            "Allowed": false
+        },
+        {
+            "State": "ALERTED",
+            "Action_Required": "block",
+            "Allowed": false
+        },
+        {
+            "State": "UNDER_ATTACK",
+            "Action_Required": "rate_limit",
+            "Allowed": false
+        },
+        {
+            "State": "UNDER_ATTACK",
+            "Action_Required": "block",
+            "Allowed": false
+        }
+    ]
+}

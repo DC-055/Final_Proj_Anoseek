@@ -57,11 +57,13 @@ export default function Flows() {
     if (!file) return;
     setLoading(true);
     setError(null);
+    setRows([]);
     try {
-      setRows(await predictCsv(file, getStreamGapSeconds()));
+      await predictCsv(file, getStreamGapSeconds(), (row) => {
+        setRows((prev) => [...prev, row]);
+      });
     } catch (e: any) {
       setError(e?.message ?? "Unknown error");
-      setRows([]);
     } finally {
       setLoading(false);
     }

@@ -20,9 +20,9 @@ from sklearn.preprocessing import label_binarize
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import seaborn as sns
+from cuml.svm import SVC
 
-
-##################### Tested on python 3.12 and 3.9 !
+##################### Tested on python 3.14, 3.12 and 3.9 !
 
 def train_and_evaluate(dataset_csv_path):
     """ Phase 0 """
@@ -32,7 +32,7 @@ def train_and_evaluate(dataset_csv_path):
     print(f"Using {device}")
 
     ### 0.2: Data Size ###
-    data_size = 500000
+    data_size = 100000
 
     """ Phase 1 Data Import and Preprocessing """
     ### 1.1: Data Import, Severity Map ###
@@ -162,7 +162,7 @@ def train_and_evaluate(dataset_csv_path):
     svc_model = SVC(kernel='rbf', C=0.5, decision_function_shape='ovr')
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(embeddings_model.parameters(), lr=1e-03, weight_decay=1e-05)
+    optimizer = torch.optim.Adam(embeddings_model.parameters(), lr=5e-04, weight_decay=1e-05)
 
     batch_size = 64
     num_epochs = 15
