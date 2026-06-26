@@ -103,9 +103,7 @@ def ask(agent: "PolicyAnoseekAgent", question: str) -> dict:
         return {"ok": False, "error": "empty question"}
 
     if os.path.exists("../ips_agent_events.json"):
-        with open('../ips_agent_embeddings.json', 'w') as file:
-            json.dump([], file)
-        write_event_embeddings_file()
+        write_event_embeddings_file(rewrite=True)
     else:
         logging.info("json file for embedding not found!\n")
         

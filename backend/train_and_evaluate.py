@@ -350,7 +350,7 @@ def train_and_evaluate(dataset_csv_path):
         sns.heatmap(m, annot=True, fmt="d", cmap="Greens",
                     ax=axes[i], cbar=False)
         axes[i].set_title(class_names[i])
-        axes[i].set_xlabel("Pred");
+        axes[i].set_xlabel("Pred")
         axes[i].set_ylabel("True")
     plt.suptitle("One-vs-Rest confusion matrices", y=1.05)
     plt.tight_layout()

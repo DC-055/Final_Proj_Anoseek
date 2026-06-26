@@ -7,7 +7,8 @@
 cd backend
 py -3.12 -m uvicorn api:app --reload --port 8001
 python -m uvicorn api:app --reload --port 8001  
-python -m uvicorn api:app --host 0.0.0.0 --port 8001                                          
+# service discoverable on wi-fi network
+python -m uvicorn api:app --host 0.0.0.0 --port 8001                                         
 
 # show api interface:
 http://localhost:8001/docs
