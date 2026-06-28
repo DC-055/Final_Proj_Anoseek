@@ -56,8 +56,7 @@ export type FlowResult = Record<string, any> & {
 export type ByIpResult = {
   src_ip: string;
   blocked: boolean;
-  manually_blocked?: boolean;
-  manually_rate_limited?: boolean;
+  rate_limited: boolean;
   counts: { events: number; flagged: number; blocked: number };
   events: EventRecord[];
 };

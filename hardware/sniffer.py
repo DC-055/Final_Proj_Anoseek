@@ -7,17 +7,23 @@ import os
 import requests
 import signal
 import sys
+import time
 import zlib
 from urllib.parse import urlparse
 import threading
+import ipaddress
 
 # destination to anomaly detection port -->
-# REQ: 10.0.0.21 TO BACKEND'S LOCAL IP ADDRESS 
-BACKEND_URL = os.environ.get("ANOSEEK_BACKEND_URL", "http://10.0.0.21:8001/predict")
+# REQ: 10.0.0.21 TO BACKEND'S LOCAL IP ADDRESS
+#BACKEND_URL = os.environ.get("ANOSEEK_BACKEND_URL", "http://10.0.0.21:8001/predict")
+#BACKEND_URL = os.environ.get("ANOSEEK_BACKEND_URL", "http://172.20.10.3:8001/predict")
+BACKEND_URL = os.environ.get("ANOSEEK_BACKEND_URL", "http://172.20.10.10:8001/predict")
 BACKEND_TARGET = urlparse(BACKEND_URL)
 BACKEND_HOST = BACKEND_TARGET.hostname
 BACKEND_PORT = BACKEND_TARGET.port or 80
-RATE_LIMIT_INTERVAL = 5.0  # seconds between allowed flows per IP
+RATE_LIMIT_INTERVAL = 5.0 # seconds between allowed flows per IP
+HOTSPOT_INTERFACE = "wlan1"
+HOTSPOT_NETWORK = ipaddress.ip_network("10.42.0.0/24")
 
 NPROBE_FIELDS = [
         "%IPV4_SRC_ADDR", "%IPV4_DST_ADDR", "%L4_SRC_PORT", "%L4_DST_PORT",
@@ -36,7 +42,7 @@ NPROBE_FIELDS = [
 ]
 
 # acitvating flow exporter for active listening
-NPROBE_CMD = [ "sudo", "nprobe", "-i", "wlan0",
+NPROBE_CMD = [ "sudo", "nprobe", "-i", "wlan1",
         "--zmq", "tcp://*:5556", "--zmq-format", "j",
         "--json-labels", "-t", "10", "-l", "30",
         "-T", " ".join(NPROBE_FIELDS)
@@ -73,29 +79,130 @@ def cleanup(sig=None, frame=None):
     context.term()
     sys.exit(0)
 
-
 # activating cleanup upon CTRL+C press to terminate
 signal.signal(signal.SIGINT, cleanup)
 
 print("(4) Listening for flows \n")
 
-# blocked_ips: set[str] = set()
-# rate_limited_ips: dict[str, float] = {}  # ip -> last_sent timestamp
+
+blocked_ips: set[str] = set()
+rate_limited_ips: dict[str, float] = {} # ip -> last sent timestamp
+
+fire_wall_blocked_ips: set[str] = str()
+firewall_lock = threading.Lock()
+
+
+def run_nft_script(script: str):
+    result = subprocess.run(
+        ["sudo", "nft", "-f", "-"],
+        input=script,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+
+    if result.returncode != 0:
+        print("\n[NFT SCRIPT]")
+        print(script)
+        print("[NFT STDOUT]")
+        print(result.stdout or "(empty)")
+        print("[NFT STDERR]")
+        print(result.stderr or "(empty)")
+        raise RuntimeError("Failed to configure nftables")
+
+    return result
+
+# ip checkup to ensure blocked ips are within hotspot range
+def validate_client_ip(ip: str) -> str:
+    parsed = ipaddress.ip_address(ip)
+    if parsed.version != 4 or parsed not in HOTSPOT_NETWORK:
+       raise ValueError(f"{ip} not inside hotspot network")
+
+   # avoid blocking the Pi's gateaway
+    if parsed == HOTSPOT_NETWORK.network_address + 1:
+       raise ValueError("Pi gateway detected, blocking avoided")
+
+    return str(parsed)
+
+
+def init_firewall():
+   global firewall_blocked_ips
+
+   # delete previous table to avoid ip mismatch
+   subprocess.run([ "sudo", "nft", "delete", "table", "inet", "anoseek"],
+                  capture_output=True, text=True, check=False,)
+
+   # adding firewall rules
+   rules = f''' add table inet anoseek
+                add set inet anoseek blocked_ipv4 {{ type ipv4_addr; }}
+                add chain inet anoseek forward {{ type filter hook forward priority -10; policy accept>
+                add rule inet anoseek forward iifname "{HOTSPOT_INTERFACE}" ip saddr @blocked_ipv4 cou>
+            '''
+   run_nft_script(rules)
+   with firewall_lock:
+        firewall_blocked_ips = set()
+
+   print(f"[FIREWALL] initialized for {HOTSPOT_INTERFACE}")
+
+def firewall_block(ip: str):
+   ip = validate_client_ip(ip)
+   with firewall_lock:
+       if ip in firewall_blocked_ips:
+           return
+   run_nft_script(f"add element inet anoseek blocked_ipv4 {{ {ip} }}")
+   firewall_blocked_ips.add(ip)
+
+   print(f"[FIREWALL] Blocked {ip} on {HOTSPOT_INTERFACE}")
+
+
+def firewall_unblock(ip: str):
+   ip = validate_client_ip(ip)
+   with firewall_lock:
+      if ip not in firewall_blocked_ips:
+           return
+   run_nft_script(f"delete element inet anoseek blocked_ipv4 {{ {ip} }}")
+   firewall_blocked_ips.remove(ip)
+   print("[FIREWALL] Unblocked {ip}")
 
 def sync_enforcement():
     global blocked_ips, rate_limited_ips
     while True:
-        try:
-            r = requests.get(f"http://{BACKEND_HOST}:{BACKEND_PORT}/agent/enforcement", timeout=3)
-            data = r.json()
-            blocked_ips = set(data["blocked_ips"])
-            rate_limited_ips = {ip: rate_limited_ips.get(ip, 0) for ip in data["rate_limited_ips"]}
-        except Exception as e:
-            print("[SYNC ERROR]", e)
-        time.sleep(30)  # sync every 30 seconds
+          try:
+                r = requests.get(f"http://{BACKEND_HOST}:{BACKEND_PORT}/agent/enforcement", timeout=3)
+                data = r.json()
+                desired_blocked_ips = set()
+                rate_limited_ips = {ip: rate_limited_ips.get(ip,0) for ip in data["rate_limited_ips"]}
+                for ip in data.get("blocked_ips", []):
+                    try:
+                       desired_blocked_ips.add(validate_client_ip(ip))
+                    except ValueError as exc:
+                       print(f"[FIREWALL] ignored blocking {exc}")
+
+                with firewall_lock:
+                   currently_applied = firewall_blocked_ips.copy()
+
+                # ensure only unique ips will be blocked - avoid double blocking
+                for ip in desired_blocked_ips - currently_applied:
+                    firewall_block(ip)
+
+                for ip in currently_applied - desired_blocked_ips:
+                    firewall_unblock(ip)
+
+                blocked_ips = desired_blocked_ips
+          except Exception as e:
+                print("[SYNC ERROR]", e)
+
+          time.sleep(1)
+
+# avoid blocking within target function
+init_firewall()
+
+print("[DEBUG] Starting enforcement")
 
 threading.Thread(target=sync_enforcement, daemon=True).start()
 
+print("[DEBUG] Entering nProbe receive loop")
 
 # removing flows that go in between backend-host to pi hardware
 def should_skip_flow(flow):
@@ -115,13 +222,12 @@ def should_skip_flow(flow):
     if BACKEND_HOST in endpoints and 5353 in ports:
        return True # skipping mDNS
     if src_ip in blocked_ips:
-        return True
+       return True
     if src_ip in rate_limited_ips:
-        if time.time() - rate_limited_ips[src_ip] < RATE_LIMIT_INTERVAL:
-            return True
-        # interval elapsed — allow through and update timestamp
-        rate_limited_ips[src_ip] = time.time()
-
+       if time.time() - rate_limited_ips[src_ip] < RATE_LIMIT_INTERVAL:
+          return True
+        # allow rate limited ips if interval isn't reached + update timestamp
+       rate_limited_ips[src_ip] = time.time()
     return False
 
 # json formatting for backend to retrieve flows
@@ -133,16 +239,16 @@ def send_flow(flow):
         result = response.json()
         print("[MODEL]", result)
 
+        # extracting model action from response
         action = result[0].get("action") if isinstance(result, list) else result.get("action")
         if action == "block" and src_ip:
-            blocked_ips.add(src_ip)
+           blocked_ips.add(src_ip)
         elif action == "rate_limit" and src_ip:
-            rate_limited_ips[src_ip] = time.time()
+           rate_limited_ips[src_ip] = time.time()
     except requests.exceptions.RequestException as e:
         print("[BACKEND ERROR]", e)
     except ValueError:
         print("[BACKEND ERROR] Non-JSON response:", response.text)
-
 
 while True:
     try:
@@ -155,24 +261,25 @@ while True:
 
         # payload is decompressed with zlib --> skipping 'hello'/'event' messages
         if not compressed_payload.startswith(b'x\x9c'):
-           print("[SKIP]")
+           #print("[SKIP]")
            continue
         decompressed_bytes = zlib.decompress(compressed_payload)
         json_str = decompressed_bytes.decode('utf-8')
 
         # skipping empty messages
         if not json_str:
-           print("[INFO] Received empty message")
+           #print("[INFO] Received empty message")
+           print("")
         else:
             recv = json.loads(json_str)
             # skipping control / template messages
             if isinstance(recv, dict):
                 if "probe" in recv or "PEN" in recv:
-                    print("[SKIPPED] nProbe control & PEN dict Template")
+                    #print("[SKIPPED] nProbe control & PEN dict Template")
                     continue
                 if "PROTOCOL" in recv:
                     if should_skip_flow(recv): # skipping pi<-->backend traffic [dict]
-                        print("[SKIPPED] backend traffic")
+                        #print("[SKIPPED] backend traffic")
                         continue
                     flow_json = json.dumps(recv)
                     print("[FLOW DATA]", flow_json)
@@ -181,14 +288,13 @@ while True:
                 # extracting numerous flows
                 for flow in recv:
                     if "PROTOCOL" in flow:
-                        if should_skip_flow(flow): # skipping pi<-->backend traffic [kist]
-                            print("[SKIPPED] backend traffic")
+                        if should_skip_flow(flow): # skipping pi<-->backend-pc traffic
+                            #print("[SKIPPED] backend traffic")
                             continue
                         flow_json = json.dumps(flow)
                         print("[FLOW DATA]", flow_json)
                         send_flow(flow)
-                    else:
-                        print("[SKIPPED] PEN template message")
-
+                    #else:
+                        #print("[SKIPPED] PEN template message")
     except Exception as e:
         print("[ERROR]", e)

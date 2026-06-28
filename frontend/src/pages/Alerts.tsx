@@ -325,8 +325,9 @@ function DrillDownPanel({
 
   const events: EventRecord[] = data?.events ?? [];
   const reversed = [...events].reverse();
-  const isManuallyBlocked = data?.manually_blocked ?? false;
-  const isManuallyRateLimited = data?.manually_rate_limited ?? false;
+  // These names match GET /agent/by-ip/{src_ip} from the backend.
+  const isBlocked = data?.blocked ?? false;
+  const isRateLimited = data?.rate_limited ?? false;
 
   const wrapperCls = bare
     ? ""
@@ -349,7 +350,7 @@ function DrillDownPanel({
       </div>
 
       <div className="mb-4 flex gap-2">
-        {isManuallyBlocked ? (
+        {isBlocked ? (
           <button
             onClick={onUnblock}
             disabled={busy}
@@ -366,7 +367,7 @@ function DrillDownPanel({
             Block IP
           </button>
         )}
-        {isManuallyRateLimited ? (
+        {isRateLimited ? (
           <button
             onClick={onUnRateLimit}
             disabled={busy}
@@ -405,12 +406,12 @@ function DrillDownPanel({
         </div>
       )}
 
-      {isManuallyBlocked && (
+      {isBlocked && (
         <div className="mb-3 rounded-lg bg-red-50 px-2 py-1.5 text-xs font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
           On manual blocklist. New flows from this IP will be dropped.
         </div>
       )}
-      {isManuallyRateLimited && (
+      {isRateLimited && (
         <div className="mb-3 rounded-lg bg-amber-50 px-2 py-1.5 text-xs font-medium text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
           On manual rate-limit list. New flows from this IP will be throttled.
         </div>
