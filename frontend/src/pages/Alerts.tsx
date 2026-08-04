@@ -20,6 +20,8 @@ import { badgeForAction } from "../lib/severity";
 import SeverityBadge from "../components/SeverityBadge";
 
 type TabKind = "all" | "flagged" | "blocked";
+type SortKey = "time" | "confidence";
+type SortDir = "asc" | "desc";
 
 export default function Alerts() {
   const location = useLocation();
@@ -27,6 +29,20 @@ export default function Alerts() {
   const [selectedIp, setSelectedIp] = useState<string | null>((location.state as any)?.selectedIp ?? null);
   const [query, setQuery] = useState("");
   const [onlyAnomalies, setOnlyAnomalies] = useState(false);
+  const [sortKey, setSortKey] = useState<SortKey>("time");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+
+  function toggleSort(key: SortKey) {
+    if (sortKey === key) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      // Confidence defaults to ascending — surfaces the least-confident
+      // (most uncertain) predictions first, which is what you'd want to
+      // review first. Time defaults to descending (most recent first).
+      setSortDir(key === "confidence" ? "asc" : "desc");
+    }
+  }
 
   // Re-apply navigation state when navigating to this page while it's already mounted
   useEffect(() => {
@@ -35,13 +51,13 @@ export default function Alerts() {
     if (state?.selectedIp !== undefined) setSelectedIp(state.selectedIp);
   }, [location.state]);
 
-  const { events } = useEvents(tab, 200, 4000);
+  const { events } = useEvents(tab, 200, 2000);
   const allCounts  = useTabCounts();
 
   const sortedEvents = useMemo(() => {
     const reversed = [...events].reverse();
     const q = query.trim().toLowerCase();
-    return reversed.filter((e) => {
+    const filtered = reversed.filter((e) => {
       if (onlyAnomalies && e.severity === 0) return false;
       if (!q) return true;
       const hay = [
@@ -54,7 +70,22 @@ export default function Alerts() {
       ].join(" ").toLowerCase();
       return hay.includes(q);
     });
-  }, [events, query, onlyAnomalies]);
+
+    if (sortKey === "confidence") {
+      const dir = sortDir === "asc" ? 1 : -1;
+      return [...filtered].sort((a, b) => {
+        const av = typeof a.confidence === "number" ? a.confidence : null;
+        const bv = typeof b.confidence === "number" ? b.confidence : null;
+        if (av === null && bv === null) return 0;
+        if (av === null) return 1;  // missing confidence always sorts last
+        if (bv === null) return -1;
+        return (av - bv) * dir;
+      });
+    }
+
+    // "time": `filtered` is already newest-first (reversed above) — flip for ascending
+    return sortDir === "desc" ? filtered : [...filtered].reverse();
+  }, [events, query, onlyAnomalies, sortKey, sortDir]);
 
   // Lock body scroll while drawer is open on narrow screens
   useEffect(() => {
@@ -105,17 +136,19 @@ export default function Alerts() {
             <table className="min-w-full text-left text-sm">
               <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-700/50">
                 <tr>
-                  <th className="px-3 py-2 font-medium">Time</th>
+                  <SortableHeader label="Time" sortKey="time" activeKey={sortKey} dir={sortDir} onClick={toggleSort} />
                   <th className="px-3 py-2 font-medium">Source IP</th>
+                  <th className="px-3 py-2 font-medium">Destination IP</th>
                   <th className="px-3 py-2 font-medium">Severity</th>
                   <th className="px-3 py-2 font-medium">Action</th>
-                  <th className="px-3 py-2 font-medium">Confidence</th>
+                  <SortableHeader label="Confidence" sortKey="confidence" activeKey={sortKey} dir={sortDir} onClick={toggleSort} />
+                  <th className="px-3 py-2 font-medium">Note</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {sortedEvents.length === 0 && (
                   <tr>
-                    <td className="px-3 py-8 text-center text-sm text-slate-500" colSpan={5}>
+                    <td className="px-3 py-8 text-center text-sm text-slate-500" colSpan={7}>
                       No {tab === "all" ? "" : tab + " "}events yet. Upload a CSV in the Modes page.
                     </td>
                   </tr>
@@ -134,6 +167,9 @@ export default function Alerts() {
                       <td className="whitespace-nowrap px-3 py-2 font-mono text-xs text-slate-700 dark:text-slate-300">
                         {e.src_ip ?? "—"}
                       </td>
+                      <td className="whitespace-nowrap px-3 py-2 font-mono text-xs text-slate-700 dark:text-slate-300">
+                        {e.dst_ip ?? "—"}
+                      </td>
                       <td className="px-3 py-2">
                         <SeverityBadge label={e.severity_label} />
                       </td>
@@ -145,6 +181,9 @@ export default function Alerts() {
                       <td className="px-3 py-2 font-mono text-xs text-slate-600 dark:text-slate-400">
                         {typeof e.confidence === "number" ? e.confidence.toFixed(3) : "—"}
                       </td>
+                      <td className="max-w-xs truncate px-3 py-2 text-xs text-slate-600 dark:text-slate-400" title={e.note ?? ""}>
+                        {e.note ?? "—"}
+                      </td>
                     </tr>
                   );
                 })}
@@ -155,8 +194,9 @@ export default function Alerts() {
 
         {/* ───── Drill-down: WIDE — column, NARROW — drawer ───── */}
 
-        {/* On wide screens this column sits next to the table */}
-        <div className="hidden lg:block">
+        {/* On wide screens this column sits next to the table, pinned to the
+            viewport so it's visible even after clicking a row near the bottom */}
+        <div className="hidden lg:block lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
           <DrillDownPanel srcIp={selectedIp} onClose={() => setSelectedIp(null)} />
         </div>
 
@@ -183,6 +223,33 @@ export default function Alerts() {
 
 /* ────────────────────────────────────────────────────────── helpers */
 
+function SortableHeader({
+  label, sortKey, activeKey, dir, onClick,
+}: {
+  label: string;
+  sortKey: SortKey;
+  activeKey: SortKey;
+  dir: SortDir;
+  onClick: (key: SortKey) => void;
+}) {
+  const active = sortKey === activeKey;
+  return (
+    <th className="px-3 py-2 font-medium">
+      <button
+        onClick={() => onClick(sortKey)}
+        className={`inline-flex items-center gap-1 hover:text-slate-900 dark:hover:text-slate-100 ${
+          active ? "text-slate-900 dark:text-slate-100" : ""
+        }`}
+      >
+        {label}
+        <span className="text-[10px] leading-none">
+          {active ? (dir === "asc" ? "▲" : "▼") : ""}
+        </span>
+      </button>
+    </th>
+  );
+}
+
 function Tab({
   label, count, active, onClick,
 }: { label: string; count: number; active: boolean; onClick: () => void }) {
@@ -203,9 +270,9 @@ function Tab({
 }
 
 function useTabCounts() {
-  const all     = useEvents("all", 1000, 5000).events;
-  const flagged = useEvents("flagged", 1000, 5000).events;
-  const blocked = useEvents("blocked", 1000, 5000).events;
+  const all     = useEvents("all", 1000, 2000).events;
+  const flagged = useEvents("flagged", 1000, 2000).events;
+  const blocked = useEvents("blocked", 1000, 2000).events;
   return {
     all: all.length,
     flagged: flagged.length,
@@ -250,7 +317,7 @@ function DrillDownPanel({
     }
 
     tick();
-    const id = setInterval(tick, 4000);
+    const id = setInterval(tick, 2000);
     return () => {
       cancelled = true;
       clearInterval(id);

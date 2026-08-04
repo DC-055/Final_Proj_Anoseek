@@ -6,13 +6,16 @@
  * Bottom: recent transitions timeline
  */
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { badgeForAgentState, labelForAgentState } from "../lib/severity";
+import SeverityBadge from "../components/SeverityBadge";
 
 type StateKey = "idle" | "alerted" | "under_attack";
 
 export default function AgentState() {
   const { snapshot, error } = useAgentState(2000);
+  const navigate = useNavigate();
 
   // Live "time in current state" ticker — updates every second
   const [now, setNow] = useState(Date.now());
@@ -93,12 +96,6 @@ export default function AgentState() {
             }
           />
           <CounterTile
-            label="SOC confirm"
-            value={snapshot.soc_confirm ? "yes" : "no"}
-            hint={snapshot.soc_confirm ? "ready to decay" : "click SOC confirm in topbar"}
-            tone={snapshot.soc_confirm ? "success" : "default"}
-          />
-          <CounterTile
             label="In current state"
             value={formatElapsed(elapsedSeconds)}
             hint={`since ${new Date(snapshot.entered_state_at).toLocaleTimeString()}`}
@@ -121,20 +118,37 @@ export default function AgentState() {
           </div>
         ) : (
           <div className="space-y-2">
-            {[...snapshot.transitions].reverse().map((t, idx) => (
-              <div
-                key={idx}
-                className="flex flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm dark:bg-slate-700/50"
-              >
-                <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
-                  {new Date(t.at).toLocaleTimeString()}
-                </span>
-                <StatePill state={t.from} />
-                <span className="text-slate-400 dark:text-slate-500">→</span>
-                <StatePill state={t.to} />
-                <span className="text-xs text-slate-600 dark:text-slate-300">{t.reason}</span>
-              </div>
-            ))}
+            {[...snapshot.transitions].reverse().map((t, idx) => {
+              const clickable = Boolean(t.src_ip);
+              const Wrapper = clickable ? "button" : "div";
+              return (
+                <Wrapper
+                  key={idx}
+                  onClick={
+                    clickable
+                      ? () => navigate("/alerts", { state: { tab: "all", selectedIp: t.src_ip } })
+                      : undefined
+                  }
+                  className={`flex w-full flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-left text-sm dark:bg-slate-700/50 ${
+                    clickable ? "cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700" : ""
+                  }`}
+                >
+                  <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                    {new Date(t.at).toLocaleTimeString()}
+                  </span>
+                  <StatePill state={t.from} />
+                  <span className="text-slate-400 dark:text-slate-500">→</span>
+                  <StatePill state={t.to} />
+                  <span className="text-xs text-slate-600 dark:text-slate-300">{t.reason}</span>
+                  {t.src_ip && (
+                    <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                      {t.src_ip}
+                    </span>
+                  )}
+                  {t.severity_label && <SeverityBadge label={t.severity_label} />}
+                </Wrapper>
+              );
+            })}
           </div>
         )}
       </div>

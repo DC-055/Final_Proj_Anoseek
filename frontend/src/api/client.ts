@@ -24,6 +24,10 @@ export type AgentSnapshot = {
     to: string;
     reason: string;
     at: string;
+    event_id?: number | null;
+    src_ip?: string | null;
+    dst_ip?: string | null;
+    severity_label?: string | null;
   }>;
 };
 
@@ -243,15 +247,34 @@ export type Policy = {
   Statement: PolicyStatement[];
 };
 
-export async function getPolicy(): Promise<Policy> {
-  return jsonOrThrow(await fetch(`${API_URL}/agent/policy`));
+export type LoginResult = { token: string; username: string; role: "SOC" | "ADMIN" };
+
+export async function login(username: string, password: string): Promise<LoginResult> {
+  return jsonOrThrow(
+    await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    }),
+  );
 }
 
-export async function updatePolicy(policy: Policy): Promise<{ ok: boolean }> {
+export async function getPolicy(token: string): Promise<Policy> {
+  return jsonOrThrow(
+    await fetch(`${API_URL}/agent/policy`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+  );
+}
+
+export async function updatePolicy(policy: Policy, token: string): Promise<{ ok: boolean }> {
   return jsonOrThrow(
     await fetch(`${API_URL}/agent/policy`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(policy),
     }),
   );

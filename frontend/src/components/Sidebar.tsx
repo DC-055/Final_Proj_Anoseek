@@ -23,7 +23,7 @@ const links = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden w-56 shrink-0 border-r border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 md:block">
+    <aside className="hidden w-56 shrink-0 overflow-y-auto border-r border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 md:block">
       {/* Brand */}
       <div className="flex h-14 items-center gap-2 border-b border-slate-200 px-4 dark:border-slate-700">
         <div className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-900 text-sm font-semibold text-white transition-transform duration-200 hover:scale-110 dark:bg-slate-600">

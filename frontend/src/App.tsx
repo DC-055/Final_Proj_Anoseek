@@ -24,11 +24,11 @@ export default function App() {
     <DarkModeProvider>
       <SettingsProvider>
       <ChatProvider>
-        <div className="flex min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+        <div className="flex h-screen overflow-hidden bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
           <Sidebar />
-          <div className="flex flex-1 flex-col">
+          <div className="flex flex-1 flex-col overflow-hidden">
             <Topbar />
-            <main className="flex-1 overflow-x-hidden p-6">
+            <main className="flex-1 overflow-y-auto overflow-x-hidden p-6">
               <Routes>
                 <Route path="/" element={<Navigate to="/overview" replace />} />
                 <Route path="/overview" element={<Overview />} />

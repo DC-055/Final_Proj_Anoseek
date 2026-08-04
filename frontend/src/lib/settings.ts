@@ -3,7 +3,7 @@ const HISTORY_LIMIT_KEY = "anoseek.chatHistoryLimit";
 const STREAM_BUCKET_KEY = "anoseek.streamBucketMs";
 const STREAM_POLL_KEY   = "anoseek.streamPollSeconds";
 
-export const DEFAULT_STREAM_POLL_SECONDS = 5;
+export const DEFAULT_STREAM_POLL_SECONDS = 2;
 export const MIN_STREAM_POLL_SECONDS     = 2;
 export const MAX_STREAM_POLL_SECONDS     = 60;
 

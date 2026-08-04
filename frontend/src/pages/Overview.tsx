@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { useEvents } from "../hooks/useEvents";
 import KpiCard from "../components/KpiCard";
@@ -22,8 +23,9 @@ const BAR_COLORS = [
 ];
 
 export default function Overview() {
-  const { snapshot } = useAgentState(3000);
-  const { events }   = useEvents("all", 200, 4000);
+  const navigate = useNavigate();
+  const { snapshot } = useAgentState(2000);
+  const { events }   = useEvents("all", 200, 2000);
 
   const severityCounts = useMemo(() => {
     const counts = [0, 0, 0, 0, 0];
@@ -62,7 +64,7 @@ export default function Overview() {
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Overview</h1>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            Real-time SOC dashboard · refreshes every 3–4 seconds
+            Real-time SOC dashboard · refreshes every 2 seconds
           </p>
         </div>
         <div className="hidden text-xs text-slate-500 dark:text-slate-400 md:block">
@@ -141,10 +143,19 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* Recent critical events */}
+      {/* 10 Recent critical events */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Recent critical events</h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">10 Recent critical events</h2>
+            <button
+              type="button"
+              onClick={() => navigate("/alerts", { state: { tab: "all" } })}
+              className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+            >
+              More Info and Actions
+            </button>
+          </div>
           <span className="text-xs text-slate-500 dark:text-slate-400">flag / alert / block</span>
         </div>
 

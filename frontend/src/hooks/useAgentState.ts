@@ -5,7 +5,7 @@ import { getAgentState, type AgentSnapshot } from "../api/client";
  * Polls the backend's /agent/state every `intervalMs` and returns the latest snapshot.
  * Used by the topbar (live state pill) and any page that wants live totals.
  */
-export function useAgentState(intervalMs = 3000) {
+export function useAgentState(intervalMs = 2000) {
   const [snapshot, setSnapshot] = useState<AgentSnapshot | null>(null);
   const [error, setError] = useState<string | null>(null);
 

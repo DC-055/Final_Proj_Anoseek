@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import deque
 from pathlib import Path
 from typing import Any
+import math
 import time
 
 import joblib
@@ -32,6 +33,85 @@ def _parse_numeric_value(value: Any) -> Any:
         return sum(float(part) for part in parts)
     except ValueError:
         return value
+
+
+# ---------------------------------------------------------------- flow integrity
+#
+# Tier 1: always required, regardless of protocol. Missing here means the
+# capture itself is broken — there's no honest classification to make, so the
+# caller should block on sight rather than let the model guess on partial data.
+TIER1_REQUIRED_COLUMNS = [
+    "L4_SRC_PORT", "L4_DST_PORT", "PROTOCOL", "L7_PROTO",
+    "IN_BYTES", "IN_PKTS", "OUT_BYTES", "OUT_PKTS",
+    "FLOW_DURATION_MILLISECONDS", "DURATION_IN", "DURATION_OUT",
+    "MIN_TTL", "LONGEST_FLOW_PKT", "SHORTEST_FLOW_PKT",
+    "MIN_IP_PKT_LEN", "MAX_IP_PKT_LEN",
+]
+
+# Tier 2: only required when the flow's own protocol/port says the field
+# should be populated — e.g. TCP_FLAGS is legitimately 0 on a UDP flow, that's
+# not "missing data". Absence is alert-worthy only within its matching group.
+PROTOCOL_TCP  = 6
+PROTOCOL_ICMP = 1
+DNS_PORT      = 53
+
+
+def _to_float(value: Any) -> float | None:
+    try:
+        f = float(value)
+        return None if math.isnan(f) else f
+    except (TypeError, ValueError):
+        return None
+
+
+def _flow_is_tcp(flow: dict) -> bool:
+    return _to_float(flow.get("PROTOCOL")) == PROTOCOL_TCP
+
+
+def _flow_is_icmp(flow: dict) -> bool:
+    return _to_float(flow.get("PROTOCOL")) == PROTOCOL_ICMP
+
+
+def _flow_is_dns(flow: dict) -> bool:
+    return DNS_PORT in (_to_float(flow.get("L4_SRC_PORT")), _to_float(flow.get("L4_DST_PORT")))
+
+
+TIER2_CONDITIONAL_GROUPS = [
+    {"columns": ["TCP_FLAGS", "CLIENT_TCP_FLAGS", "SERVER_TCP_FLAGS"], "applies": _flow_is_tcp,  "label": "TCP flags"},
+    {"columns": ["ICMP_TYPE", "ICMP_IPV4_TYPE"],                       "applies": _flow_is_icmp, "label": "ICMP fields"},
+    {"columns": ["DNS_QUERY_ID", "DNS_QUERY_TYPE"],                    "applies": _flow_is_dns,  "label": "DNS fields"},
+]
+
+
+def _is_missing(value: Any) -> bool:
+    if value is None:
+        return True
+    if isinstance(value, float) and math.isnan(value):
+        return True
+    if isinstance(value, str) and value.strip() == "":
+        return True
+    return False
+
+
+def validate_flow_integrity(flow: dict) -> dict:
+    """
+    Checks one raw flow dict (pre-imputation) for missing critical fields.
+
+    Returns:
+        tier1_missing: list of always-required columns missing from `flow`.
+        tier2_missing: list of {"label", "columns"} for protocol-conditional
+            groups that apply to this flow but have missing columns.
+    """
+    tier1_missing = [c for c in TIER1_REQUIRED_COLUMNS if _is_missing(flow.get(c))]
+
+    tier2_missing = []
+    for group in TIER2_CONDITIONAL_GROUPS:
+        if group["applies"](flow):
+            missing = [c for c in group["columns"] if _is_missing(flow.get(c))]
+            if missing:
+                tier2_missing.append({"label": group["label"], "columns": missing})
+
+    return {"tier1_missing": tier1_missing, "tier2_missing": tier2_missing}
 
 
 class AnoseekInference:
