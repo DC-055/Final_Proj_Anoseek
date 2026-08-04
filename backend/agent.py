@@ -281,7 +281,7 @@ class PolicyAnoseekAgent:
             return labels[severity]
         return "unknown"
 
-    def flag_event(self, event):
+    def  flag_event(self, event):
         flagged_event_id = len(self.flagged_event_history) + 1
         self.flagged_event_history[flagged_event_id] = event
         if event["src_ip"]:
@@ -466,7 +466,7 @@ class PolicyAnoseekAgent:
                     if self.count_events_with_same_ip(event) > 3:
                         event["note"] = "Event flagged, Repeated low-severity activity from this IP"
                         logging.info(event["note"])
-                        return self.flag_event(event)
+                        return self.flag_event(event) 
                     elif self.count_flagged_events_with_same_ip(event) > 2:
                         self.alert_soc(event, severity)
                         self._set_status(AgentMode.ALERTED, "Repeated flags")
@@ -479,9 +479,15 @@ class PolicyAnoseekAgent:
                     return self.pass_event(event)
 
                 elif severity in [3, 4]:
-                    self._set_status(AgentMode.ALERTED, "High-severity event")
-                    logging.info("CRITICAL: High severity event")
-                    return self.block_event(event)
+                    self.benign_sequence = 0
+                    if self.count_flagged_events_with_same_ip(event) == 0: 
+                        self.alert_soc(event, severity) ########## TBD ###################
+                        logging.info("High severity event")
+                        return self.rate_limit_event(event)
+                    else:
+                        self._set_status(AgentMode.ALERTED, "High severity from suspect IP")
+                        logging.info("High severity from already-suspect IP")
+                        return self.block_event(event)
 
             case AgentMode.ALERTED:
                 if severity == 0:
@@ -514,14 +520,14 @@ class PolicyAnoseekAgent:
 
                 elif severity in [3, 4]:
                     self.benign_sequence = 0
-                    if self.count_flagged_events_with_same_ip(event) > 0: 
-                        self._set_status(AgentMode.UNDER_ATTACK, "High severity from suspect IP")
-                        logging.info("High severity from already-suspect IP")
-                        return self.block_event(event)
-                    else:
+                    if self.count_flagged_events_with_same_ip(event) == 0: 
                         self.alert_soc(event, severity) ########## TBD ###################
                         logging.info("High severity event")
                         return self.rate_limit_event(event)
+                    else:
+                        self._set_status(AgentMode.UNDER_ATTACK, "High severity from suspect IP")
+                        logging.info("High severity from already-suspect IP")
+                        return self.block_event(event)
 
             case AgentMode.UNDER_ATTACK:
                 if severity == 0:
@@ -534,6 +540,11 @@ class PolicyAnoseekAgent:
                         event["note"] = "Benign flagged due to UNDER_ATTACK state"
                         logging.info(event["note"])
                         return self.flag_event(event)
+
+                    event["note"] = f"Passed Benign ({self.benign_sequence} in a row)"
+                    logging.info(event["note"])
+                    return self.pass_event(event)
+                
 
                 elif severity in [1, 2, 3, 4]:
                     self.benign_sequence = 0
