@@ -4,7 +4,7 @@ import { Sun, Moon, Bell } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { badgeForAgentState, labelForAgentState } from "../lib/severity";
-import { confirmFromSoc, resetAgent, type AlertRecord } from "../api/client";
+import { confirmFromSoc, resetAgent, getAgentConfig, type AgentConfig, type AlertRecord } from "../api/client";
 import { useChatContext } from "../context/ChatContext";
 import { useDarkModeContext } from "../context/DarkModeContext";
 import { useAlerts } from "../hooks/useAlerts";
@@ -30,10 +30,6 @@ const SEVERITY_TITLE: Record<number, string> = {
 let _id = 0;
 let _confirmId = 0;
 
-// Benign-streak thresholds the backend requires (agent.py) before it will
-// decay out of that state — must stay in sync with agent.py's `> 20` / `> 30`.
-const DECAY_THRESHOLD: Record<string, number> = { alerted: 20, under_attack: 30 };
-
 type ConfirmRequest = {
   id: number;
   status: string;
@@ -42,8 +38,15 @@ type ConfirmRequest = {
 };
 
 export default function Topbar() {
-  const { snapshot, error } = useAgentState(2000);
+  const { snapshot, error } = useAgentState(1000);
+  const [config, setConfig] = useState<AgentConfig | null>(null);
   const [busy, setBusy] = useState(false);
+
+  // Static agent constants — fetched once on mount, not on the polling
+  // cadence of /agent/state, since they never change at runtime.
+  useEffect(() => {
+    getAgentConfig().then(setConfig).catch(() => {});
+  }, []);
   const { clear: clearChat } = useChatContext();
   const { dark, toggle } = useDarkModeContext();
   const navigate = useNavigate();
@@ -105,7 +108,7 @@ export default function Topbar() {
   useEffect(() => {
     const s = snapshot?.status;
     const bs = snapshot?.benign_sequence ?? 0;
-    const threshold = s ? DECAY_THRESHOLD[s] : undefined;
+    const threshold = s && s !== "idle" ? config?.decay_thresholds[s] : undefined;
     const ready = threshold !== undefined && bs > threshold && snapshot?.soc_confirm !== 1;
     if (ready && !prevReadyRef.current && s) pushConfirmRequest(s);
     prevReadyRef.current = ready;

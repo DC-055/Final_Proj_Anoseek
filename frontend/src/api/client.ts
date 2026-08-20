@@ -14,6 +14,7 @@ export type AgentSnapshot = {
   soc_confirm: number;
   last_event_ip: string | null;
   totals: {
+    flows_seen: number;
     events: number;
     flagged: number;
     blocked: number;
@@ -87,6 +88,17 @@ export async function ping() {
 
 export async function getAgentState(): Promise<AgentSnapshot> {
   return jsonOrThrow(await fetch(`${API_URL}/agent/state`));
+}
+
+export type AgentConfig = {
+  decay_thresholds: {
+    alerted: number;
+    under_attack: number;
+  };
+};
+
+export async function getAgentConfig(): Promise<AgentConfig> {
+  return jsonOrThrow(await fetch(`${API_URL}/agent/config`));
 }
 
 export async function getAgentEvents(

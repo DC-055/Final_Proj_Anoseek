@@ -17,7 +17,7 @@ const links = [
   { to: "/agent",     label: "Agent state",    icon: Activity },
   { to: "/live",      label: "Live stream",    icon: Radio },
   { to: "/chat",      label: "Chat",           icon: MessageCircle },
-  { to: "/insights",  label: "Model insights", icon: BarChart3 },
+  { to: "/insights",  label: "System insights", icon: BarChart3 },
   { to: "/settings",  label: "Settings",       icon: SettingsIcon },
 ];
 

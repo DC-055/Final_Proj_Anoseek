@@ -2,20 +2,27 @@
  * AgentState page.
  *
  * Top:    state machine diagram (3 nodes, current state highlighted)
- * Middle: counter tiles (benign streak, SOC confirm, time in state)
+ * Middle: counter tiles (benign score, SOC confirm, time in state)
  * Bottom: recent transitions timeline
  */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { badgeForAgentState, labelForAgentState } from "../lib/severity";
+import { getAgentConfig, type AgentConfig } from "../api/client";
 import SeverityBadge from "../components/SeverityBadge";
 
 type StateKey = "idle" | "alerted" | "under_attack";
 
 export default function AgentState() {
-  const { snapshot, error } = useAgentState(2000);
+  const { snapshot, error } = useAgentState(1000);
   const navigate = useNavigate();
+
+  // Static agent constants (decay thresholds) — fetched once, same source as Topbar.
+  const [config, setConfig] = useState<AgentConfig | null>(null);
+  useEffect(() => {
+    getAgentConfig().then(setConfig).catch(() => {});
+  }, []);
 
   // Live "time in current state" ticker — updates every second
   const [now, setNow] = useState(Date.now());
@@ -85,13 +92,13 @@ export default function AgentState() {
           </div>
 
           <CounterTile
-            label="Benign streak"
+            label="Benign score"
             value={snapshot.benign_sequence}
             hint={
               status === "alerted"
-                ? "need >20 + SOC confirm to decay"
+                ? `need >${config?.decay_thresholds.alerted ?? "?"} + SOC confirm to decay`
                 : status === "under_attack"
-                ? "need >30 + SOC confirm to decay"
+                ? `need >${config?.decay_thresholds.under_attack ?? "?"} + SOC confirm to decay`
                 : "—"
             }
           />

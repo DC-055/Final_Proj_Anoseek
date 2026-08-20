@@ -2,8 +2,7 @@
 One-off helper to (re)create backend/data/system_users.db with hashed
 passwords. Run with: python backend/data/seed_users.py
 
-Edit the USERS list below before running, or import create_user()/init_db()
-from backend.auth directly to add users from a script/shell.
+Edit the USERS list below before running.
 """
 import sys
 from pathlib import Path

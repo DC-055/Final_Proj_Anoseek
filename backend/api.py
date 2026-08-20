@@ -9,6 +9,7 @@ Endpoints:
   GET  /ping                          health check
   POST /login                         username+password -> JWT (role: SOC|ADMIN)
   POST /predict-csv                   run inference + agent on uploaded CSV
+  GET  /agent/config                  static agent constants (decay thresholds, etc.)
   GET  /agent/state                   current agent snapshot
   GET  /agent/events?kind=...&limit   event histories
   GET  /agent/by-ip/{src_ip}          per-IP drill-down
@@ -30,7 +31,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 
 import auth
-from agent import PolicyAnoseekAgent
+from agent import PolicyAnoseekAgent, ALERTED_BENIGNS, UNDER_ATTACK_BENIGNS
 from inference import AnoseekInference
 from threat_intel import ipsun_l3_import
 from pipeline import ingest_live_flow
@@ -229,6 +230,17 @@ async def predict(
 
 
 # ---------------------------------------------------------------- agent
+
+@app.get("/agent/config")
+def agent_config():
+    """Static agent constants — fetch once, not on the polling cadence of /agent/state."""
+    return {
+        "decay_thresholds": {
+            "alerted": ALERTED_BENIGNS,
+            "under_attack": UNDER_ATTACK_BENIGNS,
+        },
+    }
+
 
 @app.get("/agent/state")
 def agent_state():

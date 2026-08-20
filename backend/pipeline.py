@@ -24,6 +24,7 @@ def ingest_live_flow(
     Once the buffer is full, returns the inference result merged with the agent decision.
     """
     if agent is not None:
+        agent.record_flow_seen()
         integrity = validate_flow_integrity(flow)
         if integrity["tier1_missing"]:
             # Skip inference entirely — an incomplete flow doesn't even enter
