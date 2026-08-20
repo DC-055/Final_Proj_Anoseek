@@ -306,7 +306,7 @@ def metrics():
 
 def _export_agent_events(limit: int) -> None:
     """Snapshot the last `limit` agent events to ips_agent_events.json."""
-    events = AGENT.list_events(kind="all", limit=min(limit, 30))
+    events = AGENT.list_events(kind="all", limit=min(limit, 100))
     Path("../ips_agent_events.json").write_text(
         _json.dumps(events, indent=2, ensure_ascii=False), encoding="utf-8"
     )

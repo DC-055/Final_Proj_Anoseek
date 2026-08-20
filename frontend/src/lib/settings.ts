@@ -49,7 +49,7 @@ export function setStreamBucketMs(value: number): number {
 
 export const DEFAULT_HISTORY_LIMIT = 30;
 export const MIN_HISTORY_LIMIT = 1;
-export const MAX_HISTORY_LIMIT = 30;
+export const MAX_HISTORY_LIMIT = 100;
 
 export function getHistoryLimit(): number {
   const raw = window.localStorage.getItem(HISTORY_LIMIT_KEY);
