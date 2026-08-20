@@ -224,14 +224,14 @@ class PolicyAnoseekAgent:
                 event = self.event_history.get(event_id)
                 if event is None:
                     continue
-                self.flagged_event_history.pop(event_id, None)      # <-- NEW: line 1, top of loop body
+                self.flagged_event_history.pop(event_id, None)      
                 event["action"] = "rate_limit"
                 event["note"] = "Manual SOC rate limit"
                 self.rate_limited_event_history[event_id] = event
                 self.rate_limited_by_ip[src_ip].append(event_id)
-            self.flagged_by_ip[src_ip] = [                            # <-- NEW: line 2, after the loop,
-                i for i in self.flagged_by_ip.get(src_ip, [])          #     still inside `with self._lock:`,
-                if i not in self.events_by_ip.get(src_ip, [])          #     same indent as the `for` line
+            self.flagged_by_ip[src_ip] = [                            
+                i for i in self.flagged_by_ip.get(src_ip, [])
+                if i not in self.events_by_ip.get(src_ip, [])          
             ]
         logging.info("Manually rate limited IP %s", src_ip)
         return {"ok": True, "src_ip": src_ip, "action": "rate_limit"}
@@ -261,12 +261,12 @@ class PolicyAnoseekAgent:
                 event = self.event_history.get(event_id)
                 if event is None:
                     continue
-                self.flagged_event_history.pop(event_id, None)      # <-- NEW
+                self.flagged_event_history.pop(event_id, None)      
                 event["action"] = "block"
                 event["note"] = "Manual SOC block"
                 self.blocked_event_history[event_id] = event
                 self.blocked_by_ip[src_ip].append(event_id)
-            self.flagged_by_ip[src_ip] = [                            # <-- NEW
+            self.flagged_by_ip[src_ip] = [                            
                 i for i in self.flagged_by_ip.get(src_ip, [])
                 if i not in self.events_by_ip.get(src_ip, [])
             ]
