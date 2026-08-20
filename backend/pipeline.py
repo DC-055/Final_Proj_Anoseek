@@ -10,7 +10,7 @@ from __future__ import annotations
 import pandas as pd
 
 from agent import PolicyAnoseekAgent
-from inference import AnoseekInference, validate_flow_integrity
+from inference import AnoseekInference
 
 
 def ingest_live_flow(
@@ -25,13 +25,13 @@ def ingest_live_flow(
     """
     if agent is not None:
         agent.record_flow_seen()
-        integrity = validate_flow_integrity(flow)
-        if integrity["tier1_missing"]:
-            # Skip inference entirely — an incomplete flow doesn't even enter
-            # the sequence buffer, it's blocked on sight.
-            return agent.force_block_missing_data(flow, integrity["tier1_missing"])
-        if integrity["tier2_missing"]:
-            agent.flag_data_quality(flow, integrity["tier2_missing"])
+        # integrity = validate_flow_integrity(flow)
+        # if integrity["tier1_missing"]:
+        #     # Skip inference entirely — an incomplete flow doesn't even enter
+        #     # the sequence buffer, it's blocked on sight.
+        #     return agent.force_block_missing_data(flow, integrity["tier1_missing"])
+        # if integrity["tier2_missing"]:
+        #     agent.flag_data_quality(flow, integrity["tier2_missing"])
 
     result = inference.ingest_live_flow(flow)
     if result is None:

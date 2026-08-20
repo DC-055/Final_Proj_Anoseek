@@ -1,6 +1,7 @@
 from enum import Enum
 from datetime import datetime
 from collections import defaultdict, deque
+import ipaddress
 import math
 from threading import Lock
 import logging
@@ -25,6 +26,7 @@ class AgentMode(Enum):
 LOW_CONFIDENCE_THRESHOLD = 0.96
 ALERTED_BENIGNS = 4
 UNDER_ATTACK_BENIGNS = 5
+INNER_NETWORK = ipaddress.ip_network("10.42.0.0/24")
 
 class PolicyAnoseekAgent:
     def __init__(self, policy: dict, ipsum):
@@ -506,13 +508,20 @@ class PolicyAnoseekAgent:
 
     def block_event(self, event, severity):
         if self._policy_allows(event["agent_state"], "block") or self.soc_confirm == 1:
-            blocked_event_id = len(self.blocked_event_history) + 1
-            self.blocked_event_history[blocked_event_id] = event
-            self.blocked_by_ip[event["src_ip"]].append(blocked_event_id)
-            event["note"] = "block, IP blocked by policy"
-            event["action"] = "block"
-            self._alert_enforcement_action(event, "block")
-            return self.block_ip(event)
+            src_ip = ipaddress.ip_address(event["src_ip"])
+            logging.info("SRC IP %s\n", src_ip)
+            if src_ip in INNER_NETWORK:
+                blocked_event_id = len(self.blocked_event_history) + 1
+                self.blocked_event_history[blocked_event_id] = event
+                self.blocked_by_ip[event["src_ip"]].append(blocked_event_id)
+                event["note"] = "block, IP blocked by policy"
+                event["action"] = "block"
+                self._alert_enforcement_action(event, "block")
+                return self.block_ip(event)
+            # else:
+            #     event["note"] = "block requested, but source IP is outside managed hotspot network"
+            #     event["action"] = "no_action"
+            #     return event
 
         event["note"] = "block action is restricted by policy and SOC"
         return self.flag_event(event, severity)

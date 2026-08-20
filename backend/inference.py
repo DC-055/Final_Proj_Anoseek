@@ -104,17 +104,18 @@ def validate_flow_integrity(flow: dict) -> dict:
     """
     tier1_missing = [c for c in TIER1_REQUIRED_COLUMNS if _is_missing(flow.get(c))]
 
-    tier2_missing = []
-    for group in TIER2_CONDITIONAL_GROUPS:
-        if group["applies"](flow):
-            missing = [c for c in group["columns"] if _is_missing(flow.get(c))]
-            if missing:
-                tier2_missing.append({"label": group["label"], "columns": missing})
+    # tier2_missing = []
+    # for group in TIER2_CONDITIONAL_GROUPS:
+    #     if group["applies"](flow):
+    #         missing = [c for c in group["columns"] if _is_missing(flow.get(c))]
+    #         if missing:
+    #             tier2_missing.append({"label": group["label"], "columns": missing})
 
-    return {"tier1_missing": tier1_missing, "tier2_missing": tier2_missing}
+    # return {"tier1_missing": tier1_missing, "tier2_missing": tier2_missing}
 
 
 class AnoseekInference:
+
     def __init__(
         self,
         bundle_path: str | Path = "artifacts/bundle.joblib",
