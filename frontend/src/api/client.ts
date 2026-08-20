@@ -17,7 +17,9 @@ export type AgentSnapshot = {
     flows_seen: number;
     events: number;
     flagged: number;
+    rate_limited: number;
     blocked: number;
+    rate_limited_ips: number;
     blocked_ips: number;
   };
   transitions: Array<{
@@ -102,7 +104,7 @@ export async function getAgentConfig(): Promise<AgentConfig> {
 }
 
 export async function getAgentEvents(
-  kind: "all" | "flagged" | "blocked" = "all",
+  kind: "all" | "flagged" | "rate_limited" | "blocked" = "all",
   limit = 200,
 ): Promise<EventRecord[]> {
   return jsonOrThrow(

@@ -253,7 +253,7 @@ def agent_state():
 def agent_events(kind: str = "all", limit: int = 200):
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
-    if kind not in ("all", "flagged", "blocked"):
+    if kind not in ("all", "flagged", "rate_limited", "blocked"):
         raise HTTPException(400, "kind must be all|flagged|blocked")
     return AGENT.list_events(kind=kind, limit=limit)
 

@@ -6,7 +6,7 @@ import { getAgentEvents, type EventRecord } from "../api/client";
  * Used by the Overview "Recent events" table and (later) the Alerts page.
  */
 export function useEvents(
-  kind: "all" | "flagged" | "blocked" = "all",
+  kind: "all" | "flagged" | "rate_limited" | "blocked" = "all",
   limit = 100,
   intervalMs = 2000,
 ) {
