@@ -2,17 +2,27 @@
  * AgentState page.
  *
  * Top:    state machine diagram (3 nodes, current state highlighted)
- * Middle: counter tiles (benign streak, SOC confirm, time in state)
+ * Middle: counter tiles (benign score, SOC confirm, time in state)
  * Bottom: recent transitions timeline
  */
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { badgeForAgentState, labelForAgentState } from "../lib/severity";
+import { getAgentConfig, type AgentConfig } from "../api/client";
+import SeverityBadge from "../components/SeverityBadge";
 
 type StateKey = "idle" | "alerted" | "under_attack";
 
 export default function AgentState() {
-  const { snapshot, error } = useAgentState(2000);
+  const { snapshot, error } = useAgentState(1000);
+  const navigate = useNavigate();
+
+  // Static agent constants (decay thresholds) — fetched once, same source as Topbar.
+  const [config, setConfig] = useState<AgentConfig | null>(null);
+  useEffect(() => {
+    getAgentConfig().then(setConfig).catch(() => {});
+  }, []);
 
   // Live "time in current state" ticker — updates every second
   const [now, setNow] = useState(Date.now());
@@ -82,21 +92,15 @@ export default function AgentState() {
           </div>
 
           <CounterTile
-            label="Benign streak"
+            label="Benign score"
             value={snapshot.benign_sequence}
             hint={
               status === "alerted"
-                ? "need >20 + SOC confirm to decay"
+                ? `need >${config?.decay_thresholds.alerted ?? "?"} + SOC confirm to decay`
                 : status === "under_attack"
-                ? "need >30 + SOC confirm to decay"
+                ? `need >${config?.decay_thresholds.under_attack ?? "?"} + SOC confirm to decay`
                 : "—"
             }
-          />
-          <CounterTile
-            label="SOC confirm"
-            value={snapshot.soc_confirm ? "yes" : "no"}
-            hint={snapshot.soc_confirm ? "ready to decay" : "click SOC confirm in topbar"}
-            tone={snapshot.soc_confirm ? "success" : "default"}
           />
           <CounterTile
             label="In current state"
@@ -121,20 +125,37 @@ export default function AgentState() {
           </div>
         ) : (
           <div className="space-y-2">
-            {[...snapshot.transitions].reverse().map((t, idx) => (
-              <div
-                key={idx}
-                className="flex flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm dark:bg-slate-700/50"
-              >
-                <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
-                  {new Date(t.at).toLocaleTimeString()}
-                </span>
-                <StatePill state={t.from} />
-                <span className="text-slate-400 dark:text-slate-500">→</span>
-                <StatePill state={t.to} />
-                <span className="text-xs text-slate-600 dark:text-slate-300">{t.reason}</span>
-              </div>
-            ))}
+            {[...snapshot.transitions].reverse().map((t, idx) => {
+              const clickable = Boolean(t.src_ip);
+              const Wrapper = clickable ? "button" : "div";
+              return (
+                <Wrapper
+                  key={idx}
+                  onClick={
+                    clickable
+                      ? () => navigate("/alerts", { state: { tab: "all", selectedIp: t.src_ip } })
+                      : undefined
+                  }
+                  className={`flex w-full flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-left text-sm dark:bg-slate-700/50 ${
+                    clickable ? "cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700" : ""
+                  }`}
+                >
+                  <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                    {new Date(t.at).toLocaleTimeString()}
+                  </span>
+                  <StatePill state={t.from} />
+                  <span className="text-slate-400 dark:text-slate-500">→</span>
+                  <StatePill state={t.to} />
+                  <span className="text-xs text-slate-600 dark:text-slate-300">{t.reason}</span>
+                  {t.src_ip && (
+                    <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                      {t.src_ip}
+                    </span>
+                  )}
+                  {t.severity_label && <SeverityBadge label={t.severity_label} />}
+                </Wrapper>
+              );
+            })}
           </div>
         )}
       </div>

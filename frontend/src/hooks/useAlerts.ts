@@ -3,7 +3,7 @@ import { getAlerts, type AlertRecord } from "../api/client";
 
 export function useAlerts(
   onAlert: (alert: AlertRecord) => void,
-  intervalMs = 3000,
+  intervalMs = 2000,
 ) {
   const cursorRef = useRef<number>(0);
   const onAlertRef = useRef(onAlert);

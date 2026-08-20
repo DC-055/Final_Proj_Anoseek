@@ -7,7 +7,9 @@ On startup, loads:
 
 Endpoints:
   GET  /ping                          health check
+  POST /login                         username+password -> JWT (role: SOC|ADMIN)
   POST /predict-csv                   run inference + agent on uploaded CSV
+  GET  /agent/config                  static agent constants (decay thresholds, etc.)
   GET  /agent/state                   current agent snapshot
   GET  /agent/events?kind=...&limit   event histories
   GET  /agent/by-ip/{src_ip}          per-IP drill-down
@@ -19,15 +21,17 @@ from __future__ import annotations
 
 import io
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
 import inference
-from fastapi import FastAPI, File, HTTPException, UploadFile, Query, Body
+from fastapi import Depends, FastAPI, File, HTTPException, UploadFile, Query, Body
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 
-from agent import PolicyAnoseekAgent
+import auth
+from agent import PolicyAnoseekAgent, ALERTED_BENIGNS, UNDER_ATTACK_BENIGNS
 from inference import AnoseekInference
 from threat_intel import ipsun_l3_import
 from pipeline import ingest_live_flow
@@ -35,9 +39,32 @@ from chat import ask as chat_ask
 from asyncio import sleep
 import json as _json
 
+
+def json_safe(obj):
+    """Recursively replace non-finite floats (NaN/Infinity) with None.
+
+    JSON has no representation for them: Starlette's encoder raises on NaN,
+    and plain json.dumps would emit the non-standard `NaN` token that
+    JSON.parse on the frontend can't read either. A NaN prediction shouldn't
+    take a whole endpoint down, so we degrade it to null instead.
+    """
+    if isinstance(obj, float):
+        return obj if math.isfinite(obj) else None
+    if isinstance(obj, dict):
+        return {k: json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [json_safe(v) for v in obj]
+    return obj
+
+
+class SafeJSONResponse(JSONResponse):
+    def render(self, content) -> bytes:
+        return super().render(json_safe(content))
+
+
 ARTIFACTS = Path("artifacts")
 
-app = FastAPI(title="Anoseek API")
+app = FastAPI(title="Anoseek API", default_response_class=SafeJSONResponse)
 
 # Incremented on every reset; each predict-csv task captures its value at start
 # and checks it on every row — mismatch means reset was called, stop the loop.
@@ -59,6 +86,7 @@ AGENT:     PolicyAnoseekAgent | None = None
 @app.on_event("startup")
 def load_artifacts():
     global INFERENCE, AGENT
+    auth.init_db()
     print("[startup] loading inference artifacts...")
     INFERENCE = AnoseekInference(
         bundle_path=ARTIFACTS / "bundle.joblib",
@@ -96,6 +124,22 @@ def load_artifacts():
 @app.get("/ping")
 def ping():
     return {"ok": True}
+
+
+# ---------------------------------------------------------------- auth
+
+@app.post("/login")
+def login(payload: dict = Body(...)):
+    username = (payload.get("username") or "").strip()
+    password = payload.get("password") or ""
+    if not username or not password:
+        raise HTTPException(400, "username and password required")
+
+    role = auth.authenticate(username, password)
+    if role is None:
+        raise HTTPException(401, "Invalid username or password")
+
+    return {"token": auth.create_token(username, role), "username": username, "role": role}
 
 
 # ---------------------------------------------------------------- prediction
@@ -137,7 +181,7 @@ async def predict_csv(
                 print(f"[predict-csv] row error: {e}")
 
             if result is not None:
-                yield f"data: {json.dumps(result)}\n\n"
+                yield f"data: {json.dumps(json_safe(result))}\n\n"
 
             if delay_seconds:
                 raw_ms = float(row.get("FLOW_DURATION_MILLISECONDS") or 0)
@@ -153,7 +197,8 @@ async def predict_csv(
             try:
                 decision = AGENT.analyze_and_act(flow_result)
                 if decision.get("ok"):
-                    yield f"data: {json.dumps({**flow_result, 'action': decision.get('action'), 'agent_state': decision.get('agent_state'), 'event_id': decision.get('event_id'), 'note': decision.get('note')})}\n\n"
+                    payload = {**flow_result, 'action': decision.get('action'), 'agent_state': decision.get('agent_state'), 'event_id': decision.get('event_id'), 'note': decision.get('note')}
+                    yield f"data: {json.dumps(json_safe(payload))}\n\n"
             except Exception as e:
                 print(f"[predict-csv] flush error for {flow_result.get('src_ip')}: {e}")
 
@@ -185,6 +230,17 @@ async def predict(
 
 
 # ---------------------------------------------------------------- agent
+
+@app.get("/agent/config")
+def agent_config():
+    """Static agent constants — fetch once, not on the polling cadence of /agent/state."""
+    return {
+        "decay_thresholds": {
+            "alerted": ALERTED_BENIGNS,
+            "under_attack": UNDER_ATTACK_BENIGNS,
+        },
+    }
+
 
 @app.get("/agent/state")
 def agent_state():
@@ -267,14 +323,14 @@ def agent_unrate_limit_ip(src_ip: str):
 
 
 @app.get("/agent/policy")
-def get_policy():
+def get_policy(_admin: dict = Depends(auth.require_admin)):
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
     return AGENT.policy
 
 
 @app.post("/agent/policy")
-def update_policy(payload: dict):
+def update_policy(payload: dict, _admin: dict = Depends(auth.require_admin)):
     if AGENT is None:
         raise HTTPException(503, "Service not ready")
     if "Statement" not in payload or not isinstance(payload["Statement"], list):

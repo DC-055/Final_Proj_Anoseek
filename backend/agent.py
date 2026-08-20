@@ -1,10 +1,11 @@
 from enum import Enum
 from datetime import datetime
 from collections import defaultdict, deque
+import math
 from threading import Lock
 import logging
 
-logging.basicConfig(filename="policy_agent.log", filemode='a', level=logging.INFO)
+logging.basicConfig(filename="policy_agent.log", filemode='w', level=logging.INFO)
 
 """
 "class_names": ["Benign", 
@@ -21,6 +22,10 @@ class AgentMode(Enum):
     IDLE = "idle"
 
 
+LOW_CONFIDENCE_THRESHOLD = 0.96
+ALERTED_BENIGNS = 4
+UNDER_ATTACK_BENIGNS = 5
+
 class PolicyAnoseekAgent:
     def __init__(self, policy: dict, ipsum):
         # Primary stores: event_id -> event dict
@@ -31,6 +36,11 @@ class PolicyAnoseekAgent:
 
         # Per-IP indexes — list of event_ids per src_ip, for O(1) counts
         self.events_by_ip: dict[str, list[int]] = defaultdict(list)
+        self.sev_0_events: dict[str, int] = defaultdict(int)
+        self.sev_1_2_events: dict[str, int] = defaultdict(int) 
+        self.sev_3_4_events: dict[str, int] = defaultdict(int)
+        self.sev_flagged_1_2_events: dict[str, int] = defaultdict(int) 
+        self.sev_flagged_3_4_events: dict[str, int] = defaultdict(int)
         self.flagged_by_ip: dict[str, list[int]] = defaultdict(list)
         self.blocked_by_ip: dict[str, list[int]] = defaultdict(list)
         self.rate_limited_by_ip: dict[str, list[int]] = defaultdict(list)
@@ -47,6 +57,11 @@ class PolicyAnoseekAgent:
         self.entered_state_at: str = datetime.now().isoformat()
         self.benign_sequence: int = 0
         self.soc_confirm: int = 0
+
+        # Every raw flow handed to the pipeline, regardless of whether the
+        # per-IP sequence buffer emitted a classification for it yet — unlike
+        # event_history, this isn't reduced by SEQ_LENGTH buffering.
+        self.flows_seen: int = 0
 
         self.valid_severities = [0, 1, 2, 3, 4]
         self.alerts = {
@@ -72,7 +87,15 @@ class PolicyAnoseekAgent:
 
     # === public API
     def analyze_and_act(self, flow_result):
-        severity = flow_result["predicted_class"]
+        predicted_severity = flow_result["predicted_class"]
+        confidence = flow_result.get("confidence")
+
+        # A prediction the model itself isn't confident about isn't trusted
+        # enough to act on — treat it as benign rather than risk a block/alert
+        # on a shaky call. The original prediction is still surfaced via the
+        # low-confidence alert below, for SOC visibility.
+        low_confidence = isinstance(confidence, (int, float)) and confidence < LOW_CONFIDENCE_THRESHOLD
+        severity = 0 if low_confidence else predicted_severity
 
         # Pre-check: drop flows from blocked IPs without state-machine processing
         src_ip = flow_result.get("src_ip")
@@ -87,16 +110,26 @@ class PolicyAnoseekAgent:
             "dst_ip": flow_result.get("dst_ip"),
             "severity": severity,
             "severity_label": self._label(severity),
-            "confidence": flow_result.get("confidence"),
+            "confidence": confidence,
             "agent_state": self.status.value,
             "note":"",
             "action":"",
             }
         self.event_history[event_id] = event
         if event["src_ip"]:
-            self.events_by_ip[event["src_ip"]].append(event_id)
-            if severity > 0:
-                self.last_event_ip = event["src_ip"]
+            self.events_by_ip[event["src_ip"]].append(severity)
+            if severity == 0:
+                self.sev_0_events[event["src_ip"]] += 1
+            elif severity == 1 or severity == 2:
+                self.sev_1_2_events[event["src_ip"]] += 1
+            elif severity == 3 or severity == 4:
+                self.sev_3_4_events[event["src_ip"]] += 1
+
+            self.last_event_ip = event["src_ip"]
+
+
+        if low_confidence:
+            self.flag_low_confidence(event, predicted_severity)
 
         if severity not in self.valid_severities:
             return {
@@ -117,12 +150,20 @@ class PolicyAnoseekAgent:
             event["action"] = "rate_limit"
             return self.rate_limit_ip(event)
 
-        if src_ip and src_ip in self.blocked_by_ip:
-            event["note"] = "Source IP in model blocked IPs list"
-            event["action"] = "block"
-            return self.block_ip(event)
+        # TODO:
+        #if src_ip and src_ip in self.blocked_by_ip:
+        #     event["note"] = "Source IP in model blocked IPs list"
+        #     event["action"] = "block"
+        #     return self.block_ip(event)
 
         event = self.execute_action(event, severity)
+
+        # Every suspicious (non-benign) flow gets a SOC-visible alert, unless the
+        # agent already took an automated block/rate_limit on it — that action's
+        # own "Automated ..." alert (see _alert_enforcement_action) is enough,
+        # a second generic warning on top of it would just be noise.
+        if severity > 0 and event.get("action") not in ("block", "rate_limit"):
+            self.alert_soc(event, severity)
 
         # Write action/note back to the stored record (execute_action returns a new dict)
         stored = self.event_history.get(event_id)
@@ -143,6 +184,12 @@ class PolicyAnoseekAgent:
             "agent_state": self.status.value,
         }
 
+    def record_flow_seen(self) -> None:
+        """Called once per raw flow handed to the pipeline, before any buffering
+        or classification — keeps flows_seen equal to the actual input volume."""
+        with self._lock:
+            self.flows_seen += 1
+
     def confirm_from_soc(self, confirmed: bool = True) -> dict:
         """
         Called by the API when SOC clicks Confirm (confirmed=True) or Deny (confirmed=False).
@@ -150,6 +197,11 @@ class PolicyAnoseekAgent:
         soc_confirm=-1 (denied) keeps the agent restricted until the flag is reset.
         """
         self.soc_confirm = 1 if confirmed else -1
+        if not confirmed:
+            # SOC looked at the streak and rejected it — the traffic that built
+            # it up wasn't actually clean, so it shouldn't get credit toward a
+            # future decay either. Start the streak over.
+            self.benign_sequence = 0
         logging.info("SOC %s (soc_confirm=%d)", "confirmed" if confirmed else "denied", self.soc_confirm)
         return {
             "ok": True,
@@ -159,8 +211,9 @@ class PolicyAnoseekAgent:
         }
 
     def rate_limit_ip_manual(self, src_ip: str) -> dict:
-        """Add an IP to the rate limit list. SOC button."""
+        """Add an IP to the rate limit list. SOC button. Mutually exclusive with block."""
         with self._lock:
+            self.blocked_by_ip.pop(src_ip, None)
             event_id = self._next_event_id
             self._next_event_id += 1
             synthetic = {
@@ -189,8 +242,9 @@ class PolicyAnoseekAgent:
         return {"ok": True, "src_ip": src_ip, "action": "pass"}
 
     def block_ip_manual(self, src_ip: str) -> dict:
-        """Add an IP to the blocklist. SOC button."""
+        """Add an IP to the blocklist. SOC button. Mutually exclusive with rate limit."""
         with self._lock:
+            self.rate_limited_by_ip.pop(src_ip, None)
             event_id = self._next_event_id
             self._next_event_id += 1
             synthetic = {
@@ -219,6 +273,118 @@ class PolicyAnoseekAgent:
         return {"ok": True, "src_ip": src_ip, "action": "pass"}
         
 
+    def force_block_missing_data(self, flow: dict, missing_columns: list[str]) -> dict:
+        """
+        Unconditionally blocks the source IP when a flow is missing always-required
+        fields. Bypasses policy Allowed rules and SOC confirmation entirely: an
+        incomplete capture can hide a real attack from the model, so it isn't
+        given the benefit of a "benign" guess while we wait for policy/SOC.
+        """
+        src_ip = flow.get("IPV4_SRC_ADDR") or flow.get("src_ip")
+        dst_ip = flow.get("IPV4_DST_ADDR") or flow.get("dst_ip")
+        note = f"Missing critical fields: {', '.join(missing_columns)}"
+
+        with self._lock:
+            event_id = self._next_event_id
+            self._next_event_id += 1
+            event = {
+                "event_id": event_id,
+                "timestamp": datetime.now().isoformat(),
+                "flow_id": flow.get("flow_id"),
+                "src_ip": src_ip,
+                "dst_ip": dst_ip,
+                "severity": None,
+                "severity_label": "Data integrity failure",
+                "confidence": None,
+                "agent_state": self.status.value,
+                "note": note,
+                "action": "block",
+            }
+            self.event_history[event_id] = event
+            if src_ip:
+                self.events_by_ip[src_ip].append(event_id)
+                self.last_event_ip = src_ip
+
+            blocked_event_id = len(self.blocked_event_history) + 1
+            self.blocked_event_history[blocked_event_id] = event
+            if src_ip:
+                self.blocked_by_ip[src_ip].append(blocked_event_id)
+
+            self._alert_queue.append({
+                "alert_id": len(self._alert_queue),
+                "event_id": event_id,
+                "src_ip": src_ip,
+                "dst_ip": dst_ip,
+                "severity": None,
+                "severity_label": "Data integrity failure",
+                "text": f"Flow blocked: {note}. Incomplete captures can mask a real "
+                        "attack, so this bypassed policy/SOC confirmation.",
+                "timestamp": event["timestamp"],
+            })
+
+        logging.info("Force-blocked IP %s — %s", src_ip, note)
+        return {
+            "ok": True,
+            "event_id": event_id,
+            "src_ip": src_ip,
+            "dst_ip": dst_ip,
+            "severity": None,
+            "severity_label": "Data integrity failure",
+            "action": "block",
+            "note": note,
+            "agent_state": self.status.value,
+            "confidence": None,
+        }
+
+    def flag_data_quality(self, flow: dict, tier2_issues: list[dict]) -> None:
+        """
+        Raises a SOC-visible alert for protocol-relevant fields missing from a
+        flow. Visibility only — doesn't block or otherwise change how the flow
+        is handled; classification still proceeds normally.
+        """
+        src_ip = flow.get("IPV4_SRC_ADDR") or flow.get("src_ip")
+        dst_ip = flow.get("IPV4_DST_ADDR") or flow.get("dst_ip")
+        labels = ", ".join(f"{g['label']} ({', '.join(g['columns'])})" for g in tier2_issues)
+        text = f"Flow missing protocol-relevant fields: {labels}."
+
+        with self._lock:
+            self._alert_queue.append({
+                "alert_id": len(self._alert_queue),
+                "event_id": None,
+                "src_ip": src_ip,
+                "dst_ip": dst_ip,
+                "severity": None,
+                "severity_label": "Data quality",
+                "text": text,
+                "timestamp": datetime.now().isoformat(),
+            })
+
+        logging.info("Data-quality alert for %s: %s", src_ip, labels)
+
+    def flag_low_confidence(self, event: dict, predicted_severity: int) -> None:
+        """
+        Raises a SOC-visible alert when a flow's confidence falls below
+        LOW_CONFIDENCE_THRESHOLD. The caller has already downgraded the
+        event's effective severity to Benign in this case — this alert is
+        how SOC still gets visibility into what the model originally predicted.
+        """
+        conf = event.get("confidence")
+        with self._lock:
+            self._alert_queue.append({
+                "alert_id": len(self._alert_queue),
+                "event_id": event.get("event_id"),
+                "src_ip": event.get("src_ip"),
+                "dst_ip": event.get("dst_ip"),
+                "severity": event.get("severity"),
+                "severity_label": event.get("severity_label"),
+                "text": f"Low-confidence prediction ({conf:.3f}) — model predicted "
+                        f"{self._label(predicted_severity)} but confidence was too low; treated as Benign.",
+                "timestamp": event.get("timestamp", datetime.now().isoformat()),
+            })
+
+        logging.info("Low-confidence override: event=%s predicted=%s confidence=%.3f -> treated as Benign",
+                     event.get("event_id"), predicted_severity, conf)
+
     def reset(self) -> dict:
         """Demo helper — wipe history and return to IDLE."""
         with self._lock:
@@ -236,6 +402,7 @@ class PolicyAnoseekAgent:
                 "soc_confirm": self.soc_confirm,
                 "last_event_ip": self.last_event_ip,
                 "totals": {
+                    "flows_seen": self.flows_seen,
                     "events": len(self.event_history),
                     "flagged": len(self.flagged_event_history),
                     "blocked": len(self.blocked_event_history),
@@ -281,13 +448,19 @@ class PolicyAnoseekAgent:
             return labels[severity]
         return "unknown"
 
-    def flag_event(self, event):
+    def flag_event(self, event, severity):
+        if severity == 1 or severity == 2:
+            # defaultdict(int) already returns 0 for a missing key, thus there is no condition.
+            self.sev_flagged_1_2_events[event["src_ip"]] += 1
+        elif severity == 3 or severity == 4:
+            self.sev_flagged_3_4_events[event["src_ip"]] += 1
+
         flagged_event_id = len(self.flagged_event_history) + 1
         self.flagged_event_history[flagged_event_id] = event
-        if event["src_ip"]:
-            self.flagged_by_ip[event["src_ip"]].append(flagged_event_id)
+        self.flagged_by_ip[event["src_ip"]].append(flagged_event_id)
 
-        event["note"] = "Flagged"
+        if not event.get("note"):
+            event["note"] = "Flagged"
         event["action"] = "flag"
         return event
 
@@ -301,7 +474,23 @@ class PolicyAnoseekAgent:
                     return True
         return False
 
-    def rate_limit_event(self, event):
+    def _alert_enforcement_action(self, event: dict, action: str) -> None:
+        """SOC-visible alert for an automated block/rate_limit the agent just took."""
+        label = action.replace("_", " ")
+        with self._lock:
+            self._alert_queue.append({
+                "alert_id": len(self._alert_queue),
+                "event_id": event.get("event_id"),
+                "src_ip": event.get("src_ip"),
+                "dst_ip": event.get("dst_ip"),
+                "severity": event.get("severity"),
+                "severity_label": event.get("severity_label"),
+                "text": f"Automated {label}: {event.get('src_ip')} ({event.get('severity_label')}).",
+                "timestamp": event.get("timestamp", datetime.now().isoformat()),
+            })
+        logging.info("Automated %s alert for %s", action, event.get("src_ip"))
+
+    def rate_limit_event(self, event, severity):
         if self._policy_allows(event["agent_state"], "rate_limit") or self.soc_confirm == 1:
             rate_limit_event_id = len(self.rate_limited_event_history) + 1
             self.rate_limited_event_history[rate_limit_event_id] = event
@@ -309,25 +498,24 @@ class PolicyAnoseekAgent:
                 self.rate_limited_by_ip[event["src_ip"]].append(rate_limit_event_id)
             event["note"] = "rate_limit, Repeated flags while alerted; rate limited"
             event["action"] = "rate_limit"
+            self._alert_enforcement_action(event, "rate_limit")
             return self.rate_limit_ip(event)
 
         event["note"] = "rate limit action is restricted by policy and SOC"
-        event["action"] = "flag"
-        return event
+        return self.flag_event(event, severity)
 
-    def block_event(self, event):
+    def block_event(self, event, severity):
         if self._policy_allows(event["agent_state"], "block") or self.soc_confirm == 1:
             blocked_event_id = len(self.blocked_event_history) + 1
             self.blocked_event_history[blocked_event_id] = event
-            if event["src_ip"]:
-                self.blocked_by_ip[event["src_ip"]].append(blocked_event_id)
+            self.blocked_by_ip[event["src_ip"]].append(blocked_event_id)
             event["note"] = "block, IP blocked by policy"
             event["action"] = "block"
+            self._alert_enforcement_action(event, "block")
             return self.block_ip(event)
 
         event["note"] = "block action is restricted by policy and SOC"
-        event["action"] = "flag"
-        return event
+        return self.flag_event(event, severity)
                 
 
     def alert_soc(self, event, severity):
@@ -358,7 +546,7 @@ class PolicyAnoseekAgent:
     def count_blocked_events_with_same_ip(self, event):
         return len(self.blocked_by_ip.get(event["src_ip"], []))
 
-    def _set_status(self, new: AgentMode, reason: str):
+    def _set_status(self, new: AgentMode, reason: str, event: dict | None = None):
         if new == self.status:
             return
         old = self.status
@@ -367,6 +555,10 @@ class PolicyAnoseekAgent:
         self.transitions.append({
             "from": old.value, "to": new.value,
             "reason": reason, "at": self.entered_state_at,
+            "event_id": event.get("event_id") if event else None,
+            "src_ip": event.get("src_ip") if event else None,
+            "dst_ip": event.get("dst_ip") if event else None,
+            "severity_label": event.get("severity_label") if event else None,
         })
         logging.info("State %s -> %s (%s)", old.value, new.value, reason)
 
@@ -452,93 +644,165 @@ class PolicyAnoseekAgent:
         logging.info("Blocking all flows..")
         # Hook for emergency stop
 
+
+    def check_statistics_sev(self, severity):
+        std = 0
+        num_of_events = 0
+        if severity == 1 or severity == 2:
+            events = self.sev_1_2_events
+        elif severity == 3 or severity == 4:
+            events = self.sev_3_4_events
+
+        num_of_unique_ips = len(self.events_by_ip)
+
+        for count in events.values():
+            num_of_events += count
+
+        if num_of_unique_ips < 2:
+            return 2, 0.1
+        
+        mean = num_of_events / num_of_unique_ips
+        for count in events.values():
+            std += math.pow(count - mean, 2)
+            
+        std = math.sqrt(std / (num_of_unique_ips-1))
+
+        return mean, std
+
+    def check_flagged_statistics_sev(self, severity):
+            std = 0
+            num_of_events = 0
+            if severity == 1 or severity == 2:
+                events = self.sev_flagged_1_2_events
+            elif severity == 3 or severity == 4:
+                events = self.sev_flagged_3_4_events
+
+            num_of_unique_ips = len(self.events_by_ip)
+    
+            for count in events.values():
+                num_of_events += count
+
+            if num_of_unique_ips < 2:
+                return 1, 0.1
+
+            mean = num_of_events / num_of_unique_ips
+            for count in events.values():
+                std += math.pow(count - mean, 2)
+                
+            std = math.sqrt(std / (num_of_unique_ips-1))
+    
+            return mean, std
+
     # === state machine
     def execute_action(self, event, severity) -> tuple[str, str]:
         """Returns (action, note) so analyze_and_act can serialize what happened."""
-        match self.status:
-            case AgentMode.IDLE:
-                if severity == 0:
-                    event["note"] = "Benign flow passed"
+        if severity != 0:
+            mean_flagged, std_flagged = self.check_flagged_statistics_sev(severity)
+            threshold_flagged = mean_flagged + 2.4 * std_flagged
+            mean, std = self.check_statistics_sev(severity)
+            threshold = mean + 2.4 * std
+
+        if self.status == AgentMode.IDLE:
+            if severity == 0:
+                event["note"] = "Benign flow passed"
+                logging.info(event["note"])
+                return self.pass_event(event)
+
+            elif severity in [1, 2]:
+                if self.count_flagged_events_with_same_ip(event) > threshold_flagged:
+                    self._set_status(AgentMode.ALERTED, "Repeated flags over threshold", event)
+                    event["note"] = "Repeated flags alert, SOC notified"
                     logging.info(event["note"])
-                    return self.pass_event(event)
-
-                elif severity in [1, 2]:
-                    if self.count_events_with_same_ip(event) > 3:
-                        event["note"] = "Event flagged, Repeated low-severity activity from this IP"
-                        logging.info(event["note"])
-                        return self.flag_event(event)
-                    elif self.count_flagged_events_with_same_ip(event) > 2:
-                        self.alert_soc(event, severity)
-                        self._set_status(AgentMode.ALERTED, "Repeated flags")
-                        event["note"] = "Repeated flags alert, SOC notified"
-                        logging.info(event["note"])
-                        return self.flag_event(event)
-
-                    event["note"] = "Passed single low-severity event, monitoring"
+                    return self.flag_event(event, severity)
+                elif self.count_events_with_same_ip(event) > threshold:
+                    event["note"] = "Event flagged, Repeated low-severity activity from this IP"
                     logging.info(event["note"])
-                    return self.pass_event(event)
+                    return self.flag_event(event, severity)
 
-                elif severity in [3, 4]:
-                    self._set_status(AgentMode.ALERTED, "High-severity event")
-                    logging.info("CRITICAL: High severity event")
-                    return self.block_event(event)
+                event["note"] = "Passed single low-severity event, monitoring"
+                logging.info(event["note"])
+                return self.pass_event(event)
 
-            case AgentMode.ALERTED:
-                if severity == 0:
-                    self.benign_sequence += 1
-                    logging.info("Benign flow passed")
-                    if self.benign_sequence > 20 and self.soc_confirm == 1:
-                        self.benign_sequence = 0
-                        self.soc_confirm = 0
-                        self._set_status(AgentMode.IDLE, "Sustained benign + SOC confirm")
-                        event["note"] = "Passed, Benign streak; returned to IDLE"
-                        logging.info(event["note"])
-                        return self.pass_event(event)
-
-                    event["note"] = f"Passed Benign ({self.benign_sequence} in a row)"
-                    logging.info(event["note"])
-                    return self.pass_event(event)
-
-                elif severity in [1, 2]:
-                    self.benign_sequence = 0
-                    self.alert_soc(event, severity)
-                    if self.count_flagged_events_with_same_ip(event) < 3:
-                        self.alert_soc(event, severity) ########## TBD ###################
-                        event["note"] = "Flagged and SOC notified"
-                        logging.info(event["note"])
-                        return self.flag_event(event)
-                    else:
-                        self._set_status(AgentMode.UNDER_ATTACK, "Repeated flags in Alerted mode")
-                        logging.info("Repeated flags in Alerted mode")
-                        return self.rate_limit_event(event)
-
-                elif severity in [3, 4]:
-                    self.benign_sequence = 0
-                    if self.count_flagged_events_with_same_ip(event) > 0: 
-                        self._set_status(AgentMode.UNDER_ATTACK, "High severity from suspect IP")
-                        logging.info("High severity from already-suspect IP")
-                        return self.block_event(event)
-                    else:
-                        self.alert_soc(event, severity) ########## TBD ###################
-                        logging.info("High severity event")
-                        return self.rate_limit_event(event)
-
-            case AgentMode.UNDER_ATTACK:
-                if severity == 0:
-                    self.benign_sequence += 1
-                    logging.info("Benign flow passed")
-                    if self.benign_sequence > 30 and self.soc_confirm == 1:
-                        self.benign_sequence = 0
-                        self.soc_confirm = 0
-                        self._set_status(AgentMode.ALERTED, "mode Decayed to ALERTED; benign event flagged")
-                        event["note"] = "Benign flagged due to UNDER_ATTACK state"
-                        logging.info(event["note"])
-                        return self.flag_event(event)
-
-                elif severity in [1, 2, 3, 4]:
-                    self.benign_sequence = 0
+            elif severity in [3, 4]:
+                self.benign_sequence = 0
+                if self.count_flagged_events_with_same_ip(event) < threshold_flagged:
+                    logging.info(f"STAT FROM [3,4]: count_flagged_events_with_same_ip: {self.count_flagged_events_with_same_ip(event)}")
+                    logging.info(f"STAT FROM [3,4]: threshold_flagged: {threshold_flagged}")
                     logging.info("High severity event")
-                    return self.block_event(event)
+                    return self.rate_limit_event(event, severity)
+                else:
+                    self._set_status(AgentMode.ALERTED, "High severity from suspect IP", event)
+                    logging.info("High severity from already-suspect IP")
+                    return self.block_event(event, severity)
+
+        elif self.status == AgentMode.ALERTED:
+            if severity == 0:
+                self.benign_sequence += 1
+                logging.info("Benign flow passed")
+                if self.benign_sequence > ALERTED_BENIGNS and self.soc_confirm == 1:
+                    self.benign_sequence = 0
+                    self.soc_confirm = 0
+                    self._set_status(AgentMode.IDLE, "Sustained benign + SOC confirm", event)
+                    event["note"] = "Passed, Benign streak; returned to IDLE"
+                    logging.info(event["note"])
+                    return self.pass_event(event)
+
+                event["note"] = f"Passed Benign ({self.benign_sequence} Score)"
+                logging.info(event["note"])
+                return self.pass_event(event)
+            elif severity in [1, 2]:
+                if self.benign_sequence >= 1:
+                    self.benign_sequence -= 1
+                threshold_flagged = mean_flagged + 2.25 * std_flagged
+                logging.info(f"ALERTED: STAT FROM [1,2]: threshold_flagged: {threshold_flagged}")
+                if self.count_flagged_events_with_same_ip(event) < threshold_flagged:
+                    event["note"] = "Flagged and SOC notified"
+                    logging.info(event["note"])
+                    return self.flag_event(event, severity)
+                else:
+                    self._set_status(AgentMode.UNDER_ATTACK, "Repeated flags in Alerted mode", event)
+                    logging.info("Repeated flags in Alerted mode")
+                    return self.rate_limit_event(event, severity)
+
+            elif severity in [3, 4]:
+                if self.benign_sequence >= 1:
+                    self.benign_sequence -= 1
+                threshold_flagged = mean_flagged + 2.2 * std_flagged
+                logging.info(f"ALERTED: STAT FROM [3,4]: threshold_flagged: {threshold_flagged}")
+                if self.count_flagged_events_with_same_ip(event) < threshold_flagged:
+                    logging.info("High severity event")
+                    return self.rate_limit_event(event, severity)
+                else:
+                    self._set_status(AgentMode.UNDER_ATTACK, "High severity from suspect IP", event)
+                    logging.info("High severity from already-suspect IP")
+                    return self.block_event(event, severity)
+
+        elif self.status == AgentMode.UNDER_ATTACK:
+            if severity == 0:
+                self.benign_sequence += 1
+                logging.info("Benign flow passed")
+                if self.benign_sequence > UNDER_ATTACK_BENIGNS and self.soc_confirm == 1:
+                    self.benign_sequence = 0
+                    self.soc_confirm = 0
+                    self._set_status(AgentMode.ALERTED, "mode Decayed to ALERTED", event)
+                    event["note"] = "Benign flagged due to UNDER_ATTACK state"
+                    logging.info(event["note"])
+                    return self.pass_event(event)
+
+                event["note"] = f"Passed Benign ({self.benign_sequence} Score)"
+                logging.info(event["note"])
+                return self.pass_event(event)
+
+            elif severity in [1, 2]:
+                if self.benign_sequence >= 2:
+                    self.benign_sequence -= 2
+                logging.info("High severity event")
+                return self.rate_limit_event(event, severity)
+            elif severity in [3, 4]:
+                if self.benign_sequence >= 3:
+                    self.benign_sequence -= 3
+                logging.info("Critical severity event")
+                return self.block_event(event, severity)
 
         return self.pass_event(event)
 

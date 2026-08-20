@@ -60,7 +60,7 @@ export default function LiveStream() {
     const range = maxT - minT;
 
     const niceSteps = [
-      60_000, 5 * 60_000, 15 * 60_000, 30 * 60_000,
+      30_000, 60_000, 5 * 60_000, 15 * 60_000, 30 * 60_000,
       60 * 60_000, 3 * 60 * 60_000, 6 * 60 * 60_000, 24 * 60 * 60_000,
     ];
     const bucketMs =

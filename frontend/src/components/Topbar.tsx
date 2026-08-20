@@ -4,7 +4,7 @@ import { Sun, Moon, Bell } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { badgeForAgentState, labelForAgentState } from "../lib/severity";
-import { confirmFromSoc, resetAgent, type AlertRecord } from "../api/client";
+import { confirmFromSoc, resetAgent, getAgentConfig, type AgentConfig, type AlertRecord } from "../api/client";
 import { useChatContext } from "../context/ChatContext";
 import { useDarkModeContext } from "../context/DarkModeContext";
 import { useAlerts } from "../hooks/useAlerts";
@@ -30,11 +30,23 @@ const SEVERITY_TITLE: Record<number, string> = {
 let _id = 0;
 let _confirmId = 0;
 
-type ConfirmRequest = { id: number; status: string; timestamp: string; ip: string | null };
+type ConfirmRequest = {
+  id: number;
+  status: string;
+  timestamp: string;
+  ip: string | null;
+};
 
 export default function Topbar() {
-  const { snapshot, error } = useAgentState(3000);
+  const { snapshot, error } = useAgentState(1000);
+  const [config, setConfig] = useState<AgentConfig | null>(null);
   const [busy, setBusy] = useState(false);
+
+  // Static agent constants — fetched once on mount, not on the polling
+  // cadence of /agent/state, since they never change at runtime.
+  useEffect(() => {
+    getAgentConfig().then(setConfig).catch(() => {});
+  }, []);
   const { clear: clearChat } = useChatContext();
   const { dark, toggle } = useDarkModeContext();
   const navigate = useNavigate();
@@ -58,35 +70,69 @@ export default function Topbar() {
     timerRef.current = setTimeout(() => setActiveToast(null), 6000);
   });
 
-  // ── SOC confirmation popup — fires on transition to alerted / under_attack ──
+  // ── SOC confirmation popup — fires once the benign streak crosses the decay
+  // threshold for the current state (alerted/under_attack) and SOC hasn't
+  // confirmed yet. That's the only moment a confirmation is actually needed;
+  // escalating up is automatic and doesn't need SOC sign-off. ──
   const [confirmPopup, setConfirmPopup] = useState(false);
   const [confirmHistory, setConfirmHistory] = useState<ConfirmRequest[]>([]);
   const [confirmUnread, setConfirmUnread] = useState(0);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const prevStatusRef = useRef<string | undefined>(undefined);
+  // The backend only tracks one global soc_confirm flag, so at most one queued
+  // request can actually be acted on — this is the id of that one. Any earlier
+  // requests become read-only history once a newer one supersedes them, so
+  // confirming/denying can never apply to the "wrong" entry.
+  const [pendingConfirmId, setPendingConfirmId] = useState<number | null>(null);
+  const [confirmError, setConfirmError] = useState<string | null>(null);
+  const prevReadyRef = useRef(false);
   const confirmTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  function pushConfirmRequest(status: string) {
+    setConfirmPopup(true);
+    if (confirmTimerRef.current) clearTimeout(confirmTimerRef.current);
+    confirmTimerRef.current = setTimeout(() => setConfirmPopup(false), 6000);
+    const req: ConfirmRequest = {
+      id: _confirmId++,
+      status,
+      timestamp: new Date().toISOString(),
+      ip: snapshot?.last_event_ip ?? lastEventIpRef.current,
+    };
+    setConfirmHistory((prev) => [...prev.slice(-4), req]);
+    setConfirmUnread((prev) => prev + 1);
+    setPendingConfirmId(req.id);
+  }
+
+  // Fires once the benign streak crosses the decay threshold for the current
+  // state but nothing can happen yet because SOC hasn't confirmed — without
+  // this, the streak can sit well past the threshold forever with no prompt.
   useEffect(() => {
     const s = snapshot?.status;
-    if (s !== prevStatusRef.current && (s === "alerted" || s === "under_attack")) {
-      setConfirmPopup(true);
-      if (confirmTimerRef.current) clearTimeout(confirmTimerRef.current);
-      confirmTimerRef.current = setTimeout(() => setConfirmPopup(false), 6000);
-      const req: ConfirmRequest = {
-        id: _confirmId++,
-        status: s,
-        timestamp: new Date().toISOString(),
-        ip: snapshot?.last_event_ip ?? lastEventIpRef.current,
-      };
-      setConfirmHistory((prev) => [...prev.slice(-4), req]);
-      setConfirmUnread((prev) => prev + 1);
-    }
-    prevStatusRef.current = s;
-  }, [snapshot?.status]);
+    const bs = snapshot?.benign_sequence ?? 0;
+    const threshold = s && s !== "idle" ? config?.decay_thresholds[s] : undefined;
+    const ready = threshold !== undefined && bs > threshold && snapshot?.soc_confirm !== 1;
+    if (ready && !prevReadyRef.current && s) pushConfirmRequest(s);
+    prevReadyRef.current = ready;
+  }, [snapshot?.status, snapshot?.benign_sequence, snapshot?.soc_confirm]);
 
   async function onConfirm(confirmed: boolean) {
+    if (pendingConfirmId === null) return;
+    const id = pendingConfirmId;
     setBusy(true);
-    try { await confirmFromSoc(confirmed); } finally { setBusy(false); }
+    setConfirmError(null);
+    try {
+      await confirmFromSoc(confirmed);
+      setConfirmHistory((prev) => prev.filter((r) => r.id !== id));
+      setPendingConfirmId(null);
+      setConfirmPopup(false);
+      setConfirmUnread(0);
+      if (confirmTimerRef.current) clearTimeout(confirmTimerRef.current);
+    } catch (e: any) {
+      // Without this, a failed request left the popup silently stuck open —
+      // the exception skipped every cleanup line above with no visible cause.
+      setConfirmError(e?.message ?? "Failed to send confirmation");
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function onReset() {
@@ -102,7 +148,9 @@ export default function Topbar() {
       setConfirmHistory([]);
       setConfirmUnread(0);
       setConfirmPopup(false);
-      prevStatusRef.current = undefined;
+      setPendingConfirmId(null);
+      setConfirmError(null);
+      prevReadyRef.current = false;
       resetCursor();
     } finally {
       setBusy(false);
@@ -112,7 +160,7 @@ export default function Topbar() {
   const status = snapshot?.status;
 
   return (
-    <header className="flex h-14 items-center justify-between border-b border-slate-200 bg-white px-6 dark:border-slate-700 dark:bg-slate-800">
+    <header className="flex h-14 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-6 dark:border-slate-700 dark:bg-slate-800">
       <div className="flex items-center gap-3 text-sm text-slate-500">
         <span className="hidden md:inline">SOC dashboard</span>
         {error && <span className="text-red-600 dark:text-red-400">backend offline</span>}
@@ -127,11 +175,41 @@ export default function Topbar() {
                   SOC Action Required
                 </div>
                 <div className="text-[10px] text-slate-600 dark:text-slate-400">
-                  Agent entered <span className="font-medium">{snapshot?.status?.replace("_", " ")}</span> state.
+                  Benign streak ready to decay from{" "}
+                  <span className="font-medium">{snapshot?.status?.replace("_", " ")}</span> — confirm to allow it.
+                </div>
+                {(snapshot?.last_event_ip ?? lastEventIpRef.current) && (
+                  <div className="text-[10px] text-slate-500 dark:text-slate-500">
+                    Last flagged IP before the benign streak:{" "}
+                    <span className="font-mono text-slate-700 dark:text-slate-300">
+                      {snapshot?.last_event_ip ?? lastEventIpRef.current}
+                    </span>
+                  </div>
+                )}
+                {confirmError && (
+                  <div className="rounded-md bg-red-100 px-1.5 py-1 text-[10px] font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">
+                    {confirmError} — try again.
+                  </div>
+                )}
+                <div className="mt-0.5 flex gap-1.5">
+                  <button
+                    disabled={busy}
+                    onClick={() => onConfirm(true)}
+                    className="flex-1 rounded-md bg-amber-500 px-2 py-1 text-[10px] font-semibold text-white hover:bg-amber-400 disabled:opacity-50"
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    disabled={busy}
+                    onClick={() => onConfirm(false)}
+                    className="flex-1 rounded-md border border-amber-300 bg-white px-2 py-1 text-[10px] font-semibold text-amber-700 hover:bg-amber-50 disabled:opacity-50 dark:border-amber-700 dark:bg-transparent dark:text-amber-300 dark:hover:bg-amber-900/20"
+                  >
+                    Deny
+                  </button>
                 </div>
                 <button
                   onClick={() => { setConfirmPopup(false); navigate("/alerts", { state: { tab: "all", selectedIp: snapshot?.last_event_ip ?? lastEventIpRef.current } }); }}
-                  className="mt-0.5 self-start rounded-md bg-amber-500 px-2 py-0.5 text-[10px] font-semibold text-white hover:bg-amber-400"
+                  className="self-start text-[10px] font-medium text-amber-700 underline hover:text-amber-600 dark:text-amber-300"
                 >
                   Review →
                 </button>
@@ -174,34 +252,51 @@ export default function Topbar() {
                 <div className="px-4 py-6 text-center text-xs text-slate-400">No requests yet</div>
               ) : (
                 <div className="divide-y divide-slate-100 dark:divide-slate-700">
-                  {[...confirmHistory].reverse().map((req) => (
-                    <div key={req.id} className="flex flex-col gap-2 px-3 py-2.5">
+                  {[...confirmHistory].reverse().map((req) => {
+                    const isPending = req.id === pendingConfirmId;
+                    return (
+                    <div key={req.id} className={`flex flex-col gap-2 px-3 py-2.5 ${isPending ? "" : "opacity-60"}`}>
                       <div className="min-w-0">
                         <div className="text-xs font-semibold text-amber-700 dark:text-amber-300">
-                          {req.status === "under_attack" ? "Under Attack" : "Alerted"}
+                          Ready to decay →{" "}
+                          {req.status === "under_attack" ? "Under Attack" : req.status === "alerted" ? "Alerted" : "Idle"}
+                          {!isPending && (
+                            <span className="ml-1.5 text-[10px] font-normal text-slate-400 dark:text-slate-500">
+                              (superseded)
+                            </span>
+                          )}
                         </div>
                         {req.ip && (
-                          <div className="truncate font-mono text-xs text-slate-600 dark:text-slate-400">{req.ip}</div>
+                          <div className="truncate text-xs text-slate-600 dark:text-slate-400">
+                            <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                              Last flagged IP before the benign streak:
+                            </span>{" "}
+                            <span className="font-mono">{req.ip}</span>
+                          </div>
                         )}
                         <div className="font-mono text-[10px] text-slate-400">
                           {new Date(req.timestamp).toLocaleTimeString()}
                         </div>
                       </div>
                       <div className="flex gap-1.5">
-                        <button
-                          disabled={busy}
-                          className="flex-1 rounded-md bg-amber-500 px-2 py-1 text-xs font-semibold text-white hover:bg-amber-400 disabled:opacity-50"
-                          onClick={() => { onConfirm(true); setConfirmOpen(false); }}
-                        >
-                          Confirm
-                        </button>
-                        <button
-                          disabled={busy}
-                          className="flex-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-50 disabled:opacity-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
-                          onClick={() => { onConfirm(false); setConfirmOpen(false); }}
-                        >
-                          Deny
-                        </button>
+                        {isPending && (
+                          <>
+                            <button
+                              disabled={busy}
+                              className="flex-1 rounded-md bg-amber-500 px-2 py-1 text-xs font-semibold text-white hover:bg-amber-400 disabled:opacity-50"
+                              onClick={() => onConfirm(true)}
+                            >
+                              Confirm
+                            </button>
+                            <button
+                              disabled={busy}
+                              className="flex-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-50 disabled:opacity-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
+                              onClick={() => onConfirm(false)}
+                            >
+                              Deny
+                            </button>
+                          </>
+                        )}
                         <button
                           className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                           onClick={() => { setConfirmOpen(false); navigate("/alerts", { state: { tab: "all", selectedIp: req.ip } }); }}
@@ -210,7 +305,8 @@ export default function Topbar() {
                         </button>
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>

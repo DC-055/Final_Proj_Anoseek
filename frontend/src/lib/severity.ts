@@ -17,6 +17,9 @@ export function badgeForSeverity(sev?: string): string {
   if (s.includes("dos") || s.includes("ddos")) {
     return "bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800";
   }
+  if (s.includes("integrity") || s.includes("data quality")) {
+    return "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800";
+  }
   return "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800";
 }
 

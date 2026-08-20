@@ -8,7 +8,7 @@ import { getAgentEvents, type EventRecord } from "../api/client";
 export function useEvents(
   kind: "all" | "flagged" | "blocked" = "all",
   limit = 100,
-  intervalMs = 4000,
+  intervalMs = 2000,
 ) {
   const [events, setEvents] = useState<EventRecord[]>([]);
   const [error, setError] = useState<string | null>(null);

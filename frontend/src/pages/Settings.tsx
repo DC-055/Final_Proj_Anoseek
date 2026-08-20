@@ -7,17 +7,20 @@ import {
   BUCKET_OPTIONS,
 } from "../lib/settings";
 import { useSettings } from "../context/SettingsContext";
-import { getPolicy, updatePolicy, type Policy } from "../api/client";
+import { getPolicy, login, updatePolicy, type Policy } from "../api/client";
 
 const STATE_LABEL: Record<string, string> = {
-  ALERTED: "Alerted",
-  UNDER_ATTACK: "Under Attack",
+  ALERTED: "Alerted Mode",
+  UNDER_ATTACK: "Under Attack Mode",
 };
 
 const ACTION_LABEL: Record<string, string> = {
   rate_limit: "Rate Limit",
   block: "Block",
 };
+
+const ADMIN_TOKEN_KEY = "anoseek_admin_token";
+const ADMIN_ROLE_KEY = "anoseek_admin_role";
 
 export default function Settings() {
   const {
@@ -31,9 +34,58 @@ export default function Settings() {
   const [policySaving, setPolicySaving] = useState(false);
   const [policyMsg, setPolicyMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
+  const [adminToken, setAdminToken] = useState<string | null>(() =>
+    sessionStorage.getItem(ADMIN_TOKEN_KEY),
+  );
+  const [adminRole, setAdminRole] = useState<string | null>(() =>
+    sessionStorage.getItem(ADMIN_ROLE_KEY),
+  );
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  const isAdmin = adminToken !== null && adminRole === "ADMIN";
+
+  function clearAdminSession() {
+    sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+    sessionStorage.removeItem(ADMIN_ROLE_KEY);
+    setAdminToken(null);
+    setAdminRole(null);
+    setPolicy(null);
+  }
+
+  async function handleAdminLogin() {
+    setLoginError(null);
+    setLoginLoading(true);
+    try {
+      const result = await login(loginUsername, loginPassword);
+      if (result.role !== "ADMIN") {
+        setLoginError("This account does not have ADMIN access.");
+        return;
+      }
+      sessionStorage.setItem(ADMIN_TOKEN_KEY, result.token);
+      sessionStorage.setItem(ADMIN_ROLE_KEY, result.role);
+      setAdminToken(result.token);
+      setAdminRole(result.role);
+      setLoginPassword("");
+    } catch (e: any) {
+      setLoginError(e?.message ?? "Login failed.");
+    } finally {
+      setLoginLoading(false);
+    }
+  }
+
   useEffect(() => {
-    getPolicy().then(setPolicy).catch(() => {});
-  }, []);
+    if (!adminToken) return;
+    getPolicy(adminToken)
+      .then(setPolicy)
+      .catch((e: any) => {
+        // Token rejected/expired — drop back to the login form.
+        setLoginError(e?.message ?? "Session expired, please log in again.");
+        clearAdminSession();
+      });
+  }, [adminToken]);
 
   function toggleAllowed(index: number) {
     if (!policy) return;
@@ -47,11 +99,11 @@ export default function Settings() {
   }
 
   async function savePolicy() {
-    if (!policy) return;
+    if (!policy || !adminToken) return;
     setPolicySaving(true);
     setPolicyMsg(null);
     try {
-      await updatePolicy(policy);
+      await updatePolicy(policy, adminToken);
       setPolicyMsg({ ok: true, text: "Policy saved." });
     } catch (e: any) {
       setPolicyMsg({ ok: false, text: e?.message ?? "Save failed." });
@@ -225,55 +277,101 @@ export default function Settings() {
               </p>
             </div>
 
-            {!policy ? (
+            {!isAdmin ? (
+              <div className="flex flex-col gap-3">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  ADMIN login required to view or change automated block / rate-limit policy.
+                </p>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    value={loginUsername}
+                    onChange={(e) => setLoginUsername(e.target.value)}
+                    className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100"
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleAdminLogin()}
+                    className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAdminLogin}
+                    disabled={loginLoading || !loginUsername || !loginPassword}
+                    className="rounded-lg bg-blue-500 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-400 disabled:opacity-50"
+                  >
+                    {loginLoading ? "Signing in…" : "Sign in"}
+                  </button>
+                </div>
+                {loginError && (
+                  <span className="text-xs font-medium text-red-600 dark:text-red-400">{loginError}</span>
+                )}
+              </div>
+            ) : !policy ? (
               <div className="text-xs text-slate-400">Loading policy…</div>
             ) : (
-              <div className="divide-y divide-slate-100 dark:divide-slate-700">
-                {policy.Statement.map((rule, i) => (
-                  <div key={i} className="flex items-center justify-between py-3">
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-medium text-slate-800 dark:text-slate-200">
-                        {STATE_LABEL[rule.State] ?? rule.State} — {ACTION_LABEL[rule.Action_Required] ?? rule.Action_Required}
-                      </span>
-                      <span className="text-xs text-slate-500 dark:text-slate-400">
-                        {rule.Allowed ? "Agent acts autonomously" : "Requires SOC confirmation"}
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => toggleAllowed(i)}
-                      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${
-                        rule.Allowed ? "bg-blue-500" : "bg-slate-300 dark:bg-slate-600"
-                      }`}
-                      role="switch"
-                      aria-checked={rule.Allowed}
-                    >
-                      <span
-                        className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${
-                          rule.Allowed ? "translate-x-5" : "translate-x-0"
+              <>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Signed in as ADMIN</span>
+                  <button
+                    type="button"
+                    onClick={clearAdminSession}
+                    className="text-xs font-medium text-slate-500 underline hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                  >
+                    Sign out
+                  </button>
+                </div>
+                <div className="divide-y divide-slate-100 dark:divide-slate-700">
+                  {policy.Statement.map((rule, i) => (
+                    <div key={i} className="flex items-center justify-between py-3">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-medium text-slate-800 dark:text-slate-200">
+                          {STATE_LABEL[rule.State] ?? rule.State} — {ACTION_LABEL[rule.Action_Required] ?? rule.Action_Required}
+                        </span>
+                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                          {rule.Allowed ? "Agent acts autonomously" : "Requires SOC confirmation"}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => toggleAllowed(i)}
+                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${
+                          rule.Allowed ? "bg-blue-500" : "bg-slate-300 dark:bg-slate-600"
                         }`}
-                      />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+                        role="switch"
+                        aria-checked={rule.Allowed}
+                      >
+                        <span
+                          className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${
+                            rule.Allowed ? "translate-x-5" : "translate-x-0"
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  ))}
+                </div>
 
-            <div className="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
-              {policyMsg ? (
-                <span className={`text-xs font-medium ${policyMsg.ok ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>
-                  {policyMsg.text}
-                </span>
-              ) : <span />}
-              <button
-                type="button"
-                onClick={savePolicy}
-                disabled={policySaving || !policy}
-                className="rounded-lg bg-blue-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-400 disabled:opacity-50"
-              >
-                {policySaving ? "Saving…" : "Save changes"}
-              </button>
-            </div>
+                <div className="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+                  {policyMsg ? (
+                    <span className={`text-xs font-medium ${policyMsg.ok ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>
+                      {policyMsg.text}
+                    </span>
+                  ) : <span />}
+                  <button
+                    type="button"
+                    onClick={savePolicy}
+                    disabled={policySaving || !policy}
+                    className="rounded-lg bg-blue-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-400 disabled:opacity-50"
+                  >
+                    {policySaving ? "Saving…" : "Save changes"}
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
 

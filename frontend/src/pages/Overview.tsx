@@ -1,9 +1,11 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAgentState } from "../hooks/useAgentState";
 import { useEvents } from "../hooks/useEvents";
 import KpiCard from "../components/KpiCard";
 import SeverityBadge from "../components/SeverityBadge";
-import { badgeForAction } from "../lib/severity";
+import { badgeForAction, badgeForAgentState, labelForAgentState } from "../lib/severity";
+import { getAgentConfig, type AgentConfig } from "../api/client";
 
 const CLASSES = [
   "Benign",
@@ -22,8 +24,15 @@ const BAR_COLORS = [
 ];
 
 export default function Overview() {
-  const { snapshot } = useAgentState(3000);
-  const { events }   = useEvents("all", 200, 4000);
+  const navigate = useNavigate();
+  const { snapshot } = useAgentState(1000);
+  const { events }   = useEvents("all", 200, 2000);
+
+  // Static agent constants (decay thresholds) — fetched once, same source as Topbar/AgentState.
+  const [config, setConfig] = useState<AgentConfig | null>(null);
+  useEffect(() => {
+    getAgentConfig().then(setConfig).catch(() => {});
+  }, []);
 
   const severityCounts = useMemo(() => {
     const counts = [0, 0, 0, 0, 0];
@@ -38,7 +47,7 @@ export default function Overview() {
   const maxCount    = Math.max(1, ...severityCounts);
 
   const totals = snapshot?.totals;
-  const flowsAnalyzed = totals ? totals.events      : "—";
+  const flowsAnalyzed = totals ? totals.flows_seen  : "—";
   const blockedIps    = totals ? totals.blocked_ips : "—";
   const openAlerts    = totals ? totals.flagged      : "—";
   const anomalyCount = totalEvents - severityCounts[0];
@@ -46,6 +55,14 @@ export default function Overview() {
   totalEvents > 0
     ? `${((anomalyCount / totalEvents) * 100).toFixed(1)}%`
     : "—";
+
+  const elapsedInState = snapshot
+    ? Math.max(0, Math.floor((Date.now() - new Date(snapshot.entered_state_at).getTime()) / 1000))
+    : 0;
+
+  const lastTransition = snapshot?.transitions.length
+    ? snapshot.transitions[snapshot.transitions.length - 1]
+    : null;
 
   const criticalEvents = useMemo(
     () =>
@@ -62,7 +79,7 @@ export default function Overview() {
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Overview</h1>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            Real-time SOC dashboard · refreshes every 3–4 seconds
+            Real-time SOC dashboard · refreshes every 2 seconds
           </p>
         </div>
         <div className="hidden text-xs text-slate-500 dark:text-slate-400 md:block">
@@ -101,7 +118,7 @@ export default function Overview() {
                     <div className="mb-1 flex justify-between text-xs">
                       <span className="font-medium text-slate-700 dark:text-slate-300">{label}</span>
                       <span className="text-slate-500 dark:text-slate-400">
-                        {count.toLocaleString()} · {pct.toFixed(1)}%
+                        {pct.toFixed(1)}%
                       </span>
                     </div>
                     <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
@@ -117,34 +134,83 @@ export default function Overview() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-          <h2 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Agent actions</h2>
-          {totalEvents === 0 ? (
-            <div className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
-              No actions yet.
+        <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <div className="mb-3 flex items-baseline justify-between">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Agent state</h2>
+            <button
+              type="button"
+              onClick={() => navigate("/agent")}
+              className="text-xs font-medium text-blue-600 hover:underline dark:text-blue-400"
+            >
+              Details
+            </button>
+          </div>
+          {!snapshot ? (
+            <div className="flex flex-1 items-center justify-center text-sm text-slate-500 dark:text-slate-400">
+              Loading…
             </div>
           ) : (
-            <div className="space-y-2">
-              {(["pass", "flag", "alert", "block"] as const).map((act) => {
-                const n = events.filter((e) => e.action === act).length;
-                return (
-                  <div key={act} className="flex items-center justify-between">
-                    <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${badgeForAction(act)}`}>
-                      {act}
-                    </span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">{n}</span>
+            <div className="flex flex-1 flex-col gap-6">
+              <div>
+                <span
+                  className={`inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold ${badgeForAgentState(snapshot.status)}`}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                  {labelForAgentState(snapshot.status)}
+                </span>
+                <div className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+                  since {new Date(snapshot.entered_state_at).toLocaleTimeString()} · {formatElapsed(elapsedInState)}
+                </div>
+                {lastTransition && (
+                  <div className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+                    <span className="font-medium text-slate-600 dark:text-slate-300">Last transition:</span>{" "}
+                    {lastTransition.from} → {lastTransition.to} — {lastTransition.reason}
                   </div>
-                );
-              })}
+                )}
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <div className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                    Benign score
+                  </div>
+                  <div className="mt-0.5 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    {snapshot.benign_sequence}
+                  </div>
+                  {snapshot.status !== "idle" && (
+                    <div className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">
+                      {snapshot.status === "alerted"
+                        ? `need >${config?.decay_thresholds.alerted ?? "?"} + SOC confirm to decay`
+                        : `need >${config?.decay_thresholds.under_attack ?? "?"} + SOC confirm to decay`}
+                    </div>
+                  )}
+                </div>
+                <div className="text-right">
+                  <div className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                    Last event IP
+                  </div>
+                  <div className="mt-0.5 truncate font-mono text-sm text-slate-900 dark:text-slate-100">
+                    {snapshot.last_event_ip ?? "—"}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Recent critical events */}
+      {/* 10 Recent critical events */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Recent critical events</h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">10 Recent critical events</h2>
+            <button
+              type="button"
+              onClick={() => navigate("/alerts", { state: { tab: "all" } })}
+              className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+            >
+              More Info and Actions
+            </button>
+          </div>
           <span className="text-xs text-slate-500 dark:text-slate-400">flag / alert / block</span>
         </div>
 
@@ -197,4 +263,14 @@ export default function Overview() {
       </div>
     </div>
   );
+}
+
+function formatElapsed(seconds: number): string {
+  if (seconds < 60) return `${seconds}s`;
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  if (m < 60) return `${m}m ${s}s`;
+  const h = Math.floor(m / 60);
+  const mm = m % 60;
+  return `${h}h ${mm}m`;
 }

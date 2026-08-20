@@ -18,5 +18,8 @@ frontend/node_modules/
 # Logs
 *.log
 
+# Databases
+*.db
+
 # Pycharm
 .idea/
