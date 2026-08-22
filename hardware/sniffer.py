@@ -22,6 +22,8 @@ BACKEND_TARGET = urlparse(BACKEND_URL)
 BACKEND_HOST = BACKEND_TARGET.hostname
 BACKEND_PORT = BACKEND_TARGET.port or 80
 RATE_LIMIT_INTERVAL = 5.0 # seconds between allowed flows per IP
+WEB_RATE_LIMIT = "30/minute"
+WEB_RATE_LIMIT_BURST = 10
 HOTSPOT_INTERFACE = "wlan1"
 HOTSPOT_NETWORK = ipaddress.ip_network("10.42.0.0/24")
 
@@ -88,7 +90,8 @@ print("(4) Listening for flows \n")
 blocked_ips: set[str] = set()
 rate_limited_ips: dict[str, float] = {} # ip -> last sent timestamp
 
-fire_wall_blocked_ips: set[str] = str()
+firewall_blocked_ips: set[str] = set()
+firewall_rate_limited_ips: set[str] = set()
 firewall_lock = threading.Lock()
 
 
@@ -127,21 +130,24 @@ def validate_client_ip(ip: str) -> str:
 
 
 def init_firewall():
-   global firewall_blocked_ips
+   global firewall_blocked_ips, firewall_rate_limited_ips
 
    # delete previous table to avoid ip mismatch
    subprocess.run([ "sudo", "nft", "delete", "table", "inet", "anoseek"],
                   capture_output=True, text=True, check=False,)
 
    # adding firewall rules
-   rules = f''' add table inet anoseek
-                add set inet anoseek blocked_ipv4 {{ type ipv4_addr; }}
-                add chain inet anoseek forward {{ type filter hook forward priority -10; policy accept>
-                add rule inet anoseek forward iifname "{HOTSPOT_INTERFACE}" ip saddr @blocked_ipv4 cou>
-            '''
+   rules = f'''add table inet anoseek
+add set inet anoseek blocked_ipv4 {{ type ipv4_addr; }}
+add set inet anoseek rate_limited_ipv4 {{ type ipv4_addr; }}
+add chain inet anoseek forward {{ type filter hook forward priority -10; policy accept; }}
+add rule inet anoseek forward iifname "{HOTSPOT_INTERFACE}" ip saddr @blocked_ipv4 counter drop
+add rule inet anoseek forward iifname "{HOTSPOT_INTERFACE}" ip saddr @rate_limited_ipv4 tcp dport {{ 80, 443 }} ct state new meter web_per_client {{ ip saddr timeout 5m limit rate over {WEB_RATE_LIMIT} burst {WEB_RATE_LIMIT_BURST} packets }} counter drop
+'''
    run_nft_script(rules)
    with firewall_lock:
         firewall_blocked_ips = set()
+        firewall_rate_limited_ips = set()
 
    print(f"[FIREWALL] initialized for {HOTSPOT_INTERFACE}")
 
@@ -150,8 +156,8 @@ def firewall_block(ip: str):
    with firewall_lock:
        if ip in firewall_blocked_ips:
            return
-   run_nft_script(f"add element inet anoseek blocked_ipv4 {{ {ip} }}")
-   firewall_blocked_ips.add(ip)
+       run_nft_script(f"add element inet anoseek blocked_ipv4 {{ {ip} }}")
+       firewall_blocked_ips.add(ip)
 
    print(f"[FIREWALL] Blocked {ip} on {HOTSPOT_INTERFACE}")
 
@@ -161,35 +167,73 @@ def firewall_unblock(ip: str):
    with firewall_lock:
       if ip not in firewall_blocked_ips:
            return
-   run_nft_script(f"delete element inet anoseek blocked_ipv4 {{ {ip} }}")
-   firewall_blocked_ips.remove(ip)
-   print("[FIREWALL] Unblocked {ip}")
+      run_nft_script(f"delete element inet anoseek blocked_ipv4 {{ {ip} }}")
+      firewall_blocked_ips.remove(ip)
+   print(f"[FIREWALL] Unblocked {ip}")
+
+
+def firewall_rate_limit(ip: str):
+   ip = validate_client_ip(ip)
+   with firewall_lock:
+       if ip in firewall_rate_limited_ips:
+           return
+       run_nft_script(f"add element inet anoseek rate_limited_ipv4 {{ {ip} }}")
+       firewall_rate_limited_ips.add(ip)
+   print(f"[FIREWALL] Rate limited {ip} on {HOTSPOT_INTERFACE}")
+
+
+def firewall_remove_rate_limit(ip: str):
+   ip = validate_client_ip(ip)
+   with firewall_lock:
+       if ip not in firewall_rate_limited_ips:
+           return
+       run_nft_script(f"delete element inet anoseek rate_limited_ipv4 {{ {ip} }}")
+       firewall_rate_limited_ips.remove(ip)
+   print(f"[FIREWALL] Removed rate limit for {ip}")
 
 def sync_enforcement():
     global blocked_ips, rate_limited_ips
     while True:
           try:
                 r = requests.get(f"http://{BACKEND_HOST}:{BACKEND_PORT}/agent/enforcement", timeout=3)
+                r.raise_for_status()
                 data = r.json()
                 desired_blocked_ips = set()
-                rate_limited_ips = {ip: rate_limited_ips.get(ip,0) for ip in data["rate_limited_ips"]}
+                desired_rate_limited_ips = set()
                 for ip in data.get("blocked_ips", []):
                     try:
                        desired_blocked_ips.add(validate_client_ip(ip))
                     except ValueError as exc:
                        print(f"[FIREWALL] ignored blocking {exc}")
 
+                for ip in data.get("rate_limited_ips", []):
+                    try:
+                       desired_rate_limited_ips.add(validate_client_ip(ip))
+                    except ValueError as exc:
+                       print(f"[FIREWALL] ignored rate limiting {exc}")
+
                 with firewall_lock:
-                   currently_applied = firewall_blocked_ips.copy()
+                   currently_blocked = firewall_blocked_ips.copy()
+                   currently_rate_limited = firewall_rate_limited_ips.copy()
 
                 # ensure only unique ips will be blocked - avoid double blocking
-                for ip in desired_blocked_ips - currently_applied:
+                for ip in desired_blocked_ips - currently_blocked:
                     firewall_block(ip)
 
-                for ip in currently_applied - desired_blocked_ips:
+                for ip in currently_blocked - desired_blocked_ips:
                     firewall_unblock(ip)
 
+                for ip in desired_rate_limited_ips - currently_rate_limited:
+                    firewall_rate_limit(ip)
+
+                for ip in currently_rate_limited - desired_rate_limited_ips:
+                    firewall_remove_rate_limit(ip)
+
                 blocked_ips = desired_blocked_ips
+                rate_limited_ips = {
+                    ip: rate_limited_ips.get(ip, 0)
+                    for ip in desired_rate_limited_ips
+                }
           except Exception as e:
                 print("[SYNC ERROR]", e)
 
