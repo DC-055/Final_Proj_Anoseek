@@ -35,85 +35,6 @@ def _parse_numeric_value(value: Any) -> Any:
         return value
 
 
-# ---------------------------------------------------------------- flow integrity
-#
-# Tier 1: always required, regardless of protocol. Missing here means the
-# capture itself is broken — there's no honest classification to make, so the
-# caller should block on sight rather than let the model guess on partial data.
-TIER1_REQUIRED_COLUMNS = [
-    "L4_SRC_PORT", "L4_DST_PORT", "PROTOCOL", "L7_PROTO",
-    "IN_BYTES", "IN_PKTS", "OUT_BYTES", "OUT_PKTS",
-    "FLOW_DURATION_MILLISECONDS", "DURATION_IN", "DURATION_OUT",
-    "MIN_TTL", "LONGEST_FLOW_PKT", "SHORTEST_FLOW_PKT",
-    "MIN_IP_PKT_LEN", "MAX_IP_PKT_LEN",
-]
-
-# Tier 2: only required when the flow's own protocol/port says the field
-# should be populated — e.g. TCP_FLAGS is legitimately 0 on a UDP flow, that's
-# not "missing data". Absence is alert-worthy only within its matching group.
-PROTOCOL_TCP  = 6
-PROTOCOL_ICMP = 1
-DNS_PORT      = 53
-
-
-def _to_float(value: Any) -> float | None:
-    try:
-        f = float(value)
-        return None if math.isnan(f) else f
-    except (TypeError, ValueError):
-        return None
-
-
-def _flow_is_tcp(flow: dict) -> bool:
-    return _to_float(flow.get("PROTOCOL")) == PROTOCOL_TCP
-
-
-def _flow_is_icmp(flow: dict) -> bool:
-    return _to_float(flow.get("PROTOCOL")) == PROTOCOL_ICMP
-
-
-def _flow_is_dns(flow: dict) -> bool:
-    return DNS_PORT in (_to_float(flow.get("L4_SRC_PORT")), _to_float(flow.get("L4_DST_PORT")))
-
-
-TIER2_CONDITIONAL_GROUPS = [
-    {"columns": ["TCP_FLAGS", "CLIENT_TCP_FLAGS", "SERVER_TCP_FLAGS"], "applies": _flow_is_tcp,  "label": "TCP flags"},
-    {"columns": ["ICMP_TYPE", "ICMP_IPV4_TYPE"],                       "applies": _flow_is_icmp, "label": "ICMP fields"},
-    {"columns": ["DNS_QUERY_ID", "DNS_QUERY_TYPE"],                    "applies": _flow_is_dns,  "label": "DNS fields"},
-]
-
-
-def _is_missing(value: Any) -> bool:
-    if value is None:
-        return True
-    if isinstance(value, float) and math.isnan(value):
-        return True
-    if isinstance(value, str) and value.strip() == "":
-        return True
-    return False
-
-
-def validate_flow_integrity(flow: dict) -> dict:
-    """
-    Checks one raw flow dict (pre-imputation) for missing critical fields.
-
-    Returns:
-        tier1_missing: list of always-required columns missing from `flow`.
-        tier2_missing: list of {"label", "columns"} for protocol-conditional
-            groups that apply to this flow but have missing columns.
-    """
-    tier1_missing = [c for c in TIER1_REQUIRED_COLUMNS if _is_missing(flow.get(c))]
-
-    # tier2_missing = []
-    # for group in TIER2_CONDITIONAL_GROUPS:
-    #     if group["applies"](flow):
-    #         missing = [c for c in group["columns"] if _is_missing(flow.get(c))]
-    #         if missing:
-    #             tier2_missing.append({"label": group["label"], "columns": missing})
-
-    # return {"tier1_missing": tier1_missing, "tier2_missing": tier2_missing}
-
-
 class AnoseekInference:
 
     def __init__(
@@ -195,37 +116,6 @@ class AnoseekInference:
         return preds, probs
 
     # ---------------------------------------------------------------- public API
-
-    def predict_df(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Groups flows by source IP, builds one sequence per IP (last SEQ_LENGTH rows,
-        padded if needed), and assigns that prediction to every row of that IP.
-        """
-        if df.empty:
-            return df.assign(predicted_class=[], severity=[], confidence=[], is_anomaly=[])
-
-        scaled  = self._scale_features(df)
-        src_ips = df["IPV4_SRC_ADDR"].values if "IPV4_SRC_ADDR" in df.columns else np.zeros(len(df), dtype=object)
-
-        pred_classes = np.zeros(len(df), dtype=int)
-        confidences  = np.zeros(len(df), dtype=np.float32)
-
-        for ip in pd.unique(src_ips):
-            idx  = np.where(src_ips == ip)[0]
-            rows = scaled[idx]
-
-            seq = self._make_sequence(rows)
-            preds, probs = self._embed_and_classify(seq)
-            cls = int(preds[0])
-            pred_classes[idx] = cls
-            confidences[idx]  = float(probs[0, cls])
-
-        out = df.copy()
-        out["predicted_class"] = pred_classes
-        out["severity"]        = [self.class_names[p] for p in pred_classes]
-        out["confidence"]      = confidences.round(4)
-        out["is_anomaly"]      = pred_classes != 0
-        return out
 
     def ingest_live_flow(self, flow: dict) -> dict | None:
         """
