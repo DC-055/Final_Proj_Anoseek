@@ -1,0 +1,2001 @@
+row,src_ip,gt_attack,test_severity,state_before,state_after,action,latency_ms
+1,13.58.98.64,SSH-Bruteforce,2,idle,idle,pass,0.7643999997526407
+2,213.202.230.143,Benign,0,idle,idle,pass,0.5230000242590904
+3,172.31.66.5,Benign,0,idle,idle,pass,0.6745000137016177
+4,172.31.64.92,Benign,0,idle,idle,pass,0.3567000385373831
+5,18.219.32.43,DDoS attacks-LOIC-HTTP,3,idle,alerted,flag,0.43789995834231377
+6,172.31.65.93,Benign,0,alerted,alerted,pass,0.37350005004554987
+7,172.31.68.18,Benign,0,alerted,alerted,pass,0.36890001501888037
+8,172.31.65.118,Benign,0,alerted,alerted,pass,0.2570999786257744
+9,18.219.32.43,DDOS attack-HOIC,3,alerted,under_attack,block,1.2340000830590725
+10,172.31.65.93,Benign,0,under_attack,under_attack,pass,0.3418000414967537
+11,213.202.230.143,Benign,0,under_attack,under_attack,pass,0.3381000133231282
+12,172.31.64.27,Benign,0,under_attack,under_attack,pass,0.661000027321279
+13,172.31.67.45,Benign,0,under_attack,under_attack,pass,0.7781001040711999
+14,172.31.69.11,Benign,0,under_attack,under_attack,pass,0.510699930600822
+15,172.31.65.56,Benign,0,under_attack,under_attack,pass,0.44189998880028725
+16,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.9581999620422721
+17,172.31.69.12,Benign,0,under_attack,under_attack,pass,0.45579997822642326
+18,172.31.64.34,Benign,0,under_attack,under_attack,pass,0.48990000505000353
+19,18.217.165.70,DoS attacks-Slowloris,3,under_attack,under_attack,block,0.9244000539183617
+20,125.212.217.214,Benign,0,under_attack,under_attack,pass,0.5215000128373504
+21,172.31.69.24,Benign,0,under_attack,under_attack,pass,0.5006000865250826
+22,172.31.67.29,Benign,0,under_attack,under_attack,pass,0.5000999663025141
+23,172.31.68.9,Benign,0,under_attack,under_attack,pass,0.45039993710815907
+24,172.31.66.86,Benign,0,under_attack,under_attack,pass,0.5112000508233905
+25,172.31.64.58,Benign,0,under_attack,under_attack,pass,0.4464000230655074
+26,172.31.67.57,Benign,0,under_attack,under_attack,pass,0.8921000408008695
+27,172.31.65.49,Benign,0,under_attack,under_attack,pass,0.5689000245183706
+28,172.31.67.123,Benign,0,under_attack,under_attack,pass,0.4523000679910183
+29,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.443600001744926
+30,172.31.66.11,Benign,0,under_attack,under_attack,pass,0.5085000302642584
+31,172.31.67.37,Benign,0,under_attack,under_attack,pass,0.5654999986290932
+32,172.31.64.94,Benign,0,under_attack,under_attack,pass,0.5186999915167689
+33,172.31.65.123,Benign,0,under_attack,under_attack,pass,0.6544999778270721
+34,172.31.64.119,Benign,0,under_attack,under_attack,pass,0.5529000191017985
+35,62.1.169.9,Benign,0,under_attack,under_attack,pass,1.0332000674679875
+36,172.31.67.45,Benign,0,under_attack,under_attack,pass,0.6041000597178936
+37,172.31.66.121,Benign,0,under_attack,under_attack,pass,0.5316999740898609
+38,172.31.65.83,Benign,0,under_attack,under_attack,pass,0.6114999996498227
+39,103.212.92.227,Benign,0,under_attack,under_attack,pass,0.5978000117465854
+40,159.192.122.221,Benign,0,under_attack,under_attack,pass,0.5412999307736754
+41,172.31.64.67,Benign,0,under_attack,under_attack,pass,0.5041999975219369
+42,18.219.5.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.812700018286705
+43,83.251.143.74,Benign,0,under_attack,under_attack,pass,0.5218000151216984
+44,172.31.66.101,Benign,0,under_attack,under_attack,pass,0.5160999717190862
+45,172.31.66.101,Benign,0,under_attack,under_attack,pass,0.9843000443652272
+46,172.31.65.88,Benign,0,under_attack,under_attack,pass,0.3714000340551138
+47,201.116.134.132,Benign,0,under_attack,under_attack,pass,0.3124999348074198
+48,172.31.67.57,Benign,0,under_attack,under_attack,pass,0.3040999872609973
+49,172.31.67.102,Benign,0,under_attack,under_attack,pass,0.38819992914795876
+50,172.31.66.108,Benign,0,under_attack,under_attack,pass,0.4726999904960394
+51,172.31.64.44,Benign,0,under_attack,under_attack,pass,0.3836000105366111
+52,172.31.69.6,Benign,0,under_attack,under_attack,pass,0.41910004802048206
+53,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.5051000043749809
+54,118.70.190.249,Benign,0,under_attack,under_attack,pass,1.3713999651372433
+55,172.31.69.17,Benign,0,under_attack,under_attack,pass,1.4961999841034412
+56,172.31.64.107,Benign,0,under_attack,under_attack,pass,0.4787999205291271
+57,222.136.145.147,Benign,0,under_attack,under_attack,pass,0.4398999735713005
+58,172.31.65.80,Benign,0,under_attack,under_attack,pass,0.32320001628249884
+59,77.72.82.98,Benign,0,under_attack,under_attack,pass,0.3299000672996044
+60,172.31.66.57,Benign,0,under_attack,under_attack,pass,0.29779993928968906
+61,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.3994000144302845
+62,172.31.69.23,Benign,0,under_attack,under_attack,pass,0.35809993278235197
+63,172.31.64.85,Benign,0,under_attack,under_attack,pass,0.3155999584123492
+64,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6407999899238348
+65,172.31.64.108,Benign,0,under_attack,under_attack,pass,0.31150004360824823
+66,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5305999657139182
+67,172.31.69.30,Benign,0,under_attack,under_attack,pass,0.3195999888703227
+68,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.4696999676525593
+69,172.31.64.121,Benign,0,under_attack,under_attack,pass,0.40639995131641626
+70,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.4670999478548765
+71,172.31.67.111,Benign,0,under_attack,under_attack,pass,0.45119994319975376
+72,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.4653000505641103
+73,172.31.69.4,Benign,0,under_attack,under_attack,pass,0.4670999478548765
+74,18.221.219.4,FTP-BruteForce,2,under_attack,under_attack,rate_limit,0.49919995944947004
+75,172.31.67.64,Benign,0,under_attack,under_attack,pass,0.45229995157569647
+76,172.31.65.49,Benign,0,under_attack,under_attack,pass,1.1828000424429774
+77,94.102.54.148,Benign,0,under_attack,under_attack,pass,0.4957000492140651
+78,172.31.67.17,Benign,0,under_attack,under_attack,pass,4.0086000226438046
+79,172.31.69.10,Benign,0,under_attack,under_attack,pass,0.45220006722956896
+80,172.31.65.98,Benign,0,under_attack,under_attack,pass,0.3928999649360776
+81,77.243.191.23,Benign,0,under_attack,under_attack,pass,0.2799000358209014
+82,211.170.54.2,Benign,0,under_attack,under_attack,pass,0.34389994107186794
+83,139.60.160.142,Benign,0,under_attack,under_attack,pass,0.27439999394118786
+84,172.31.66.68,Benign,0,under_attack,under_attack,pass,0.3637999761849642
+85,193.19.118.97,Benign,0,under_attack,under_attack,pass,0.39950001519173384
+86,172.31.64.109,Benign,0,under_attack,under_attack,pass,0.3665999975055456
+87,172.31.67.94,Benign,0,under_attack,under_attack,pass,0.28009992092847824
+88,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.4152000183239579
+89,172.31.66.64,Benign,0,under_attack,under_attack,pass,0.33710000570863485
+90,193.111.198.61,Benign,0,under_attack,under_attack,pass,0.539399916306138
+91,213.202.230.232,Benign,0,under_attack,under_attack,pass,0.3605000674724579
+92,172.31.67.53,Benign,0,under_attack,under_attack,pass,0.44730002991855145
+93,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.28460007160902023
+94,172.31.65.69,Benign,0,under_attack,under_attack,pass,0.28710009064525366
+95,172.31.65.107,Benign,0,under_attack,under_attack,pass,0.29429991263896227
+96,68.169.174.156,Benign,0,under_attack,under_attack,pass,0.5418999353423715
+97,172.31.67.35,Benign,0,under_attack,under_attack,pass,0.570800038985908
+98,172.31.65.100,Benign,0,under_attack,under_attack,pass,0.5986000178381801
+99,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7883000653237104
+100,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8056000806391239
+101,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7403000490739942
+102,172.31.68.15,Benign,0,under_attack,under_attack,pass,0.4545000847429037
+103,172.31.65.5,Benign,0,under_attack,under_attack,pass,0.5359000060707331
+104,114.33.129.237,Benign,0,under_attack,under_attack,pass,0.5279999459162354
+105,172.31.68.10,Benign,0,under_attack,under_attack,pass,0.39460009429603815
+106,172.31.68.14,Benign,0,under_attack,under_attack,pass,0.382099999114871
+107,204.101.207.58,Benign,0,under_attack,under_attack,pass,0.4194000503048301
+108,212.92.124.11,Benign,0,under_attack,under_attack,pass,0.341600039973855
+109,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.46310003381222486
+110,172.31.67.80,Benign,0,under_attack,under_attack,pass,0.5574000533670187
+111,18.216.200.189,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.8363999659195542
+112,213.202.230.37,Benign,0,under_attack,under_attack,pass,0.49270002637058496
+113,172.31.67.81,Benign,0,under_attack,under_attack,pass,0.5215998971834779
+114,193.111.198.66,Benign,0,under_attack,under_attack,pass,0.42230007238686085
+115,172.31.66.44,Benign,0,under_attack,under_attack,pass,0.4110999871045351
+116,172.31.67.9,Benign,0,under_attack,under_attack,pass,0.484099960885942
+117,172.31.64.116,Benign,0,under_attack,under_attack,pass,0.48420007806271315
+118,172.31.64.15,Benign,0,under_attack,under_attack,pass,0.40060002356767654
+119,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6298999069258571
+120,172.31.67.94,Benign,0,under_attack,under_attack,pass,0.4248999757692218
+121,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.47369999811053276
+122,172.31.67.66,Benign,0,under_attack,under_attack,pass,0.3695000195875764
+123,172.31.65.50,Benign,0,under_attack,under_attack,pass,0.4365000640973449
+124,172.31.65.6,Benign,0,under_attack,under_attack,pass,0.4544999683275819
+125,18.218.229.235,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7034000009298325
+126,172.31.68.10,Benign,0,under_attack,under_attack,pass,0.4393999697640538
+127,172.31.67.123,Benign,0,under_attack,under_attack,pass,0.394499977119267
+128,172.31.64.32,Benign,0,under_attack,under_attack,pass,0.4514999454841018
+129,5.188.11.188,Benign,0,under_attack,under_attack,pass,0.42040005791932344
+130,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.3586000530049205
+131,172.31.65.82,Benign,0,under_attack,under_attack,pass,0.9080000454559922
+132,172.31.69.26,Benign,0,under_attack,under_attack,pass,0.582000007852912
+133,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.4659000551328063
+134,172.31.66.35,Benign,0,under_attack,under_attack,pass,0.3571000415831804
+135,201.186.78.76,Benign,0,under_attack,under_attack,pass,0.4553999751806259
+136,172.31.67.29,Benign,0,under_attack,under_attack,pass,0.5040999967604876
+137,172.31.66.48,Benign,0,under_attack,under_attack,pass,0.5145000759512186
+138,192.241.222.147,Benign,0,under_attack,under_attack,pass,0.4105000989511609
+139,93.183.216.136,Benign,0,under_attack,under_attack,pass,0.46090001706033945
+140,18.218.11.51,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.6963000632822514
+141,172.31.65.75,Benign,0,under_attack,under_attack,pass,0.5052000051364303
+142,172.31.65.75,Benign,0,under_attack,under_attack,pass,0.42979989666491747
+143,172.31.67.124,Benign,0,under_attack,under_attack,pass,0.40879996959120035
+144,172.31.67.59,Benign,0,under_attack,under_attack,pass,0.48040004912763834
+145,207.74.3.44,Benign,0,under_attack,under_attack,pass,0.45050005428493023
+146,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.4126999992877245
+147,172.31.66.16,Benign,0,under_attack,under_attack,pass,0.5405000410974026
+148,172.31.64.60,Benign,0,under_attack,under_attack,pass,0.5573000526055694
+149,103.206.131.206,Benign,0,under_attack,under_attack,pass,1.133600017055869
+150,172.31.64.54,Benign,0,under_attack,under_attack,pass,0.6072999676689506
+151,172.31.64.26,Benign,0,under_attack,under_attack,pass,0.4176999209448695
+152,85.10.204.115,Benign,0,under_attack,under_attack,pass,0.494200037792325
+153,189.236.198.113,Benign,0,under_attack,under_attack,pass,0.4763000179082155
+154,196.52.43.62,Benign,0,under_attack,under_attack,pass,0.4183999262750149
+155,185.162.33.127,Benign,0,under_attack,under_attack,pass,0.38330000825226307
+156,181.214.87.12,Benign,0,under_attack,under_attack,pass,0.4813000559806824
+157,172.31.66.9,Benign,0,under_attack,under_attack,pass,0.3600000636652112
+158,172.31.65.105,Benign,0,under_attack,under_attack,pass,0.3594000590965152
+159,175.195.219.31,Benign,0,under_attack,under_attack,pass,0.4974000621587038
+160,221.126.225.109,Benign,0,under_attack,under_attack,pass,0.39000005926936865
+161,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.3997000167146325
+162,190.216.204.14,Benign,0,under_attack,under_attack,pass,0.4776999121531844
+163,172.31.66.84,Benign,0,under_attack,under_attack,pass,0.3708999138325453
+164,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7047000108286738
+165,172.31.66.13,Benign,0,under_attack,under_attack,pass,0.3936999710276723
+166,204.11.75.42,Benign,0,under_attack,under_attack,pass,0.448599923402071
+167,172.31.64.100,Benign,0,under_attack,under_attack,pass,0.5338001064956188
+168,172.31.67.23,Benign,0,under_attack,under_attack,pass,0.49100001342594624
+169,172.31.67.99,Benign,0,under_attack,under_attack,pass,0.4195999354124069
+170,172.31.68.26,Benign,0,under_attack,under_attack,pass,0.5876000504940748
+171,88.255.228.21,Benign,0,under_attack,under_attack,pass,0.5444999551400542
+172,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7727999472990632
+173,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5866000428795815
+174,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.32510003075003624
+175,213.202.230.143,Benign,0,under_attack,under_attack,pass,0.46600005589425564
+176,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6002000300213695
+177,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5538000259548426
+178,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.4878999898210168
+179,172.31.66.105,Benign,0,under_attack,under_attack,pass,0.40250003803521395
+180,172.31.65.43,Benign,0,under_attack,under_attack,pass,0.3111000405624509
+181,172.31.64.51,Benign,0,under_attack,under_attack,pass,0.4395999712869525
+182,175.195.219.31,Benign,0,under_attack,under_attack,pass,0.6218999624252319
+183,172.31.69.17,Benign,0,under_attack,under_attack,pass,0.5845000268891454
+184,172.31.64.80,Benign,0,under_attack,under_attack,pass,0.607200083322823
+185,146.0.74.132,Benign,0,under_attack,under_attack,pass,0.5495999939739704
+186,94.25.166.70,Benign,0,under_attack,under_attack,pass,0.2785000251606107
+187,172.31.65.44,Benign,0,under_attack,under_attack,pass,0.3448999486863613
+188,172.31.64.35,Benign,0,under_attack,under_attack,pass,0.3013000823557377
+189,213.202.230.219,Benign,0,under_attack,under_attack,pass,0.5559999262914062
+190,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6839999696239829
+191,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.452800071798265
+192,18.218.11.51,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.4765000194311142
+193,172.31.67.33,Benign,0,under_attack,under_attack,pass,0.38380001205950975
+194,172.31.64.69,Benign,0,under_attack,under_attack,pass,0.5134000675752759
+195,190.213.12.66,Benign,0,under_attack,under_attack,pass,0.4912000149488449
+196,172.31.67.76,Benign,0,under_attack,under_attack,pass,0.43979997280985117
+197,172.31.64.124,Benign,0,under_attack,under_attack,pass,0.5116000538691878
+198,181.214.87.14,Benign,0,under_attack,under_attack,pass,0.3501999890431762
+199,79.174.248.227,Benign,0,under_attack,under_attack,pass,0.29500003438442945
+200,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.26840006466954947
+201,62.1.169.9,Benign,0,under_attack,under_attack,pass,1.0315000545233488
+202,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.40879996959120035
+203,172.31.65.118,Benign,0,under_attack,under_attack,pass,1.7846999689936638
+204,172.31.64.65,Benign,0,under_attack,under_attack,pass,0.4016000311821699
+205,172.31.64.73,Benign,0,under_attack,under_attack,pass,0.4724999889731407
+206,172.31.64.51,Benign,0,under_attack,under_attack,pass,0.3972999984398484
+207,172.31.65.10,Benign,0,under_attack,under_attack,pass,0.4005000228062272
+208,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7489999989047647
+209,172.31.66.87,Benign,0,under_attack,under_attack,pass,0.48099993728101254
+210,172.31.65.39,Benign,0,under_attack,under_attack,pass,0.557500054128468
+211,172.31.66.66,Benign,0,under_attack,under_attack,pass,0.40220003575086594
+212,172.31.65.84,Benign,0,under_attack,under_attack,pass,0.4075999604538083
+213,172.31.67.75,Benign,0,under_attack,under_attack,pass,0.470499973744154
+214,172.31.64.122,Benign,0,under_attack,under_attack,pass,0.47179998364299536
+215,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7528000278398395
+216,172.31.64.39,Benign,0,under_attack,under_attack,pass,0.5253000417724252
+217,172.31.64.114,Benign,0,under_attack,under_attack,pass,0.6419999990612268
+218,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.5229000234976411
+219,172.31.67.124,Benign,0,under_attack,under_attack,pass,0.4366999492049217
+220,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6528999656438828
+221,172.31.66.13,Benign,0,under_attack,under_attack,pass,0.42699999175965786
+222,207.74.3.44,Benign,0,under_attack,under_attack,pass,0.47470000572502613
+223,172.31.65.41,Benign,0,under_attack,under_attack,pass,0.44350000098347664
+224,172.31.69.24,Benign,0,under_attack,under_attack,pass,0.40989997796714306
+225,172.31.67.12,Benign,0,under_attack,under_attack,pass,0.408099964261055
+226,172.31.66.54,Benign,0,under_attack,under_attack,pass,0.42729999404400587
+227,18.218.11.51,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.5951999919489026
+228,172.31.65.105,Benign,0,under_attack,under_attack,pass,0.49969996325671673
+229,172.31.65.82,Benign,0,under_attack,under_attack,pass,0.44450000859797
+230,172.31.68.6,Benign,0,under_attack,under_attack,pass,0.5371000152081251
+231,103.46.12.151,Benign,0,under_attack,under_attack,pass,0.44689991045743227
+232,118.182.18.239,Benign,0,under_attack,under_attack,pass,0.4416999872773886
+233,172.31.66.82,Benign,0,under_attack,under_attack,pass,0.4737999988719821
+234,172.31.66.41,Benign,0,under_attack,under_attack,pass,0.6158999167382717
+235,90.179.218.161,Benign,0,under_attack,under_attack,pass,0.4732001107186079
+236,91.215.55.94,Benign,0,under_attack,under_attack,pass,0.40199991781264544
+237,172.31.64.107,Benign,0,under_attack,under_attack,pass,0.282999943010509
+238,172.31.64.38,Benign,0,under_attack,under_attack,pass,0.28979999478906393
+239,172.31.69.12,Benign,0,under_attack,under_attack,pass,0.2484000287950039
+240,5.188.11.25,Benign,0,under_attack,under_attack,pass,0.3291000612080097
+241,196.52.43.56,Benign,0,under_attack,under_attack,pass,0.39519998244941235
+242,172.31.66.16,Benign,0,under_attack,under_attack,pass,0.521700014360249
+243,213.202.230.37,Benign,0,under_attack,under_attack,pass,0.4923000233247876
+244,36.111.194.22,Benign,0,under_attack,under_attack,pass,0.43890008237212896
+245,172.31.69.23,Benign,0,under_attack,under_attack,pass,0.5802999949082732
+246,172.31.67.94,Benign,0,under_attack,under_attack,pass,0.7317999843508005
+247,50.78.235.65,Benign,0,under_attack,under_attack,pass,0.6374999647960067
+248,193.111.198.62,Benign,0,under_attack,under_attack,pass,0.5660000024363399
+249,172.31.67.99,Benign,0,under_attack,under_attack,pass,0.6371000781655312
+250,172.31.67.37,Benign,0,under_attack,under_attack,pass,0.4667999455705285
+251,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.8234999841079116
+252,172.31.69.11,Benign,0,under_attack,under_attack,pass,0.4064000677317381
+253,172.31.68.6,Benign,0,under_attack,under_attack,pass,0.3893000539392233
+254,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7546000415459275
+255,172.31.65.100,Benign,0,under_attack,under_attack,pass,0.5364000098779798
+256,172.31.67.47,Benign,0,under_attack,under_attack,pass,0.44029997661709785
+257,172.31.65.89,Benign,0,under_attack,under_attack,pass,0.5588999483734369
+258,172.31.66.37,Benign,0,under_attack,under_attack,pass,0.40769996121525764
+259,172.31.67.91,Benign,0,under_attack,under_attack,pass,0.5005999701097608
+260,212.92.112.11,Benign,0,under_attack,under_attack,pass,0.3701999085023999
+261,172.31.67.78,Benign,0,under_attack,under_attack,pass,0.33459998667240143
+262,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.2759000053629279
+263,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6782000418752432
+264,172.31.68.26,Benign,0,under_attack,under_attack,pass,0.31509995460510254
+265,193.111.198.70,Benign,0,under_attack,under_attack,pass,0.7639999967068434
+266,18.216.24.42,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.6232999730855227
+267,91.214.49.252,Benign,0,under_attack,under_attack,pass,0.4968000575900078
+268,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.5025999853387475
+269,172.31.65.113,Benign,0,under_attack,under_attack,pass,0.510699930600822
+270,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7251000497490168
+271,172.31.69.5,Infilteration,4,under_attack,under_attack,block,0.6700999801978469
+272,213.202.230.37,Benign,0,under_attack,under_attack,pass,0.4366000648587942
+273,172.31.64.60,Benign,0,under_attack,under_attack,pass,0.3630999708548188
+274,213.202.230.37,Benign,0,under_attack,under_attack,pass,0.4491000436246395
+275,87.230.72.8,Benign,0,under_attack,under_attack,pass,0.4265999887138605
+276,194.28.112.179,Benign,0,under_attack,under_attack,pass,0.3674000035971403
+277,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6104999920353293
+278,172.31.65.56,Benign,0,under_attack,under_attack,pass,0.42779999785125256
+279,172.31.67.115,Benign,0,under_attack,under_attack,pass,0.4437000025063753
+280,172.31.66.96,Benign,0,under_attack,under_attack,pass,0.37949997931718826
+281,61.38.252.29,Benign,0,under_attack,under_attack,pass,0.42360008228570223
+282,172.31.67.29,Benign,0,under_attack,under_attack,pass,0.36340008955448866
+283,172.31.64.28,Benign,0,under_attack,under_attack,pass,0.3760000690817833
+284,172.31.67.61,Benign,0,under_attack,under_attack,pass,0.4507000558078289
+285,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,1.117000007070601
+286,14.140.238.4,Benign,0,under_attack,under_attack,pass,0.5360000068321824
+287,172.31.64.65,Benign,0,under_attack,under_attack,pass,0.6082999752834439
+288,172.31.67.33,Benign,0,under_attack,under_attack,pass,0.4643999272957444
+289,18.221.219.4,FTP-BruteForce,2,under_attack,under_attack,rate_limit,0.23580004926770926
+290,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.6156000308692455
+291,5.39.216.195,Benign,0,under_attack,under_attack,pass,0.5551999201998115
+292,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.7140999659895897
+293,172.31.66.95,Benign,0,under_attack,under_attack,pass,0.49720006063580513
+294,172.31.66.122,Benign,0,under_attack,under_attack,pass,0.42779999785125256
+295,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.714799971319735
+296,172.31.64.8,Benign,0,under_attack,under_attack,pass,0.318199978210032
+297,172.31.67.14,Benign,0,under_attack,under_attack,pass,0.36429997999221087
+298,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.470799976028502
+299,172.31.69.17,Bot,4,under_attack,under_attack,block,3.7400999572128057
+300,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9086999343708158
+301,190.216.204.14,Benign,0,under_attack,under_attack,pass,0.5101000424474478
+302,172.31.67.99,Benign,0,under_attack,under_attack,pass,0.40609994903206825
+303,172.31.67.97,Benign,0,under_attack,under_attack,pass,0.5469999741762877
+304,172.31.69.12,Benign,0,under_attack,under_attack,pass,0.44189998880028725
+305,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.34360005520284176
+306,172.31.65.103,Benign,0,under_attack,under_attack,pass,0.382099999114871
+307,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.43139990884810686
+308,2.50.12.37,Benign,0,under_attack,under_attack,pass,0.38659991696476936
+309,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5627999780699611
+310,172.31.67.13,Benign,0,under_attack,under_attack,pass,0.3073000116273761
+311,193.111.198.70,Benign,0,under_attack,under_attack,pass,0.3353999927639961
+312,172.31.64.49,Benign,0,under_attack,under_attack,pass,0.2919000107795
+313,172.31.67.67,Benign,0,under_attack,under_attack,pass,0.37240004166960716
+314,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7921999786049128
+315,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.4694999661296606
+316,142.4.211.152,Benign,0,under_attack,under_attack,pass,0.5330999847501516
+317,93.183.216.136,Benign,0,under_attack,under_attack,pass,0.4544999683275819
+318,172.31.66.75,Benign,0,under_attack,under_attack,pass,0.42239995673298836
+319,172.31.64.21,Benign,0,under_attack,under_attack,pass,0.4007000243291259
+320,172.31.66.92,Benign,0,under_attack,under_attack,pass,0.45240006875246763
+321,193.111.198.10,Benign,0,under_attack,under_attack,pass,0.3709000302478671
+322,138.201.182.18,Benign,0,under_attack,under_attack,pass,0.42639998719096184
+323,172.31.64.109,Benign,0,under_attack,under_attack,pass,0.4529000725597143
+324,172.31.66.105,Benign,0,under_attack,under_attack,pass,0.37100003100931644
+325,172.31.65.5,Benign,0,under_attack,under_attack,pass,0.3559000324457884
+326,80.114.176.83,Benign,0,under_attack,under_attack,pass,0.471399980597198
+327,201.91.86.28,Benign,0,under_attack,under_attack,pass,0.3621000796556473
+328,110.35.47.137,Benign,0,under_attack,under_attack,pass,0.3890999360010028
+329,172.31.68.5,Benign,0,under_attack,under_attack,pass,0.46030001249164343
+330,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.35170000046491623
+331,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.3914999542757869
+332,172.31.64.79,Benign,0,under_attack,under_attack,pass,0.8317999308928847
+333,172.31.66.65,Benign,0,under_attack,under_attack,pass,0.4461999051272869
+334,78.169.164.115,Benign,0,under_attack,under_attack,pass,0.4216000670567155
+335,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7029999978840351
+336,163.172.74.24,Benign,0,under_attack,under_attack,pass,0.41999993845820427
+337,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.659800018183887
+338,199.247.10.78,Benign,0,under_attack,under_attack,pass,0.48010004684329033
+339,172.31.64.60,Benign,0,under_attack,under_attack,pass,0.41550002060830593
+340,77.72.82.98,Benign,0,under_attack,under_attack,pass,0.3771999618038535
+341,199.247.10.78,Benign,0,under_attack,under_attack,pass,0.3882999299094081
+342,139.60.160.165,Benign,0,under_attack,under_attack,pass,0.3206999972462654
+343,172.31.66.102,Benign,0,under_attack,under_attack,pass,0.4113999893888831
+344,172.31.68.6,Benign,0,under_attack,under_attack,pass,0.37729996256530285
+345,172.31.66.41,Benign,0,under_attack,under_attack,pass,0.39410009048879147
+346,172.31.65.39,Benign,0,under_attack,under_attack,pass,0.4501999355852604
+347,172.31.64.8,Benign,0,under_attack,under_attack,pass,0.3651001024991274
+348,172.31.65.91,Benign,0,under_attack,under_attack,pass,1.0704000014811754
+349,172.31.65.91,Benign,0,under_attack,under_attack,pass,0.5937999812886119
+350,172.31.67.82,Benign,0,under_attack,under_attack,pass,0.5452999612316489
+351,37.46.246.28,Benign,0,under_attack,under_attack,pass,0.5796999903395772
+352,172.31.67.32,Benign,0,under_attack,under_attack,pass,0.5830998998135328
+353,77.243.191.18,Benign,0,under_attack,under_attack,pass,0.674300012178719
+354,100.42.227.46,Benign,0,under_attack,under_attack,pass,0.6602000212296844
+355,46.29.162.82,Benign,0,under_attack,under_attack,pass,0.68320007994771
+356,172.31.67.18,Benign,0,under_attack,under_attack,pass,0.80289994366467
+357,172.31.65.80,Benign,0,under_attack,under_attack,pass,0.6017000414431095
+358,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.0971000883728266
+359,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6129000103101134
+360,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.4381999606266618
+361,172.31.66.81,Benign,0,under_attack,under_attack,pass,0.2595999976620078
+362,172.31.66.107,Benign,0,under_attack,under_attack,pass,0.2992000663653016
+363,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.43159991037100554
+364,69.16.232.48,Benign,0,under_attack,under_attack,pass,0.26400003116577864
+365,172.31.67.78,Benign,0,under_attack,under_attack,pass,0.5386000266298652
+366,77.72.82.92,Benign,0,under_attack,under_attack,pass,0.4811999388039112
+367,172.31.67.124,Benign,0,under_attack,under_attack,pass,0.4550999728962779
+368,95.104.14.202,Benign,0,under_attack,under_attack,pass,0.43169991113245487
+369,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6854000966995955
+370,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.4350000526756048
+371,172.31.67.86,Benign,0,under_attack,under_attack,pass,0.6427000043913722
+372,92.63.197.12,Benign,0,under_attack,under_attack,pass,0.4331000382080674
+373,172.31.67.7,Benign,0,under_attack,under_attack,pass,0.41580002289265394
+374,172.31.65.117,Benign,0,under_attack,under_attack,pass,0.3205999964848161
+375,172.31.69.16,Benign,0,under_attack,under_attack,pass,0.26030000299215317
+376,75.150.234.242,Benign,0,under_attack,under_attack,pass,0.2500000409781933
+377,200.109.237.11,Benign,0,under_attack,under_attack,pass,0.368200009688735
+378,5.101.40.43,Infilteration,4,under_attack,under_attack,block,0.6380999693647027
+379,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.4061000654473901
+380,172.31.67.50,Benign,0,under_attack,under_attack,pass,0.4208999453112483
+381,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6327999290078878
+382,172.31.65.56,Benign,0,under_attack,under_attack,pass,0.39770000148564577
+383,172.31.64.70,Benign,0,under_attack,under_attack,pass,0.4368999507278204
+384,172.31.65.75,Benign,0,under_attack,under_attack,pass,0.40550006087869406
+385,172.31.65.29,Benign,0,under_attack,under_attack,pass,0.4292000085115433
+386,213.202.230.206,Benign,0,under_attack,under_attack,pass,0.4691999638453126
+387,190.213.169.227,Benign,0,under_attack,under_attack,pass,0.44189998880028725
+388,172.31.66.20,Benign,0,under_attack,under_attack,pass,0.609499984420836
+389,172.31.68.15,Benign,0,under_attack,under_attack,pass,0.5101999267935753
+390,172.31.66.24,Benign,0,under_attack,under_attack,pass,0.5059000104665756
+391,193.111.198.70,Benign,0,under_attack,under_attack,pass,0.45240006875246763
+392,172.31.65.91,Benign,0,under_attack,under_attack,pass,0.4024999216198921
+393,18.216.24.42,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.5526000168174505
+394,188.35.187.50,Benign,0,under_attack,under_attack,pass,0.3291000612080097
+395,172.31.66.51,Benign,0,under_attack,under_attack,pass,0.2812000457197428
+396,172.31.67.102,Benign,0,under_attack,under_attack,pass,0.26739994063973427
+397,172.31.66.103,Benign,0,under_attack,under_attack,pass,0.382099999114871
+398,172.31.66.86,Benign,0,under_attack,under_attack,pass,0.6671999581158161
+399,91.205.236.101,Benign,0,under_attack,under_attack,pass,0.5568999331444502
+400,172.31.65.88,Benign,0,under_attack,under_attack,pass,0.4154000198468566
+401,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.686999992467463
+402,193.111.198.65,Benign,0,under_attack,under_attack,pass,0.4232999635860324
+403,172.31.69.13,Infilteration,4,under_attack,under_attack,block,0.6722999969497323
+404,172.31.64.116,Benign,0,under_attack,under_attack,pass,0.6288998993113637
+405,172.31.66.43,Benign,0,under_attack,under_attack,pass,0.4884999943897128
+406,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7022999925538898
+407,118.169.190.186,Benign,0,under_attack,under_attack,pass,0.42860000394284725
+408,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7556000491604209
+409,195.22.125.249,Benign,0,under_attack,under_attack,pass,0.4371000686660409
+410,172.31.64.41,Benign,0,under_attack,under_attack,pass,0.47019997145980597
+411,172.31.65.32,Benign,0,under_attack,under_attack,pass,0.4227000754326582
+412,172.31.66.5,Benign,0,under_attack,under_attack,pass,0.4146000137552619
+413,172.31.69.12,Bot,4,under_attack,under_attack,block,0.6832999642938375
+414,190.109.164.68,Benign,0,under_attack,under_attack,pass,0.4276999970898032
+415,172.31.67.38,Benign,0,under_attack,under_attack,pass,0.40989997796714306
+416,172.31.67.67,Benign,0,under_attack,under_attack,pass,0.4437000025063753
+417,145.239.183.169,Benign,0,under_attack,under_attack,pass,0.4350000526756048
+418,172.31.68.26,Benign,0,under_attack,under_attack,pass,0.3723000409081578
+419,172.31.67.123,Benign,0,under_attack,under_attack,pass,0.6078999722376466
+420,18.218.55.126,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.8989000925794244
+421,18.218.229.235,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.9728999575600028
+422,141.105.71.81,Benign,0,under_attack,under_attack,pass,0.4342000465840101
+423,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6689999718219042
+424,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.20610005594789982
+425,172.31.64.110,Benign,0,under_attack,under_attack,pass,0.4181000404059887
+426,201.163.99.68,Benign,0,under_attack,under_attack,pass,0.43340004049241543
+427,193.111.198.66,Benign,0,under_attack,under_attack,pass,0.39009994361549616
+428,172.31.66.41,Benign,0,under_attack,under_attack,pass,0.39439997635781765
+429,124.29.242.26,Benign,0,under_attack,under_attack,pass,0.43029990047216415
+430,172.31.66.20,Benign,0,under_attack,under_attack,pass,0.39119995199143887
+431,118.173.39.238,Benign,0,under_attack,under_attack,pass,0.3952999832108617
+432,1.55.102.103,Benign,0,under_attack,under_attack,pass,0.4249999765306711
+433,213.202.230.221,Benign,0,under_attack,under_attack,pass,0.2853999612852931
+434,172.31.64.54,Benign,0,under_attack,under_attack,pass,0.40279992390424013
+435,172.31.68.25,Benign,0,under_attack,under_attack,pass,0.443900004029274
+436,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.5620999727398157
+437,81.177.32.12,Benign,0,under_attack,under_attack,pass,0.6852000951766968
+438,172.31.66.61,Benign,0,under_attack,under_attack,pass,0.4896000027656555
+439,172.31.64.32,Benign,0,under_attack,under_attack,pass,0.4278999986127019
+440,172.31.66.22,Benign,0,under_attack,under_attack,pass,0.43720006942749023
+441,172.31.67.7,Benign,0,under_attack,under_attack,pass,0.4191999323666096
+442,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7264999439939857
+443,212.92.115.147,Benign,0,under_attack,under_attack,pass,0.47580001410096884
+444,172.31.66.91,Benign,0,under_attack,under_attack,pass,0.2717000897973776
+445,172.31.67.35,Benign,0,under_attack,under_attack,pass,0.408099964261055
+446,172.31.64.18,Benign,0,under_attack,under_attack,pass,0.5151999648660421
+447,172.31.67.21,Benign,0,under_attack,under_attack,pass,0.404000049456954
+448,172.31.65.81,Benign,0,under_attack,under_attack,pass,0.44329999946057796
+449,212.92.122.36,Benign,0,under_attack,under_attack,pass,0.41560002136975527
+450,172.31.64.96,Benign,0,under_attack,under_attack,pass,0.5051000043749809
+451,172.31.64.69,Benign,0,under_attack,under_attack,pass,0.5133000668138266
+452,213.202.230.143,Benign,0,under_attack,under_attack,pass,0.4422001074999571
+453,172.31.66.65,Benign,0,under_attack,under_attack,pass,0.40550006087869406
+454,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.47400000039488077
+455,172.31.66.112,Benign,0,under_attack,under_attack,pass,0.5413000471889973
+456,77.72.82.72,Benign,0,under_attack,under_attack,pass,0.6079999729990959
+457,172.31.68.26,Benign,0,under_attack,under_attack,pass,0.4275999963283539
+458,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.41550002060830593
+459,172.31.67.96,Benign,0,under_attack,under_attack,pass,0.4379999591037631
+460,14.116.251.240,Benign,0,under_attack,under_attack,pass,0.5015000933781266
+461,172.31.66.53,Benign,0,under_attack,under_attack,pass,0.5145000759512186
+462,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7978000212460756
+463,163.172.159.86,Benign,0,under_attack,under_attack,pass,0.4934000317007303
+464,77.72.83.21,Benign,0,under_attack,under_attack,pass,0.28330006171017885
+465,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.39119995199143887
+466,172.31.67.64,Benign,0,under_attack,under_attack,pass,0.2543000737205148
+467,172.31.65.41,Benign,0,under_attack,under_attack,pass,0.33840001560747623
+468,172.31.65.123,Benign,0,under_attack,under_attack,pass,0.40460005402565
+469,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.42019993998110294
+470,172.31.67.108,Benign,0,under_attack,under_attack,pass,0.3755999496206641
+471,172.31.69.23,Benign,0,under_attack,under_attack,pass,0.2487000310793519
+472,5.39.216.203,Benign,0,under_attack,under_attack,pass,0.24969992227852345
+473,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.5036999937146902
+474,172.31.68.14,Benign,0,under_attack,under_attack,pass,0.4729999927803874
+475,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7288999622687697
+476,212.92.124.31,Benign,0,under_attack,under_attack,pass,0.5248000379651785
+477,212.92.121.57,Benign,0,under_attack,under_attack,pass,0.4093999741598964
+478,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.37489994429051876
+479,172.31.66.54,Benign,0,under_attack,under_attack,pass,0.458099995739758
+480,172.31.64.7,Benign,0,under_attack,under_attack,pass,0.647700042463839
+481,172.31.64.69,Benign,0,under_attack,under_attack,pass,0.4411999834701419
+482,172.31.65.49,Benign,0,under_attack,under_attack,pass,0.27240009512752295
+483,5.188.86.4,Benign,0,under_attack,under_attack,pass,0.2934999065473676
+484,172.31.64.96,Benign,0,under_attack,under_attack,pass,0.2997999545186758
+485,172.31.65.8,Benign,0,under_attack,under_attack,pass,0.2964000450447202
+486,172.31.67.10,Benign,0,under_attack,under_attack,pass,0.283299945294857
+487,172.31.65.69,Benign,0,under_attack,under_attack,pass,0.33660000190138817
+488,103.52.69.238,Benign,0,under_attack,under_attack,pass,0.4121999954804778
+489,172.31.67.67,Benign,0,under_attack,under_attack,pass,0.34899997990578413
+490,172.31.66.114,Benign,0,under_attack,under_attack,pass,0.2715999726206064
+491,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.2581001026555896
+492,172.31.67.60,Benign,0,under_attack,under_attack,pass,0.2956000389531255
+493,172.31.64.16,Benign,0,under_attack,under_attack,pass,0.3871000371873379
+494,172.31.67.64,Benign,0,under_attack,under_attack,pass,0.41770003736019135
+495,172.31.67.101,Benign,0,under_attack,under_attack,pass,0.45950000640004873
+496,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.4113999893888831
+497,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.3906999481841922
+498,172.31.67.20,Benign,0,under_attack,under_attack,pass,0.4032999277114868
+499,172.31.66.76,Benign,0,under_attack,under_attack,pass,0.36810000892728567
+500,172.31.67.26,Benign,0,under_attack,under_attack,pass,0.362900085747242
+501,172.31.66.61,Benign,0,under_attack,under_attack,pass,0.2584999892860651
+502,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.40090002585202456
+503,194.28.115.228,Benign,0,under_attack,under_attack,pass,0.28389994986355305
+504,172.31.66.76,Benign,0,under_attack,under_attack,pass,0.39139995351433754
+505,172.31.64.109,Benign,0,under_attack,under_attack,pass,0.4061000654473901
+506,5.39.219.93,Benign,0,under_attack,under_attack,pass,0.3945999778807163
+507,172.31.69.8,Bot,4,under_attack,under_attack,block,0.7013999857008457
+508,172.31.68.28,Benign,0,under_attack,under_attack,pass,0.44249999336898327
+509,172.31.65.59,Benign,0,under_attack,under_attack,pass,0.46769995242357254
+510,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.45059993863105774
+511,172.31.64.119,Benign,0,under_attack,under_attack,pass,0.43429993093013763
+512,172.31.66.100,Benign,0,under_attack,under_attack,pass,0.2775000175461173
+513,172.31.67.67,Benign,0,under_attack,under_attack,pass,0.29179989360272884
+514,172.31.64.124,Benign,0,under_attack,under_attack,pass,0.3226000117138028
+515,172.31.66.20,Benign,0,under_attack,under_attack,pass,0.25379995349794626
+516,172.31.69.8,Bot,4,under_attack,under_attack,block,0.4798000445589423
+517,172.31.66.62,Benign,0,under_attack,under_attack,pass,0.3667999990284443
+518,172.31.65.75,Benign,0,under_attack,under_attack,pass,0.3654999891296029
+519,101.99.14.211,Benign,0,under_attack,under_attack,pass,0.3744999412447214
+520,172.31.66.12,Benign,0,under_attack,under_attack,pass,0.3730999305844307
+521,172.31.66.61,Benign,0,under_attack,under_attack,pass,0.3996000159531832
+522,5.188.11.25,Benign,0,under_attack,under_attack,pass,0.4390999674797058
+523,172.31.69.9,Benign,0,under_attack,under_attack,pass,0.4417999880388379
+524,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.4218999529257417
+525,172.31.65.61,Benign,0,under_attack,under_attack,pass,0.44979993253946304
+526,172.31.67.48,Benign,0,under_attack,under_attack,pass,0.4494000459089875
+527,172.31.64.101,Benign,0,under_attack,under_attack,pass,0.4221000708639622
+528,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.42040005791932344
+529,172.31.69.29,Bot,4,under_attack,under_attack,block,0.6161000346764922
+530,145.239.183.169,Benign,0,under_attack,under_attack,pass,0.4018999170511961
+531,198.50.201.21,Benign,0,under_attack,under_attack,pass,0.44350000098347664
+532,172.31.67.54,Benign,0,under_attack,under_attack,pass,0.37269992753863335
+533,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5988000193610787
+534,63.165.254.90,Benign,0,under_attack,under_attack,pass,0.40879996959120035
+535,5.188.136.46,Benign,0,under_attack,under_attack,pass,0.3179999766871333
+536,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.31210004817694426
+537,172.31.64.41,Benign,0,under_attack,under_attack,pass,0.35099999513477087
+538,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6387999746948481
+539,172.31.66.116,Benign,0,under_attack,under_attack,pass,0.4430999979376793
+540,172.31.64.32,Benign,0,under_attack,under_attack,pass,0.39950001519173384
+541,172.31.69.29,Benign,0,under_attack,under_attack,pass,0.41199999395757914
+542,172.31.66.40,Benign,0,under_attack,under_attack,pass,0.4241000860929489
+543,118.171.4.121,Benign,0,under_attack,under_attack,pass,0.37320004776120186
+544,212.92.112.11,Benign,0,under_attack,under_attack,pass,0.3727999283000827
+545,172.31.69.26,Benign,0,under_attack,under_attack,pass,0.4270999925211072
+546,172.31.66.92,Benign,0,under_attack,under_attack,pass,0.4053000593557954
+547,172.31.67.59,Benign,0,under_attack,under_attack,pass,0.40259992238134146
+548,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6742000114172697
+549,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.41749991942197084
+550,98.100.31.138,Benign,0,under_attack,under_attack,pass,0.4005000228062272
+551,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.41969993617385626
+552,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6120000034570694
+553,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.4417999880388379
+554,172.31.67.7,Benign,0,under_attack,under_attack,pass,0.3855000250041485
+555,213.202.230.222,Benign,0,under_attack,under_attack,pass,0.3768999595195055
+556,172.31.64.46,Benign,0,under_attack,under_attack,pass,0.3589000552892685
+557,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6328000454232097
+558,172.31.69.4,Benign,0,under_attack,under_attack,pass,0.35530002787709236
+559,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6632000440731645
+560,172.31.67.115,Benign,0,under_attack,under_attack,pass,0.4327999195083976
+561,87.230.72.8,Benign,0,under_attack,under_attack,pass,0.41089998558163643
+562,172.31.65.38,Benign,0,under_attack,under_attack,pass,0.4053999437019229
+563,172.31.69.11,Benign,0,under_attack,under_attack,pass,0.3557000309228897
+564,18.219.32.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.6693999748677015
+565,172.31.66.42,Benign,0,under_attack,under_attack,pass,0.4104999825358391
+566,172.31.69.19,Benign,0,under_attack,under_attack,pass,0.36830001045018435
+567,50.78.235.65,Benign,0,under_attack,under_attack,pass,0.41560002136975527
+568,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6210000719875097
+569,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.4107999848201871
+570,172.31.64.15,Benign,0,under_attack,under_attack,pass,0.41820004116743803
+571,5.188.10.140,Benign,0,under_attack,under_attack,pass,0.41800003964453936
+572,172.31.66.113,Benign,0,under_attack,under_attack,pass,0.45380007941275835
+573,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6358999526128173
+574,172.31.66.91,Benign,0,under_attack,under_attack,pass,0.5270999390631914
+575,196.52.84.25,Benign,0,under_attack,under_attack,pass,0.4507000558078289
+576,172.31.69.20,Benign,0,under_attack,under_attack,pass,0.39519998244941235
+577,172.31.65.113,Benign,0,under_attack,under_attack,pass,0.5366998957470059
+578,172.31.66.61,Benign,0,under_attack,under_attack,pass,0.4656999371945858
+579,96.69.128.189,Benign,0,under_attack,under_attack,pass,0.3464000765234232
+580,78.29.25.114,Benign,0,under_attack,under_attack,pass,0.5854000337421894
+581,172.31.66.98,Benign,0,under_attack,under_attack,pass,0.4200000548735261
+582,193.111.198.65,Benign,0,under_attack,under_attack,pass,0.44059997890144587
+583,172.31.67.53,Benign,0,under_attack,under_attack,pass,0.35880005452781916
+584,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.3921000752598047
+585,69.16.232.48,Benign,0,under_attack,under_attack,pass,0.36529998760670424
+586,24.234.124.9,Benign,0,under_attack,under_attack,pass,0.38920005317777395
+587,172.31.66.11,Benign,0,under_attack,under_attack,pass,0.431500026024878
+588,122.117.180.56,Benign,0,under_attack,under_attack,pass,0.47289999201893806
+589,172.31.67.112,Benign,0,under_attack,under_attack,pass,0.35639991983771324
+590,212.250.152.68,Benign,0,under_attack,under_attack,pass,0.3793999785557389
+591,172.31.66.20,Benign,0,under_attack,under_attack,pass,0.39030006155371666
+592,85.111.46.167,Benign,0,under_attack,under_attack,pass,0.42269995901733637
+593,172.31.64.68,Benign,0,under_attack,under_attack,pass,0.43509993702173233
+594,172.31.64.40,Benign,0,under_attack,under_attack,pass,0.36619999445974827
+595,172.31.67.42,Benign,0,under_attack,under_attack,pass,0.5403000395745039
+596,172.31.67.13,Benign,0,under_attack,under_attack,pass,0.7437000749632716
+597,5.188.9.25,Benign,0,under_attack,under_attack,pass,0.39700011257082224
+598,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6464000325649977
+599,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,block,0.4282000008970499
+600,172.31.67.126,Benign,0,under_attack,under_attack,pass,0.3605999518185854
+601,172.31.64.86,Benign,0,under_attack,under_attack,pass,0.32029999420046806
+602,52.14.136.135,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.49679994117468596
+603,165.132.169.106,Benign,0,under_attack,under_attack,pass,0.4056000616401434
+604,172.31.66.11,Benign,0,under_attack,under_attack,pass,0.965300016105175
+605,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7940999930724502
+606,212.92.119.1,Benign,0,under_attack,under_attack,pass,0.9827000321820378
+607,172.31.64.54,Benign,0,under_attack,under_attack,pass,0.47610001638531685
+608,172.31.68.13,Benign,0,under_attack,under_attack,pass,0.5029999883845448
+609,172.31.67.66,Benign,0,under_attack,under_attack,pass,0.6668999558314681
+610,172.31.65.91,Benign,0,under_attack,under_attack,pass,0.6234999746084213
+611,172.31.69.13,Infilteration,4,under_attack,under_attack,block,0.9922999888658524
+612,172.31.65.98,Benign,0,under_attack,under_attack,pass,0.4502000520005822
+613,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6559999892488122
+614,172.31.69.16,Benign,0,under_attack,under_attack,pass,0.42479997500777245
+615,172.31.68.23,Benign,0,under_attack,under_attack,pass,0.9758999804034829
+616,172.31.65.68,Benign,0,under_attack,under_attack,pass,0.5911999614909291
+617,77.72.82.57,Benign,0,under_attack,under_attack,pass,0.44520001392811537
+618,172.31.66.73,Benign,0,under_attack,under_attack,pass,0.43949997052550316
+619,172.31.67.81,Benign,0,under_attack,under_attack,pass,0.569300027564168
+620,153.225.205.66,Benign,0,under_attack,under_attack,pass,0.586999929510057
+621,193.111.198.10,Benign,0,under_attack,under_attack,pass,0.6556999869644642
+622,172.31.66.11,Benign,0,under_attack,under_attack,pass,0.5989000201225281
+623,181.214.87.12,Benign,0,under_attack,under_attack,pass,0.4168000305071473
+624,103.18.91.210,Benign,0,under_attack,under_attack,pass,0.4371000686660409
+625,162.242.237.105,Benign,0,under_attack,under_attack,pass,0.44759991578757763
+626,172.31.66.61,Benign,0,under_attack,under_attack,pass,1.0273000225424767
+627,172.31.67.8,Benign,0,under_attack,under_attack,pass,0.6253999890759587
+628,172.31.66.41,Benign,0,under_attack,under_attack,pass,0.4259999841451645
+629,172.31.66.41,Benign,0,under_attack,under_attack,pass,0.5138000706210732
+630,172.31.65.59,Benign,0,under_attack,under_attack,pass,0.5752999568358064
+631,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.128499978221953
+632,172.31.65.98,Benign,0,under_attack,under_attack,pass,0.4773000255227089
+633,172.31.66.116,Benign,0,under_attack,under_attack,pass,0.5180999869480729
+634,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.5308999679982662
+635,200.167.191.2,Benign,0,under_attack,under_attack,pass,0.45849999878555536
+636,172.31.67.118,Benign,0,under_attack,under_attack,pass,0.7396999280899763
+637,66.212.179.70,Benign,0,under_attack,under_attack,pass,0.4963000537827611
+638,172.31.66.24,Benign,0,under_attack,under_attack,pass,0.43240003287792206
+639,181.214.87.239,Benign,0,under_attack,under_attack,pass,0.4881999921053648
+640,172.31.64.33,Benign,0,under_attack,under_attack,pass,1.0174000635743141
+641,172.31.64.68,Benign,0,under_attack,under_attack,pass,0.7376999128609896
+642,172.31.64.85,Benign,0,under_attack,under_attack,pass,0.7250000489875674
+643,172.31.65.100,Benign,0,under_attack,under_attack,pass,0.4705999745056033
+644,172.31.64.49,Benign,0,under_attack,under_attack,pass,0.41259999852627516
+645,81.37.149.89,Benign,0,under_attack,under_attack,pass,1.434299978427589
+646,5.39.216.253,Benign,0,under_attack,under_attack,pass,0.5050998879596591
+647,172.31.69.10,Bot,4,under_attack,under_attack,block,1.4027999714016914
+648,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6575000006705523
+649,172.31.64.92,Benign,0,under_attack,under_attack,pass,0.6713999900966883
+650,172.31.66.116,Benign,0,under_attack,under_attack,pass,2.618200029246509
+651,172.31.66.14,Benign,0,under_attack,under_attack,pass,0.5786999827250838
+652,159.192.122.221,Benign,0,under_attack,under_attack,pass,0.5559000419452786
+653,89.248.168.14,Benign,0,under_attack,under_attack,pass,0.8319000480696559
+654,71.252.199.2,Benign,0,under_attack,under_attack,pass,0.42079994454979897
+655,172.31.67.123,Benign,0,under_attack,under_attack,pass,0.45960000716149807
+656,172.31.67.6,Benign,0,under_attack,under_attack,pass,0.9421000722795725
+657,172.31.69.24,Benign,0,under_attack,under_attack,pass,0.4453000146895647
+658,172.31.67.40,Benign,0,under_attack,under_attack,pass,0.44840003829449415
+659,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7304999744519591
+660,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.426200102083385
+661,193.111.198.66,Benign,0,under_attack,under_attack,pass,0.4707000916823745
+662,172.31.66.21,Benign,0,under_attack,under_attack,pass,0.4526999546214938
+663,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.4194999346509576
+664,172.31.67.20,Benign,0,under_attack,under_attack,pass,0.4458000184968114
+665,103.194.144.248,Benign,0,under_attack,under_attack,pass,0.3717000363394618
+666,201.48.152.164,Benign,0,under_attack,under_attack,pass,0.46339991968125105
+667,172.31.69.26,Bot,4,under_attack,under_attack,block,0.7906000828370452
+668,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9658000199124217
+669,172.31.69.4,Benign,0,under_attack,under_attack,pass,0.659200013615191
+670,172.31.67.59,Benign,0,under_attack,under_attack,pass,0.5577000556513667
+671,172.31.65.50,Benign,0,under_attack,under_attack,pass,0.8424000116065145
+672,172.31.66.22,Benign,0,under_attack,under_attack,pass,0.5368000129237771
+673,46.17.98.195,Benign,0,under_attack,under_attack,pass,0.7247000467032194
+674,172.31.64.88,Benign,0,under_attack,under_attack,pass,0.4325000336393714
+675,24.234.124.9,Benign,0,under_attack,under_attack,pass,0.4931000294163823
+676,77.72.82.80,Benign,0,under_attack,under_attack,pass,0.5842999089509249
+677,172.31.68.5,Benign,0,under_attack,under_attack,pass,0.49290002789348364
+678,18.218.229.235,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7423000643029809
+679,172.31.68.28,Benign,0,under_attack,under_attack,pass,0.4260999849066138
+680,139.60.160.151,Benign,0,under_attack,under_attack,pass,0.38979994133114815
+681,18.221.219.4,FTP-BruteForce,2,under_attack,under_attack,rate_limit,0.3757999511435628
+682,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.7900000782683492
+683,172.31.64.7,Benign,0,under_attack,under_attack,pass,0.5087000317871571
+684,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.4808000521734357
+685,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.5640001036226749
+686,172.31.66.121,Benign,0,under_attack,under_attack,pass,0.42100006248801947
+687,219.89.204.240,Benign,0,under_attack,under_attack,pass,0.40639995131641626
+688,172.31.66.84,Benign,0,under_attack,under_attack,pass,0.4162000259384513
+689,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7254000520333648
+690,172.31.66.110,Benign,0,under_attack,under_attack,pass,0.46010001096874475
+691,172.31.67.64,Benign,0,under_attack,under_attack,pass,0.42559998109936714
+692,197.156.104.113,Benign,0,under_attack,under_attack,pass,0.4467000253498554
+693,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7874999428167939
+694,172.31.69.6,Infilteration,4,under_attack,under_attack,block,0.7145000854507089
+695,172.31.64.60,Benign,0,under_attack,under_attack,pass,0.38980005774647
+696,172.31.65.18,Benign,0,under_attack,under_attack,pass,0.3845999017357826
+697,213.202.230.207,Benign,0,under_attack,under_attack,pass,0.41750003583729267
+698,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.3885999321937561
+699,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.5577999399974942
+700,172.31.67.64,Benign,0,under_attack,under_attack,pass,0.572799937799573
+701,172.31.64.35,Benign,0,under_attack,under_attack,pass,0.3712000325322151
+702,172.31.67.4,Benign,0,under_attack,under_attack,pass,0.37599995266646147
+703,195.13.178.5,Benign,0,under_attack,under_attack,pass,0.5474999779835343
+704,213.202.230.144,Benign,0,under_attack,under_attack,pass,0.5926000885665417
+705,186.95.244.220,Benign,0,under_attack,under_attack,pass,0.5832999013364315
+706,172.31.69.24,Benign,0,under_attack,under_attack,pass,0.3883000463247299
+707,172.31.64.42,Benign,0,under_attack,under_attack,pass,0.3858000272884965
+708,172.31.69.30,Bot,4,under_attack,under_attack,block,0.7000999758020043
+709,172.31.65.39,Benign,0,under_attack,under_attack,pass,0.46770006883889437
+710,5.188.9.25,Benign,0,under_attack,under_attack,pass,0.5456999642774463
+711,180.100.217.115,Benign,0,under_attack,under_attack,pass,0.5366000114008784
+712,172.31.64.112,Benign,0,under_attack,under_attack,pass,0.5670000100508332
+713,172.31.66.51,Benign,0,under_attack,under_attack,pass,0.4385000793263316
+714,172.31.64.124,Benign,0,under_attack,under_attack,pass,0.43429993093013763
+715,172.31.64.26,Benign,0,under_attack,under_attack,pass,0.4922000225633383
+716,47.201.36.2,Benign,0,under_attack,under_attack,pass,0.4333000397309661
+717,69.16.232.48,Benign,0,under_attack,under_attack,pass,0.5233000265434384
+718,172.31.66.71,Benign,0,under_attack,under_attack,pass,0.5811000009998679
+719,173.95.5.118,Benign,0,under_attack,under_attack,pass,0.5671000108122826
+720,172.31.65.11,Benign,0,under_attack,under_attack,pass,0.53909991402179
+721,172.31.69.4,Benign,0,under_attack,under_attack,pass,0.5894999485462904
+722,193.111.198.62,Benign,0,under_attack,under_attack,pass,0.5415999330580235
+723,18.216.24.42,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.8254999993368983
+724,183.182.116.122,Benign,0,under_attack,under_attack,pass,0.5654999986290932
+725,172.31.69.13,Benign,0,under_attack,under_attack,pass,2.128400024957955
+726,77.222.100.33,Benign,0,under_attack,under_attack,pass,0.7492000004276633
+727,18.219.5.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7893000729382038
+728,187.155.187.173,Benign,0,under_attack,under_attack,pass,0.5133999511599541
+729,95.153.66.61,Benign,0,under_attack,under_attack,pass,0.9990000398829579
+730,172.31.66.109,Benign,0,under_attack,under_attack,pass,0.5522000137716532
+731,172.31.67.33,Benign,0,under_attack,under_attack,pass,0.849700067192316
+732,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9078999282792211
+733,172.31.65.119,Benign,0,under_attack,under_attack,pass,0.46310003381222486
+734,172.31.64.40,Benign,0,under_attack,under_attack,pass,0.5189999938011169
+735,18.218.115.60,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,1.091900048777461
+736,117.4.80.56,Benign,0,under_attack,under_attack,pass,0.6362999556586146
+737,18.218.115.60,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7136999629437923
+738,172.31.66.46,Benign,0,under_attack,under_attack,pass,0.826600007712841
+739,172.31.65.45,Benign,0,under_attack,under_attack,pass,0.4389999667182565
+740,172.31.64.104,Benign,0,under_attack,under_attack,pass,0.5176999839022756
+741,5.39.217.113,Benign,0,under_attack,under_attack,pass,0.4021000349894166
+742,172.31.65.83,Benign,0,under_attack,under_attack,pass,0.47069997526705265
+743,172.31.65.85,Benign,0,under_attack,under_attack,pass,0.615999917499721
+744,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,1.1959000257775187
+745,172.31.65.118,Benign,0,under_attack,under_attack,pass,0.5156999686732888
+746,172.31.66.105,Benign,0,under_attack,under_attack,pass,0.5203000036999583
+747,195.69.197.154,Benign,0,under_attack,under_attack,pass,0.49430003855377436
+748,172.31.65.9,Benign,0,under_attack,under_attack,pass,0.5520000122487545
+749,96.32.246.226,Benign,0,under_attack,under_attack,pass,0.5542000290006399
+750,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7019999902695417
+751,172.31.66.57,Benign,0,under_attack,under_attack,pass,0.4582999972626567
+752,172.31.65.99,Benign,0,under_attack,under_attack,pass,0.6994999712333083
+753,172.31.67.102,Benign,0,under_attack,under_attack,pass,0.6951000541448593
+754,172.31.67.14,Benign,0,under_attack,under_attack,pass,0.5251000402495265
+755,60.191.38.77,Benign,0,under_attack,under_attack,pass,0.4685999592766166
+756,172.31.66.40,Benign,0,under_attack,under_attack,pass,0.5409999284893274
+757,172.31.64.29,Benign,0,under_attack,under_attack,pass,0.9286000858992338
+758,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,1.1294999858364463
+759,172.31.65.71,Benign,0,under_attack,under_attack,pass,0.6654999451711774
+760,172.31.66.83,Benign,0,under_attack,under_attack,pass,0.8787000551819801
+761,172.31.67.52,Benign,0,under_attack,under_attack,pass,0.54390006698668
+762,172.31.66.64,Benign,0,under_attack,under_attack,pass,0.46989996917545795
+763,172.31.64.44,Benign,0,under_attack,under_attack,pass,0.7048000115901232
+764,172.31.65.67,Benign,0,under_attack,under_attack,pass,0.5784999812021852
+765,172.31.66.5,Benign,0,under_attack,under_attack,pass,0.4833000712096691
+766,123.25.117.106,Benign,0,under_attack,under_attack,pass,0.6138000171631575
+767,18.218.229.235,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7509998977184296
+768,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.4749000072479248
+769,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.3630999708548188
+770,172.31.67.19,Benign,0,under_attack,under_attack,pass,0.6286000134423375
+771,189.252.169.242,Benign,0,under_attack,under_attack,pass,0.46950008254498243
+772,172.31.64.65,Benign,0,under_attack,under_attack,pass,0.6963999476283789
+773,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.5459999665617943
+774,199.247.10.78,Benign,0,under_attack,under_attack,pass,0.4680999554693699
+775,172.31.67.91,Benign,0,under_attack,under_attack,pass,0.5253000417724252
+776,172.31.66.112,Benign,0,under_attack,under_attack,pass,0.77479996252805
+777,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.5760000785812736
+778,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.5520000122487545
+779,5.39.216.253,Benign,0,under_attack,under_attack,pass,0.6033999379724264
+780,172.31.65.108,Benign,0,under_attack,under_attack,pass,0.6630000425502658
+781,172.31.64.72,Benign,0,under_attack,under_attack,pass,0.5125999450683594
+782,212.92.112.91,Benign,0,under_attack,under_attack,pass,0.37109991535544395
+783,172.31.69.10,Benign,0,under_attack,under_attack,pass,0.5797999911010265
+784,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.3795999800786376
+785,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.003099954687059
+786,172.31.64.27,Benign,0,under_attack,under_attack,pass,0.605700071901083
+787,128.199.134.197,Benign,0,under_attack,under_attack,pass,0.606000074185431
+788,24.123.231.237,Benign,0,under_attack,under_attack,pass,0.5815000040456653
+789,172.31.66.91,Benign,0,under_attack,under_attack,pass,0.5356000037863851
+790,172.31.69.30,Benign,0,under_attack,under_attack,pass,0.4681999562308192
+791,96.233.49.71,Benign,0,under_attack,under_attack,pass,0.4382999613881111
+792,172.31.65.117,Benign,0,under_attack,under_attack,pass,0.4563999827951193
+793,144.21.81.16,Benign,0,under_attack,under_attack,pass,0.5347999976947904
+794,172.31.67.38,Benign,0,under_attack,under_attack,pass,0.46220002695918083
+795,172.31.65.41,Benign,0,under_attack,under_attack,pass,0.7653000066056848
+796,172.31.66.16,Benign,0,under_attack,under_attack,pass,0.6507999496534467
+797,172.31.65.107,Benign,0,under_attack,under_attack,pass,0.6398999830707908
+798,80.241.219.91,Benign,0,under_attack,under_attack,pass,0.5163999740034342
+799,195.154.223.162,Benign,0,under_attack,under_attack,pass,0.4914000164717436
+800,218.78.186.242,Benign,0,under_attack,under_attack,pass,0.5261000478640199
+801,36.72.215.147,Benign,0,under_attack,under_attack,pass,0.5166999762877822
+802,0.0.0.0,Benign,0,under_attack,under_attack,pass,0.6406999891623855
+803,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.6216999609023333
+804,172.31.66.58,Benign,0,under_attack,under_attack,pass,0.45110005885362625
+805,190.77.71.153,Benign,0,under_attack,under_attack,pass,0.7001999765634537
+806,172.31.67.111,Benign,0,under_attack,under_attack,pass,0.48909999895840883
+807,172.31.64.126,Benign,0,under_attack,under_attack,pass,0.5978998960927129
+808,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.5803999956697226
+809,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.6111999973654747
+810,172.31.66.68,Benign,0,under_attack,under_attack,pass,0.7877999451011419
+811,172.31.66.56,Benign,0,under_attack,under_attack,pass,0.4553999751806259
+812,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.887200003489852
+813,172.31.67.73,Benign,0,under_attack,under_attack,pass,0.454000080935657
+814,163.172.74.24,Benign,0,under_attack,under_attack,pass,0.5329999839887023
+815,190.206.27.191,Benign,0,under_attack,under_attack,pass,0.5414999322965741
+816,172.31.64.46,Benign,0,under_attack,under_attack,pass,0.5250999238342047
+817,172.31.65.59,Benign,0,under_attack,under_attack,pass,0.555400038138032
+818,172.31.64.71,Benign,0,under_attack,under_attack,pass,0.470499973744154
+819,172.31.65.45,Benign,0,under_attack,under_attack,pass,0.5281000630930066
+820,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.7108999416232109
+821,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.7537000346928835
+822,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.48479996621608734
+823,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.42970001231878996
+824,172.31.64.112,Benign,0,under_attack,under_attack,pass,0.699699972756207
+825,172.31.67.16,Benign,0,under_attack,under_attack,pass,0.47889992129057646
+826,172.31.64.118,Benign,0,under_attack,under_attack,pass,0.4304000176489353
+827,172.31.65.114,Benign,0,under_attack,under_attack,pass,0.6430000066757202
+828,46.172.9.98,Benign,0,under_attack,under_attack,pass,0.698799965903163
+829,172.31.68.15,Benign,0,under_attack,under_attack,pass,0.6093000993132591
+830,172.31.67.77,Benign,0,under_attack,under_attack,pass,0.8911999175325036
+831,92.45.52.78,Benign,0,under_attack,under_attack,pass,0.5245000356808305
+832,172.31.65.90,Benign,0,under_attack,under_attack,pass,0.9891999652609229
+833,172.31.68.21,Benign,0,under_attack,under_attack,pass,0.5310000851750374
+834,141.105.71.81,Benign,0,under_attack,under_attack,pass,0.5241000326350331
+835,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.685199978761375
+836,172.31.66.103,Benign,0,under_attack,under_attack,pass,0.6365000735968351
+837,18.218.11.51,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,1.0936999460682273
+838,109.95.198.209,Benign,0,under_attack,under_attack,pass,0.512799946591258
+839,172.31.65.98,Benign,0,under_attack,under_attack,pass,0.430900021456182
+840,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.6038000574335456
+841,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.5459999665617943
+842,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.6708999862894416
+843,18.219.211.138,DoS attacks-GoldenEye,3,under_attack,under_attack,block,0.94700010959059
+844,89.248.166.116,Benign,0,under_attack,under_attack,pass,0.698499963618815
+845,172.31.66.43,Benign,0,under_attack,under_attack,pass,0.6150000263005495
+846,172.31.64.63,Benign,0,under_attack,under_attack,pass,0.5993000231683254
+847,211.151.237.252,Benign,0,under_attack,under_attack,pass,0.49190002027899027
+848,172.31.66.29,Benign,0,under_attack,under_attack,pass,0.5838999059051275
+849,172.31.67.7,Benign,0,under_attack,under_attack,pass,0.5738000618293881
+850,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.21590001415461302
+851,172.31.67.46,Benign,0,under_attack,under_attack,pass,0.7647000020369887
+852,172.31.64.75,Benign,0,under_attack,under_attack,pass,0.45250006951391697
+853,172.31.64.100,Benign,0,under_attack,under_attack,pass,0.5146999610587955
+854,77.72.82.72,Benign,0,under_attack,under_attack,pass,0.5381000228226185
+855,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.1832999987527728
+856,200.57.131.236,Benign,0,under_attack,under_attack,pass,0.5699999164789915
+857,172.31.68.12,Benign,0,under_attack,under_attack,pass,0.5237000295892358
+858,98.103.58.226,Benign,0,under_attack,under_attack,pass,0.6149999098852277
+859,172.31.64.4,Benign,0,under_attack,under_attack,pass,0.48439996317029
+860,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8630999363958836
+861,212.92.115.177,Benign,0,under_attack,under_attack,pass,0.6160000339150429
+862,50.78.235.65,Benign,0,under_attack,under_attack,pass,0.6082999752834439
+863,172.31.68.30,Benign,0,under_attack,under_attack,pass,0.5981000140309334
+864,193.111.198.70,Benign,0,under_attack,under_attack,pass,0.4795000422745943
+865,172.31.66.98,Benign,0,under_attack,under_attack,pass,0.5100000416859984
+866,172.31.64.96,Benign,0,under_attack,under_attack,pass,0.47560001257807016
+867,213.202.230.222,Benign,0,under_attack,under_attack,pass,0.6272000027820468
+868,213.202.230.143,Benign,0,under_attack,under_attack,pass,1.257999916560948
+869,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.6248001009225845
+870,172.31.64.21,Benign,0,under_attack,under_attack,pass,0.6672999588772655
+871,87.230.72.8,Benign,0,under_attack,under_attack,pass,0.4819000605493784
+872,113.162.247.181,Benign,0,under_attack,under_attack,pass,0.8220999734476209
+873,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7926999824121594
+874,172.31.65.20,Benign,0,under_attack,under_attack,pass,0.48859999515116215
+875,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.4401999758556485
+876,172.31.64.32,Benign,0,under_attack,under_attack,pass,0.7897999603301287
+877,172.31.67.12,Benign,0,under_attack,under_attack,pass,0.6422000005841255
+878,213.202.230.217,Benign,0,under_attack,under_attack,pass,0.5505000008270144
+879,172.31.67.12,Benign,0,under_attack,under_attack,pass,0.9042000165209174
+880,172.31.64.101,Benign,0,under_attack,under_attack,pass,0.914999982342124
+881,172.31.65.50,Benign,0,under_attack,under_attack,pass,0.6104999920353293
+882,172.31.68.15,Benign,0,under_attack,under_attack,pass,0.4365000640973449
+883,172.31.65.108,Benign,0,under_attack,under_attack,pass,0.4678999539464712
+884,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.41619990952312946
+885,213.202.230.144,Benign,0,under_attack,under_attack,pass,0.5361000075936317
+886,172.31.66.120,Benign,0,under_attack,under_attack,pass,0.7085000397637486
+887,182.253.26.99,Benign,0,under_attack,under_attack,pass,0.5442999536171556
+888,5.39.216.193,Benign,0,under_attack,under_attack,pass,0.5721999332308769
+889,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.5278000608086586
+890,180.100.217.115,Benign,0,under_attack,under_attack,pass,0.45469996985048056
+891,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.4744000034406781
+892,172.31.66.110,Benign,0,under_attack,under_attack,pass,0.5055000074207783
+893,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.80770009662956
+894,172.31.67.112,Benign,0,under_attack,under_attack,pass,0.6678999634459615
+895,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.5369000136852264
+896,173.167.113.37,Benign,0,under_attack,under_attack,pass,0.4886999959126115
+897,172.31.66.109,Benign,0,under_attack,under_attack,pass,0.5030999891459942
+898,172.31.64.94,Benign,0,under_attack,under_attack,pass,0.652099959552288
+899,172.31.66.72,Benign,0,under_attack,under_attack,pass,1.0384999914094806
+900,172.31.67.99,Benign,0,under_attack,under_attack,pass,1.556500094011426
+901,172.31.65.84,Benign,0,under_attack,under_attack,pass,1.0287999175488949
+902,103.46.12.151,Benign,0,under_attack,under_attack,pass,0.9390999330207705
+903,172.31.68.14,Benign,0,under_attack,under_attack,pass,0.6744000129401684
+904,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,1.0887000244110823
+905,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9186000097543001
+906,172.31.65.34,Benign,0,under_attack,under_attack,pass,0.5262000486254692
+907,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.46120001934468746
+908,172.31.64.80,Benign,0,under_attack,under_attack,pass,0.519299996085465
+909,125.163.231.202,Benign,0,under_attack,under_attack,pass,0.7074999157339334
+910,172.31.66.58,Benign,0,under_attack,under_attack,pass,0.6500999443233013
+911,103.46.12.151,Benign,0,under_attack,under_attack,pass,0.6694999756291509
+912,18.218.55.126,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.8137000259011984
+913,172.31.67.29,Benign,0,under_attack,under_attack,pass,0.48390007577836514
+914,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.5589000647887588
+915,200.179.148.163,Benign,0,under_attack,under_attack,pass,0.6503999466076493
+916,172.31.66.13,Benign,0,under_attack,under_attack,pass,0.7960000075399876
+917,110.9.175.189,Benign,0,under_attack,under_attack,pass,0.6034999387338758
+918,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8580000139772892
+919,172.31.67.52,Benign,0,under_attack,under_attack,pass,0.5904999561607838
+920,172.31.69.29,Benign,0,under_attack,under_attack,pass,0.4755000118166208
+921,172.31.65.40,Benign,0,under_attack,under_attack,pass,0.5089000333100557
+922,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.541800050996244
+923,172.31.66.114,Benign,0,under_attack,under_attack,pass,0.5481999833136797
+924,172.31.64.123,Benign,0,under_attack,under_attack,pass,0.5386000266298652
+925,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8132000220939517
+926,52.14.136.135,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,1.234399969689548
+927,172.31.66.14,Benign,0,under_attack,under_attack,pass,0.5163999740034342
+928,172.31.64.101,Benign,0,under_attack,under_attack,pass,0.3540999023243785
+929,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9295999770984054
+930,172.31.64.108,Benign,0,under_attack,under_attack,pass,0.5138999549672008
+931,172.31.65.109,Benign,0,under_attack,under_attack,pass,0.9136000880971551
+932,172.31.64.49,Benign,0,under_attack,under_attack,pass,0.4385999636724591
+933,172.31.67.61,Benign,0,under_attack,under_attack,pass,3.101699985563755
+934,172.31.64.112,Benign,0,under_attack,under_attack,pass,0.498299952596426
+935,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,1.3916000025346875
+936,172.31.65.64,Benign,0,under_attack,under_attack,pass,0.4162000259384513
+937,172.31.67.59,Benign,0,under_attack,under_attack,pass,0.5124000599607825
+938,172.31.66.13,Benign,0,under_attack,under_attack,pass,0.6056999554857612
+939,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.4618000239133835
+940,172.31.65.41,Benign,0,under_attack,under_attack,pass,0.5022999830543995
+941,172.31.65.32,Benign,0,under_attack,under_attack,pass,0.547099974937737
+942,172.31.66.34,Benign,0,under_attack,under_attack,pass,0.9416999528184533
+943,196.52.43.88,Benign,0,under_attack,under_attack,pass,0.47770002856850624
+944,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7856000447645783
+945,172.31.66.40,Benign,0,under_attack,under_attack,pass,0.7139999652281404
+946,5.39.219.94,Benign,0,under_attack,under_attack,pass,0.5185999907553196
+947,172.31.66.119,Benign,0,under_attack,under_attack,pass,0.41800003964453936
+948,172.31.66.5,Benign,0,under_attack,under_attack,pass,0.42269995901733637
+949,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.7547000423073769
+950,198.178.125.242,Benign,0,under_attack,under_attack,pass,0.5475999787449837
+951,172.31.69.16,Benign,0,under_attack,under_attack,pass,0.5375000182539225
+952,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.5133999511599541
+953,172.31.68.28,Benign,0,under_attack,under_attack,pass,0.5580999422818422
+954,37.46.246.28,Benign,0,under_attack,under_attack,pass,0.5265000509098172
+955,172.31.67.98,Benign,0,under_attack,under_attack,pass,0.45229995157569647
+956,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.2397000100463629
+957,172.31.66.90,Benign,0,under_attack,under_attack,pass,0.6414999952539802
+958,172.31.67.13,Benign,0,under_attack,under_attack,pass,0.5670000100508332
+959,66.45.231.212,Benign,0,under_attack,under_attack,pass,0.5791999865323305
+960,87.230.72.8,Benign,0,under_attack,under_attack,pass,0.6963999476283789
+961,172.31.64.23,Benign,0,under_attack,under_attack,pass,0.4610000178217888
+962,172.31.66.42,Benign,0,under_attack,under_attack,pass,0.4768000217154622
+963,172.31.66.91,Benign,0,under_attack,under_attack,pass,0.5513000069186091
+964,77.243.191.27,Benign,0,under_attack,under_attack,pass,0.4290000069886446
+965,46.149.91.151,Benign,0,under_attack,under_attack,pass,0.5111000500619411
+966,172.31.65.6,Benign,0,under_attack,under_attack,pass,0.5145000759512186
+967,18.219.32.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.8845999836921692
+968,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.6995999719947577
+969,172.31.66.65,Benign,0,under_attack,under_attack,pass,1.0930999414995313
+970,172.31.65.43,Benign,0,under_attack,under_attack,pass,1.1741999769583344
+971,172.31.69.13,Infilteration,4,under_attack,under_attack,block,1.3937000185251236
+972,172.31.68.9,Benign,0,under_attack,under_attack,pass,0.5453000776469707
+973,172.31.67.91,Benign,0,under_attack,under_attack,pass,0.7659000111743808
+974,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.5991000216454268
+975,31.207.47.94,Benign,0,under_attack,under_attack,pass,0.4727999912574887
+976,84.19.144.181,Benign,0,under_attack,under_attack,pass,0.5538000259548426
+977,172.31.67.107,Benign,0,under_attack,under_attack,pass,0.5362000083550811
+978,195.222.75.1,Benign,0,under_attack,under_attack,pass,0.6027000490576029
+979,172.31.66.112,Benign,0,under_attack,under_attack,pass,2.1254000021144748
+980,172.31.65.36,Benign,0,under_attack,under_attack,pass,0.5483999848365784
+981,172.31.66.124,Benign,0,under_attack,under_attack,pass,0.5689000245183706
+982,172.31.64.108,Benign,0,under_attack,under_attack,pass,0.7963000098243356
+983,36.80.78.126,Benign,0,under_attack,under_attack,pass,0.556000042706728
+984,49.207.5.216,Benign,0,under_attack,under_attack,pass,0.5587999476119876
+985,172.31.68.30,Benign,0,under_attack,under_attack,pass,0.6592998979613185
+986,172.31.67.4,Benign,0,under_attack,under_attack,pass,0.534699996933341
+987,172.31.64.72,Benign,0,under_attack,under_attack,pass,0.47179998364299536
+988,172.31.66.65,Benign,0,under_attack,under_attack,pass,0.4020999185740948
+989,172.31.67.111,Benign,0,under_attack,under_attack,pass,0.6564999930560589
+990,172.31.67.86,Benign,0,under_attack,under_attack,pass,0.6943000480532646
+991,172.31.67.94,Benign,0,under_attack,under_attack,pass,0.9212000295519829
+992,172.31.69.24,Benign,0,under_attack,under_attack,pass,1.2648999691009521
+993,172.31.69.6,Benign,0,under_attack,under_attack,pass,0.9242999367415905
+994,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.6873999955132604
+995,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,1.0405000066384673
+996,172.31.67.42,Benign,0,under_attack,under_attack,pass,0.5754000740125775
+997,107.160.254.162,Benign,0,under_attack,under_attack,pass,1.1524000437930226
+998,172.31.65.66,Benign,0,under_attack,under_attack,pass,0.6455000257119536
+999,185.222.211.110,Benign,0,under_attack,under_attack,pass,2.6868999702855945
+1000,113.162.247.181,Benign,0,under_attack,under_attack,pass,0.7931999862194061
+1001,212.92.114.168,Benign,0,under_attack,under_attack,pass,0.840499997138977
+1002,172.31.66.5,Benign,0,under_attack,under_attack,pass,0.867099966853857
+1003,76.8.7.67,Benign,0,under_attack,under_attack,pass,0.4624000284820795
+1004,172.31.67.60,Benign,0,under_attack,under_attack,pass,0.4206000594422221
+1005,172.31.67.47,Benign,0,under_attack,under_attack,pass,0.5020999815315008
+1006,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.5180999869480729
+1007,172.31.66.76,Benign,0,under_attack,under_attack,pass,0.41660002898424864
+1008,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.41740003507584333
+1009,199.15.250.90,Benign,0,under_attack,under_attack,pass,0.41470001451671124
+1010,172.31.64.70,Benign,0,under_attack,under_attack,pass,0.5243000341579318
+1011,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.5585999460890889
+1012,83.97.109.118,Benign,0,under_attack,under_attack,pass,0.41930004954338074
+1013,18.218.115.60,Brute Force -Web,2,under_attack,under_attack,rate_limit,0.6021000444889069
+1014,172.31.65.87,Benign,0,under_attack,under_attack,pass,0.4770000232383609
+1015,172.31.65.41,Benign,0,under_attack,under_attack,pass,0.46719994861632586
+1016,172.31.67.48,Benign,0,under_attack,under_attack,pass,0.4143000114709139
+1017,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.5673000123351812
+1018,172.31.66.57,Benign,0,under_attack,under_attack,pass,0.5354000022634864
+1019,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.421999953687191
+1020,213.202.230.217,Benign,0,under_attack,under_attack,pass,0.42860000394284725
+1021,172.31.66.99,Benign,0,under_attack,under_attack,pass,1.6392999095842242
+1022,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.4920000210404396
+1023,69.172.65.205,Benign,0,under_attack,under_attack,pass,0.5639999872073531
+1024,172.31.66.122,Benign,0,under_attack,under_attack,pass,0.5610000807791948
+1025,172.31.65.5,Benign,0,under_attack,under_attack,pass,0.505700008943677
+1026,172.31.65.119,Benign,0,under_attack,under_attack,pass,0.4480000352486968
+1027,172.31.67.117,Benign,0,under_attack,under_attack,pass,0.4290000069886446
+1028,172.31.64.108,Benign,0,under_attack,under_attack,pass,0.6738000083714724
+1029,212.92.124.11,Benign,0,under_attack,under_attack,pass,0.5672000115737319
+1030,172.31.67.101,Benign,0,under_attack,under_attack,pass,0.5963000003248453
+1031,172.31.64.88,Benign,0,under_attack,under_attack,pass,0.6307999137789011
+1032,172.31.67.100,Benign,0,under_attack,under_attack,pass,0.5396000342443585
+1033,203.177.89.138,Benign,0,under_attack,under_attack,pass,0.4275999963283539
+1034,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.4282000008970499
+1035,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8809999562799931
+1036,172.31.66.38,Benign,0,under_attack,under_attack,pass,1.187399961054325
+1037,172.31.66.42,Benign,0,under_attack,under_attack,pass,0.5606000777333975
+1038,172.31.64.34,Benign,0,under_attack,under_attack,pass,0.6030000513419509
+1039,189.236.198.113,Benign,0,under_attack,under_attack,pass,0.8416000055149198
+1040,24.234.124.9,Benign,0,under_attack,under_attack,pass,0.8630999363958836
+1041,172.31.67.42,Benign,0,under_attack,under_attack,pass,0.632600043900311
+1042,172.31.67.102,Benign,0,under_attack,under_attack,pass,0.5502999993041158
+1043,172.31.65.76,Benign,0,under_attack,under_attack,pass,0.44600002001971006
+1044,172.31.67.6,Benign,0,under_attack,under_attack,pass,0.4529999569058418
+1045,172.31.69.6,Infilteration,4,under_attack,under_attack,block,0.7788999937474728
+1046,185.222.210.20,Benign,0,under_attack,under_attack,pass,0.4865999799221754
+1047,172.31.67.23,Benign,0,under_attack,under_attack,pass,1.0600999230518937
+1048,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.5508000031113625
+1049,172.31.65.104,Benign,0,under_attack,under_attack,pass,0.5534000229090452
+1050,172.31.65.8,Benign,0,under_attack,under_attack,pass,0.5911000771448016
+1051,172.31.66.43,Benign,0,under_attack,under_attack,pass,0.607200083322823
+1052,172.31.66.72,Benign,0,under_attack,under_attack,pass,0.541800050996244
+1053,172.31.66.77,Benign,0,under_attack,under_attack,pass,0.5544000305235386
+1054,104.238.118.162,Benign,0,under_attack,under_attack,pass,0.6726999999955297
+1055,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7944999961182475
+1056,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.4922000225633383
+1057,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.6859001005068421
+1058,134.249.212.32,Benign,0,under_attack,under_attack,pass,0.4893000004813075
+1059,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.7888999534770846
+1060,172.31.66.66,Benign,0,under_attack,under_attack,pass,0.44430000707507133
+1061,213.202.230.143,Benign,0,under_attack,under_attack,pass,0.5408999277278781
+1062,172.31.68.9,Benign,0,under_attack,under_attack,pass,0.46220002695918083
+1063,18.219.9.1,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.9910999797284603
+1064,131.221.190.21,Benign,0,under_attack,under_attack,pass,0.5613999674096704
+1065,172.31.66.41,Benign,0,under_attack,under_attack,pass,0.4731999943032861
+1066,18.219.5.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,1.1152999941259623
+1067,172.31.66.84,Benign,0,under_attack,under_attack,pass,0.48580009024590254
+1068,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9264000691473484
+1069,172.31.66.87,Benign,0,under_attack,under_attack,pass,0.5508000031113625
+1070,172.31.69.16,Benign,0,under_attack,under_attack,pass,0.5102000432088971
+1071,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.8517999667674303
+1072,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.5319000920280814
+1073,172.31.69.24,Infilteration,4,under_attack,under_attack,block,0.7266000611707568
+1074,172.31.68.10,Benign,0,under_attack,under_attack,pass,0.49780006520450115
+1075,172.31.64.104,Benign,0,under_attack,under_attack,pass,0.4357000580057502
+1076,172.31.65.29,Benign,0,under_attack,under_attack,pass,0.42639998719096184
+1077,172.31.65.10,Benign,0,under_attack,under_attack,pass,0.6548999808728695
+1078,172.31.69.24,Benign,0,under_attack,under_attack,pass,0.8198999566957355
+1079,172.31.66.50,Benign,0,under_attack,under_attack,pass,1.513299997895956
+1080,172.31.67.119,Benign,0,under_attack,under_attack,pass,0.9103999473154545
+1081,110.16.81.54,Benign,0,under_attack,under_attack,pass,0.5722000496461987
+1082,172.31.67.28,Benign,0,under_attack,under_attack,pass,0.6736000068485737
+1083,172.31.64.119,Benign,0,under_attack,under_attack,pass,1.046899938955903
+1084,172.31.67.100,Benign,0,under_attack,under_attack,pass,0.5740000633522868
+1085,18.221.16.50,Benign,0,under_attack,under_attack,pass,0.7038000039756298
+1086,183.87.75.62,Benign,0,under_attack,under_attack,pass,0.7601000834256411
+1087,172.31.66.81,Benign,0,under_attack,under_attack,pass,0.5250000394880772
+1088,204.101.207.58,Benign,0,under_attack,under_attack,pass,0.6615000311285257
+1089,108.17.23.162,Benign,0,under_attack,under_attack,pass,0.8274998981505632
+1090,172.31.65.75,Benign,0,under_attack,under_attack,pass,0.5100000416859984
+1091,172.31.64.64,Benign,0,under_attack,under_attack,pass,0.7107999408617616
+1092,172.31.67.57,Benign,0,under_attack,under_attack,pass,0.7680000271648169
+1093,172.31.66.12,Benign,0,under_attack,under_attack,pass,0.9144999785348773
+1094,96.239.31.34,Benign,0,under_attack,under_attack,pass,1.8773999763652682
+1095,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.8275000145658851
+1096,212.92.112.41,Benign,0,under_attack,under_attack,pass,0.4536999622359872
+1097,172.31.67.108,Benign,0,under_attack,under_attack,pass,0.5274000577628613
+1098,172.31.65.59,Benign,0,under_attack,under_attack,pass,0.5417000502347946
+1099,172.31.65.43,Benign,0,under_attack,under_attack,pass,0.622499966993928
+1100,172.31.64.122,Benign,0,under_attack,under_attack,pass,0.6824999582022429
+1101,212.92.112.21,Benign,0,under_attack,under_attack,pass,0.5780999781563878
+1102,172.31.65.24,Benign,0,under_attack,under_attack,pass,0.5187999922782183
+1103,213.202.230.206,Benign,0,under_attack,under_attack,pass,0.494200037792325
+1104,193.111.198.10,Benign,0,under_attack,under_attack,pass,1.0834999848157167
+1105,172.31.66.25,Benign,0,under_attack,under_attack,pass,0.7864999352023005
+1106,172.31.66.70,Benign,0,under_attack,under_attack,pass,0.4417999880388379
+1107,172.31.65.93,Benign,0,under_attack,under_attack,pass,0.7531000301241875
+1108,172.31.64.110,Benign,0,under_attack,under_attack,pass,0.7993999170139432
+1109,88.249.89.249,Benign,0,under_attack,under_attack,pass,0.6333999335765839
+1110,172.31.65.29,Benign,0,under_attack,under_attack,pass,0.9463001042604446
+1111,172.31.67.115,Benign,0,under_attack,under_attack,pass,0.7439000764861703
+1112,172.31.65.6,Benign,0,under_attack,under_attack,pass,0.5392000311985612
+1113,80.241.219.91,Benign,0,under_attack,under_attack,pass,0.6537999724969268
+1114,172.31.67.73,Benign,0,under_attack,under_attack,pass,0.44319999869912863
+1115,62.1.169.9,Benign,0,under_attack,under_attack,pass,0.7949999999254942
+1116,36.226.98.53,Benign,0,under_attack,under_attack,pass,0.5475999787449837
+1117,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.7783001055940986
+1118,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,1.614999957382679
+1119,172.31.64.58,Benign,0,under_attack,under_attack,pass,1.0915999300777912
+1120,172.31.67.63,Benign,0,under_attack,under_attack,pass,0.5250999238342047
+1121,172.31.65.109,Benign,0,under_attack,under_attack,pass,0.5342999938875437
+1122,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.4561000969260931
+1123,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.19740010611712933
+1124,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.721000018529594
+1125,193.19.118.97,Benign,0,under_attack,under_attack,pass,0.534399994648993
+1126,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.8507999591529369
+1127,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,1.5106999780982733
+1128,172.31.65.41,Benign,0,under_attack,under_attack,pass,0.5344999954104424
+1129,172.31.67.92,Benign,0,under_attack,under_attack,pass,0.46690006274729967
+1130,113.3.181.144,Benign,0,under_attack,under_attack,pass,0.4241999704390764
+1131,172.31.67.32,Benign,0,under_attack,under_attack,pass,0.5228000227361917
+1132,172.31.64.28,Benign,0,under_attack,under_attack,pass,0.5658000009134412
+1133,172.31.67.97,Benign,0,under_attack,under_attack,pass,0.5207000067457557
+1134,117.2.130.16,Benign,0,under_attack,under_attack,pass,0.5876000504940748
+1135,172.31.64.26,Benign,0,under_attack,under_attack,pass,0.46040001325309277
+1136,172.31.65.59,Benign,0,under_attack,under_attack,pass,0.4592000041157007
+1137,172.31.67.111,Benign,0,under_attack,under_attack,pass,0.4371999530121684
+1138,172.31.64.58,Benign,0,under_attack,under_attack,pass,0.5049000028520823
+1139,79.133.48.120,Benign,0,under_attack,under_attack,pass,0.46140002086758614
+1140,172.31.67.121,Benign,0,under_attack,under_attack,pass,1.317800022661686
+1141,5.101.6.69,Benign,0,under_attack,under_attack,pass,0.5447000730782747
+1142,172.31.64.54,Benign,0,under_attack,under_attack,pass,0.5070000188425183
+1143,172.31.65.84,Benign,0,under_attack,under_attack,pass,0.4708000924438238
+1144,172.31.67.6,Benign,0,under_attack,under_attack,pass,0.7468999829143286
+1145,187.190.157.123,Benign,0,under_attack,under_attack,pass,0.6084000924602151
+1146,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,1.0004000505432487
+1147,172.31.67.24,Benign,0,under_attack,under_attack,pass,0.5574999377131462
+1148,172.31.65.80,Benign,0,under_attack,under_attack,pass,0.4911000141873956
+1149,172.31.64.49,Benign,0,under_attack,under_attack,pass,0.4066999536007643
+1150,172.31.66.44,Benign,0,under_attack,under_attack,pass,0.4611000185832381
+1151,172.31.65.77,Benign,0,under_attack,under_attack,pass,0.507200020365417
+1152,172.31.66.109,Benign,0,under_attack,under_attack,pass,0.673700007610023
+1153,193.111.198.70,Benign,0,under_attack,under_attack,pass,0.5985000170767307
+1154,193.111.198.63,Benign,0,under_attack,under_attack,pass,0.5128000630065799
+1155,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.813600025139749
+1156,172.31.64.21,Benign,0,under_attack,under_attack,pass,0.47119997907429934
+1157,172.31.67.78,Benign,0,under_attack,under_attack,pass,0.6969999521970749
+1158,172.31.64.42,Benign,0,under_attack,under_attack,pass,0.480300048366189
+1159,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.7245999295264482
+1160,172.31.66.81,Benign,0,under_attack,under_attack,pass,0.6795999361202121
+1161,103.236.112.14,Benign,0,under_attack,under_attack,pass,0.5553000373765826
+1162,94.102.54.148,Benign,0,under_attack,under_attack,pass,0.6620000349357724
+1163,212.92.115.177,Benign,0,under_attack,under_attack,pass,0.4251000937074423
+1164,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.568700022995472
+1165,172.31.69.29,Benign,0,under_attack,under_attack,pass,0.45900000259280205
+1166,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.6758000236004591
+1167,172.31.66.51,Benign,0,under_attack,under_attack,pass,1.2169999536126852
+1168,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.1082000564783812
+1169,190.210.246.45,Benign,0,under_attack,under_attack,pass,0.4656999371945858
+1170,213.202.230.221,Benign,0,under_attack,under_attack,pass,0.38649991620332
+1171,172.31.67.48,Benign,0,under_attack,under_attack,pass,0.5966000026091933
+1172,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.5946999881416559
+1173,172.31.65.107,Benign,0,under_attack,under_attack,pass,0.575499958358705
+1174,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.548899988643825
+1175,81.176.228.2,Benign,0,under_attack,under_attack,pass,0.43160002678632736
+1176,172.31.64.96,Benign,0,under_attack,under_attack,pass,0.5543999141082168
+1177,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9199000196531415
+1178,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8725000079721212
+1179,213.202.230.221,Benign,0,under_attack,under_attack,pass,0.3233000170439482
+1180,113.65.10.148,Benign,0,under_attack,under_attack,pass,0.5834000185132027
+1181,172.31.64.26,Benign,0,under_attack,under_attack,pass,0.506900018081069
+1182,172.31.69.16,Benign,0,under_attack,under_attack,pass,0.5919999675825238
+1183,123.205.142.112,Benign,0,under_attack,under_attack,pass,0.49000000581145287
+1184,189.236.198.113,Benign,0,under_attack,under_attack,pass,0.4525999538600445
+1185,172.31.64.52,Benign,0,under_attack,under_attack,pass,0.4300998989492655
+1186,213.202.230.143,Benign,0,under_attack,under_attack,pass,0.5022999830543995
+1187,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.6348000606521964
+1188,172.31.68.5,Benign,0,under_attack,under_attack,pass,0.5413000471889973
+1189,182.253.163.84,Benign,0,under_attack,under_attack,pass,0.5061998963356018
+1190,172.31.69.30,Benign,0,under_attack,under_attack,pass,0.4350000526756048
+1191,172.31.67.62,Benign,0,under_attack,under_attack,pass,0.5237999139353633
+1192,85.93.20.243,Benign,0,under_attack,under_attack,pass,0.5423999391496181
+1193,172.31.66.111,Benign,0,under_attack,under_attack,pass,0.47930004075169563
+1194,193.111.198.62,Benign,0,under_attack,under_attack,pass,0.475799897685647
+1195,5.227.122.5,Benign,0,under_attack,under_attack,pass,0.38219999987632036
+1196,172.31.66.44,Benign,0,under_attack,under_attack,pass,0.41149999015033245
+1197,172.31.66.49,Benign,0,under_attack,under_attack,pass,0.4206000594422221
+1198,172.31.67.114,Benign,0,under_attack,under_attack,pass,0.4757000133395195
+1199,84.54.141.225,Benign,0,under_attack,under_attack,pass,0.4643999272957444
+1200,172.31.66.9,Benign,0,under_attack,under_attack,pass,0.5988000193610787
+1201,96.233.49.71,Benign,0,under_attack,under_attack,pass,0.6344999419525266
+1202,180.179.21.221,Benign,0,under_attack,under_attack,pass,0.4771000239998102
+1203,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.5101000424474478
+1204,172.31.66.122,Benign,0,under_attack,under_attack,pass,0.4993999609723687
+1205,172.31.66.87,Benign,0,under_attack,under_attack,pass,0.4665000597015023
+1206,185.34.20.132,Benign,0,under_attack,under_attack,pass,0.6118000019341707
+1207,172.31.67.82,Benign,0,under_attack,under_attack,pass,0.6657999474555254
+1208,172.31.64.74,Benign,0,under_attack,under_attack,pass,0.45759999193251133
+1209,172.31.68.6,Benign,0,under_attack,under_attack,pass,0.5293999565765262
+1210,172.31.64.29,Benign,0,under_attack,under_attack,pass,0.5330001004040241
+1211,172.31.64.94,Benign,0,under_attack,under_attack,pass,0.4925000248476863
+1212,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.4723999882116914
+1213,172.31.67.32,Benign,0,under_attack,under_attack,pass,0.5122999427840114
+1214,172.31.66.42,Benign,0,under_attack,under_attack,pass,0.7226000307127833
+1215,193.111.198.66,Benign,0,under_attack,under_attack,pass,0.44780003372579813
+1216,172.31.64.119,Benign,0,under_attack,under_attack,pass,0.6118000019341707
+1217,172.31.65.79,Benign,0,under_attack,under_attack,pass,1.0910999262705445
+1218,175.195.219.31,Benign,0,under_attack,under_attack,pass,0.4264999879524112
+1219,172.31.66.16,Benign,0,under_attack,under_attack,pass,0.39569998625665903
+1220,172.31.64.99,Benign,0,under_attack,under_attack,pass,0.7781999884173274
+1221,213.202.230.222,Benign,0,under_attack,under_attack,pass,0.8279000176116824
+1222,172.31.64.113,Benign,0,under_attack,under_attack,pass,0.4870999837294221
+1223,172.31.66.75,Benign,0,under_attack,under_attack,pass,0.4553999751806259
+1224,185.222.210.30,Benign,0,under_attack,under_attack,pass,0.41820004116743803
+1225,173.198.5.218,Benign,0,under_attack,under_attack,pass,0.6506999488919973
+1226,118.70.67.241,Benign,0,under_attack,under_attack,pass,0.4957000492140651
+1227,172.31.67.37,Benign,0,under_attack,under_attack,pass,0.532599980942905
+1228,172.31.67.123,Benign,0,under_attack,under_attack,pass,0.5011999746784568
+1229,172.31.65.43,Benign,0,under_attack,under_attack,pass,0.5932999774813652
+1230,165.132.169.106,Benign,0,under_attack,under_attack,pass,0.5828998982906342
+1231,167.249.181.180,Benign,0,under_attack,under_attack,pass,0.43459993321448565
+1232,191.101.167.235,Benign,0,under_attack,under_attack,pass,0.5323999794200063
+1233,172.31.66.114,Benign,0,under_attack,under_attack,pass,0.5394000327214599
+1234,172.31.67.42,Benign,0,under_attack,under_attack,pass,0.8114000083878636
+1235,172.31.65.45,Benign,0,under_attack,under_attack,pass,0.5628999788314104
+1236,172.31.65.51,Benign,0,under_attack,under_attack,pass,0.6880000000819564
+1237,172.31.69.10,Benign,0,under_attack,under_attack,pass,0.5093999207019806
+1238,172.31.64.31,Benign,0,under_attack,under_attack,pass,0.5775000900030136
+1239,172.31.67.24,Benign,0,under_attack,under_attack,pass,0.5471999756991863
+1240,172.31.67.38,Benign,0,under_attack,under_attack,pass,0.49940007738769054
+1241,172.31.64.92,Benign,0,under_attack,under_attack,pass,0.4472000291571021
+1242,172.31.64.37,Benign,0,under_attack,under_attack,pass,0.5303999641910195
+1243,189.236.198.113,Benign,0,under_attack,under_attack,pass,0.4385999636724591
+1244,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.6433000089600682
+1245,194.28.115.228,Benign,0,under_attack,under_attack,pass,0.523999915458262
+1246,172.31.64.24,Benign,0,under_attack,under_attack,pass,0.5932000931352377
+1247,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9117999579757452
+1248,172.31.67.101,Benign,0,under_attack,under_attack,pass,0.45039993710815907
+1249,212.92.115.77,Benign,0,under_attack,under_attack,pass,0.6882000016048551
+1250,172.31.69.23,Benign,0,under_attack,under_attack,pass,0.6330999312922359
+1251,172.31.66.17,Benign,0,under_attack,under_attack,pass,0.4477999173104763
+1252,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.694700051099062
+1253,172.31.66.42,Benign,0,under_attack,under_attack,pass,0.4026000387966633
+1254,172.31.66.42,Benign,0,under_attack,under_attack,pass,0.7480999920517206
+1255,172.31.65.119,Benign,0,under_attack,under_attack,pass,0.4384000785648823
+1256,172.31.64.116,Benign,0,under_attack,under_attack,pass,0.775399967096746
+1257,172.31.64.35,Benign,0,under_attack,under_attack,pass,0.5047000013291836
+1258,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.7403000490739942
+1259,172.31.67.63,Benign,0,under_attack,under_attack,pass,0.6789000472053885
+1260,193.111.198.66,Benign,0,under_attack,under_attack,pass,0.44139998499304056
+1261,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.4542000824585557
+1262,172.31.69.10,Bot,4,under_attack,under_attack,block,0.757400062866509
+1263,204.62.193.124,Benign,0,under_attack,under_attack,pass,0.42509997729212046
+1264,172.31.66.16,Benign,0,under_attack,under_attack,pass,0.4120999947190285
+1265,172.31.67.118,Benign,0,under_attack,under_attack,pass,0.6591000128537416
+1266,172.31.64.32,Benign,0,under_attack,under_attack,pass,0.46600005589425564
+1267,24.234.124.9,Benign,0,under_attack,under_attack,pass,0.8265000069513917
+1268,172.31.66.95,Benign,0,under_attack,under_attack,pass,0.4947999259456992
+1269,18.216.24.42,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.726899947039783
+1270,172.31.65.78,Benign,0,under_attack,under_attack,pass,0.6712999893352389
+1271,172.31.65.29,Benign,0,under_attack,under_attack,pass,0.43189991265535355
+1272,213.202.230.143,Benign,0,under_attack,under_attack,pass,1.3310000067576766
+1273,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.5153999663889408
+1274,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.5439999988302588
+1275,172.31.65.117,Benign,0,under_attack,under_attack,pass,0.8103000000119209
+1276,172.31.66.87,Benign,0,under_attack,under_attack,pass,0.561299966648221
+1277,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.811500009149313
+1278,172.31.66.84,Benign,0,under_attack,under_attack,pass,0.42459997348487377
+1279,172.31.66.15,Benign,0,under_attack,under_attack,pass,0.5325000965967774
+1280,172.31.69.4,Benign,0,under_attack,under_attack,pass,0.2858000807464123
+1281,172.31.67.60,Benign,0,under_attack,under_attack,pass,0.372299924492836
+1282,212.156.98.210,Benign,0,under_attack,under_attack,pass,0.8158000418916345
+1283,18.218.55.126,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.9503000183030963
+1284,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,1.0370000964030623
+1285,172.31.69.23,Benign,0,under_attack,under_attack,pass,0.5577999399974942
+1286,172.31.64.125,Benign,0,under_attack,under_attack,pass,0.5032999906688929
+1287,172.31.67.126,Benign,0,under_attack,under_attack,pass,0.4474000306800008
+1288,46.17.98.195,Benign,0,under_attack,under_attack,pass,0.44510001316666603
+1289,160.202.159.194,Benign,0,under_attack,under_attack,pass,0.5849000299349427
+1290,172.31.67.117,Benign,0,under_attack,under_attack,pass,0.408399966545403
+1291,172.31.65.10,Benign,0,under_attack,under_attack,pass,0.40030002128332853
+1292,172.31.65.126,Benign,0,under_attack,under_attack,pass,0.36940001882612705
+1293,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.48639997839927673
+1294,172.31.65.109,Benign,0,under_attack,under_attack,pass,0.3909999504685402
+1295,172.31.66.123,Benign,0,under_attack,under_attack,pass,0.5807999987155199
+1296,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7442000787705183
+1297,18.218.115.60,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,rate_limit,0.1919000642374158
+1298,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.662699923850596
+1299,172.31.64.32,Benign,0,under_attack,under_attack,pass,0.38079998921602964
+1300,123.25.117.106,Benign,0,under_attack,under_attack,pass,0.5139000713825226
+1301,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.7387000368908048
+1302,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.43260003440082073
+1303,172.31.64.54,Benign,0,under_attack,under_attack,pass,0.5587999476119876
+1304,172.31.67.63,Benign,0,under_attack,under_attack,pass,0.6834000814706087
+1305,172.31.67.18,Benign,0,under_attack,under_attack,pass,0.45199994929134846
+1306,186.117.147.6,Benign,0,under_attack,under_attack,pass,0.5998999113216996
+1307,18.219.9.1,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.5410000449046493
+1308,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.34849997609853745
+1309,5.39.216.195,Benign,0,under_attack,under_attack,pass,0.5272000562399626
+1310,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7956000044941902
+1311,175.195.219.31,Benign,0,under_attack,under_attack,pass,0.43919996824115515
+1312,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5692000268027186
+1313,172.31.65.103,Benign,0,under_attack,under_attack,pass,0.5015000933781266
+1314,172.31.64.72,Benign,0,under_attack,under_attack,pass,0.42539997957646847
+1315,172.31.65.5,Benign,0,under_attack,under_attack,pass,0.6258999928832054
+1316,172.31.64.8,Benign,0,under_attack,under_attack,pass,0.31939998734742403
+1317,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6102999905124307
+1318,172.31.65.93,Benign,0,under_attack,under_attack,pass,0.5992999067530036
+1319,172.31.67.64,Benign,0,under_attack,under_attack,pass,1.5550999669358134
+1320,190.39.106.54,Benign,0,under_attack,under_attack,pass,0.6917000282555819
+1321,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.1521000415086746
+1322,62.1.169.9,Benign,0,under_attack,under_attack,pass,0.4507999401539564
+1323,172.31.65.9,Benign,0,under_attack,under_attack,pass,0.5280000623315573
+1324,172.31.69.10,Infilteration,4,under_attack,under_attack,block,0.9350000182166696
+1325,172.31.64.123,Benign,0,under_attack,under_attack,pass,0.48260006587952375
+1326,172.31.67.101,Benign,0,under_attack,under_attack,pass,0.5274000577628613
+1327,185.92.72.12,Benign,0,under_attack,under_attack,pass,0.4447000101208687
+1328,172.31.66.77,Benign,0,under_attack,under_attack,pass,0.6408999906852841
+1329,172.31.67.73,Benign,0,under_attack,under_attack,pass,0.5523000145331025
+1330,172.31.65.64,Benign,0,under_attack,under_attack,pass,0.4515999462455511
+1331,93.183.216.136,Benign,0,under_attack,under_attack,pass,0.3592000575736165
+1332,172.31.65.59,Benign,0,under_attack,under_attack,pass,0.32679992727935314
+1333,72.38.76.18,Benign,0,under_attack,under_attack,pass,0.7690000347793102
+1334,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.8733000140637159
+1335,172.31.69.12,Benign,0,under_attack,under_attack,pass,0.448599923402071
+1336,172.31.67.33,Benign,0,under_attack,under_attack,pass,0.4320000298321247
+1337,172.31.69.12,Benign,0,under_attack,under_attack,pass,0.611299998126924
+1338,172.31.64.77,Benign,0,under_attack,under_attack,pass,0.5356000037863851
+1339,172.31.64.42,Benign,0,under_attack,under_attack,pass,0.6645999383181334
+1340,172.31.64.73,Benign,0,under_attack,under_attack,pass,0.41960005182772875
+1341,5.188.9.10,Benign,0,under_attack,under_attack,pass,0.3904999466612935
+1342,172.31.65.82,Benign,0,under_attack,under_attack,pass,0.46879996079951525
+1343,172.31.67.19,Benign,0,under_attack,under_attack,pass,0.5200000014156103
+1344,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8370999712496996
+1345,213.202.230.217,Benign,0,under_attack,under_attack,pass,0.8104000007733703
+1346,172.31.65.45,Benign,0,under_attack,under_attack,pass,0.35230000503361225
+1347,123.25.117.106,Benign,0,under_attack,under_attack,pass,0.43679994996637106
+1348,172.31.64.16,Benign,0,under_attack,under_attack,pass,0.6048999493941665
+1349,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8107000030577183
+1350,172.31.65.81,Benign,0,under_attack,under_attack,pass,0.46399992424994707
+1351,172.31.65.85,Benign,0,under_attack,under_attack,pass,0.5916999652981758
+1352,77.72.82.7,Benign,0,under_attack,under_attack,pass,0.5838999059051275
+1353,187.172.184.166,Benign,0,under_attack,under_attack,pass,0.4835999570786953
+1354,172.31.67.10,Benign,0,under_attack,under_attack,pass,0.44159998651593924
+1355,172.31.66.19,Benign,0,under_attack,under_attack,pass,0.4653000505641103
+1356,36.68.51.26,Benign,0,under_attack,under_attack,pass,0.5121000576764345
+1357,172.31.64.48,Benign,0,under_attack,under_attack,pass,0.48639997839927673
+1358,172.31.66.16,Benign,0,under_attack,under_attack,pass,0.4331999225541949
+1359,172.31.67.67,Benign,0,under_attack,under_attack,pass,0.6157999159768224
+1360,193.111.198.65,Benign,0,under_attack,under_attack,pass,0.5122999427840114
+1361,62.1.169.9,Benign,0,under_attack,under_attack,pass,0.6195000605657697
+1362,172.31.67.94,Benign,0,under_attack,under_attack,pass,0.6380999693647027
+1363,172.31.66.58,Benign,0,under_attack,under_attack,pass,0.6257999921217561
+1364,172.31.67.53,Benign,0,under_attack,under_attack,pass,0.5285999504849315
+1365,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.41749991942197084
+1366,172.31.65.93,Benign,0,under_attack,under_attack,pass,0.5203000036999583
+1367,172.31.65.38,Benign,0,under_attack,under_attack,pass,0.6495000561699271
+1368,172.31.65.82,Benign,0,under_attack,under_attack,pass,0.6964999483898282
+1369,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.35200000274926424
+1370,193.111.198.69,Benign,0,under_attack,under_attack,pass,0.5582999438047409
+1371,213.202.230.232,Benign,0,under_attack,under_attack,pass,0.4749000072479248
+1372,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.4803999327123165
+1373,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.2559000169858336
+1374,172.31.66.57,Benign,0,under_attack,under_attack,pass,0.5486999871209264
+1375,172.31.66.20,Benign,0,under_attack,under_attack,pass,0.3839000128209591
+1376,172.31.65.83,Benign,0,under_attack,under_attack,pass,0.737300026230514
+1377,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.5091000348329544
+1378,54.36.122.140,Benign,0,under_attack,under_attack,pass,0.9643000084906816
+1379,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.5710000405088067
+1380,172.31.64.65,Benign,0,under_attack,under_attack,pass,0.6371999625116587
+1381,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,1.7976000672206283
+1382,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6669999565929174
+1383,66.163.3.193,Benign,0,under_attack,under_attack,pass,0.532599980942905
+1384,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.5183999892324209
+1385,172.31.64.80,Benign,0,under_attack,under_attack,pass,0.4523000679910183
+1386,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.45540009159594774
+1387,18.217.165.70,DoS attacks-Slowloris,3,under_attack,under_attack,block,1.8053000094369054
+1388,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.5626999773085117
+1389,195.3.146.96,Benign,0,under_attack,under_attack,pass,0.888700014911592
+1390,172.31.67.31,Benign,0,under_attack,under_attack,pass,0.5166999762877822
+1391,172.31.68.26,Benign,0,under_attack,under_attack,pass,0.5185999907553196
+1392,212.92.108.214,Benign,0,under_attack,under_attack,pass,0.6467000348493457
+1393,172.31.65.81,Benign,0,under_attack,under_attack,pass,0.3597999457269907
+1394,151.106.17.146,Benign,0,under_attack,under_attack,pass,0.6867999909445643
+1395,172.31.65.93,Benign,0,under_attack,under_attack,pass,0.5970000056549907
+1396,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.6814999505877495
+1397,172.31.67.86,Benign,0,under_attack,under_attack,pass,0.6507999496534467
+1398,185.175.103.219,Benign,0,under_attack,under_attack,pass,0.40609994903206825
+1399,195.2.253.111,Benign,0,under_attack,under_attack,pass,0.45140006113797426
+1400,172.31.64.80,Benign,0,under_attack,under_attack,pass,0.4886999959126115
+1401,194.236.131.176,Benign,0,under_attack,under_attack,pass,0.4977999487891793
+1402,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.914699980057776
+1403,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6999000906944275
+1404,172.31.65.82,Benign,0,under_attack,under_attack,pass,0.42019993998110294
+1405,172.31.65.49,Benign,0,under_attack,under_attack,pass,0.38049998693168163
+1406,92.81.107.151,Benign,0,under_attack,under_attack,pass,0.43439993169158697
+1407,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,rate_limit,0.17969997134059668
+1408,123.223.160.41,Benign,0,under_attack,under_attack,pass,0.6752000190317631
+1409,172.31.69.13,Infilteration,4,under_attack,under_attack,block,0.927699962630868
+1410,18.219.5.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7024999940767884
+1411,18.218.229.235,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.582000007852912
+1412,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.41550002060830593
+1413,172.31.66.86,Benign,0,under_attack,under_attack,pass,0.3988000098615885
+1414,36.111.194.22,Benign,0,under_attack,under_attack,pass,0.6513999542221427
+1415,178.136.2.253,Benign,0,under_attack,under_attack,pass,0.6250999867916107
+1416,172.31.65.119,Benign,0,under_attack,under_attack,pass,0.4162000259384513
+1417,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.3768999595195055
+1418,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6387999746948481
+1419,213.202.230.207,Benign,0,under_attack,under_attack,pass,0.3879999276250601
+1420,172.31.66.121,Benign,0,under_attack,under_attack,pass,0.4195000510662794
+1421,172.31.64.73,Benign,0,under_attack,under_attack,pass,0.5468999734148383
+1422,172.31.64.107,Benign,0,under_attack,under_attack,pass,0.6909000221639872
+1423,37.46.246.28,Benign,0,under_attack,under_attack,pass,0.45779999345541
+1424,74.63.221.250,Benign,0,under_attack,under_attack,pass,0.5018999800086021
+1425,172.31.69.26,Benign,0,under_attack,under_attack,pass,0.5261999322101474
+1426,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.4200999392196536
+1427,172.31.65.98,Benign,0,under_attack,under_attack,pass,0.6457000272348523
+1428,172.31.66.40,Benign,0,under_attack,under_attack,pass,0.5191999953240156
+1429,172.31.64.74,Benign,0,under_attack,under_attack,pass,0.3980000037699938
+1430,172.31.64.60,Benign,0,under_attack,under_attack,pass,0.4331000382080674
+1431,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.5024999845772982
+1432,212.92.121.137,Benign,0,under_attack,under_attack,pass,0.519299996085465
+1433,172.31.67.115,Benign,0,under_attack,under_attack,pass,0.5795999895781279
+1434,23.225.163.149,Benign,0,under_attack,under_attack,pass,0.5911999614909291
+1435,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.5221999017521739
+1436,91.230.191.62,Benign,0,under_attack,under_attack,pass,0.6000000284984708
+1437,172.31.66.74,Benign,0,under_attack,under_attack,pass,0.5907000740990043
+1438,172.31.68.9,Benign,0,under_attack,under_attack,pass,0.46310003381222486
+1439,91.210.178.198,Benign,0,under_attack,under_attack,pass,0.4854999715462327
+1440,31.168.52.214,Benign,0,under_attack,under_attack,pass,0.4141000099480152
+1441,172.31.66.89,Benign,0,under_attack,under_attack,pass,0.39119995199143887
+1442,172.31.67.111,Benign,0,under_attack,under_attack,pass,0.4336000420153141
+1443,118.32.163.10,Benign,0,under_attack,under_attack,pass,0.6580000044777989
+1444,172.31.64.92,Benign,0,under_attack,under_attack,pass,0.5586999468505383
+1445,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.72160002309829
+1446,172.31.64.124,Benign,0,under_attack,under_attack,pass,0.5274999421089888
+1447,5.39.217.113,Benign,0,under_attack,under_attack,pass,0.5815000040456653
+1448,172.31.66.43,Benign,0,under_attack,under_attack,pass,0.575799960643053
+1449,80.78.43.140,Benign,0,under_attack,under_attack,pass,0.5699999164789915
+1450,172.31.64.27,Benign,0,under_attack,under_attack,pass,0.5796999903395772
+1451,172.31.66.109,Benign,0,under_attack,under_attack,pass,0.40280004031956196
+1452,172.31.69.20,Benign,0,under_attack,under_attack,pass,0.6082999752834439
+1453,182.48.222.19,Benign,0,under_attack,under_attack,pass,0.5228000227361917
+1454,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.4496999317780137
+1455,37.46.246.28,Benign,0,under_attack,under_attack,pass,0.5990000208839774
+1456,172.31.66.96,Benign,0,under_attack,under_attack,pass,0.46030001249164343
+1457,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.520500005222857
+1458,172.31.64.96,Benign,0,under_attack,under_attack,pass,0.44920004438608885
+1459,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.674000009894371
+1460,172.31.66.124,Benign,0,under_attack,under_attack,pass,0.4539000801742077
+1461,50.62.132.128,Benign,0,under_attack,under_attack,pass,0.5040999967604876
+1462,139.60.161.214,Benign,0,under_attack,under_attack,pass,0.5183999892324209
+1463,172.31.67.123,Benign,0,under_attack,under_attack,pass,0.5125999450683594
+1464,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.5946999881416559
+1465,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.7464999798685312
+1466,185.48.36.147,Benign,0,under_attack,under_attack,pass,0.5218000151216984
+1467,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.5611000815406442
+1468,172.31.64.38,Benign,0,under_attack,under_attack,pass,0.5152999656274915
+1469,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,1.4134999364614487
+1470,213.202.230.232,Benign,0,under_attack,under_attack,pass,0.5584999453276396
+1471,172.31.69.6,Benign,0,under_attack,under_attack,pass,0.43869996443390846
+1472,172.31.64.70,Benign,0,under_attack,under_attack,pass,0.44159998651593924
+1473,2.93.150.156,Benign,0,under_attack,under_attack,pass,0.3885999321937561
+1474,181.214.87.12,Benign,0,under_attack,under_attack,pass,0.4420999903231859
+1475,172.31.66.14,Benign,0,under_attack,under_attack,pass,0.4034999292343855
+1476,172.31.67.46,Benign,0,under_attack,under_attack,pass,0.5950999911874533
+1477,172.31.64.111,Benign,0,under_attack,under_attack,pass,0.6625000387430191
+1478,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.36419997923076153
+1479,172.31.65.44,Benign,0,under_attack,under_attack,pass,0.5535000236704946
+1480,172.31.67.112,Benign,0,under_attack,under_attack,pass,0.6708999862894416
+1481,181.214.87.12,Benign,0,under_attack,under_attack,pass,0.4654000513255596
+1482,5.188.9.10,Benign,0,under_attack,under_attack,pass,0.8190999506041408
+1483,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.5465999711304903
+1484,172.31.66.29,Benign,0,under_attack,under_attack,pass,0.3576000453904271
+1485,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.4472000291571021
+1486,172.31.69.30,Benign,0,under_attack,under_attack,pass,0.5655999993905425
+1487,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.7350000087171793
+1488,172.31.64.113,Benign,0,under_attack,under_attack,pass,0.5499999970197678
+1489,172.31.68.13,Benign,0,under_attack,under_attack,pass,0.47589989844709635
+1490,1.186.144.202,Benign,0,under_attack,under_attack,pass,0.44890004210174084
+1491,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.5180999869480729
+1492,172.31.66.37,Benign,0,under_attack,under_attack,pass,0.6141000194475055
+1493,5.188.86.140,Benign,0,under_attack,under_attack,pass,0.6803000578656793
+1494,172.31.65.8,Benign,0,under_attack,under_attack,pass,0.47800003085285425
+1495,172.31.64.31,Benign,0,under_attack,under_attack,pass,0.37610006984323263
+1496,172.31.65.47,Benign,0,under_attack,under_attack,pass,0.49020000733435154
+1497,172.31.67.16,Benign,0,under_attack,under_attack,pass,0.4822999471798539
+1498,172.31.65.44,Benign,0,under_attack,under_attack,pass,0.7035000016912818
+1499,172.31.64.86,Benign,0,under_attack,under_attack,pass,0.5586999468505383
+1500,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.44840003829449415
+1501,177.94.93.201,Benign,0,under_attack,under_attack,pass,0.4528999561443925
+1502,172.31.65.71,Benign,0,under_attack,under_attack,pass,0.6555001018568873
+1503,172.31.66.49,Benign,0,under_attack,under_attack,pass,0.5065000150352716
+1504,172.31.68.28,Benign,0,under_attack,under_attack,pass,0.48779998905956745
+1505,185.222.56.82,Benign,0,under_attack,under_attack,pass,0.6071999669075012
+1506,172.31.67.76,Benign,0,under_attack,under_attack,pass,0.6108999950811267
+1507,213.202.230.206,Benign,0,under_attack,under_attack,pass,0.5607999628409743
+1508,172.31.66.22,Benign,0,under_attack,under_attack,pass,0.467300065793097
+1509,172.31.67.7,Benign,0,under_attack,under_attack,pass,0.670200097374618
+1510,152.101.118.11,Benign,0,under_attack,under_attack,pass,0.48209994565695524
+1511,5.188.9.25,Benign,0,under_attack,under_attack,pass,0.37699996028095484
+1512,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.49949996173381805
+1513,172.31.66.90,Benign,0,under_attack,under_attack,pass,0.394499977119267
+1514,94.50.5.23,Benign,0,under_attack,under_attack,pass,0.5549000343307853
+1515,172.31.64.42,Benign,0,under_attack,under_attack,pass,0.5530000198632479
+1516,172.31.68.15,Benign,0,under_attack,under_attack,pass,0.40529994294047356
+1517,213.202.230.222,Benign,0,under_attack,under_attack,pass,0.29200001154094934
+1518,172.31.67.97,Benign,0,under_attack,under_attack,pass,0.3454000689089298
+1519,172.31.65.109,Benign,0,under_attack,under_attack,pass,0.25029992684721947
+1520,172.31.65.27,Benign,0,under_attack,under_attack,pass,0.29369990807026625
+1521,213.202.230.217,Benign,0,under_attack,under_attack,pass,0.3333999775350094
+1522,172.31.67.92,Benign,0,under_attack,under_attack,pass,0.4428999964147806
+1523,172.31.69.30,Benign,0,under_attack,under_attack,pass,0.3776999656111002
+1524,172.31.65.10,Benign,0,under_attack,under_attack,pass,0.4130000015720725
+1525,123.223.160.41,Benign,0,under_attack,under_attack,pass,0.7143999682739377
+1526,50.207.250.106,Benign,0,under_attack,under_attack,pass,0.6809000624343753
+1527,172.31.67.126,Benign,0,under_attack,under_attack,pass,0.5066999001428485
+1528,18.219.5.43,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.9343000128865242
+1529,172.31.65.104,Benign,0,under_attack,under_attack,pass,0.6124998908489943
+1530,172.31.64.74,Benign,0,under_attack,under_attack,pass,0.44929992873221636
+1531,212.92.107.145,Benign,0,under_attack,under_attack,pass,0.7314999820664525
+1532,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7332999957725406
+1533,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.4928000271320343
+1534,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.40659995283931494
+1535,178.149.235.212,Benign,0,under_attack,under_attack,pass,0.3141999477520585
+1536,212.174.71.54,Benign,0,under_attack,under_attack,pass,0.611600000411272
+1537,172.31.65.122,Benign,0,under_attack,under_attack,pass,0.7348000071942806
+1538,172.31.64.17,Benign,0,under_attack,under_attack,pass,0.4108001012355089
+1539,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7403000490739942
+1540,173.230.152.228,Benign,0,under_attack,under_attack,pass,0.5993000231683254
+1541,213.202.230.232,Benign,0,under_attack,under_attack,pass,0.43139990884810686
+1542,172.31.64.19,Benign,0,under_attack,under_attack,pass,0.7681999122723937
+1543,184.22.186.47,Benign,0,under_attack,under_attack,pass,0.7224999135360122
+1544,5.101.40.105,Benign,0,under_attack,under_attack,pass,0.5925000878050923
+1545,172.31.64.67,Benign,0,under_attack,under_attack,pass,0.5150999641045928
+1546,172.31.67.19,Benign,0,under_attack,under_attack,pass,0.6536999717354774
+1547,172.31.68.12,Benign,0,under_attack,under_attack,pass,0.7597000803798437
+1548,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.2984999446198344
+1549,5.39.219.10,Benign,0,under_attack,under_attack,pass,0.7913999725133181
+1550,172.31.65.39,Benign,0,under_attack,under_attack,pass,0.6041000597178936
+1551,172.31.69.13,Benign,0,under_attack,under_attack,pass,0.6924000335857272
+1552,172.31.66.62,Benign,0,under_attack,under_attack,pass,0.5758000770583749
+1553,172.31.67.109,Benign,0,under_attack,under_attack,pass,0.6555999862030149
+1554,83.17.250.12,Benign,0,under_attack,under_attack,pass,0.712999957613647
+1555,172.31.65.34,Benign,0,under_attack,under_attack,pass,0.561899971216917
+1556,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.5635999841615558
+1557,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8366999682039022
+1558,172.31.64.100,Benign,0,under_attack,under_attack,pass,0.713599962182343
+1559,172.31.69.26,Benign,0,under_attack,under_attack,pass,0.6985000800341368
+1560,172.31.67.118,Benign,0,under_attack,under_attack,pass,0.5964000010862947
+1561,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8381999796256423
+1562,172.31.64.73,Benign,0,under_attack,under_attack,pass,0.46929996460676193
+1563,172.31.64.19,Benign,0,under_attack,under_attack,pass,0.637299963273108
+1564,172.31.64.26,Benign,0,under_attack,under_attack,pass,0.4938999190926552
+1565,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.597700010985136
+1566,172.31.64.28,Benign,0,under_attack,under_attack,pass,0.6996000884100795
+1567,45.77.94.149,Benign,0,under_attack,under_attack,pass,0.6348999449983239
+1568,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9470999939367175
+1569,172.31.66.79,Benign,0,under_attack,under_attack,pass,0.5553999217227101
+1570,172.31.65.37,Benign,0,under_attack,under_attack,pass,0.4822000628337264
+1571,172.31.64.92,Benign,0,under_attack,under_attack,pass,0.6419999990612268
+1572,172.31.64.23,Benign,0,under_attack,under_attack,pass,0.4629999166354537
+1573,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.6197999464347959
+1574,111.253.54.81,Benign,0,under_attack,under_attack,pass,0.44219999108463526
+1575,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,rate_limit,0.30529999639838934
+1576,172.31.68.23,Benign,0,under_attack,under_attack,pass,0.5443999543786049
+1577,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.77629997394979
+1578,172.31.65.50,Benign,0,under_attack,under_attack,pass,0.5611999658867717
+1579,199.247.10.78,Benign,0,under_attack,under_attack,pass,0.4206000594422221
+1580,172.31.65.80,Benign,0,under_attack,under_attack,pass,0.8808000711724162
+1581,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7495998870581388
+1582,172.31.65.44,Benign,0,under_attack,under_attack,pass,0.49210002180188894
+1583,77.72.83.21,Benign,0,under_attack,under_attack,pass,0.340400030836463
+1584,172.31.68.5,Benign,0,under_attack,under_attack,pass,0.4900998901575804
+1585,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7452999707311392
+1586,212.92.112.41,Benign,0,under_attack,under_attack,pass,0.4218999529257417
+1587,193.111.198.63,Benign,0,under_attack,under_attack,pass,0.3723000409081578
+1588,172.31.65.84,Benign,0,under_attack,under_attack,pass,0.3003999590873718
+1589,176.99.158.199,Benign,0,under_attack,under_attack,pass,0.45309995766729116
+1590,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.5626999773085117
+1591,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.5706000374630094
+1592,172.31.65.33,Benign,0,under_attack,under_attack,pass,0.4749000072479248
+1593,49.231.225.114,Benign,0,under_attack,under_attack,pass,0.6707999855279922
+1594,185.222.211.42,Benign,0,under_attack,under_attack,pass,0.6564999930560589
+1595,212.179.111.205,Benign,0,under_attack,under_attack,pass,0.44780003372579813
+1596,172.31.69.13,Benign,0,under_attack,under_attack,pass,0.4237999673932791
+1597,72.46.198.184,Benign,0,under_attack,under_attack,pass,0.431500026024878
+1598,18.218.115.60,DDOS attack-HOIC,3,under_attack,under_attack,rate_limit,0.17610006034374237
+1599,172.31.64.33,Benign,0,under_attack,under_attack,pass,0.3926999634131789
+1600,172.31.66.112,Benign,0,under_attack,under_attack,pass,0.44189998880028725
+1601,172.31.64.41,Benign,0,under_attack,under_attack,pass,0.900499988347292
+1602,172.31.66.63,Benign,0,under_attack,under_attack,pass,0.8487000595778227
+1603,172.31.64.23,Benign,0,under_attack,under_attack,pass,0.5230000242590904
+1604,172.31.65.117,Benign,0,under_attack,under_attack,pass,0.4528999561443925
+1605,172.31.64.38,Benign,0,under_attack,under_attack,pass,0.35850005224347115
+1606,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.5363000091165304
+1607,83.137.50.61,Benign,0,under_attack,under_attack,pass,0.5882999394088984
+1608,172.31.66.94,Benign,0,under_attack,under_attack,pass,0.6891998928040266
+1609,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7597999647259712
+1610,172.31.64.19,Benign,0,under_attack,under_attack,pass,0.5429000593721867
+1611,67.154.189.4,Benign,0,under_attack,under_attack,pass,0.8345000678673387
+1612,172.31.67.38,Benign,0,under_attack,under_attack,pass,0.7034000009298325
+1613,172.31.69.20,Benign,0,under_attack,under_attack,pass,0.6840999703854322
+1614,172.31.65.89,Benign,0,under_attack,under_attack,pass,0.6226000841706991
+1615,172.31.64.39,Benign,0,under_attack,under_attack,pass,0.6558999884873629
+1616,200.186.39.240,Benign,0,under_attack,under_attack,pass,0.523699913173914
+1617,172.31.68.21,Benign,0,under_attack,under_attack,pass,0.4027000395581126
+1618,213.202.230.232,Benign,0,under_attack,under_attack,pass,0.6412999937310815
+1619,172.31.66.100,Benign,0,under_attack,under_attack,pass,0.43649994768202305
+1620,78.29.15.122,Benign,0,under_attack,under_attack,pass,0.5997000262141228
+1621,92.42.107.139,Benign,0,under_attack,under_attack,pass,0.5801999941468239
+1622,172.31.67.67,Benign,0,under_attack,under_attack,pass,0.5291999550536275
+1623,172.31.66.44,Benign,0,under_attack,under_attack,pass,0.4517999477684498
+1624,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.5412000464275479
+1625,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.8467999286949635
+1626,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,1.6331999795511365
+1627,172.31.66.48,Benign,0,under_attack,under_attack,pass,0.6060999585315585
+1628,172.31.68.28,Benign,0,under_attack,under_attack,pass,0.44329999946057796
+1629,172.31.68.18,Benign,0,under_attack,under_attack,pass,0.39169995579868555
+1630,172.31.66.40,Benign,0,under_attack,under_attack,pass,0.43070001993328333
+1631,172.31.64.119,Benign,0,under_attack,under_attack,pass,0.40870008524507284
+1632,172.31.64.26,Benign,0,under_attack,under_attack,pass,0.5332999862730503
+1633,172.31.67.41,Benign,0,under_attack,under_attack,pass,0.4477000329643488
+1634,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.36069995258003473
+1635,172.31.64.41,Benign,0,under_attack,under_attack,pass,0.35699992440640926
+1636,172.31.68.18,Benign,0,under_attack,under_attack,pass,0.45050005428493023
+1637,172.31.66.44,Benign,0,under_attack,under_attack,pass,0.4795000422745943
+1638,201.111.169.69,Benign,0,under_attack,under_attack,pass,0.5302999634295702
+1639,74.208.41.177,Benign,0,under_attack,under_attack,pass,0.5868999287486076
+1640,172.31.66.83,Benign,0,under_attack,under_attack,pass,0.4218999529257417
+1641,172.31.66.87,Benign,0,under_attack,under_attack,pass,0.5262000486254692
+1642,172.31.67.29,Benign,0,under_attack,under_attack,pass,0.48669998068362474
+1643,172.31.64.79,Benign,0,under_attack,under_attack,pass,0.6059999577701092
+1644,172.31.64.87,Benign,0,under_attack,under_attack,pass,0.6547999801114202
+1645,181.214.87.248,Benign,0,under_attack,under_attack,pass,0.49809995107352734
+1646,139.60.161.214,Benign,0,under_attack,under_attack,pass,0.4547000862658024
+1647,18.216.200.189,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.599699909798801
+1648,172.31.68.15,Benign,0,under_attack,under_attack,pass,0.40330004412680864
+1649,212.3.106.198,Benign,0,under_attack,under_attack,pass,0.6448000203818083
+1650,172.31.67.58,Benign,0,under_attack,under_attack,pass,0.38769992534071207
+1651,172.31.66.108,Benign,0,under_attack,under_attack,pass,0.5171999800950289
+1652,172.31.64.4,Benign,0,under_attack,under_attack,pass,0.46770006883889437
+1653,183.83.53.49,Benign,0,under_attack,under_attack,pass,0.6375000812113285
+1654,190.213.169.227,Benign,0,under_attack,under_attack,pass,0.34190004225820303
+1655,172.31.65.50,Benign,0,under_attack,under_attack,pass,0.6241999799385667
+1656,172.31.66.99,Benign,0,under_attack,under_attack,pass,0.5187999922782183
+1657,172.31.66.62,Benign,0,under_attack,under_attack,pass,0.4545999690890312
+1658,190.213.169.227,Benign,0,under_attack,under_attack,pass,0.4360999446362257
+1659,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6083000916987658
+1660,172.31.68.13,Benign,0,under_attack,under_attack,pass,0.5437000654637814
+1661,190.203.36.172,Benign,0,under_attack,under_attack,pass,0.3749999450519681
+1662,172.31.67.77,Benign,0,under_attack,under_attack,pass,0.9228000417351723
+1663,172.31.68.12,Benign,0,under_attack,under_attack,pass,0.5934000946581364
+1664,13.59.126.31,DoS attacks-SlowHTTPTest,3,under_attack,under_attack,block,0.8697999874129891
+1665,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.3326000878587365
+1666,172.31.69.13,Benign,0,under_attack,under_attack,pass,0.8361999643966556
+1667,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.862700049765408
+1668,18.218.55.126,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7850000401958823
+1669,172.31.69.8,Benign,0,under_attack,under_attack,pass,0.6306000286713243
+1670,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.8512000786140561
+1671,185.222.56.84,Benign,0,under_attack,under_attack,pass,0.4392999690026045
+1672,213.202.230.223,Benign,0,under_attack,under_attack,pass,0.3752000629901886
+1673,172.31.68.23,Benign,0,under_attack,under_attack,pass,0.29559992253780365
+1674,27.155.102.123,Benign,0,under_attack,under_attack,pass,0.4498999333009124
+1675,172.31.66.56,Benign,0,under_attack,under_attack,pass,0.3571000415831804
+1676,113.162.247.181,Benign,0,under_attack,under_attack,pass,0.4816999426111579
+1677,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7288999622687697
+1678,213.202.230.217,Benign,0,under_attack,under_attack,pass,0.5370998987928033
+1679,77.72.82.57,Benign,0,under_attack,under_attack,pass,0.5029999883845448
+1680,172.31.65.36,Benign,0,under_attack,under_attack,pass,0.6525999633595347
+1681,172.31.69.23,Bot,4,under_attack,under_attack,block,1.0244000004604459
+1682,172.31.67.62,Benign,0,under_attack,under_attack,pass,0.5985999014228582
+1683,172.31.67.41,Benign,0,under_attack,under_attack,pass,0.6368999602273107
+1684,193.111.198.69,Benign,0,under_attack,under_attack,pass,0.6140000186860561
+1685,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.772800063714385
+1686,172.31.69.14,Bot,4,under_attack,under_attack,block,0.8039000676944852
+1687,180.97.220.32,Benign,0,under_attack,under_attack,pass,0.3939999733120203
+1688,193.111.198.62,Benign,0,under_attack,under_attack,pass,0.4390000831335783
+1689,172.31.64.42,Benign,0,under_attack,under_attack,pass,0.5046000005677342
+1690,193.111.198.61,Benign,0,under_attack,under_attack,pass,0.4064000677317381
+1691,172.31.65.77,Benign,0,under_attack,under_attack,pass,0.534999999217689
+1692,172.31.69.16,Benign,0,under_attack,under_attack,pass,0.4566999850794673
+1693,172.31.64.95,Benign,0,under_attack,under_attack,pass,0.3461999585852027
+1694,172.31.64.37,Benign,0,under_attack,under_attack,pass,0.4384999629110098
+1695,172.31.64.124,Benign,0,under_attack,under_attack,pass,0.3529000096023083
+1696,172.31.69.30,Benign,0,under_attack,under_attack,pass,0.3033000975847244
+1697,172.31.66.34,Benign,0,under_attack,under_attack,pass,0.505700008943677
+1698,212.175.53.250,Benign,0,under_attack,under_attack,pass,0.48889999743551016
+1699,172.31.66.25,Benign,0,under_attack,under_attack,pass,0.556000042706728
+1700,62.1.169.9,Benign,0,under_attack,under_attack,pass,0.6071000825613737
+1701,172.31.65.117,Benign,0,under_attack,under_attack,pass,0.6017000414431095
+1702,172.31.68.23,Benign,0,under_attack,under_attack,pass,0.5226000212132931
+1703,172.31.65.113,Benign,0,under_attack,under_attack,pass,0.41640002746134996
+1704,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6107999943196774
+1705,172.31.64.45,Benign,0,under_attack,under_attack,pass,0.49539993051439524
+1706,141.105.71.81,Benign,0,under_attack,under_attack,pass,0.4187999293208122
+1707,172.31.66.17,Benign,0,under_attack,under_attack,pass,0.5292999558150768
+1708,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.3816999960690737
+1709,172.31.66.86,Benign,0,under_attack,under_attack,pass,0.4515999462455511
+1710,172.31.67.54,Benign,0,under_attack,under_attack,pass,0.3197999903932214
+1711,52.169.27.99,Benign,0,under_attack,under_attack,pass,0.466700061224401
+1712,93.183.216.136,Benign,0,under_attack,under_attack,pass,0.46200002543628216
+1713,66.17.123.196,Benign,0,under_attack,under_attack,pass,0.4304000176489353
+1714,172.31.65.86,Benign,0,under_attack,under_attack,pass,0.44380000326782465
+1715,172.31.64.124,Benign,0,under_attack,under_attack,pass,0.327400048263371
+1716,96.233.49.71,Benign,0,under_attack,under_attack,pass,0.3781999694183469
+1717,172.31.67.102,Benign,0,under_attack,under_attack,pass,0.5798999918624759
+1718,172.31.65.29,Benign,0,under_attack,under_attack,pass,0.5133999511599541
+1719,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.7366000209003687
+1720,58.210.127.154,Benign,0,under_attack,under_attack,pass,1.2037999695166945
+1721,172.31.64.48,Benign,0,under_attack,under_attack,pass,0.6494999397546053
+1722,172.31.69.17,Benign,0,under_attack,under_attack,pass,0.3182999789714813
+1723,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6047000642865896
+1724,172.31.65.90,Benign,0,under_attack,under_attack,pass,0.5936999805271626
+1725,172.31.64.103,Benign,0,under_attack,under_attack,pass,0.47389999963343143
+1726,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.710100051946938
+1727,172.31.64.106,Benign,0,under_attack,under_attack,pass,0.5319000920280814
+1728,52.14.136.135,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.5787999834865332
+1729,77.72.82.72,Benign,0,under_attack,under_attack,pass,0.3483999753370881
+1730,209.222.0.43,Benign,0,under_attack,under_attack,pass,0.462499912828207
+1731,172.31.66.96,Benign,0,under_attack,under_attack,pass,0.5985000170767307
+1732,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9295000927522779
+1733,172.31.66.80,Benign,0,under_attack,under_attack,pass,0.5284000653773546
+1734,212.92.107.25,Benign,0,under_attack,under_attack,pass,0.5171000957489014
+1735,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,1.0575000196695328
+1736,172.31.67.82,Benign,0,under_attack,under_attack,pass,0.5713999271392822
+1737,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.4440000047907233
+1738,172.31.67.76,Benign,0,under_attack,under_attack,pass,0.4556999774649739
+1739,172.31.66.96,Benign,0,under_attack,under_attack,pass,0.49050000961869955
+1740,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,1.0235999943688512
+1741,111.73.46.172,Benign,0,under_attack,under_attack,pass,0.4875999875366688
+1742,172.31.65.66,Benign,0,under_attack,under_attack,pass,0.45739999040961266
+1743,172.31.65.28,Benign,0,under_attack,under_attack,pass,0.41560002136975527
+1744,123.231.246.10,Benign,0,under_attack,under_attack,pass,0.3888999344781041
+1745,37.46.246.28,Benign,0,under_attack,under_attack,pass,0.5626000929623842
+1746,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.7213999051600695
+1747,18.218.11.51,DDOS attack-HOIC,3,under_attack,under_attack,block,0.674600014463067
+1748,172.31.66.55,Benign,0,under_attack,under_attack,pass,0.46499993186444044
+1749,93.84.21.73,Benign,0,under_attack,under_attack,pass,0.6218000780791044
+1750,172.31.65.39,Benign,0,under_attack,under_attack,pass,0.341600039973855
+1751,212.92.114.68,Benign,0,under_attack,under_attack,pass,0.4099999787285924
+1752,213.202.230.207,Benign,0,under_attack,under_attack,pass,0.44380000326782465
+1753,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.0672000935301185
+1754,66.17.123.196,Benign,0,under_attack,under_attack,pass,0.45900000259280205
+1755,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.722800032235682
+1756,219.232.115.242,Benign,0,under_attack,under_attack,pass,0.37450005766004324
+1757,172.31.65.27,Benign,0,under_attack,under_attack,pass,0.4427999956533313
+1758,172.31.64.19,Benign,0,under_attack,under_attack,pass,0.6952000549063087
+1759,172.31.66.118,Benign,0,under_attack,under_attack,pass,0.44249999336898327
+1760,172.31.67.102,Benign,0,under_attack,under_attack,pass,0.3906999481841922
+1761,78.41.207.124,Benign,0,under_attack,under_attack,pass,0.5913999630138278
+1762,172.5.1.123,Benign,0,under_attack,under_attack,pass,0.5319000920280814
+1763,172.31.67.4,Benign,0,under_attack,under_attack,pass,0.44109998270869255
+1764,172.31.64.84,Benign,0,under_attack,under_attack,pass,0.5087999161332846
+1765,172.31.67.32,Benign,0,under_attack,under_attack,pass,0.5401999223977327
+1766,172.31.64.81,Benign,0,under_attack,under_attack,pass,0.7665000157430768
+1767,172.31.66.114,Benign,0,under_attack,under_attack,pass,0.471699982881546
+1768,193.111.198.69,Benign,0,under_attack,under_attack,pass,0.4547999706119299
+1769,172.31.66.13,Benign,0,under_attack,under_attack,pass,0.43480005115270615
+1770,172.31.66.28,Benign,0,under_attack,under_attack,pass,0.5559000419452786
+1771,77.72.82.147,Benign,0,under_attack,under_attack,pass,0.6279998924583197
+1772,172.31.66.62,Benign,0,under_attack,under_attack,pass,0.6562999915331602
+1773,172.31.64.18,Benign,0,under_attack,under_attack,pass,0.914999982342124
+1774,172.31.65.64,Benign,0,under_attack,under_attack,pass,0.6761000258848071
+1775,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,1.0972999734804034
+1776,66.17.123.196,Benign,0,under_attack,under_attack,pass,0.5585000617429614
+1777,172.31.67.32,Benign,0,under_attack,under_attack,pass,0.440100091509521
+1778,5.188.203.40,Benign,0,under_attack,under_attack,pass,0.5177999846637249
+1779,77.72.83.21,Benign,0,under_attack,under_attack,pass,0.4813999403268099
+1780,172.31.64.42,Benign,0,under_attack,under_attack,pass,0.47779991291463375
+1781,172.31.64.41,Benign,0,under_attack,under_attack,pass,0.4132000030949712
+1782,172.31.64.97,Benign,0,under_attack,under_attack,pass,0.4322000313550234
+1783,172.31.65.8,Benign,0,under_attack,under_attack,pass,0.5271000554785132
+1784,172.31.69.13,Benign,0,under_attack,under_attack,pass,0.5165999755263329
+1785,172.31.68.19,Benign,0,under_attack,under_attack,pass,0.38950005546212196
+1786,172.31.69.13,Benign,0,under_attack,under_attack,pass,0.41149999015033245
+1787,172.31.64.19,Benign,0,under_attack,under_attack,pass,0.46609994024038315
+1788,18.218.229.235,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.6981999613344669
+1789,172.31.66.122,Benign,0,under_attack,under_attack,pass,0.39249996189028025
+1790,172.31.68.4,Benign,0,under_attack,under_attack,pass,0.43000001460313797
+1791,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8328000549226999
+1792,212.92.115.147,Benign,0,under_attack,under_attack,pass,0.4371000686660409
+1793,172.31.69.10,Benign,0,under_attack,under_attack,pass,0.37130003329366446
+1794,172.31.69.10,Bot,4,under_attack,under_attack,block,0.8203000761568546
+1795,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6884000031277537
+1796,114.24.137.115,Benign,0,under_attack,under_attack,pass,0.5454999627545476
+1797,172.31.67.104,Benign,0,under_attack,under_attack,pass,0.6584000075235963
+1798,58.179.143.122,Benign,0,under_attack,under_attack,pass,0.6284000119194388
+1799,172.31.67.73,Benign,0,under_attack,under_attack,pass,0.6012000376358628
+1800,172.31.66.103,Benign,0,under_attack,under_attack,pass,0.4403000930324197
+1801,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7204000139608979
+1802,172.31.65.66,Benign,0,under_attack,under_attack,pass,0.48889999743551016
+1803,172.31.68.20,Benign,0,under_attack,under_attack,pass,0.5327999824658036
+1804,172.31.66.78,Benign,0,under_attack,under_attack,pass,0.6216999609023333
+1805,172.31.65.61,Benign,0,under_attack,under_attack,pass,1.855200040154159
+1806,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9177998872473836
+1807,172.31.67.56,Benign,0,under_attack,under_attack,pass,0.5133999511599541
+1808,175.195.219.31,Benign,0,under_attack,under_attack,pass,0.5465000867843628
+1809,172.31.66.64,Benign,0,under_attack,under_attack,pass,0.6201999494805932
+1810,193.111.198.62,Benign,0,under_attack,under_attack,pass,0.5408999277278781
+1811,172.31.65.121,Benign,0,under_attack,under_attack,pass,0.5979000125080347
+1812,172.31.64.77,Benign,0,under_attack,under_attack,pass,0.5952999927103519
+1813,172.31.64.77,Benign,0,under_attack,under_attack,pass,0.8638999424874783
+1814,172.31.64.13,Benign,0,under_attack,under_attack,pass,0.45039993710815907
+1815,207.72.6.146,Benign,0,under_attack,under_attack,pass,0.48209994565695524
+1816,172.31.64.118,Benign,0,under_attack,under_attack,pass,0.4579999949783087
+1817,172.31.66.105,Benign,0,under_attack,under_attack,pass,0.4365999484434724
+1818,172.31.65.123,Benign,0,under_attack,under_attack,pass,0.41850004345178604
+1819,172.31.64.107,Benign,0,under_attack,under_attack,pass,0.4328000359237194
+1820,185.51.229.225,Benign,0,under_attack,under_attack,pass,0.3864000318571925
+1821,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9488000068813562
+1822,96.69.128.189,Benign,0,under_attack,under_attack,pass,0.5494999932125211
+1823,172.31.66.10,Benign,0,under_attack,under_attack,pass,0.5794999888166785
+1824,172.31.66.54,Benign,0,under_attack,under_attack,pass,0.4995000781491399
+1825,163.172.69.249,Benign,0,under_attack,under_attack,pass,0.6379000842571259
+1826,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.45629998203366995
+1827,74.15.177.21,Benign,0,under_attack,under_attack,pass,0.5812000017613173
+1828,201.163.29.6,Benign,0,under_attack,under_attack,pass,0.6117000011727214
+1829,193.111.198.61,Benign,0,under_attack,under_attack,pass,0.6304000271484256
+1830,172.31.67.17,Benign,0,under_attack,under_attack,pass,0.3809999907389283
+1831,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.6257999921217561
+1832,172.31.66.119,Benign,0,under_attack,under_attack,pass,0.42070006020367146
+1833,172.31.68.5,Benign,0,under_attack,under_attack,pass,0.5511000053957105
+1834,172.31.64.28,Benign,0,under_attack,under_attack,pass,0.3852000227198005
+1835,180.250.103.126,Benign,0,under_attack,under_attack,pass,0.40929997339844704
+1836,172.31.65.119,Benign,0,under_attack,under_attack,pass,0.5136000690981746
+1837,172.31.64.109,Benign,0,under_attack,under_attack,pass,0.4328000359237194
+1838,172.31.67.6,Benign,0,under_attack,under_attack,pass,0.5232000257819891
+1839,172.31.66.14,Benign,0,under_attack,under_attack,pass,0.7738000713288784
+1840,172.31.64.48,Benign,0,under_attack,under_attack,pass,0.6380000850185752
+1841,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9112999541684985
+1842,172.31.64.114,Benign,0,under_attack,under_attack,pass,0.4594000056385994
+1843,178.89.7.114,Benign,0,under_attack,under_attack,pass,0.5658000009134412
+1844,110.145.139.198,Benign,0,under_attack,under_attack,pass,0.672499998472631
+1845,172.31.66.61,Benign,0,under_attack,under_attack,pass,0.49649993889033794
+1846,172.31.69.13,Benign,0,under_attack,under_attack,pass,0.6098999874666333
+1847,172.31.65.10,Benign,0,under_attack,under_attack,pass,0.3654999891296029
+1848,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.8183999452739954
+1849,172.31.68.12,Benign,0,under_attack,under_attack,pass,0.6304000271484256
+1850,172.31.66.5,Benign,0,under_attack,under_attack,pass,0.5356000037863851
+1851,172.31.65.45,Benign,0,under_attack,under_attack,pass,0.47009997069835663
+1852,172.31.67.73,Benign,0,under_attack,under_attack,pass,0.687899999320507
+1853,87.230.72.8,Benign,0,under_attack,under_attack,pass,0.46120001934468746
+1854,172.31.65.42,Benign,0,under_attack,under_attack,pass,0.6833000807091594
+1855,172.31.65.44,Benign,0,under_attack,under_attack,pass,0.43789995834231377
+1856,172.31.69.26,Benign,0,under_attack,under_attack,pass,0.7012001005932689
+1857,172.31.65.115,Benign,0,under_attack,under_attack,pass,0.46120001934468746
+1858,172.31.64.48,Benign,0,under_attack,under_attack,pass,0.44350000098347664
+1859,189.236.198.113,Benign,0,under_attack,under_attack,pass,0.37569995038211346
+1860,73.109.57.0,Benign,0,under_attack,under_attack,pass,0.534099992364645
+1861,172.31.68.11,Benign,0,under_attack,under_attack,pass,0.7202000124379992
+1862,213.202.230.219,Benign,0,under_attack,under_attack,pass,0.5022999830543995
+1863,18.221.16.50,Benign,0,under_attack,under_attack,pass,0.7736999541521072
+1864,172.31.64.78,Benign,0,under_attack,under_attack,pass,0.5768999690189958
+1865,213.202.230.226,Benign,0,under_attack,under_attack,pass,0.4285000031813979
+1866,172.31.67.75,Benign,0,under_attack,under_attack,pass,0.5767999682575464
+1867,5.39.216.193,Benign,0,under_attack,under_attack,pass,0.39030006155371666
+1868,172.31.64.35,Benign,0,under_attack,under_attack,pass,0.3629999700933695
+1869,172.31.69.23,Bot,4,under_attack,under_attack,block,0.7819000165909529
+1870,172.31.69.20,Benign,0,under_attack,under_attack,pass,0.48889999743551016
+1871,193.111.198.69,Benign,0,under_attack,under_attack,pass,0.5423000548034906
+1872,172.31.67.63,Benign,0,under_attack,under_attack,pass,0.7174999918788671
+1873,172.31.64.48,Benign,0,under_attack,under_attack,pass,0.7238000398501754
+1874,172.31.69.24,Benign,0,under_attack,under_attack,pass,0.5159000866115093
+1875,172.31.65.56,Benign,0,under_attack,under_attack,pass,0.45629998203366995
+1876,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,1.2033999664708972
+1877,177.105.249.202,Benign,0,under_attack,under_attack,pass,0.42069994378834963
+1878,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6617000326514244
+1879,172.31.67.115,Benign,0,under_attack,under_attack,pass,0.43439993169158697
+1880,172.31.65.65,Benign,0,under_attack,under_attack,pass,0.543600064702332
+1881,172.31.67.31,Benign,0,under_attack,under_attack,pass,0.45769999269396067
+1882,179.184.16.47,Benign,0,under_attack,under_attack,pass,0.4599000094458461
+1883,172.31.68.30,Benign,0,under_attack,under_attack,pass,0.5015999777242541
+1884,193.111.198.70,Benign,0,under_attack,under_attack,pass,0.4947000415995717
+1885,172.31.64.28,Benign,0,under_attack,under_attack,pass,0.5101999267935753
+1886,172.31.66.54,Benign,0,under_attack,under_attack,pass,0.5390000296756625
+1887,172.31.64.126,Benign,0,under_attack,under_attack,pass,0.408699968829751
+1888,212.92.124.11,Benign,0,under_attack,under_attack,pass,0.394499977119267
+1889,172.31.67.64,Benign,0,under_attack,under_attack,pass,0.48449996393173933
+1890,5.188.11.188,Benign,0,under_attack,under_attack,pass,0.39039994589984417
+1891,172.31.64.29,Benign,0,under_attack,under_attack,pass,0.48200006131082773
+1892,172.31.66.118,Benign,0,under_attack,under_attack,pass,0.43219991493970156
+1893,172.31.66.9,Benign,0,under_attack,under_attack,pass,0.5100000416859984
+1894,172.31.65.13,Benign,0,under_attack,under_attack,pass,0.453400076366961
+1895,172.31.65.48,Benign,0,under_attack,under_attack,pass,0.6188999395817518
+1896,193.111.198.63,Benign,0,under_attack,under_attack,pass,0.43430004734545946
+1897,172.31.64.76,Benign,0,under_attack,under_attack,pass,0.4881999921053648
+1898,172.31.67.6,Benign,0,under_attack,under_attack,pass,0.5117999389767647
+1899,77.72.82.92,Benign,0,under_attack,under_attack,pass,0.5599000724032521
+1900,172.31.67.120,Benign,0,under_attack,under_attack,pass,0.457499991171062
+1901,172.31.69.10,Benign,0,under_attack,under_attack,pass,0.4312999080866575
+1902,96.69.128.189,Benign,0,under_attack,under_attack,pass,0.4428999964147806
+1903,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8106000022962689
+1904,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.43619994539767504
+1905,172.31.65.61,Benign,0,under_attack,under_attack,pass,0.42179995216429234
+1906,172.31.67.57,Benign,0,under_attack,under_attack,pass,0.4390999674797058
+1907,172.31.64.64,Benign,0,under_attack,under_attack,pass,0.6722999969497323
+1908,82.221.105.7,Benign,0,under_attack,under_attack,pass,0.5925000878050923
+1909,18.216.24.42,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7880000630393624
+1910,172.31.64.84,Benign,0,under_attack,under_attack,pass,0.556900049559772
+1911,172.31.66.58,Benign,0,under_attack,under_attack,pass,0.5998000269755721
+1912,18.219.9.1,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8608000352978706
+1913,172.31.64.21,Benign,0,under_attack,under_attack,pass,0.4927999107167125
+1914,172.31.64.108,Benign,0,under_attack,under_attack,pass,0.41880004573613405
+1915,18.216.200.189,DDoS attacks-LOIC-HTTP,3,under_attack,under_attack,block,0.7376999128609896
+1916,77.72.82.98,Benign,0,under_attack,under_attack,pass,0.5666000070050359
+1917,172.31.65.20,Benign,0,under_attack,under_attack,pass,0.556300044991076
+1918,5.188.136.46,Benign,0,under_attack,under_attack,pass,0.40309992618858814
+1919,172.31.65.88,Benign,0,under_attack,under_attack,pass,0.5735999438911676
+1920,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.5236000288277864
+1921,18.219.5.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.8571000071242452
+1922,172.31.64.110,Benign,0,under_attack,under_attack,pass,0.5394000327214599
+1923,172.31.69.9,Benign,0,under_attack,under_attack,pass,0.7771000964567065
+1924,172.31.66.8,Benign,0,under_attack,under_attack,pass,0.5151999648660421
+1925,185.222.56.82,Benign,0,under_attack,under_attack,pass,0.4358000587671995
+1926,103.46.12.151,Benign,0,under_attack,under_attack,pass,0.471399980597198
+1927,172.31.65.91,Benign,0,under_attack,under_attack,pass,0.5623999750241637
+1928,5.101.40.43,Benign,0,under_attack,under_attack,pass,0.5480999825522304
+1929,52.14.136.135,DDOS attack-HOIC,3,under_attack,under_attack,block,0.9049999061971903
+1930,172.31.66.17,Benign,0,under_attack,under_attack,pass,0.5026001017540693
+1931,77.72.82.135,Benign,0,under_attack,under_attack,pass,0.5150000797584653
+1932,172.31.65.123,Benign,0,under_attack,under_attack,pass,0.49349991604685783
+1933,172.31.64.79,Benign,0,under_attack,under_attack,pass,0.458099995739758
+1934,83.3.194.145,Benign,0,under_attack,under_attack,pass,0.5448999581858516
+1935,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.8166000479832292
+1936,213.202.230.143,Benign,0,under_attack,under_attack,pass,0.4599000094458461
+1937,172.31.64.67,Benign,0,under_attack,under_attack,pass,0.4533999599516392
+1938,172.31.67.113,Benign,0,under_attack,under_attack,pass,0.45190006494522095
+1939,172.31.68.10,Benign,0,under_attack,under_attack,pass,0.4032999277114868
+1940,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.6460000295192003
+1941,190.109.164.68,Benign,0,under_attack,under_attack,pass,0.4403999773785472
+1942,172.31.69.23,Benign,0,under_attack,under_attack,pass,0.4985000705346465
+1943,18.216.200.189,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7869000546634197
+1944,109.239.212.5,Benign,0,under_attack,under_attack,pass,0.5458000814542174
+1945,172.31.64.79,Benign,0,under_attack,under_attack,pass,0.5234000273048878
+1946,72.38.76.18,Benign,0,under_attack,under_attack,pass,0.45409996528178453
+1947,212.92.116.6,Benign,0,under_attack,under_attack,pass,0.5323999794200063
+1948,172.31.66.96,Benign,0,under_attack,under_attack,pass,0.5262999329715967
+1949,5.188.11.111,Benign,0,under_attack,under_attack,pass,0.48580009024590254
+1950,172.31.67.122,Benign,0,under_attack,under_attack,pass,0.6084999768063426
+1951,172.31.66.53,Benign,0,under_attack,under_attack,pass,0.4434000002220273
+1952,172.31.64.123,Benign,0,under_attack,under_attack,pass,0.41779992170631886
+1953,173.246.5.32,Benign,0,under_attack,under_attack,pass,0.5886000581085682
+1954,172.31.66.97,Benign,0,under_attack,under_attack,pass,0.5626999773085117
+1955,213.202.230.37,Benign,0,under_attack,under_attack,pass,0.5611000815406442
+1956,18.219.193.20,DoS attacks-Hulk,3,under_attack,under_attack,block,0.9067000355571508
+1957,172.31.69.29,Benign,0,under_attack,under_attack,pass,0.659500015899539
+1958,172.31.65.112,Benign,0,under_attack,under_attack,pass,0.46939996536821127
+1959,172.31.65.10,Benign,0,under_attack,under_attack,pass,0.4290000069886446
+1960,117.85.54.187,Benign,0,under_attack,under_attack,pass,0.42990001384168863
+1961,172.31.65.119,Benign,0,under_attack,under_attack,pass,0.6560999900102615
+1962,172.31.69.8,Benign,0,under_attack,under_attack,pass,0.5516000092029572
+1963,178.46.26.102,Benign,0,under_attack,under_attack,pass,0.5514000076800585
+1964,190.74.228.106,Benign,0,under_attack,under_attack,pass,1.7922999104484916
+1965,193.111.198.69,Benign,0,under_attack,under_attack,pass,0.5170999793335795
+1966,172.31.69.23,Bot,4,under_attack,under_attack,block,1.2422000290825963
+1967,172.31.64.100,Benign,0,under_attack,under_attack,pass,0.797300017438829
+1968,172.31.69.17,Infilteration,4,under_attack,under_attack,block,0.8064999710768461
+1969,172.31.65.33,Benign,0,under_attack,under_attack,pass,0.6232999730855227
+1970,175.195.219.31,Benign,0,under_attack,under_attack,pass,0.5638999864459038
+1971,163.53.201.206,Benign,0,under_attack,under_attack,pass,0.5718000466004014
+1972,178.151.133.6,Benign,0,under_attack,under_attack,pass,0.5942999850958586
+1973,172.31.67.29,Benign,0,under_attack,under_attack,pass,0.4778000293299556
+1974,172.31.67.16,Benign,0,under_attack,under_attack,pass,0.534099992364645
+1975,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.20109990146011114
+1976,37.46.246.28,Benign,0,under_attack,under_attack,pass,0.453400076366961
+1977,172.31.66.11,Benign,0,under_attack,under_attack,pass,0.5170999793335795
+1978,18.218.229.235,DDOS attack-HOIC,3,under_attack,under_attack,block,0.816499930806458
+1979,172.31.64.60,Benign,0,under_attack,under_attack,pass,0.41749991942197084
+1980,216.248.72.115,Benign,0,under_attack,under_attack,pass,0.8055000798776746
+1981,172.31.67.31,Benign,0,under_attack,under_attack,pass,0.5283999489620328
+1982,172.31.65.64,Benign,0,under_attack,under_attack,pass,1.120300032198429
+1983,172.31.64.70,Benign,0,under_attack,under_attack,pass,0.4042999353259802
+1984,172.31.66.68,Benign,0,under_attack,under_attack,pass,0.5605999613180757
+1985,172.31.65.25,Benign,0,under_attack,under_attack,pass,0.3952999832108617
+1986,13.58.98.64,SSH-Bruteforce,2,under_attack,under_attack,rate_limit,0.2175000263378024
+1987,14.231.170.205,Benign,0,under_attack,under_attack,pass,0.5414000479504466
+1988,172.31.69.10,Bot,4,under_attack,under_attack,block,0.8388999849557877
+1989,172.31.64.83,Benign,0,under_attack,under_attack,pass,0.5148000782355666
+1990,172.31.64.17,Benign,0,under_attack,under_attack,pass,0.4453000146895647
+1991,103.242.110.18,Benign,0,under_attack,under_attack,pass,0.5547999171540141
+1992,172.31.66.105,Benign,0,under_attack,under_attack,pass,0.4958000499755144
+1993,172.31.65.58,Benign,0,under_attack,under_attack,pass,0.46490004751831293
+1994,18.219.32.43,DDOS attack-HOIC,3,under_attack,under_attack,block,0.7819000165909529
+1995,172.31.68.26,Benign,0,under_attack,under_attack,pass,0.4651000490412116
+1996,172.31.66.77,Benign,0,under_attack,under_attack,pass,0.8475000504404306
+1997,172.31.67.101,Benign,0,under_attack,under_attack,pass,0.8790999418124557
+1998,172.31.64.110,Benign,0,under_attack,under_attack,pass,0.6796000525355339
+1999,172.31.65.66,Benign,0,under_attack,under_attack,pass,0.47420000191777945
+2000,172.31.66.38,Benign,0,under_attack,under_attack,pass,0.4428999964147806
