@@ -21,7 +21,8 @@ Anoseek can be broken down into 4 main components:
   This layer is dedicated to investigation. With Gemini's API, the context is enriched with MITRE ATT&CK (partial) data & event dependent context. Users can ask "general" knowledge data (e.g. types of attack) or event-specific questions (e.g. about a certain IP). 
 
 4.  **Edge Detector --> _Raspberry-Pi_**
-  Responsible for monitoring the network, extracting flow features and delivering those to the classification layer. It also acts as an active enforcer, via a firewall, for the agent decisions which can either - block ip or rate limit.
+
+Responsible for monitoring the network, extracting flow features and delivering those to the classification layer. It also acts as an active enforcer, via a firewall, for the agent decisions which can either - block ip or rate limit.
 
 ### Code References & Snippets
 1. **Classification Model**
@@ -58,14 +59,14 @@ Anoseek can be broken down into 4 main components:
 
 [Active Enforcement](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L168)
 
-### Local Activation
+### Local Project Activation
 1. __activate venv envoirment__
 .\.venv\Scripts\activate
 2. __activate backend through vscode terminal__
 cd backend
 py -3.12 -m uvicorn api:app --reload --port 8001
 python -m uvicorn api:app --reload --port 8001  
-3. **service discoverable on wi-fi network** (_necessary for active enforcement & scanning_)
+3. **service discoverable on wi-fi network** (_necessary for active enforcement & scanning with a connected Edge Detector_)
 python -m uvicorn api:app --host 0.0.0.0 --port 8001
 4.  activate frontend                                 
 cd frontend
