@@ -25,9 +25,10 @@ Responsible for monitoring the network, extracting flow features and delivering 
 
 ### Code References
 1. Classification
+
 [Model Architecture](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/train_and_evaluate.py#L176)
 
-[Sequence Windows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L175
+[Sequence Windows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L175)
 
 [Anomaly Prediction](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L199)
 
