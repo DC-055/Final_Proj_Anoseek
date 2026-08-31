@@ -9,22 +9,22 @@ Anoseek is an E2E project designed to monitor, analyze and investigate network a
 Anoseek can be broken down into 4 main components:
 1. **Classification Agent --> _LSTM-SVC-EMBEDDINGS Model_**
 
-This model serves as first layer of Anoseek's core. It receives flows of networks extracted to a specific set of 32 features. Upon receiving those, the model predicts if the given flow is anomalous, and if so - classifies it to a certain set of severity ranks (ranging from 1 to 4).
+  This model serves as first layer of Anoseek's core. It receives flows of networks extracted to a specific set of 32 features. Upon receiving those, the model predicts if the given flow is anomalous, and if so - classifies it to a certain set of severity ranks (ranging from 1 to 4).
 
 2. **Agent --> _Active Response Algorithm_**
 
-This layer serves as the enforcement decision apparatus. It receives classification data from the previous layer, calculates statistical estimates, and changes the system's state & active approach accordingly.
+  This layer serves as the enforcement decision apparatus. It receives classification data from the previous layer, calculates statistical estimates, and changes the system's state & active approach accordingly.
 > Possible system state include IDLE, ALERTED & UNDER-ATTACK.
 
-4.  **Chatbot --> _RAG_**
+3.  **Chatbot --> _RAG_**
 
-This layer is dedicated to investigation. With Gemini's API, the context is enriched with MITRE ATT&CK (partial) data & event dependent context. Users can ask "general" knowledge data (e.g. types of attack) or event-specific questions (e.g. about a certain IP). 
+  This layer is dedicated to investigation. With Gemini's API, the context is enriched with MITRE ATT&CK (partial) data & event dependent context. Users can ask "general" knowledge data (e.g. types of attack) or event-specific questions (e.g. about a certain IP). 
 
-5.  **Edge Detector --> _Raspberry-Pi_**
-Responsible for monitoring the network, extracting flow features and delivering those to the classification layer. It also acts as an active enforcer, via a firewall, for the agent decisions which can either - block ip or rate limit.
+4.  **Edge Detector --> _Raspberry-Pi_**
+  Responsible for monitoring the network, extracting flow features and delivering those to the classification layer. It also acts as an active enforcer, via a firewall, for the agent decisions which can either - block ip or rate limit.
 
-### Code References
-1. Classification
+### Code References & Snippets
+1. **Classification Model**
 
 [Model Architecture](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/train_and_evaluate.py#L176)
 
@@ -34,7 +34,7 @@ Responsible for monitoring the network, extracting flow features and delivering 
 
 [API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L147)
 
-2. Agent
+2. **Agent**
 
 [Statistical Threshold](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L721)
 
@@ -44,7 +44,7 @@ Responsible for monitoring the network, extracting flow features and delivering 
 
 [UNDER-ATTACK System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L802)
 
-3. Chatbot
+3. **Chatbot**
 
 [Multithread Embedding](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/ips_agent_embed.py#L31)
 
@@ -52,7 +52,7 @@ Responsible for monitoring the network, extracting flow features and delivering 
 
 [Query Enrichment and Handling](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L94)
 
-4. Edge detector
+4. **Edge detector**
 
 [NFT Creation](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L129)
 
