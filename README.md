@@ -3,7 +3,9 @@
 Submitted by Daniel Cohen & Michal Ben Haim.
 
 ## What's Anoseek About?
-Anoseek is an E2E project designed to monitor, analyze and investigate network anomalies. 
+Anoseek is a web application project designed to monitor, analyze and investigate network anomalies.
+<br/>
+The project's main contribution is being "all in one" - from network monitoring to decision making and mitigation. 
 
 ## Bird's Eye Look at Anoseek
 <img width="420" height="313" alt="image" src="https://github.com/user-attachments/assets/fb361bfd-0e8d-4e83-981c-38a5f47db1ab" />
@@ -48,7 +50,7 @@ Responsible for monitoring the network, extracting flow features and delivering 
 
 - [ALERTED - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L760)
 
-- [UNDER-ATTACK System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L802)
+- [UNDER-ATTACK System - Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L802)
 
 3. **Chatbot**
 
