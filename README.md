@@ -14,7 +14,7 @@ Anoseek can be broken down into 4 main components:
 2. **Agent --> _Active Response Algorithm_**
 
   This layer serves as the enforcement decision apparatus. It receives classification data from the previous layer, calculates statistical estimates, and changes the system's state & active approach accordingly.
-> Possible system state include IDLE, ALERTED & UNDER-ATTACK.
+> Possible system states include IDLE, ALERTED & UNDER-ATTACK.
 
 3.  **Chatbot --> _RAG_**
 
