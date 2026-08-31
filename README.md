@@ -5,6 +5,9 @@ Submitted by Daniel Cohen & Michal Ben Haim.
 ## What's Anoseek About?
 Anoseek is an E2E project designed to monitor, analyze and investigate network anomalies. 
 
+## Bird's Eye Look at Anoseek
+<img width="420" height="313" alt="image" src="https://github.com/user-attachments/assets/fb361bfd-0e8d-4e83-981c-38a5f47db1ab" />
+
 ## Anoseek's Components
 Anoseek can be broken down into 4 main components:
 1. **Classification Agent --> _LSTM-SVC-EMBEDDINGS Model_**
@@ -14,7 +17,9 @@ Anoseek can be broken down into 4 main components:
 2. **Agent --> _Active Response Algorithm_**
 
   This layer serves as the enforcement decision apparatus. It receives classification data from the previous layer, calculates statistical estimates, and changes the system's state & active approach accordingly.
-> Possible system states include IDLE, ALERTED & UNDER-ATTACK.
+  
+> [!NOTE]
+> Possible system states include IDLE, ALERTED & UNDER-ATTACK. Those directly affect the agent's decision besides the current flow severity. 
 
 3.  **Chatbot --> _RAG_**
 
@@ -22,7 +27,7 @@ Anoseek can be broken down into 4 main components:
 
 4.  **Edge Detector --> _Raspberry-Pi_**
 
-Responsible for monitoring the network, extracting flow features and delivering those to the classification layer. It also acts as an active enforcer, via a firewall, for the agent decisions which can either - block ip or rate limit.
+Responsible for monitoring the network, extracting flow features and delivering those to the classification layer. It also acts as an active enforcer, via a firewall, for the agent decisions which can be either - block ip or rate limit.
 
 ### Code References & Snippets
 1. **Classification Model**
@@ -33,7 +38,7 @@ Responsible for monitoring the network, extracting flow features and delivering 
 
 [Anomaly Prediction](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L199)
 
-[API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L147)
+[API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L147)[^1]
 
 2. **Agent**
 
@@ -74,4 +79,6 @@ npm run dev
 
 * show api interface:
 http://localhost:8001/docs
+
+[^1]: CSV recorded flows (as demonstrated in /datasets) cannot be actively enforced, nonetheless agent decision is presented. 
 
