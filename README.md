@@ -32,53 +32,56 @@ Responsible for monitoring the network, extracting flow features and delivering 
 ### Code References & Snippets
 1. **Classification Model**
 
-[Model Architecture](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/train_and_evaluate.py#L176)
+- [Model Architecture](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/train_and_evaluate.py#L176)
 
-[Sequence Windows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L175)
+- [Sequence Windows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L175)
 
-[Anomaly Prediction](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L199)
+- [Anomaly Prediction](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L199)
 
-[API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L147)[^1]
+- [API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L147)[^1]
 
 2. **Agent**
 
-[Statistical Threshold](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L721)
+- [Statistical Threshold](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L721)
 
-[IDLE - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L727)
+- [IDLE - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L727)
 
-[ALERTED - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L760)
+- [ALERTED - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L760)
 
-[UNDER-ATTACK System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L802)
+- [UNDER-ATTACK System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L802)
 
 3. **Chatbot**
 
-[Multithread Embedding](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/ips_agent_embed.py#L31)
+- [Multithread Embedding](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/ips_agent_embed.py#L31)
 
-[Context Building](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L81)
+- [Context Building](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L81)
 
-[Query Enrichment and Handling](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L94)
+- [Query Enrichment and Handling](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L94)
 
 4. **Edge detector**
 
-[NFT Creation](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L129)
+- [NFT Creation](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L129)
 
-[Active Enforcement](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L168)
+- [Active Enforcement](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L168)
 
 ### Local Project Activation
 1. __activate venv envoirment__
-.\.venv\Scripts\activate
-2. __activate backend through vscode terminal__
-cd backend
-py -3.12 -m uvicorn api:app --reload --port 8001
-python -m uvicorn api:app --reload --port 8001  
-3. **service discoverable on wi-fi network** (_necessary for active enforcement & scanning with a connected Edge Detector_)
-python -m uvicorn api:app --host 0.0.0.0 --port 8001
-4.  activate frontend                                 
-cd frontend
-npm run dev
 
-* show api interface:
-http://localhost:8001/docs
+- .\.venv\Scripts\activate
+
+2. __activate backend through vscode terminal__
+
+- cd backend
+- py -3.12 -m uvicorn api:app --reload --port 8001
+- python -m uvicorn api:app --reload --port 8001  
+
+3. **service discoverable on wi-fi network** (_necessary for active enforcement & scanning with a connected Edge Detector_)
+- python -m uvicorn api:app --host 0.0.0.0 --port 8001
+4.  **activate frontend**                                
+- cd frontend
+- npm run dev
+
+* api interface: http://localhost:8001/docs
 
 [^1]: CSV recorded flows (as demonstrated in /datasets) cannot be actively enforced, nonetheless agent decision is presented. 
 
