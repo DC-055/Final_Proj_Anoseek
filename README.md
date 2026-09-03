@@ -34,39 +34,39 @@ Responsible for monitoring the network, extracting flow features and delivering 
 ### Code References & Snippets
 1. **Classification Model**
 
-- [Model Architecture](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/train_and_evaluate.py#L176)
+- [Model Architecture](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/train_and_evaluate.py#L176)
 
-- [Sequence Windows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L96)
+- [Sequence Windows](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/inference.py#L96)
 
-- [Anomaly Prediction](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/inference.py#L108)
+- [Anomaly Prediction](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/inference.py#L108)
 
-- [API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L147)[^1]
+- [API Path --> Classification of CSV recorded flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/api.py#L147)[^1]
 
-- [API Path --> Classification of live flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/api.py#L210)
+- [API Path --> Classification of live flows](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/api.py#L210)
 
 2. **Agent**
 
-- [Statistical Threshold](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L721)
+- [Statistical Threshold](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/agent.py#L721)
 
-- [IDLE - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L727)
+- [IDLE - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/agent.py#L727)
 
-- [ALERTED - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L760)
+- [ALERTED - System Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/agent.py#L760)
 
-- [UNDER-ATTACK System - Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/agent.py#L802)
+- [UNDER-ATTACK System - Actions & Transitions](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/agent.py#L802)
 
 3. **Chatbot**
 
-- [Multithread Embedding](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/ips_agent_embed.py#L31)
+- [Multithread Embedding](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/ips_agent_embed.py#L31)
 
-- [Context Building](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L81)
+- [Context Building](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/chat.py#L81)
 
-- [Query Enrichment and Handling](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/backend/chat.py#L94)
+- [Query Enrichment and Handling](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/backend/chat.py#L94)
 
 4. **Edge detector**
 
-- [NFT Creation](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L129)
+- [NFT Creation](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/hardware/sniffer.py#L129)
 
-- [Active Enforcement](https://github.com/DC-055/Final_Proj_Anoseek/blob/de8af948368d7062f5df0844b3bb9cf9d0e77146/hardware/sniffer.py#L168)
+- [Active Enforcement](https://github.com/DC-055/Final_Proj_Anoseek/blob/d8752e7b56da448d15e39dda283731364695ec7b/hardware/sniffer.py#L168)
 
 ### Local Project Activation
 1. __activate venv envoirment__
