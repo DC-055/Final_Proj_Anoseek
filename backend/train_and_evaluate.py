@@ -136,7 +136,7 @@ def train_and_evaluate(dataset_csv_path):
     
     # Split sequential flows cleanly
     X_train_seq, X_test_seq, y_train_arr, y_test_arr = train_test_split(
-        X_seq_arr, y_seq_arr, test_size=0.2, random_state=42, stratify=y_seq_arr
+        X_seq_arr, y_seq_arr, test_size=0.3, random_state=42, stratify=y_seq_arr
     )
     
     # Handle missing features and clipping logic safely over the flattened 2D metrics
@@ -236,7 +236,7 @@ def train_and_evaluate(dataset_csv_path):
     optimizer = torch.optim.Adam(embeddings_model.parameters(), lr=1e-03, weight_decay=1e-05)
 
     batch_size = 512
-    num_epochs = 13
+    num_epochs = 150
 
     dataset = TensorDataset(X_train_tensor, y_train_tensor)
     train_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=2, pin_memory=True)
@@ -433,19 +433,58 @@ def train_and_evaluate(dataset_csv_path):
     with open("artifacts/metrics.json", "w") as f:
         json.dump(metrics, f, indent=2)
 
+    # # Confusion matrix plots
+    # plt.figure(figsize=(10, 7))
+    # sns.heatmap(
+    #     confusion_matrix(y_test, y_pred, labels=present_classes),
+    #     annot=True, fmt="d", cmap="Blues",
+    #     xticklabels=active_class_names, yticklabels=active_class_names
+    # )
+    # plt.title("Confusion Matrix")
+    # plt.xlabel("Predicted")
+    # plt.ylabel("Actual")
+    # plt.tight_layout()
+    # plt.savefig("artifacts/confusion_matrix.png", bbox_inches="tight", dpi=120)
+    # plt.close()
+
+    # ================= MODIFIED CONFUSION MATRIX =================
+    cm = confusion_matrix(y_test, y_pred, labels=present_classes)
+    
+    # Extract the confidence (probability) of the class that was actually predicted
+    confidences = np.max(scores, axis=1)
+    
+    # Generate custom annotation strings combining counts and average confidences
+    annot_labels = np.empty_like(cm, dtype=object)
+    for r, true_class in enumerate(present_classes):
+        for c, pred_class in enumerate(present_classes):
+            # Find all instances that fall into this specific cell
+            mask = (y_test == true_class) & (y_pred == pred_class)
+            count = np.sum(mask)
+            if count > 0:
+                # Calculate average confidence for predictions in this cell
+                avg_conf = np.mean(confidences[mask])
+                annot_labels[r, c] = f"{count}\n({avg_conf:.1%})"
+            else:
+                annot_labels[r, c] = "0\n(0.0%)"
+
     # Confusion matrix plots
     plt.figure(figsize=(10, 7))
     sns.heatmap(
-        confusion_matrix(y_test, y_pred, labels=present_classes),
-        annot=True, fmt="d", cmap="Blues",
+        cm,
+        annot=annot_labels, 
+        fmt="", # fmt="" is required for Seaborn to accept our custom text arrays
+        cmap="Blues",
         xticklabels=active_class_names, yticklabels=active_class_names
     )
-    plt.title("Confusion Matrix")
+    plt.title("Confusion Matrix (Count & Avg Confidence)")
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.tight_layout()
     plt.savefig("artifacts/confusion_matrix.png", bbox_inches="tight", dpi=120)
     plt.close()
+    # =============================================================
+
+    ############## END OF NEW CODE 1
 
     # Per-class matrices
     fig, axes = plt.subplots(1, num_present_classes, figsize=(4 * num_present_classes, 4), squeeze=False)

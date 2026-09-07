@@ -88,7 +88,6 @@ print("(4) Listening for flows \n")
 blocked_ips: set[str] = set()
 rate_limited_ips: dict[str, float] = {} # ip -> last sent timestamp
 
-fire_wall_blocked_ips: set[str] = str()
 firewall_lock = threading.Lock()
 
 

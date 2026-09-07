@@ -445,7 +445,6 @@ class PolicyAnoseekAgent:
             event_ids = self.events_by_ip.get(src_ip, [])
             return {
                 "src_ip": src_ip,
-                "blocked": bool(self.blocked_by_ip.get(src_ip)),
                 "blocked": src_ip in self.blocked_by_ip,
                 "rate_limited": src_ip in self.rate_limited_by_ip,
                 "counts": {
