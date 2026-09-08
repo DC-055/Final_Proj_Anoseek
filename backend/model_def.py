@@ -35,4 +35,4 @@ class NetworkLSTMEmbeddings(nn.Module):
         return self.embedding_bottleneck(out[:, -1, :])
     
 def build_lstm_model(input_size: int, hidden_dim: int, num_layers: int, num_classes: int):
-    return NetworkLSTMEmbeddings(input_size, hidden_dim, num_layers, num_classes, embedding_dim=16)
+    return NetworkLSTMEmbeddings(input_size, hidden_dim, num_layers, num_classes, embedding_dim=30)
