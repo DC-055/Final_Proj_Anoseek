@@ -93,7 +93,7 @@ def _is_missing(value: Any) -> bool:
     return False
 
 
-def validate_flow_integrity(flow: dict) -> dict:
+#def validate_flow_integrity(flow: dict) -> dict:
     """
     Checks one raw flow dict (pre-imputation) for missing critical fields.
 
@@ -102,7 +102,7 @@ def validate_flow_integrity(flow: dict) -> dict:
         tier2_missing: list of {"label", "columns"} for protocol-conditional
             groups that apply to this flow but have missing columns.
     """
-    tier1_missing = [c for c in TIER1_REQUIRED_COLUMNS if _is_missing(flow.get(c))]
+    #tier1_missing = [c for c in TIER1_REQUIRED_COLUMNS if _is_missing(flow.get(c))]
 
     # tier2_missing = []
     # for group in TIER2_CONDITIONAL_GROUPS:

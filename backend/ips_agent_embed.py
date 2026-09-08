@@ -25,7 +25,7 @@ def load_existing_embeddings():
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except json.JSONDecodeError:
-        print(f"Warning: {OUTPUT_FILE} is not valid JSON; rebuilding embeddings from scratch")
+        print(f"Warning: {OUTPUT_FILE} is not valid JSON")
         return []
 
 def write_event_embeddings_file(rewrite=True):

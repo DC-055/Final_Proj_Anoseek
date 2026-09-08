@@ -33,7 +33,6 @@ import re
 if TYPE_CHECKING:
     from agent import PolicyAnoseekAgent
 
-
 _API_KEY = os.environ.get("GEMINI_API_KEY")
 if _API_KEY:
     _client = genai.Client(api_key=_API_KEY)
@@ -103,7 +102,7 @@ def ask(agent: "PolicyAnoseekAgent", question: str) -> dict:
         return {"ok": False, "error": "empty question"}
 
     if os.path.exists("../ips_agent_events.json"):
-        write_event_embeddings_file(rewrite=True)
+        write_event_embeddings_file()
     else:
         logging.info("json file for embedding not found!\n")
         
