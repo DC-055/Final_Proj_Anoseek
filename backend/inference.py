@@ -35,6 +35,7 @@ def _parse_numeric_value(value: Any) -> Any:
         return value
 
 
+<<<<<<< HEAD
 # ---------------------------------------------------------------- flow integrity
 #
 # Tier 1: always required, regardless of protocol. Missing here means the
@@ -114,6 +115,8 @@ def _is_missing(value: Any) -> bool:
     # return {"tier1_missing": tier1_missing, "tier2_missing": tier2_missing}
 
 
+=======
+>>>>>>> a1ee6ca2730356cb4d201d9827c5d897ed616a59
 class AnoseekInference:
 
     def __init__(
@@ -195,37 +198,6 @@ class AnoseekInference:
         return preds, probs
 
     # ---------------------------------------------------------------- public API
-
-    def predict_df(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Groups flows by source IP, builds one sequence per IP (last SEQ_LENGTH rows,
-        padded if needed), and assigns that prediction to every row of that IP.
-        """
-        if df.empty:
-            return df.assign(predicted_class=[], severity=[], confidence=[], is_anomaly=[])
-
-        scaled  = self._scale_features(df)
-        src_ips = df["IPV4_SRC_ADDR"].values if "IPV4_SRC_ADDR" in df.columns else np.zeros(len(df), dtype=object)
-
-        pred_classes = np.zeros(len(df), dtype=int)
-        confidences  = np.zeros(len(df), dtype=np.float32)
-
-        for ip in pd.unique(src_ips):
-            idx  = np.where(src_ips == ip)[0]
-            rows = scaled[idx]
-
-            seq = self._make_sequence(rows)
-            preds, probs = self._embed_and_classify(seq)
-            cls = int(preds[0])
-            pred_classes[idx] = cls
-            confidences[idx]  = float(probs[0, cls])
-
-        out = df.copy()
-        out["predicted_class"] = pred_classes
-        out["severity"]        = [self.class_names[p] for p in pred_classes]
-        out["confidence"]      = confidences.round(4)
-        out["is_anomaly"]      = pred_classes != 0
-        return out
 
     def ingest_live_flow(self, flow: dict) -> dict | None:
         """

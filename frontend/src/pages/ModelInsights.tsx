@@ -42,7 +42,7 @@ const CONFIDENCE_BUCKETS = [
 export default function ModelInsights() {
   const { dark } = useDarkModeContext();
   const { snapshot } = useAgentState(1000);
-  const { events, error } = useEvents("all", 1000, 3000);
+  const { events, error } = useEvents("all", 10000, 3000);
 
   const severityCounts = useMemo(() => {
     const counts = [0, 0, 0, 0, 0];

@@ -58,20 +58,5 @@ def format_rag(retrieved_context):
 
 def build_context_with_rag(user_query):
     top_docs = retrieve_relevant_docs(user_query)
-    """
-    retrieved_context = "\n\n---\n\n".join(
-        item["doc"]["text"] for item in top_docs
-    )
-
-    return retrieved_context
-    """
     return top_docs
 
-"""
-question = "I have seen numerous calls from the same IP to several services in a short time-span. What does it mean and what should we do?"
-
-answer, docs = answer_with_rag(question)
-
-print(f"query = {question}")
-print(answer)
-"""

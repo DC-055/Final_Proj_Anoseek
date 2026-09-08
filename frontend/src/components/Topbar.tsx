@@ -112,7 +112,7 @@ export default function Topbar() {
     const ready = threshold !== undefined && bs > threshold && snapshot?.soc_confirm !== 1;
     if (ready && !prevReadyRef.current && s) pushConfirmRequest(s);
     prevReadyRef.current = ready;
-  }, [snapshot?.status, snapshot?.benign_sequence, snapshot?.soc_confirm]);
+  }, [snapshot?.status, snapshot?.benign_sequence, snapshot?.soc_confirm, config]);
 
   async function onConfirm(confirmed: boolean) {
     if (pendingConfirmId === null) return;

@@ -26,7 +26,7 @@ const BAR_COLORS = [
 export default function Overview() {
   const navigate = useNavigate();
   const { snapshot } = useAgentState(1000);
-  const { events }   = useEvents("all", 200, 2000);
+  const { events }   = useEvents("all", 10000, 2000);
 
   // Static agent constants (decay thresholds) — fetched once, same source as Topbar/AgentState.
   const [config, setConfig] = useState<AgentConfig | null>(null);

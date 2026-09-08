@@ -274,31 +274,30 @@ function StateMachineDiagram({ status }: { status: StateKey }) {
       </defs>
 
       {/* Forward arrows: IDLE -> ALERTED -> UNDER_ATTACK */}
-      <line x1="155" y1="100" x2="245" y2="100" stroke="#94a3b8" strokeWidth="1" markerEnd="url(#arr)" />
-      <text x="200" y="92" fontSize="10" textAnchor="middle" fill="#64748b">repeated flags</text>
-      <text x="200" y="115" fontSize="10" textAnchor="middle" fill="#64748b">/ severity 3-4</text>
+      <line x1="140" y1="100" x2="245" y2="100" stroke="#94a3b8" strokeWidth="1" markerEnd="url(#arr)" />
+      <text x="190" y="92" fontSize="10" textAnchor="middle" fill="#64748b">threshold 1</text>
 
-      <line x1="355" y1="100" x2="455" y2="100" stroke="#94a3b8" strokeWidth="1" markerEnd="url(#arr)" />
-      <text x="405" y="92" fontSize="10" textAnchor="middle" fill="#64748b">3+ flags during alert</text>
+      <line x1="355" y1="100" x2="470" y2="100" stroke="#94a3b8" strokeWidth="1" markerEnd="url(#arr)" />
+      <text x="410" y="92" fontSize="10" textAnchor="middle" fill="#64748b">threshold 2</text>
 
       {/* Backward arc: ALERTED -> IDLE */}
-      <path d="M 245 130 Q 200 165 155 130" stroke="#94a3b8" strokeWidth="1" fill="none" markerEnd="url(#arr)" />
-      <text x="200" y="180" fontSize="10" textAnchor="middle" fill="#64748b">benign + SOC confirm</text>
+      <path d="M 245 130 Q 200 165 140 130" stroke="#94a3b8" strokeWidth="1" fill="none" markerEnd="url(#arr)" />
+      <text x="190" y="180" fontSize="10" textAnchor="middle" fill="#64748b">benign score + SOC confirm</text>
 
       {/* Backward arc: UNDER_ATTACK -> ALERTED */}
-      <path d="M 455 130 Q 400 165 355 130" stroke="#94a3b8" strokeWidth="1" fill="none" markerEnd="url(#arr)" />
-      <text x="400" y="180" fontSize="10" textAnchor="middle" fill="#64748b">benign + SOC confirm</text>
+      <path d="M 470 130 Q 400 165 355 130" stroke="#94a3b8" strokeWidth="1" fill="none" markerEnd="url(#arr)" />
+      <text x="400" y="180" fontSize="10" textAnchor="middle" fill="#64748b">benign score + SOC confirm</text>
 
       {/* IDLE node */}
       <g>
         <rect
-          x="55" y="75" width="100" height="50" rx="8"
+          x="40" y="75" width="100" height="50" rx="8"
           fill={idle.fill} stroke={idle.stroke} strokeWidth={idle.strokeWidth}
         />
-        <text x="105" y="100" fontSize="14" fontWeight="500" textAnchor="middle" fill={idle.textFill}>
+        <text x="90" y="100" fontSize="14" fontWeight="500" textAnchor="middle" fill={idle.textFill}>
           IDLE
         </text>
-        <text x="105" y="115" fontSize="10" textAnchor="middle" fill={idle.subFill}>
+        <text x="90" y="115" fontSize="10" textAnchor="middle" fill={idle.subFill}>
           normal traffic
         </text>
       </g>
@@ -320,13 +319,13 @@ function StateMachineDiagram({ status }: { status: StateKey }) {
       {/* UNDER_ATTACK node */}
       <g>
         <rect
-          x="455" y="75" width="110" height="50" rx="8"
+          x="470" y="75" width="110" height="50" rx="8"
           fill={ua.fill} stroke={ua.stroke} strokeWidth={ua.strokeWidth}
         />
-        <text x="510" y="100" fontSize="14" fontWeight="500" textAnchor="middle" fill={ua.textFill}>
+        <text x="525" y="100" fontSize="14" fontWeight="500" textAnchor="middle" fill={ua.textFill}>
           UNDER ATTACK
         </text>
-        <text x="510" y="115" fontSize="10" textAnchor="middle" fill={ua.subFill}>
+        <text x="525" y="115" fontSize="10" textAnchor="middle" fill={ua.subFill}>
           active blocking
         </text>
       </g>

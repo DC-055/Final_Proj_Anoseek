@@ -12,6 +12,7 @@ import {
   rateLimitIp,
   unRateLimitIp,
   getAgentByIp,
+  getAgentState,
   type ByIpResult,
   type EventRecord,
 } from "../api/client";
@@ -19,7 +20,7 @@ import { useEvents } from "../hooks/useEvents";
 import { badgeForAction } from "../lib/severity";
 import SeverityBadge from "../components/SeverityBadge";
 
-type TabKind = "all" | "flagged" | "blocked";
+type TabKind = "all" | "flagged" | "rate_limited" | "blocked";
 type SortKey = "time" | "confidence";
 type SortDir = "asc" | "desc";
 
@@ -111,6 +112,7 @@ export default function Alerts() {
             <div className="flex gap-1">
               <Tab label="All"     count={allCounts.all}     active={tab === "all"}     onClick={() => setTab("all")} />
               <Tab label="Flagged" count={allCounts.flagged} active={tab === "flagged"} onClick={() => setTab("flagged")} />
+              <Tab label="Rate Limited" count={allCounts.rate_limited} active={tab === "rate_limited"} onClick={() => setTab("rate_limited")} />
               <Tab label="Blocked" count={allCounts.blocked} active={tab === "blocked"} onClick={() => setTab("blocked")} />
             </div>
             <div className="flex items-center gap-3 pb-1">
@@ -132,9 +134,9 @@ export default function Alerts() {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="max-h-[60vh] overflow-auto ">
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-700/50">
+              <thead className="sticky top-0 z-10 bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-700/50">
                 <tr>
                   <SortableHeader label="Time" sortKey="time" activeKey={sortKey} dir={sortDir} onClick={toggleSort} />
                   <th className="px-3 py-2 font-medium">Source IP</th>
@@ -270,14 +272,34 @@ function Tab({
 }
 
 function useTabCounts() {
-  const all     = useEvents("all", 1000, 2000).events;
-  const flagged = useEvents("flagged", 1000, 2000).events;
-  const blocked = useEvents("blocked", 1000, 2000).events;
-  return {
-    all: all.length,
-    flagged: flagged.length,
-    blocked: blocked.length,
-  };
+  const [totals, setTotals] = useState({ all: 0, flagged: 0, rate_limited: 0, blocked: 0 });
+
+  useEffect(() => {
+    let cancelled = false;
+    async function tick() {
+      try {
+        const state = await getAgentState();
+        if (!cancelled) {
+          setTotals({
+            all: state.totals.events,
+            flagged: state.totals.flagged,
+            rate_limited: state.totals.rate_limited,
+            blocked: state.totals.blocked,
+          });
+        }
+      } catch {
+        // keep last known counts on a transient fetch failure
+      }
+    }
+    tick();
+    const id = setInterval(tick, 2000);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, []);
+
+  return totals;
 }
 
 /**

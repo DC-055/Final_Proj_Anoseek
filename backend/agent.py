@@ -23,7 +23,7 @@ class AgentMode(Enum):
     IDLE = "idle"
 
 
-LOW_CONFIDENCE_THRESHOLD = 0.96
+LOW_CONFIDENCE_THRESHOLD = 0.73
 ALERTED_BENIGNS = 4
 UNDER_ATTACK_BENIGNS = 5
 INNER_NETWORK = ipaddress.ip_network("10.42.0.0/24")
@@ -97,7 +97,7 @@ class PolicyAnoseekAgent:
         # on a shaky call. The original prediction is still surfaced via the
         # low-confidence alert below, for SOC visibility.
         low_confidence = isinstance(confidence, (int, float)) and confidence < LOW_CONFIDENCE_THRESHOLD
-        severity = 0 if low_confidence else predicted_severity
+        action_severity = 0 if low_confidence else predicted_severity
 
         # Pre-check: drop flows from blocked IPs without state-machine processing
         src_ip = flow_result.get("src_ip")
@@ -110,8 +110,8 @@ class PolicyAnoseekAgent:
             "flow_id": flow_result.get("flow_id"),
             "src_ip": flow_result.get("src_ip"),
             "dst_ip": flow_result.get("dst_ip"),
-            "severity": severity,
-            "severity_label": self._label(severity),
+            "severity": action_severity,
+            "severity_label": self._label(action_severity),
             "confidence": confidence,
             "agent_state": self.status.value,
             "note":"",
@@ -119,12 +119,12 @@ class PolicyAnoseekAgent:
             }
         self.event_history[event_id] = event
         if event["src_ip"]:
-            self.events_by_ip[event["src_ip"]].append(severity)
-            if severity == 0:
+            self.events_by_ip[event["src_ip"]].append(event_id)
+            if action_severity  == 0:
                 self.sev_0_events[event["src_ip"]] += 1
-            elif severity == 1 or severity == 2:
+            elif action_severity  == 1 or action_severity  == 2:
                 self.sev_1_2_events[event["src_ip"]] += 1
-            elif severity == 3 or severity == 4:
+            elif action_severity  == 3 or action_severity  == 4:
                 self.sev_3_4_events[event["src_ip"]] += 1
 
             self.last_event_ip = event["src_ip"]
@@ -133,16 +133,16 @@ class PolicyAnoseekAgent:
         if low_confidence:
             self.flag_low_confidence(event, predicted_severity)
 
-        if severity not in self.valid_severities:
+        if action_severity  not in self.valid_severities:
             return {
                 "ok": False,
-                "error": f"Unknown severity: {severity}",
+                "error": f"Unknown severity: {action_severity}",
                 "event_id": event_id,
                 "flow_id": event["flow_id"],
                 "src_ip": event["src_ip"],
                 "agent_state": self.status.value,
             }
-        
+
         if src_ip and src_ip in self.external_blocked_ips:
             event["note"] = "Source IP in external blocked IPs list"
             event["action"] = "block"
@@ -158,14 +158,14 @@ class PolicyAnoseekAgent:
         #     event["action"] = "block"
         #     return self.block_ip(event)
 
-        event = self.execute_action(event, severity)
+        event = self.execute_action(event, action_severity)
 
         # Every suspicious (non-benign) flow gets a SOC-visible alert, unless the
         # agent already took an automated block/rate_limit on it — that action's
         # own "Automated ..." alert (see _alert_enforcement_action) is enough,
         # a second generic warning on top of it would just be noise.
-        if severity > 0 and event.get("action") not in ("block", "rate_limit"):
-            self.alert_soc(event, severity)
+        if action_severity > 0 and event.get("action") not in ("block", "rate_limit"):
+            self.alert_soc(event, action_severity)
 
         # Write action/note back to the stored record (execute_action returns a new dict)
         stored = self.event_history.get(event_id)
@@ -178,7 +178,7 @@ class PolicyAnoseekAgent:
             "event_id": event_id,
             "src_ip": event["src_ip"],
             "dst_ip": event["dst_ip"],
-            "severity": severity,
+            "severity": event["severity"],
             "severity_label": event["severity_label"],
             "confidence": event["confidence"],
             "action": event["action"],
@@ -215,65 +215,77 @@ class PolicyAnoseekAgent:
     def rate_limit_ip_manual(self, src_ip: str) -> dict:
         """Add an IP to the rate limit list. SOC button. Mutually exclusive with block."""
         with self._lock:
-            self.blocked_by_ip.pop(src_ip, None)
-            event_id = self._next_event_id
-            self._next_event_id += 1
-            synthetic = {
-                "event_id": event_id,
-                "timestamp": datetime.now().isoformat(),
-                "src_ip": src_ip,
-                "dst_ip": None,
-                "severity": None,
-                "severity_label": None,
-                "confidence": None,
-                "agent_state": self.status.value,
-                "note": "Manual SOC rate limit",
-                "action": "rate_limit",
-            }
-            rate_limited_id = len(self.rate_limited_event_history) + 1
-            self.rate_limited_event_history[rate_limited_id] = synthetic
-            self.rate_limited_by_ip[src_ip].append(rate_limited_id)
+            stale_blocked_ids = self.blocked_by_ip.pop(src_ip, [])
+            for blocked_id in stale_blocked_ids:
+                self.blocked_event_history.pop(blocked_id, None)
+
+            self.rate_limited_by_ip[src_ip]  # ensure key exists even if no events yet
+            for event_id in self.events_by_ip.get(src_ip, []):
+                event = self.event_history.get(event_id)
+                if event is None:
+                    continue
+                self.flagged_event_history.pop(event_id, None)      
+                event["action"] = "rate_limit"
+                event["note"] = "Manual SOC rate limit"
+                self.rate_limited_event_history[event_id] = event
+                self.rate_limited_by_ip[src_ip].append(event_id)
+            self.flagged_by_ip[src_ip] = [                            
+                i for i in self.flagged_by_ip.get(src_ip, [])
+                if i not in self.events_by_ip.get(src_ip, [])          
+            ]
         logging.info("Manually rate limited IP %s", src_ip)
         return {"ok": True, "src_ip": src_ip, "action": "rate_limit"}
 
     def rate_unlimit_manual(self, src_ip: str) -> dict:
         """Remove an IP from the rate limit list. SOC undo."""
         with self._lock:
-            self.rate_limited_by_ip.pop(src_ip, None)
+            rate_limited_ids = self.rate_limited_by_ip.pop(src_ip, [])
+            for event_id in rate_limited_ids:
+                self.rate_limited_event_history.pop(event_id, None)
+                event = self.event_history.get(event_id)
+                if event is not None:
+                    event["action"] = "pass"
+                    event["note"] = "Manual SOC rate limit lifted"
         logging.info("Manually rate unlimited IP %s", src_ip)
         return {"ok": True, "src_ip": src_ip, "action": "pass"}
 
     def block_ip_manual(self, src_ip: str) -> dict:
         """Add an IP to the blocklist. SOC button. Mutually exclusive with rate limit."""
         with self._lock:
-            self.rate_limited_by_ip.pop(src_ip, None)
-            event_id = self._next_event_id
-            self._next_event_id += 1
-            synthetic = {
-                "event_id": event_id,
-                "timestamp": datetime.now().isoformat(),
-                "src_ip": src_ip,
-                "dst_ip": None,
-                "severity": None,
-                "severity_label": None,
-                "confidence": None,
-                "agent_state": self.status.value,
-                "note": "Manual SOC block",
-                "action": "block",
-            }
-            blocked_id = len(self.blocked_event_history) + 1
-            self.blocked_event_history[blocked_id] = synthetic
-            self.blocked_by_ip[src_ip].append(blocked_id)
+            stale_rate_limited_ids = self.rate_limited_by_ip.pop(src_ip, [])
+            for rate_limited_id in stale_rate_limited_ids:
+                self.rate_limited_event_history.pop(rate_limited_id, None)
+
+            self.blocked_by_ip[src_ip]  # ensure key exists even if no events yet
+            for event_id in self.events_by_ip.get(src_ip, []):
+                event = self.event_history.get(event_id)
+                if event is None:
+                    continue
+                self.flagged_event_history.pop(event_id, None)      
+                event["action"] = "block"
+                event["note"] = "Manual SOC block"
+                self.blocked_event_history[event_id] = event
+                self.blocked_by_ip[src_ip].append(event_id)
+            self.flagged_by_ip[src_ip] = [                            
+                i for i in self.flagged_by_ip.get(src_ip, [])
+                if i not in self.events_by_ip.get(src_ip, [])
+            ]
         logging.info("Manually blocked IP %s", src_ip)
         return {"ok": True, "src_ip": src_ip, "action": "block"}
 
     def unblock_ip_manual(self, src_ip: str) -> dict:
         """Remove an IP from the blocklist. SOC undo."""
         with self._lock:
-            self.blocked_by_ip.pop(src_ip, None)
+            blocked_ids = self.blocked_by_ip.pop(src_ip, [])
+            for event_id in blocked_ids:
+                self.blocked_event_history.pop(event_id, None)
+                event = self.event_history.get(event_id)
+                if event is not None:
+                    event["action"] = "pass"
+                    event["note"] = "Manual SOC block lifted"
         logging.info("Manually unblocked IP %s", src_ip)
         return {"ok": True, "src_ip": src_ip, "action": "pass"}
-        
+    
 
     def force_block_missing_data(self, flow: dict, missing_columns: list[str]) -> dict:
         """
@@ -407,6 +419,7 @@ class PolicyAnoseekAgent:
                     "flows_seen": self.flows_seen,
                     "events": len(self.event_history),
                     "flagged": len(self.flagged_event_history),
+                    "rate_limited": len(self.rate_limited_event_history),
                     "blocked": len(self.blocked_event_history),
                     "blocked_ips": len([ip for ip, ids in self.blocked_by_ip.items() if ids]),
                     "rate_limited_ips": len(self.rate_limited_by_ip),
@@ -420,6 +433,7 @@ class PolicyAnoseekAgent:
             sources = {
                 "all": self.event_history,
                 "flagged": self.flagged_event_history,
+                "rate_limited": self.rate_limited_event_history,
                 "blocked": self.blocked_event_history,
             }
             source = sources.get(kind, self.event_history)
@@ -431,7 +445,6 @@ class PolicyAnoseekAgent:
             event_ids = self.events_by_ip.get(src_ip, [])
             return {
                 "src_ip": src_ip,
-                "blocked": bool(self.blocked_by_ip.get(src_ip)),
                 "blocked": src_ip in self.blocked_by_ip,
                 "rate_limited": src_ip in self.rate_limited_by_ip,
                 "counts": {
@@ -452,14 +465,13 @@ class PolicyAnoseekAgent:
 
     def flag_event(self, event, severity):
         if severity == 1 or severity == 2:
-            # defaultdict(int) already returns 0 for a missing key, thus there is no condition.
             self.sev_flagged_1_2_events[event["src_ip"]] += 1
         elif severity == 3 or severity == 4:
             self.sev_flagged_3_4_events[event["src_ip"]] += 1
 
-        flagged_event_id = len(self.flagged_event_history) + 1
-        self.flagged_event_history[flagged_event_id] = event
-        self.flagged_by_ip[event["src_ip"]].append(flagged_event_id)
+        event_id = event["event_id"]
+        self.flagged_event_history[event_id] = event
+        self.flagged_by_ip[event["src_ip"]].append(event_id)
 
         if not event.get("note"):
             event["note"] = "Flagged"

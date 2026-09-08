@@ -4,8 +4,12 @@ from google import genai
 from google.genai import types 
 import time
 
-### TODO -> STORE API-KEY AS ENV VARIABLE
-client = genai.Client(api_key="GEMINI_API_KEY")
+_API_KEY = os.environ.get("GEMINI_API_KEY")
+if _API_KEY:
+    client = genai.Client(api_key=_API_KEY)
+else:
+    client = None
+    print("[llm_embed] WARNING: GEMINI_API_KEY not set; chat endpoint will fail")
 
 #### Creation of anoseek_embeddings.json ####
 
