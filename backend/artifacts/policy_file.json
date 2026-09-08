@@ -14,12 +14,12 @@
         {
             "State": "UNDER_ATTACK",
             "Action_Required": "rate_limit",
-            "Allowed": true
+            "Allowed": false
         },
         {
             "State": "UNDER_ATTACK",
             "Action_Required": "block",
-            "Allowed": true
+            "Allowed": false
         }
     ]
 }

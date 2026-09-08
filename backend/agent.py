@@ -680,7 +680,7 @@ class PolicyAnoseekAgent:
             num_of_events += count
 
         if num_of_unique_ips < 2:
-            return 2, 0.1
+            return 3, 1.0
         
         mean = num_of_events / num_of_unique_ips
         for count in events.values():
@@ -704,7 +704,7 @@ class PolicyAnoseekAgent:
                 num_of_events += count
 
             if num_of_unique_ips < 2:
-                return 1, 0.1
+                return 2, 1.0
 
             mean = num_of_events / num_of_unique_ips
             for count in events.values():
